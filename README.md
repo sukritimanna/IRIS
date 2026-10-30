@@ -26,7 +26,7 @@ deposited separately (see *Data availability* in the paper); this repository hol
 | `results/` | the CSVs behind every evaluation table and figure (see `results/README.md`) |
 | `scripts/figures/` | the script that draws the evaluation figure from `results/` |
 | `live_demo/` | scripts and runbook of the prospective BaTiO3 campaign on an HPC cluster (PBS); cluster identifiers are placeholders |
-| `docs/` | changelog of the changes made after the evaluation freeze, manual checks, API-key setup |
+| `docs/` | `LIVE_RUN.md` (reproducing the live BaTiO3 campaign on PBS or Slurm), `CONFIG_SCHEMA.md` (every configuration, policy and recovery-table key; adding a new system), changelog, manual checks, API-key setup |
 
 ## Reproduce
 
@@ -37,6 +37,8 @@ export IRIS_CONFIGS=$PWD/configs                      # replay needs the stored 
 python -m pytest tests -q                             # ~3 min
 python -m policies.score_cases                        # deterministic deciders on the 53 cases
 python -m eval_extra.loso                             # leave-one-system-out
+python -m eval_extra.cost_summary                     # tokens, cost and latency of every model call
+python -m eval_extra.decoy_remedy --models eval/models.yaml   # the three guidance-sentence remedies for the decoys
 python -m consequences.fork --c2 ...                  # option replay (see consequences/fork.py)
 python -m intake.run_parser                           # rule-based intake parser
 python -m iris_agent.subagent_bench --models eval/models.yaml   # language-model benchmark; API keys from the environment only
