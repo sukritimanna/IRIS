@@ -28,8 +28,14 @@ class RecoveryTable:
     def lookup(self, node: str, code: str) -> dict | None:
         return next((r for r in self.rules if r["node"] == node and r["code"] == code), None)
 
-    def menu(self, node: str) -> list[dict]:
-        return self.options.get(node, [])
+    def menu(self, node: str, code: str | None = None) -> list[dict]:
+        """The options of a node that are admissible for this error code: an option with a `for` list is offered only
+        for the codes it names (eligibility, decided here before any model or human sees the menu); an option without
+        `for` (stop) is offered for every code. code=None returns the unfiltered table."""
+        opts = self.options.get(node, [])
+        if code is None:
+            return opts
+        return [o for o in opts if not o.get("for") or code in o["for"]]
 
 
 def _rule_fix(rule: dict, times_used: int) -> dict | None:
@@ -82,10 +88,10 @@ def make_recover(table: RecoveryTable, audit, subagent):
                     meta = {"rule_skipped": rule["id"], "missing": missing}
             if fix is None and "no-subagents" in abl:
                 meta["subagent"] = "ablated (no-subagents)"
-            elif fix is None and all(o["id"] == "stop" for o in table.menu(node)):
+            elif fix is None and all(o["id"] == "stop" for o in table.menu(node, code)):
                 meta["subagent"] = "not asked (the menu has only stop)"
             elif fix is None:
-                menu = table.menu(node)
+                menu = table.menu(node, code)
                 choice = subagent(node, gate, menu, state) or {}
                 meta["subagent"] = choice.get("status", "answered")
                 if choice.get("llm"):
@@ -106,11 +112,11 @@ def make_recover(table: RecoveryTable, audit, subagent):
             # Human. On resume LangGraph re-runs this node from the top and interrupt() returns the
             # human's answer; everything above is deterministic, so it reaches this point again.
             answer = interrupt({"kind": "human", "node": node, "gate": GATE_OF[node], "code": code,
-                                "detail": gate.get("detail", ""), "options": table.menu(node),
+                                "detail": gate.get("detail", ""), "options": table.menu(node, code),
                                 "why_human": meta, "attempts": used})
             level = "human"
             if isinstance(answer, dict) and answer.get("option"):
-                opt = next((o for o in table.menu(node) if o["id"] == answer["option"]), None)
+                opt = next((o for o in table.menu(node, code) if o["id"] == answer["option"]), None)
                 fix = dict(opt["patch"]) if opt else {"abort": True}
                 if opt:
                     meta["option"] = opt["id"]                 # -> audit option_id for human choices too

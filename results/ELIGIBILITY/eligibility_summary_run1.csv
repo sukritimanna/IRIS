@@ -1,0 +1,46 @@
+model,subset,n,correct,safe,harmful,invalid,error,correct_rate,harmful_rate
+claude-haiku,asked (model),185,153,27,5,0,0,0.827,0.027
+claude-haiku,decided by code,80,80,0,0,0,0,1.0,0.0
+claude-haiku,all,265,233,27,5,0,0,0.8792,0.0189
+claude-haiku,decoys,55,55,0,0,0,0,1.0,0.0
+claude-haiku,non-decoys,210,178,27,5,0,0,0.8476,0.0238
+claude-sonnet,asked (model),185,152,33,0,0,0,0.8216,0.0
+claude-sonnet,decided by code,80,80,0,0,0,0,1.0,0.0
+claude-sonnet,all,265,232,33,0,0,0,0.8755,0.0
+claude-sonnet,decoys,55,55,0,0,0,0,1.0,0.0
+claude-sonnet,non-decoys,210,177,33,0,0,0,0.8429,0.0
+claude-opus,asked (model),185,146,39,0,0,0,0.7892,0.0
+claude-opus,decided by code,80,80,0,0,0,0,1.0,0.0
+claude-opus,all,265,226,39,0,0,0,0.8528,0.0
+claude-opus,decoys,55,55,0,0,0,0,1.0,0.0
+claude-opus,non-decoys,210,171,39,0,0,0,0.8143,0.0
+gpt-luna,asked (model),185,155,27,3,0,0,0.8378,0.0162
+gpt-luna,decided by code,80,80,0,0,0,0,1.0,0.0
+gpt-luna,all,265,235,27,3,0,0,0.8868,0.0113
+gpt-luna,decoys,55,55,0,0,0,0,1.0,0.0
+gpt-luna,non-decoys,210,180,27,3,0,0,0.8571,0.0143
+gpt-sol,asked (model),185,157,23,5,0,0,0.8486,0.027
+gpt-sol,decided by code,80,80,0,0,0,0,1.0,0.0
+gpt-sol,all,265,237,23,5,0,0,0.8943,0.0189
+gpt-sol,decoys,55,55,0,0,0,0,1.0,0.0
+gpt-sol,non-decoys,210,182,23,5,0,0,0.8667,0.0238
+gpt-astra,asked (model),185,156,24,5,0,0,0.8432,0.027
+gpt-astra,decided by code,80,80,0,0,0,0,1.0,0.0
+gpt-astra,all,265,236,24,5,0,0,0.8906,0.0189
+gpt-astra,decoys,55,55,0,0,0,0,1.0,0.0
+gpt-astra,non-decoys,210,181,24,5,0,0,0.8619,0.0238
+gemini-flash-lite,asked (model),185,164,13,8,0,0,0.8865,0.0432
+gemini-flash-lite,decided by code,80,80,0,0,0,0,1.0,0.0
+gemini-flash-lite,all,265,244,13,8,0,0,0.9208,0.0302
+gemini-flash-lite,decoys,55,55,0,0,0,0,1.0,0.0
+gemini-flash-lite,non-decoys,210,189,13,8,0,0,0.9,0.0381
+gemini-flash,asked (model),185,154,31,0,0,0,0.8324,0.0
+gemini-flash,decided by code,80,80,0,0,0,0,1.0,0.0
+gemini-flash,all,265,234,31,0,0,0,0.883,0.0
+gemini-flash,decoys,55,55,0,0,0,0,1.0,0.0
+gemini-flash,non-decoys,210,179,31,0,0,0,0.8524,0.0
+gemini-argon,asked (model),185,177,7,1,0,0,0.9568,0.0054
+gemini-argon,decided by code,80,80,0,0,0,0,1.0,0.0
+gemini-argon,all,265,257,7,1,0,0,0.9698,0.0038
+gemini-argon,decoys,55,55,0,0,0,0,1.0,0.0
+gemini-argon,non-decoys,210,202,7,1,0,0,0.9619,0.0048

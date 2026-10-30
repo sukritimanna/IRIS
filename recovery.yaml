@@ -58,6 +58,9 @@ rules:
 # Menus for the gate sub-agents (step 5) and for the human. The LLM may only return one id from the
 # failing node's list plus a one-sentence reason; it never computes, decides pass/fail or writes numbers.
 # Every option must change something a node reads (tests/test_gates_recover.py checks the patch keys).
+# `for`: the error codes an option is admissible for (eligibility, decided in code before any model or
+# human sees the menu; an option without `for` is offered for every code, which is only `stop`). The
+# benchmark menus of eval/ were frozen before this field existed and are filtered by it at run time.
 # Removed 2026-10-17 (S5.2) because no node read their patch: reask_llm (returns with the LLM intake, step 6),
 # retry_tolerance_ladder, add_subthreshold_irrep, reduce_grid, f3 wait, restrict_fit_radius; zero_strain dropped
 # from rebuild_fixed_lattice for the same reason. Added: remove_translation (the f2_translation rule's fix).
@@ -65,26 +68,26 @@ options:
   f0:
     - {id: stop, patch: {abort: true}, text: "Stop and ask the human for a corrected config"}
   f1:
-    - {id: widen_basis_search, patch: {basis_dmax_A: 2.0}, text: "Widen the atom-matching basis search (dmax 2.0 A)"}
+    - {id: widen_basis_search, patch: {basis_dmax_A: 2.0}, for: [NO_BASIS], text: "Widen the atom-matching basis search (dmax 2.0 A)"}
     - {id: stop, patch: {abort: true}, text: "Stop and ask the human"}
   f2:
-    - {id: include_borderline, patch: {r5_decision: include}, text: "R5: include the borderline irreps as axes"}
-    - {id: exclude_borderline, patch: {r5_decision: exclude}, text: "R5: exclude the borderline irreps"}
-    - {id: anchor_only, patch: {r5_decision: anchor_only}, text: "R5: keep the borderline irreps as anchor points only"}
-    - {id: rebuild_fixed_lattice, patch: {single_mode_check_on: fixed_parent_lattice}, text: "Rebuild single-mode frames on the fixed parent lattice"}
-    - {id: remove_translation, patch: {subtract_mean_displacement: true}, text: "Subtract the rigid translation (mean displacement) from the polar mode vectors"}
+    - {id: include_borderline, patch: {r5_decision: include}, for: [R5_BORDERLINE], text: "R5: include the borderline irreps as axes"}
+    - {id: exclude_borderline, patch: {r5_decision: exclude}, for: [R5_BORDERLINE], text: "R5: exclude the borderline irreps"}
+    - {id: anchor_only, patch: {r5_decision: anchor_only}, for: [R5_BORDERLINE], text: "R5: keep the borderline irreps as anchor points only"}
+    - {id: rebuild_fixed_lattice, patch: {single_mode_check_on: fixed_parent_lattice}, for: [SINGLE_MODE_SG], text: "Rebuild single-mode frames on the fixed parent lattice"}
+    - {id: remove_translation, patch: {subtract_mean_displacement: true}, for: [TRANSLATION], text: "Subtract the rigid translation (mean displacement) from the polar mode vectors"}
     - {id: stop, patch: {abort: true}, text: "Stop and ask the human"}
   f3:
     - {id: stop, patch: {abort: true}, text: "Stop and ask the human"}
   f4:
-    - {id: resubmit, patch: {goto: f3, resubmit_failed: true}, text: "Resubmit the failed parts unchanged"}
-    - {id: robust_mixing, patch: {goto: f3, resubmit_failed: true, incar: {AMIX: 0.2, BMIX: 0.0001, NELM: 300}}, text: "Resubmit the failed parts with robust mixing"}
-    - {id: flag_and_continue, patch: {flag_unconverged: true}, text: "Flag the frames and continue without them (G4 then stops with MISSING_FRAMES unless a human authorises the smaller grid)"}
+    - {id: resubmit, patch: {goto: f3, resubmit_failed: true}, for: [WALLTIME], text: "Resubmit the failed parts unchanged"}
+    - {id: robust_mixing, patch: {goto: f3, resubmit_failed: true, incar: {AMIX: 0.2, BMIX: 0.0001, NELM: 300}}, for: [NELM], text: "Resubmit the failed parts with robust mixing"}
+    - {id: flag_and_continue, patch: {flag_unconverged: true}, for: [WALLTIME, NELM], text: "Flag the frames and continue without them (G4 then stops with MISSING_FRAMES unless a human authorises the smaller grid)"}
     - {id: stop, patch: {abort: true}, text: "Stop and ask the human"}
   f5:
-    - {id: densify, patch: {goto: f2, densify: 2}, text: "Go back to f2 and densify the grid"}
-    - {id: accept_secondary_hold, patch: {d4_accept: true}, text: "D4: keep the secondary at zero and report the energy it would release as a caveat"}
+    - {id: densify, patch: {goto: f2, densify: 2}, for: [THIN_GRID], text: "Go back to f2 and densify the grid"}
+    - {id: accept_secondary_hold, patch: {d4_accept: true}, for: [SECONDARY_COUPLED], text: "D4: keep the secondary at zero and report the energy it would release as a caveat"}
     - {id: stop, patch: {abort: true}, text: "Stop and ask the human"}
   f6:
-    - {id: rerun_analysis, patch: {goto: f5}, text: "Re-run f5 and re-check"}
+    - {id: rerun_analysis, patch: {goto: f5}, for: [MISMATCH, NOT_REDERIVED], text: "Re-run f5 and re-check"}
     - {id: stop, patch: {abort: true}, text: "Stop and ask the human"}

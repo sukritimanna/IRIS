@@ -223,7 +223,7 @@ def test_recover_applies_valid_choice_and_audits_model_fields(tmp_path, keys):
     fix = [r for r in audit.read() if r["kind"] == "fix"][-1]
     assert fix["recovery_tier"] == "subagent" and fix["output_valid"] is True
     assert fix["tokens_in"] == 900 and fix["llm"]["provider"] == "anthropic" and fix["llm"]["model_version"] == "claude-x-20261001"
-    assert sorted(fix["llm"]["option_order"]) == sorted(o["id"] for o in RecoveryTable(AGENT / "recovery.yaml").menu("f4"))
+    assert sorted(fix["llm"]["option_order"]) == sorted(o["id"] for o in RecoveryTable(AGENT / "recovery.yaml").menu("f4", "WALLTIME"))   # the admissible menu for this code
     for f in (tmp_path / "a.jsonl", tmp_path / "llm_calls.jsonl"):
         assert KEY not in f.read_text()
     call = json.loads((tmp_path / "llm_calls.jsonl").read_text().splitlines()[0])

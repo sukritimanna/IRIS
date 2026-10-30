@@ -59,7 +59,7 @@ def test_no_rules_skips_the_rule_table(tmp_path):
     from iris_agent.recover import RecoveryTable, make_recover
     from .conftest import AGENT
     rec = make_recover(RecoveryTable(AGENT / "recovery.yaml"), AuditLog(tmp_path / "a.jsonl", "t"),
-                       lambda *a: {"id": "resubmit", "reason": "x"})
+                       lambda *a: {"id": "robust_mixing", "reason": "x"})   # the admissible fix for NELM
     st = {"last_node": "f4", "gate": {"ok": False, "code": "NELM"}, "attempts": {}, "overrides": {},
           "history": [], "config": {"retry": {"max_per_node": 3}, "llm": {"enabled": True}},
           "run_meta": {"ablation_flags": ["no-rules"]}}

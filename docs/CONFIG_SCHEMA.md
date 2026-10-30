@@ -93,6 +93,12 @@ options:
     - {id: stop,    patch: {abort: true}, text: "Stop and ask the human"}
 ```
 
+`for:` is the eligibility condition: the error codes an option is admissible for. `RecoveryTable.menu(node, code)`
+offers the sub-agent and the human only the admissible options, and a failure whose admissible menu is `stop`
+alone is decided in code with no model call. Every non-stop option must carry `for` (tested); an option is
+admissible only for the codes whose rule or policy it implements (densify for THIN_GRID, accept_secondary_hold for
+SECONDARY_COUPLED, flag_and_continue for the job failures that leave frames without an energy, WALLTIME and NELM).
+
 `fix` and `patch` are configuration patches merged into the overrides of the node that runs next (`goto`, else
 the failing node). Every option must change something a node reads: `tests/test_gates_recover.py` checks the
 patch keys, so an option that no node would act on is refused at test time, not discovered in a run. The recovery

@@ -38,7 +38,8 @@ python -m pytest tests -q                             # ~3 min
 python -m policies.score_cases                        # deterministic deciders on the 53 cases
 python -m eval_extra.loso                             # leave-one-system-out
 python -m eval_extra.cost_summary                     # tokens, cost and latency of every model call
-python -m eval_extra.decoy_remedy --models eval/models.yaml   # the three guidance-sentence remedies for the decoys
+python -m eval_extra.decoy_remedy --models eval/models.yaml   # the three guidance-sentence remedies for the decoys (post-hoc)
+python -m eval_extra.eligibility --models eval/models.yaml     # the benchmark with menus filtered by the eligibility conditions
 python -m consequences.fork --c2 ...                  # option replay (see consequences/fork.py)
 python -m intake.run_parser                           # rule-based intake parser
 python -m iris_agent.subagent_bench --models eval/models.yaml   # language-model benchmark; API keys from the environment only

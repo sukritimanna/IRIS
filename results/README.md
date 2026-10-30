@@ -9,3 +9,4 @@
 | `summary/` | the per-experiment summary CSVs read by `scripts/figures/fig6_llm.py` (E1–E9, S5.3 model benchmark, `E_summary_v5.csv` with the parser row) |
 | `DECOY/` | the decoy-remedy test: three guidance sentences (`remedy_prompts.json`), nine models x five repeats on the 53 cases (`decoy_remedy_summary.csv`, `decoy_remedy_cases.csv`) |
 | `COST/` | tokens, latency and cost of every metered model call, per experiment and model (`cost_summary.csv`) |
+| `ELIGIBILITY/` | the benchmark with the recovery menus filtered by the eligibility conditions of `recovery.yaml` (`for:`), frozen prompts; see its README |

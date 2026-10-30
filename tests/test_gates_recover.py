@@ -174,3 +174,42 @@ def test_g2_r5_decision_applied():
     moot = {"overrides": {"f2": {"r5_decision": "exclude"}}, "selection": {"code": "OK", "r5_decision": None, "borderline": [], "active": ["M3+", "R4+"]},
             "grid": {"built": True, "active": ["M3+", "R4+"]}}
     assert g2_r5_decision_applied(moot) is None
+
+
+def test_menu_eligibility_filters_options_by_code():
+    """Options carry the error codes they are admissible for; the menu a sub-agent or human sees is filtered by the
+    failing code in code. A decoy failure (COVERAGE with a minimum near the edge, PATH_LATTICE, a tolerance failure)
+    leaves only stop, so no model is asked; a rule-fixable failure keeps its fix."""
+    from iris_agent.recover import RecoveryTable
+    t = RecoveryTable(REC)
+    ids = lambda node, code: [o["id"] for o in t.menu(node, code)]
+    assert ids("f5", "COVERAGE") == ["stop"]
+    assert ids("f5", "RESIDUALS") == ["stop"] and ids("f5", "CLOSURE") == ["stop"]
+    assert ids("f5", "THIN_GRID") == ["densify", "stop"]
+    assert ids("f5", "SECONDARY_COUPLED") == ["accept_secondary_hold", "stop"]
+    assert ids("f2", "PATH_LATTICE") == ["stop"]
+    assert ids("f2", "SINGLE_MODE_SG") == ["rebuild_fixed_lattice", "stop"]
+    assert ids("f2", "R5_BORDERLINE") == ["include_borderline", "exclude_borderline", "anchor_only", "stop"]
+    assert ids("f4", "WALLTIME") == ["resubmit", "flag_and_continue", "stop"]
+    assert ids("f4", "NELM") == ["robust_mixing", "flag_and_continue", "stop"]
+    assert ids("f4", "DFT_INCONSISTENT") == ["stop"]
+    assert ids("f4", "SCF_LIMITED") == ["stop"]        # an SCF-limited frame keeps its energy (NELM_AFTER_ROBUST); nothing to drop
+    assert ids("f1", "NO_BASIS") == ["widen_basis_search", "stop"]
+    assert "stop" in ids("f6", "MISMATCH") and "rerun_analysis" in ids("f6", "MISMATCH")
+    # every option except stop names its codes, in both tables
+    for fn in ("recovery.yaml", "recovery_live.yaml"):
+        tt = RecoveryTable(REC.parent / fn)
+        for node, opts in tt.options.items():
+            for o in opts:
+                assert o["id"] == "stop" or o.get("for"), (fn, node, o["id"])
+
+
+def test_ineligible_option_is_not_offered_to_the_subagent(tmp_path):
+    """On a COVERAGE decoy the sub-agent is not asked (only stop is admissible), even though densify is on f5's table."""
+    called = []
+    rec = _recover(tmp_path, subagent=lambda *a: called.append(a) or {"id": "densify"})
+    try:
+        rec(_state("f5", "COVERAGE"))
+    except Exception:
+        pass                                   # interrupt() outside a graph: the human is asked
+    assert called == []
