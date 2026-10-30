@@ -1,0 +1,77 @@
+# HfO2 path T5: Pbcn -> P2_1/c (#60 -> #14); 10-point straight-line irrep path (Paper 1 frozen path, runbook 2026-10-08).
+# H1: decomposition from the stored ISODISTORT run (G1). H2: the 10 path frames (G2). H3 (this config, runs to f6): energies, barrier, closure, f6.
+# Paths under repo_root are READ ONLY. IRIS writes only under agent_root (enforced in code).
+system: hfo2
+thread_id: hfo2_T5_60_14_h3
+request: "straight-line irrep path HfO2 #60 -> #14, amplitudes and strain scaled together, 10 points, DFT PBE; parent.cif, child.cif"
+
+run:
+  mode: replay
+  engine: dft
+  budget_runs: 20
+  allow_live_submission: false   # must stay false: no DFT/VASP/MACE/Slurm in this build
+  # stop_after: none             # H1 ended after G1, H2 after G2; H3 runs to the end (f6, G6)
+  jobs:
+    wait: true
+    part_size: 10
+  replay:                        # H3 (nodes/f3_path.py): frame k vs the stored L<kk>/POSCAR
+    tol_A: 1.0e-3                # per atom (IRIS vs stored: <= 1e-4 Å)
+    tol_lattice_A: 1.0e-4
+
+paths:
+  repo_root: ~/Workspace/myProjects/imhafo2
+  agent_root: ~/Workspace/myProjects/imhafo2/IRIS_AGENT
+  test_runs: test_runs
+  parent_cif: demo/hfo2/structures/inputs/pbcn_60.cif
+  child_cif: demo/hfo2/structures/inputs/m_14.cif
+  system_json: demo/staged_walkthrough/systems/hfo2.json
+  walkthrough: demo/staged_walkthrough
+  reference_run: demo/runs/hfo2_60_to_14__20261008_161439
+  isodistort_stored: demo/runs/hfo2_60_to_14__20261008_161439/step3_isodistort/04_raw_isodistort
+  incar_template: demo/hfo2/INCAR.static       # the one campaign INCAR (runbook); every point must use it
+
+expected:
+  parent_sg: 60
+  child_sg: 14
+  parent_sha256: 8de14acd36b610999ba9b1f51836b34d35f237899dd3f6aa2076785622dd202e   # = RUN_MANIFEST.json
+  child_sha256: 9461669395d8a94bab5aa39c676c5c144784f692d252ceca3972d0e60b040223
+
+policy:
+  a_thr: 0.05
+  amplitude_basis: As_tf
+  r5_margin: 0.1
+  strain_policy: P5              # strain follows the path (s = lambda); H2
+  d_cut: 1.0
+  grid: {q_max: 1.0, dq: 0.1111111111}   # schema only; the path is policy.path
+  analysis: path                 # H3: nodes/f5_path.py (profile, barrier, network checks)
+  qc: {mag_max_muB: 0.01}        # |m| per cell (ISPIN 2, MAGMOM unset: non-magnetic expected; collect_paths.py MAG_TOL)
+  path:                          # H2 (nodes/f2_path.py): lambda = k/9, every irrep at lambda x A_p(child), cell linear in lambda
+    n_points: 10
+    child_lattice:               # orientation of the child cell at lambda = 1 (the interpolated cells depend on it)
+      orientation: stored        # as the stored path built it (pure_stretch = no rigid rotation; reported either way)
+      file: demo/runs/hfo2_60_to_14__20261008_161439/step4_energy_path10/01_eigenvectors/dL_child.npy
+    child_rms_tol: 1.0e-3        # lambda = 1 frame vs the child CIF (StructureMatcher, normalised rms)
+    stored: demo/hfo2/paths/T5_60-14__lin10   # path.json + L00..L09/point.json (compared in G2)
+    collected: demo/hfo2/paths   # energies.csv, energies_summary.json (demo/hfo2/collect_paths.py)
+    network:                     # H3, read-only on the other stored paths (nodes/f5_path.py)
+      paths: [T1_137-29__lin10, T2_137-60__lin10, T3_137-14__lin10, T4_60-29__lin10, T5_60-14__lin10]
+      closure: []                 # this path is a leg, not a composite
+      match: {ltol: 0.02, stol: 0.05, angle_tol: 1.0}   # StructureMatcher: same crystal in another setting
+      cross_setting_meV: 0.1     # PROPOSED (stored collector: 1.0); |E/f.u.| of the same crystal in two settings
+      closure_meV: 0.1           # PROPOSED (runbook: <= 0.06 observed)
+  fit:
+    rmax: 1.0
+    per_fu: 4
+    cv_folds: 5
+    max_rms_meV: 1.0
+    max_cv_rms_meV: 1.0
+    max_abs_res_meV: 5.0
+    min_points_per_coef: 1
+
+retry:
+  max_per_node: 3
+
+llm:
+  enabled: false
+  model: null
+  api_key_env: ANTHROPIC_API_KEY

@@ -1,0 +1,5 @@
+tag,system,kill_after,passed,g6_rows_compared,reference_thread,killed_thread,checks
+E7_f2,cssni3,f2,True,43,E7_f2_ref_cssni3,E7_f2_kill_cssni3,killed=True; both completed=True; G6 table identical=True; gate outcomes identical=True; submitted once=True
+E7_f3,cssni3,f3,True,43,E7_f3_ref_cssni3,E7_f3_kill_cssni3,killed=True; both completed=True; G6 table identical=True; gate outcomes identical=True; submitted once=True
+E7_f5,cssni3,f5,True,43,E7_f5_ref_cssni3,E7_f5_kill_cssni3,killed=True; both completed=True; G6 table identical=True; gate outcomes identical=True; submitted once=True
+E7_hfo2,hfo2,f3,True,71,E7_hfo2_ref_hfo2,E7_hfo2_kill_hfo2,killed=True; both completed=True; G6 table identical=True; gate outcomes identical=True; submitted once=True

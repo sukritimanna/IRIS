@@ -1,0 +1,6 @@
+model,calls,invalid,paraphrase_all_critical_right,match_structures,match_transition,match_analysis,match_strain_policy,match_system_profile,match_budget,match_outputs,wrong_caught_by_g0,wrong_passed_g0,unnecessary_questions,underspecified_asked,underspecified_guessed,underspecified_correct,out_of_scope_refused_or_asked,new_material_correct,new_material_borrowed_profile,blind_correct,all_critical_right_expert,all_critical_right_terse,all_critical_right_non-specialist
+baseline,50,0,20/39,29/39,29/39,23/39,29/39,29/39,27/39,39/39,10,9,10,3/5,2,4/5,1/3,0/3,0,0/0,10/13,5/13,5/13
+claude-opus,250,0,185/195,194/195,194/195,194/195,194/195,185/195,194/195,195/195,1,9,1,25/25,0,25/25,15/15,15/15,0,0/0,55/65,65/65,65/65
+claude-sonnet,250,0,186/195,195/195,195/195,195/195,195/195,186/195,195/195,195/195,0,9,0,18/25,7,23/25,15/15,15/15,0,0/0,56/65,65/65,65/65
+gemini-argon,250,0,181/195,191/195,191/195,191/195,191/195,181/195,191/195,195/195,4,10,4,20/25,5,25/25,15/15,15/15,0,0/0,55/65,61/65,65/65
+gpt-sol,250,0,180/195,195/195,195/195,190/195,195/195,185/195,195/195,195/195,0,15,0,25/25,0,25/25,15/15,15/15,0,0/0,50/65,65/65,65/65

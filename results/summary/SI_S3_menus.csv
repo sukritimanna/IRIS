@@ -1,0 +1,20 @@
+gate,node,option,text,patch,next_node,read_by,rules_before_subagent,subagent_asked
+G0,f0 Intake,stop,Stop and ask the human for a corrected config,,END (human),,f0_schema_reask (SCHEMA),no (stop only)
+G1,f1 Crystallographer,widen_basis_search,Widen the atom-matching basis search (dmax 2.0 A),"{""basis_dmax_A"": 2.0}",f1,nodes/f1_crystallographer.py,f1_no_basis_dmax_ladder (NO_BASIS),yes
+G1,f1 Crystallographer,stop,Stop and ask the human,,END (human),,f1_no_basis_dmax_ladder (NO_BASIS),yes
+G2,f2 Path Planner,include_borderline,R5: include the borderline irreps as axes,"{""r5_decision"": ""include""}",f2,nodes/f2_path_planner.py,f2_translation (TRANSLATION); f2_single_mode_sg_fixed_lattice (SINGLE_MODE_SG),yes
+G2,f2 Path Planner,exclude_borderline,R5: exclude the borderline irreps,"{""r5_decision"": ""exclude""}",f2,nodes/f2_path_planner.py,f2_translation (TRANSLATION); f2_single_mode_sg_fixed_lattice (SINGLE_MODE_SG),yes
+G2,f2 Path Planner,anchor_only,R5: keep the borderline irreps as anchor points only,"{""r5_decision"": ""anchor_only""}",f2,nodes/f2_path_planner.py,f2_translation (TRANSLATION); f2_single_mode_sg_fixed_lattice (SINGLE_MODE_SG),yes
+G2,f2 Path Planner,rebuild_fixed_lattice,Rebuild single-mode frames on the fixed parent lattice,"{""single_mode_check_on"": ""fixed_parent_lattice""}",f2,nodes/f2_path_planner.py,f2_translation (TRANSLATION); f2_single_mode_sg_fixed_lattice (SINGLE_MODE_SG),yes
+G2,f2 Path Planner,remove_translation,Subtract the rigid translation (mean displacement) from the polar mode vectors,"{""subtract_mean_displacement"": true}",f2,nodes/f2_path_planner.py,f2_translation (TRANSLATION); f2_single_mode_sg_fixed_lattice (SINGLE_MODE_SG),yes
+G2,f2 Path Planner,stop,Stop and ask the human,,END (human),,f2_translation (TRANSLATION); f2_single_mode_sg_fixed_lattice (SINGLE_MODE_SG),yes
+G3,f3 Runner,stop,Stop and ask the human,,END (human),,,no (stop only)
+G4,f4 Reviewer,resubmit,Resubmit the failed parts unchanged,"{""resubmit_failed"": true}",f3,nodes/f3_runner.py,f4_walltime_resubmit (WALLTIME); f4_nelm_robust_mixing (NELM),yes
+G4,f4 Reviewer,robust_mixing,Resubmit the failed parts with robust mixing,"{""resubmit_failed"": true, ""incar"": {""AMIX"": 0.2, ""BMIX"": 0.0001, ""NELM"": 300}}",f3,nodes/f3_runner.py,f4_walltime_resubmit (WALLTIME); f4_nelm_robust_mixing (NELM),yes
+G4,f4 Reviewer,flag_and_continue,Flag the frames and continue without them,"{""flag_unconverged"": true}",f4,nodes/f4_grid6.py; nodes/f4_path.py; nodes/f4_reviewer.py,f4_walltime_resubmit (WALLTIME); f4_nelm_robust_mixing (NELM),yes
+G4,f4 Reviewer,stop,Stop and ask the human,,END (human),,f4_walltime_resubmit (WALLTIME); f4_nelm_robust_mixing (NELM),yes
+G5,f5 Analyst,densify,Go back to f2 and densify the grid,"{""densify"": 2}",f2,nodes/f2_path_planner.py,f5_thin_grid_densify (THIN_GRID),yes
+G5,f5 Analyst,accept_secondary_hold,D4: keep the secondary at zero and report the energy it would release as a caveat,"{""d4_accept"": true}",f5,nodes/f5_analyst.py,f5_thin_grid_densify (THIN_GRID),yes
+G5,f5 Analyst,stop,Stop and ask the human,,END (human),,f5_thin_grid_densify (THIN_GRID),yes
+G6,f6 Skeptic,rerun_analysis,Re-run f5 and re-check,,f5,,,yes
+G6,f6 Skeptic,stop,Stop and ask the human,,END (human),,,yes

@@ -1,0 +1,103 @@
+# LIVE PLANE TEMPLATE (two-component plane of one irrep; python -m iris_agent.chat fills system, thread_id, request, expected, paths.*_cif, system_json,
+# policy.path.stored/collected/network, fit.per_fu and run.live.kpoints from the request and the fetched cells).
+# Edit here: the PBS header, VASP settings (INCAR, POTCAR library), repo_root/agent_root. Only agent_root is written to.
+system: TEMPLATE
+thread_id: TEMPLATE
+request: "straight-line irrep path BaTiO3 #221 -> #99, amplitudes and strain scaled together, 10 points, DFT PBEsol on Carbon"
+
+run:
+  mode: live
+  engine: dft
+  budget_runs: 80
+  allow_live_submission: true     # only honoured with mode: live (config.validate + f3)
+  jobs:
+    wait: true
+    part_size: 5                  # 2 PBS jobs of 5 statics each
+  replay:                         # f3 reads the computed points back with the path matcher (same tolerances as HfO2)
+    tol_A: 1.0e-3
+    tol_lattice_A: 1.0e-4
+  live:
+    submit_cmd: qsub
+    queue_cmd: "qstat -u $USER"
+    poll_s: 30
+    job_header: |
+      #!/bin/bash
+      #PBS -A <project-id>
+      #PBS -l nodes=1:ppn=32
+      #PBS -l walltime=01:00:00
+      #PBS -N {job_name}
+      #PBS -j oe
+      module purge
+      module load impi/2019/2019.Update.9
+      module load intel/19/19.1.3
+      module load hdf5/1.10/intel-19/1.10.8-3
+      module load --auto --silent vasp6/6.3
+      export OMP_NUM_THREADS=1
+      ulimit -s unlimited
+      NP=`wc -l < $PBS_NODEFILE`
+    vasp_cmd: mpirun -np $NP vasp_std
+    potcar_dir: <your-potcar-library>       # writePotcar convention: <dir>/<Element>/POTCAR (Ba, Ti, O subfolders)
+    incar:
+      SYSTEM: "BaTiO3 T1 static (PBEsol)"
+      GGA: PS
+      PREC: Accurate
+      ENCUT: 600
+      EDIFF: 1.0E-7
+      ISMEAR: 0
+      SIGMA: 0.05
+      ISPIN: 1
+      NELM: 200
+      IBRION: -1
+      NSW: 0
+      LREAL: false
+      LWAVE: false
+      LCHARG: false
+    kspacing: 0.20                # kpointsUtilities.writeKpoints rule: Gamma mesh, k_i = ceil(|b_i|/0.20), from the lambda = 0 POSCAR
+
+paths:
+  repo_root: <your-scratch>/iris_live/imhafo2
+  agent_root: <your-scratch>/iris_live/imhafo2/IRIS_AGENT
+  test_runs: test_runs
+  recovery: recovery_live.yaml                 # live recovery table (the NELM fix is applied to the whole path)
+  parent_cif: IRIS_AGENT/live_inputs/batio3_T1/parent.cif       # written by mp_fetch during the demo
+  child_cif: IRIS_AGENT/live_inputs/batio3_T1/child.cif
+  system_json: demo/staged_walkthrough/systems/batio3.json
+  walkthrough: demo/staged_walkthrough
+  isodistort_live: IRIS_AGENT/live_runs/batio3/T1/isodistort      # f1 live: raw ISODISTORT responses saved here
+
+expected:
+  parent_sg: 221
+  child_sg: 99
+
+policy:
+  a_thr: 0.05
+  amplitude_basis: As_tf
+  r5_margin: 0.1
+  strain_policy: P1              # cell fixed at the parent
+  d_cut: 1.0
+  grid: {q_max: 1.0, dq: 0.1111111111}
+  analysis: plane2               # nodes/f5_plane2.py: 4mm Landau fit of E(Q1, Q2)
+  qc: {mag_max_muB: 0.01}
+  plane2:                        # nodes/f2_plane2.py: (Q1, Q2) of one multi-dimensional irrep at the fixed parent cell
+    irrep: GM4-                  # filled by the chat from the decomposition's primary irrep
+    levels: 9                    # 0 .. 8 non-negative levels per axis -> 17 x 17 grid -> 45 orbit representatives (4mm); 5 -> 9x9 -> 15
+    q_max: 1.2                   # in units of A_p(child): the grid reaches 1.2 x the child's amplitude
+    rotation: [[0, 0, 1], [0, 1, 0], [-1, 0, 0]]   # parent operation carrying component 1 into component 2 (cubic 4-fold about y)
+    stored: IRIS_AGENT/live_runs/batio3/PL_221-99__9x9
+    collected: IRIS_AGENT/live_runs/batio3
+  fit:
+    rmax: 1.0
+    per_fu: 1                    # f.u. per cell of the child's conventional cell (G4 checks it against the composition)
+    cv_folds: 5
+    max_rms_meV: 1.0
+    max_cv_rms_meV: 1.0
+    max_abs_res_meV: 5.0
+    min_points_per_coef: 1
+
+retry:
+  max_per_node: 3
+
+llm:
+  enabled: false
+  model: null
+  api_key_env: ANTHROPIC_API_KEY

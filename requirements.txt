@@ -1,0 +1,7 @@
+# Install into iris-env (pymatgen, spglib, numpy are already there)
+langgraph>=1.0
+langgraph-checkpoint-sqlite>=3.0
+pyyaml>=6
+pymatgen>=2024.0
+spglib>=2.1
+pytest>=8

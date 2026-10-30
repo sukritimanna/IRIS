@@ -1,0 +1,6 @@
+# rule-based intake parser frozen 2026-10-30T00:49:33+00:00, before any scoring; written from intake/library.py, intake/schema.py and the system prompt only (one request, E01, seen in passing).
+0e7e5f45acee0f0ff4ec3add2fab2c95e97d6734fcc80f530df74b06eb97cc56  parser.py
+4f08e291d75cef0bad9b487a07851544bc2fb1d402e0a714512009a25a43c091  run_parser.py
+# v2 2026-10-30T00:53:32+00:00: one declared fix after the v1 scoring (a profile id equal to a system id is not a profile choice); no vocabulary changed. PARSER_V1=1 reproduces v1.
+58add87fa30a5cdfd9f2c52c613ccbfad502351c054edaa642d078852222db8e  parser.py (v2)
+ca932b706daf3199048e8ea8907ad1dd803dd2a7dfd6ba55df9393e2e8786547  run_parser.py (v2)

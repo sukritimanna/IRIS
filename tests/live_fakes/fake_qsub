@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# FAKE qsub: runs the job script in the background, prints an id; records pid for fake_qstat.
+id=$(( RANDOM * 10 + RANDOM % 10 )); mkdir -p "$FAKEQ"
+( bash "$1" > "$FAKEQ/$id.out" 2>&1; rm -f "$FAKEQ/$id.pid" ) & echo $! > "$FAKEQ/$id.pid"
+echo "$id.fakeserver"

@@ -1,0 +1,63 @@
+# CsSnI3 221 -> 62 — the single place for every data path and policy value of this run.
+# Paths under repo_root are READ ONLY. IRIS writes only under agent_root (enforced in code).
+system: cssni3
+thread_id: cssni3_221_62_wait
+request: "map the CsSnI3 tilt landscape, fixed cell, DFT, <= 1100 runs; parent.cif, child.cif"
+
+run:
+  mode: replay                   # skeleton (f1-f6 stubbed) | replay | live (disabled)
+  engine: dft
+  budget_runs: 1100              # B for this campaign (paper: B not yet stated — open todo)
+  allow_live_submission: false   # must stay false: no DFT/VASP/MACE/Slurm in this build
+  jobs:
+    wait: true                   # f3 pauses (interrupt) until job-end events arrive (python -m iris_agent.jobend)
+    part_size: 40                # frames per job part (= one Slurm array task in the 12 Sep campaign)
+
+paths:
+  repo_root: ~/Workspace/myProjects/imhafo2
+  agent_root: ~/Workspace/myProjects/imhafo2/IRIS_AGENT
+  test_runs: test_runs                                   # relative to agent_root
+  parent_cif: demo/cssni3/structures/cubic_mp-614013_sg221.cif
+  child_cif: demo/cssni3/structures/orthorhombic_mp-568570_sg62.cif
+  system_json: demo/staged_walkthrough/systems/cssni3.json
+  walkthrough: demo/staged_walkthrough
+  reference_run: demo/runs/cssni3_221_to_62__20260912_174105
+  reference_grid: demo/runs/cssni3_221_to_62__20260912_174105/step4_energy_plane
+  isodistort_stored: demo/runs/cssni3_221_to_62__20260912_174105/step3_isodistort/04_raw_isodistort
+  energies_csv: demo/cssni3/energies/B_plane_energies.csv
+  reference_fit: demo/runs/cssni3_221_to_62__20260912_174105/step5_analysis_plane/landau_fit_plane.json
+  reference_fit_all_sets: demo/cssni3/landau/landau_fit_all_sets.json
+
+expected:
+  parent_sg: 221
+  child_sg: 62
+  parent_sha256: 9a69d4ab0249e43e4bf4341f005aa3fedb1f9503e2465119a6ace34b49545559   # = RUN_MANIFEST.json
+  child_sha256: b0bd8d9ab1b1a63a1efb2a930832e13d981611a9f629998f92216e92420b888c
+
+policy:
+  a_thr: 0.05                    # Å, applied to A_s (supercell-normalized) — Methods 4.2
+  amplitude_basis: As
+  r5_margin: 0.1                 # Å
+  strain_policy: P2              # fixed parent (cubic) cell; strain irreps zero (R1)
+  d_cut: 1.0                     # Å minimum interatomic distance in the grid audit
+  grid:                          # D2: m = 2*q_max/dq + 1 = 31 per axis, N = 31^2 = 961
+    q_max: 1.2                   # Å of A_p on calibrated vectors (= ±1.5 Å on the uncalibrated 12 Sep labels)
+    dq: 0.08                     # Å (= 0.1 Å on the uncalibrated labels; s = 1.25)
+  anchors:                       # extra exact points (the 12 Sep grid's P4/mbm anchor, id 961)
+    - {name: "127", Q: {M3+: 0.8048}}
+  fit:
+    rmax: 1.05                   # Å, fit region on the calibrated axes (545 nodes)
+    per_fu: 4                    # 20-atom cell = 4 CsSnI3 (f6 re-derives it from the system file)
+    cv_folds: 10                 # proposed (new in this build)
+    max_rms_meV: 0.5             # proposed acceptance limits, meV/f.u. (new in this build)
+    max_cv_rms_meV: 0.5
+    max_abs_res_meV: 2.0
+    min_points_per_coef: 10
+
+retry:
+  max_per_node: 3
+
+llm:
+  enabled: false                 # sub-agents: build step 5; LLM intake: step 6
+  model: null                    # set in step 5
+  api_key_env: ANTHROPIC_API_KEY # the key is only ever read from this environment variable

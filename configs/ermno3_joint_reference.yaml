@@ -1,0 +1,14 @@
+# ErMnO3 stage 2 (plane + P axis + hat, joint Meier fit with c', a_P fixed from the P axis). paper = the
+# coefficients used by the manuscript figure notebook = demo/ermno3/landau/joint_hat_fit.py output (a_P 0.583).
+paper:
+  active: [K3, GM2-]
+  hat_frames: 175
+  hat_frames_by_sg: {"185": 25, "165": 5, "158": 145}
+  coef_As: {a: -3.708, b: 3.973, c: 0.427, "c'": 0.040, a_P: 0.583, g: 2.266, "g'": 10.330}
+  n_fit: [91, 63]
+  rms_meV: 6.8
+  rms_plane_hat: [6.3, 7.4]
+  hat_meV_per_fu: 170.3
+  brim_meV_per_fu: 33.79
+  brim_c0_meV_per_fu: 35.85
+stored: {}

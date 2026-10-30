@@ -1,0 +1,1094 @@
+# IRIS evaluation faults (runbook E2/E4/E3/E9/E10). Seed set: the nine CsSnI3 faults of build step 4.
+# Freeze this file (python -m iris_agent.freeze_eval eval/) before the first model run; the full set
+# (~100-200 faults over six systems, seed + held-out splits) is still to be written.
+#
+# fields
+#   id, name, class, system (-> configs/<system>.yaml), split (seed | held-out), description
+#   injection.patch   dotted config keys applied to the run config (faults:* and policy values; replay only)
+#   injection.jobs    scripted job-end events, used in order whenever f3 waits ("all" = every pending part)
+#   injection.human   scripted human answers, used in order whenever the graph asks the human
+#   expected          gated run (E2) — F001-F009 in full; F010+ (derived from the sub-agent cases): detect = the
+#                     node and code that must catch the fault first; gate failures (node, code), handling (tier, rule_id, next node),
+#                     final status, number of job submissions, whether the numbers equal the stored fit
+version: 1
+faults:
+- id: F001
+  name: walltime
+  class: job
+  system: cssni3
+  split: seed
+  description: job part 3 ends with WALLTIME
+  injection:
+    patch: {}
+    jobs:
+    - event: job_end
+      parts:
+      - 0
+      - 1
+      - 2
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      - 16
+      - 17
+      - 18
+      - 19
+      - 20
+      - 21
+      - 22
+      - 23
+      - 24
+    - event: job_end
+      parts:
+      - 3
+      failed:
+        '3': WALLTIME
+    - all
+  expected:
+    gate: G4 WALLTIME
+    failures:
+    - - f4
+      - WALLTIME
+    fixes:
+    - - rule
+      - f4_walltime_resubmit
+      - f3
+    final: completed
+    n_submissions: 2
+    baseline: true
+- id: F002
+  name: nelm
+  class: job
+  system: cssni3
+  split: seed
+  description: job part 7 ends with NELM (SCF step limit)
+  injection:
+    patch: {}
+    jobs:
+    - event: job_end
+      parts: all
+      failed:
+        '7': NELM
+    - all
+  expected:
+    gate: G4 NELM
+    failures:
+    - - f4
+      - NELM
+    fixes:
+    - - rule
+      - f4_nelm_robust_mixing
+      - f3
+    final: completed
+    n_submissions: 2
+    baseline: true
+- id: F003
+  name: translation
+  class: vectors
+  system: cssni3
+  split: seed
+  description: rigid translation of 0.05 Å/atom left in the M3+ vector (removal switched off)
+  injection:
+    patch:
+      policy.remove_translation: false
+      faults.inject_translation:
+        irrep: M3+
+        A_per_atom: 0.05
+    jobs:
+    - all
+  expected:
+    gate: G2 TRANSLATION
+    failures:
+    - - f2
+      - TRANSLATION
+    fixes:
+    - - rule
+      - f2_translation
+      - f2
+    final: completed
+    n_submissions: 1
+    baseline: true
+- id: F004
+  name: no_basis
+  class: crystallography
+  system: cssni3
+  split: seed
+  description: atom-matching basis search limited to dmax 0.3 Å (CsSnI3 needs 0.59 Å)
+  injection:
+    patch:
+      policy.basis_dmax_A: 0.3
+    jobs:
+    - all
+  expected:
+    gate: G1 NO_BASIS
+    failures:
+    - - f1
+      - NO_BASIS
+    fixes:
+    - - rule
+      - f1_no_basis_dmax_ladder
+      - f1
+    final: completed
+    n_submissions: 1
+    baseline: true
+- id: F005
+  name: no55
+  class: symmetry
+  system: cssni3
+  split: seed
+  description: single-mode check on the movie frame (child cell) — the 12 Sep No. 55 error
+  injection:
+    patch:
+      policy.single_mode_check_on: movie_frame
+    jobs:
+    - all
+  expected:
+    gate: G2 SINGLE_MODE_SG
+    failures:
+    - - f2
+      - SINGLE_MODE_SG
+    fixes:
+    - - rule
+      - f2_single_mode_sg_fixed_lattice
+      - f2
+    final: completed
+    n_submissions: 1
+    baseline: true
+- id: F006
+  name: thin_grid
+  class: analysis
+  system: cssni3
+  split: seed
+  description: G5 coverage demands 100 points per coefficient (800 > 545 in the fit)
+  injection:
+    patch:
+      policy.fit.min_points_per_coef: 100
+    jobs:
+    - all
+    human:
+    - option: stop
+  expected:
+    gate: G5 THIN_GRID
+    failures:
+    - - f5
+      - THIN_GRID
+    - - f2
+      - OVER_BUDGET
+    fixes:
+    - - rule
+      - f5_thin_grid_densify
+      - f2
+    - - human
+      - null
+      - END
+    final: stopped
+    n_submissions: 1
+    baseline: false
+- id: F007
+  name: unmatched
+  class: data
+  system: cssni3
+  split: seed
+  description: stored frame 100 missing from the reference data
+  injection:
+    patch:
+      faults.hide_stored_ids:
+      - 100
+    jobs:
+    - all
+    human:
+    - option: stop
+  expected:
+    gate: G3 UNMATCHED
+    failures:
+    - - f3
+      - UNMATCHED
+    fixes:
+    - - human
+      - null
+      - END
+    final: stopped
+    n_submissions: 1
+    baseline: false
+- id: F008
+  name: retry_budget
+  class: recovery
+  system: cssni3
+  split: seed
+  description: dmax 0.3 Å with a retry budget of 0 -> straight to the human, who widens dmax
+  injection:
+    patch:
+      policy.basis_dmax_A: 0.3
+      retry.max_per_node: 0
+    jobs:
+    - all
+    human:
+    - fix:
+        basis_dmax_A: 2.0
+  expected:
+    gate: G1 NO_BASIS
+    failures:
+    - - f1
+      - NO_BASIS
+    fixes:
+    - - human
+      - null
+      - f1
+    final: completed
+    n_submissions: 1
+    baseline: true
+- id: F009
+  name: cancel
+  class: job
+  system: cssni3
+  split: seed
+  description: all jobs cancelled while f3 waits
+  injection:
+    patch: {}
+    jobs:
+    - event: cancel
+    human:
+    - option: stop
+  expected:
+    gate: G3 JOBS_CANCELLED
+    failures:
+    - - f3
+      - JOBS_CANCELLED
+    fixes:
+    - - human
+      - null
+      - END
+    final: stopped
+    n_submissions: 1
+    baseline: false
+- id: F010
+  name: walltime_again_after_the_resubmit_rule
+  class: job
+  system: cssni3
+  split: seed
+  description: WALLTIME again after the resubmit rule
+  injection:
+    patch:
+      run.jobs.wait: true
+    jobs:
+    - event: job_end
+      parts:
+      - 0
+      - 1
+      - 2
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      - 16
+      - 17
+      - 18
+      - 19
+      - 20
+      - 21
+      - 22
+      - 23
+      - 24
+    - event: job_end
+      parts:
+      - 3
+      failed:
+        '3': WALLTIME
+    - event: job_end
+      parts:
+      - 3
+      failed:
+        '3': WALLTIME
+  expected:
+    detect:
+    - f4
+    - WALLTIME
+    gate: G4 WALLTIME
+- id: F011
+  name: nelm_again_after_the_robust_mixing_rule
+  class: job
+  system: cssni3
+  split: seed
+  description: NELM again after the robust-mixing rule
+  injection:
+    patch:
+      run.jobs.wait: true
+    jobs:
+    - event: job_end
+      parts: all
+      failed:
+        '7': NELM
+    - event: job_end
+      parts:
+      - 7
+      failed:
+        '7': NELM
+  expected:
+    detect:
+    - f4
+    - NELM
+    gate: G4 NELM
+- id: F012
+  name: rigid_translation_0_05_atom_injected_int
+  class: derived
+  system: ca3ti2o7
+  split: seed
+  description: rigid translation (0.05 Å/atom) injected into the Ca3Ti2O7 X3- vector, removal off (rules off)
+  injection:
+    patch:
+      policy.remove_translation: false
+      faults.inject_translation:
+        irrep: X3-
+        A_per_atom: 0.05
+    jobs:
+    - all
+  expected:
+    detect:
+    - f2
+    - TRANSLATION
+    gate: G2 TRANSLATION
+- id: F013
+  name: hfo2_path_job_ends_with_walltime_rules_o
+  class: derived
+  system: hfo2_T1
+  split: seed
+  description: HfO2 path job ends with WALLTIME (rules off)
+  injection:
+    patch:
+      run.jobs.wait: true
+    jobs:
+    - event: job_end
+      parts:
+      - 0
+      failed:
+        '0': WALLTIME
+  expected:
+    detect:
+    - f4
+    - WALLTIME
+    gate: G4 WALLTIME
+- id: F014
+  name: hfo2_path_job_ends_at_nelm_rules_off
+  class: derived
+  system: hfo2_T1
+  split: seed
+  description: HfO2 path job ends at NELM (rules off)
+  injection:
+    patch:
+      run.jobs.wait: true
+    jobs:
+    - event: job_end
+      parts:
+      - 0
+      failed:
+        '0': NELM
+  expected:
+    detect:
+    - f4
+    - NELM
+    gate: G4 NELM
+- id: F015
+  name: hfo2_closure_t1_t2_t4_misses_a_tightened
+  class: limit
+  system: hfo2_T1
+  split: seed
+  description: HfO2 closure T1 = T2 + T4 misses a tightened limit
+  injection:
+    patch:
+      policy.path.network.closure_meV: 0.01
+    jobs:
+    - all
+  expected:
+    detect:
+    - f5
+    - CLOSURE
+    gate: G5 CLOSURE
+- id: F016
+  name: hfo2_the_same_crystal_differs_between_tw
+  class: limit
+  system: hfo2_T1
+  split: seed
+  description: HfO2 the same crystal differs between two settings beyond a tightened limit
+  injection:
+    patch:
+      policy.path.network.cross_setting_meV: 0.01
+    jobs:
+    - all
+  expected:
+    detect:
+    - f5
+    - CROSS_SETTING
+    gate: G5 CROSS_SETTING
+- id: F017
+  name: hfo2_stored_incar_differs_from_the_campa
+  class: data
+  system: hfo2_T1
+  split: seed
+  description: HfO2 stored INCAR differs from the campaign template
+  injection:
+    patch:
+      paths.incar_template: demo/bifeo3/grid6d/inputs/INCAR.template
+    jobs:
+    - all
+  expected:
+    detect:
+    - f4
+    - DFT_INCONSISTENT
+    gate: G4 DFT_INCONSISTENT
+- id: F018
+  name: hfo2_points_carry_a_magnetic_moment_abov
+  class: data
+  system: hfo2_T1
+  split: seed
+  description: HfO2 points carry a magnetic moment above the (tightened) limit
+  injection:
+    patch:
+      policy.qc.mag_max_muB: 1.0e-08
+    jobs:
+    - all
+  expected:
+    detect:
+    - f4
+    - MAGNETIC
+    gate: G4 MAGNETIC
+- id: F019
+  name: hfo2_configured_formula_units_per_cell_d
+  class: data
+  system: hfo2_T1
+  split: seed
+  description: HfO2 configured formula units per cell disagree with the composition
+  injection:
+    patch:
+      policy.fit.per_fu: 2
+    jobs:
+    - all
+  expected:
+    detect:
+    - f4
+    - PER_FU
+    gate: G4 PER_FU
+- id: F020
+  name: bifeo3_grid_job_part_times_out_rules_off
+  class: derived
+  system: bifeo3
+  split: held-out
+  description: BiFeO3 grid job part times out (rules off) — the real campaign resubmitted 50 timed-out runs unchanged
+  injection:
+    patch:
+      run.jobs.wait: true
+    jobs:
+    - event: job_end
+      parts: all
+      failed:
+        '17': WALLTIME
+  expected:
+    detect:
+    - f4
+    - WALLTIME
+    gate: G4 WALLTIME
+- id: F021
+  name: bifeo3_grid_job_part_hits_the_scf_step_l
+  class: derived
+  system: bifeo3
+  split: held-out
+  description: BiFeO3 grid job part hits the SCF step limit (rules off) — the real campaign reran 15 runs with robust mixing
+  injection:
+    patch:
+      run.jobs.wait: true
+    jobs:
+    - event: job_end
+      parts: all
+      failed:
+        '40': NELM
+  expected:
+    detect:
+    - f4
+    - NELM
+    gate: G4 NELM
+- id: F022
+  name: bifeo3_more_scf_limited_runs_than_the_de
+  class: data
+  system: bifeo3
+  split: held-out
+  description: BiFeO3 more SCF-limited runs than the declared limit (the real 20 near-metallic corners vs a limit of 10)
+  injection:
+    patch:
+      policy.qc.max_scf_limited: 10
+    jobs:
+    - all
+  expected:
+    detect:
+    - f4
+    - SCF_LIMITED
+    gate: G4 SCF_LIMITED
+- id: F023
+  name: ermno3_plane_job_part_times_out_rules_of
+  class: derived
+  system: ermno3
+  split: held-out
+  description: ErMnO3 plane job part times out (rules off)
+  injection:
+    patch:
+      run.jobs.wait: true
+    jobs:
+    - event: job_end
+      parts: all
+      failed:
+        '2': WALLTIME
+  expected:
+    detect:
+    - f4
+    - WALLTIME
+    gate: G4 WALLTIME
+- id: F024
+  name: ermno3_meier_fit_rms_above_a_tightened_l
+  class: limit
+  system: ermno3
+  split: held-out
+  description: ErMnO3 Meier fit RMS above a tightened limit (5.99 vs 5.0 meV/cell)
+  injection:
+    patch:
+      policy.fit.max_rms_meV: 5.0
+    jobs:
+    - all
+  expected:
+    detect:
+    - f5
+    - RESIDUALS
+    gate: G5 RESIDUALS
+- id: F025
+  name: inmno3_joint_fit_max_residual_12_06_12_m
+  class: data
+  system: inmno3_joint
+  split: held-out
+  description: InMnO3 joint fit max residual 12.06 > 12 meV/cell (the real failure of the build; the limit was raised to 15)
+  injection:
+    patch:
+      policy.fit.max_abs_res_meV: 12.0
+    jobs:
+    - all
+  expected:
+    detect:
+    - f5
+    - RESIDUALS
+    gate: G5 RESIDUALS
+- id: F026
+  name: hfo2_t5_child_cell_carries_a_5_02_deg_ri
+  class: limit
+  system: hfo2_T5
+  split: held-out
+  description: HfO2 T5 child cell carries a 5.02 deg rigid rotation; a rotation limit of 1 deg is set (Q36)
+  injection:
+    patch:
+      policy.path.max_rigid_rotation_deg: 1.0
+    jobs:
+    - all
+  expected:
+    detect:
+    - f2
+    - PATH_LATTICE
+    gate: G2 PATH_LATTICE
+- id: F027
+  name: hfo2_t4_path_job_times_out_again_after_t
+  class: job
+  system: hfo2_T4
+  split: held-out
+  description: HfO2 T4 path job times out again after the resubmit rule (all 10 points in that part)
+  injection:
+    patch:
+      run.jobs.wait: true
+    jobs:
+    - event: job_end
+      parts:
+      - 0
+      failed:
+        '0': WALLTIME
+    - event: job_end
+      parts:
+      - 0
+      failed:
+        '0': WALLTIME
+  expected:
+    detect:
+    - f4
+    - WALLTIME
+    gate: G4 WALLTIME
+- id: F028
+  name: no_atom_matching_basis_within_dmax_0_3_c
+  class: derived
+  system: ca3ti2o7
+  split: seed
+  description: no atom-matching basis within dmax 0.3 Å, ca3ti2o7 (rules off)
+  injection:
+    patch:
+      policy.basis_dmax_A: 0.3
+    jobs:
+    - all
+  expected:
+    detect:
+    - f1
+    - NO_BASIS
+    gate: G1 NO_BASIS
+- id: F029
+  name: inmno3_plane_job_part_hits_the_scf_step_
+  class: derived
+  system: inmno3
+  split: seed
+  description: InMnO3 plane job part hits the SCF step limit after R5 (rules off)
+  injection:
+    patch:
+      run.jobs.wait: true
+    jobs:
+    - event: job_end
+      parts: all
+      failed:
+        '3': NELM
+  expected:
+    detect:
+    - f4
+    - NELM
+    gate: G4 NELM
+- id: F030
+  name: no_atom_matching_basis_within_dmax_0_3_e
+  class: derived
+  system: ermno3
+  split: seed
+  description: no atom-matching basis within dmax 0.3 Å, ermno3 (rules off)
+  injection:
+    patch:
+      policy.basis_dmax_A: 0.3
+    jobs:
+    - all
+  expected:
+    detect:
+    - f1
+    - NO_BASIS
+    gate: G1 NO_BASIS
+- id: F031
+  name: no_atom_matching_basis_within_dmax_0_3_h
+  class: derived
+  system: hfo2_T3
+  split: seed
+  description: no atom-matching basis within dmax 0.3 Å, hfo2_T3 (rules off)
+  injection:
+    patch:
+      policy.basis_dmax_A: 0.3
+    jobs:
+    - all
+  expected:
+    detect:
+    - f1
+    - NO_BASIS
+    gate: G1 NO_BASIS
+- id: F032
+  name: no_atom_matching_basis_within_dmax_0_3_b
+  class: derived
+  system: bifeo3
+  split: held-out
+  description: no atom-matching basis within dmax 0.3 Å, bifeo3 (rules off)
+  injection:
+    patch:
+      policy.basis_dmax_A: 0.3
+    jobs:
+    - all
+  expected:
+    detect:
+    - f1
+    - NO_BASIS
+    gate: G1 NO_BASIS
+- id: F033
+  name: ca3ti2o7_surface_minimum_closer_to_the_g
+  class: limit
+  system: ca3ti2o7
+  split: seed
+  description: Ca3Ti2O7 surface minimum closer to the grid edge than a widened margin (50 steps)
+  injection:
+    patch:
+      policy.surface.edge_margin_steps: 50
+    jobs:
+    - all
+  expected:
+    detect:
+    - f5
+    - COVERAGE
+    gate: G5 COVERAGE
+- id: F034
+  name: single_mode_space_group_checked_on_the_m
+  class: derived
+  system: ermno3
+  split: seed
+  description: single-mode space group checked on the movie frame, ermno3 (rules off)
+  injection:
+    patch:
+      policy.single_mode_check_on: movie_frame
+    jobs:
+    - all
+  expected:
+    detect:
+    - f2
+    - SINGLE_MODE_SG
+    gate: G2 SINGLE_MODE_SG
+- id: F035
+  name: rigid_translation_injected_into_the_ermn
+  class: derived
+  system: ermno3
+  split: seed
+  description: rigid translation injected into the ErMnO3 K3 vector, removal off (rules off)
+  injection:
+    patch:
+      policy.remove_translation: false
+      faults.inject_translation:
+        irrep: K3
+        A_per_atom: 0.05
+    jobs:
+    - all
+  expected:
+    detect:
+    - f2
+    - TRANSLATION
+    gate: G2 TRANSLATION
+- id: F036
+  name: rigid_translation_injected_into_the_inmn
+  class: derived
+  system: inmno3
+  split: seed
+  description: rigid translation injected into the InMnO3 K3 vector after R5 (rules off)
+  injection:
+    patch:
+      policy.remove_translation: false
+      faults.inject_translation:
+        irrep: K3
+        A_per_atom: 0.05
+    jobs:
+    - all
+  expected:
+    detect:
+    - f2
+    - TRANSLATION
+    gate: G2 TRANSLATION
+- id: F037
+  name: job_part_ends_with_walltime_ca3ti2o7_rul
+  class: derived
+  system: ca3ti2o7
+  split: held-out
+  description: job part ends with WALLTIME, ca3ti2o7 (rules off)
+  injection:
+    patch:
+      run.jobs.wait: true
+    jobs:
+    - event: job_end
+      parts: all
+      failed:
+        '5': WALLTIME
+  expected:
+    detect:
+    - f4
+    - WALLTIME
+    gate: G4 WALLTIME
+- id: F038
+  name: job_part_ends_with_walltime_inmno3_rules
+  class: derived
+  system: inmno3
+  split: seed
+  description: job part ends with WALLTIME, inmno3 (rules off)
+  injection:
+    patch:
+      run.jobs.wait: true
+    jobs:
+    - event: job_end
+      parts: all
+      failed:
+        '3': WALLTIME
+  expected:
+    detect:
+    - f4
+    - WALLTIME
+    gate: G4 WALLTIME
+- id: F039
+  name: job_part_ends_with_walltime_hfo2_t3_rule
+  class: derived
+  system: hfo2_T3
+  split: seed
+  description: job part ends with WALLTIME, hfo2_T3 (rules off)
+  injection:
+    patch:
+      run.jobs.wait: true
+    jobs:
+    - event: job_end
+      parts: all
+      failed:
+        '0': WALLTIME
+  expected:
+    detect:
+    - f4
+    - WALLTIME
+    gate: G4 WALLTIME
+- id: F040
+  name: job_part_ends_with_walltime_cssni3_d4_ru
+  class: derived
+  system: cssni3_d4
+  split: held-out
+  description: job part ends with WALLTIME, cssni3_d4 (rules off)
+  injection:
+    patch:
+      run.jobs.wait: true
+    jobs:
+    - event: job_end
+      parts: all
+      failed:
+        '2': WALLTIME
+  expected:
+    detect:
+    - f4
+    - WALLTIME
+    gate: G4 WALLTIME
+- id: F041
+  name: job_part_ends_at_the_scf_step_limit_ca3t
+  class: derived
+  system: ca3ti2o7
+  split: seed
+  description: job part ends at the SCF step limit, ca3ti2o7 (rules off)
+  injection:
+    patch:
+      run.jobs.wait: true
+    jobs:
+    - event: job_end
+      parts: all
+      failed:
+        '9': NELM
+  expected:
+    detect:
+    - f4
+    - NELM
+    gate: G4 NELM
+- id: F042
+  name: job_part_ends_at_the_scf_step_limit_ermn
+  class: derived
+  system: ermno3
+  split: seed
+  description: job part ends at the SCF step limit, ermno3 (rules off)
+  injection:
+    patch:
+      run.jobs.wait: true
+    jobs:
+    - event: job_end
+      parts: all
+      failed:
+        '4': NELM
+  expected:
+    detect:
+    - f4
+    - NELM
+    gate: G4 NELM
+- id: F043
+  name: job_part_ends_at_the_scf_step_limit_hfo2
+  class: derived
+  system: hfo2_T5
+  split: seed
+  description: job part ends at the SCF step limit, hfo2_T5 (rules off)
+  injection:
+    patch:
+      run.jobs.wait: true
+    jobs:
+    - event: job_end
+      parts: all
+      failed:
+        '0': NELM
+  expected:
+    detect:
+    - f4
+    - NELM
+    gate: G4 NELM
+- id: F044
+  name: ca3ti2o7_nelm_again_after_the_robust_mix
+  class: job
+  system: ca3ti2o7
+  split: seed
+  description: Ca3Ti2O7 NELM again after the robust-mixing rule
+  injection:
+    patch:
+      run.jobs.wait: true
+    jobs:
+    - event: job_end
+      parts: all
+      failed:
+        '9': NELM
+    - event: job_end
+      parts:
+      - 9
+      failed:
+        '9': NELM
+  expected:
+    detect:
+    - f4
+    - NELM
+    gate: G4 NELM
+- id: F045
+  name: ermno3_walltime_again_after_the_resubmit
+  class: job
+  system: ermno3
+  split: seed
+  description: ErMnO3 WALLTIME again after the resubmit rule
+  injection:
+    patch:
+      run.jobs.wait: true
+    jobs:
+    - event: job_end
+      parts: all
+      failed:
+        '2': WALLTIME
+    - event: job_end
+      parts:
+      - 2
+      failed:
+        '2': WALLTIME
+  expected:
+    detect:
+    - f4
+    - WALLTIME
+    gate: G4 WALLTIME
+- id: F046
+  name: inmno3_grid_too_thin_for_the_meier_fit_a
+  class: derived
+  system: inmno3
+  split: seed
+  description: InMnO3 grid too thin for the Meier fit after R5 (rules off)
+  injection:
+    patch:
+      policy.fit.min_points_per_coef: 100
+    jobs:
+    - all
+  expected:
+    detect:
+    - f5
+    - THIN_GRID
+    gate: G5 THIN_GRID
+- id: F047
+  name: ermno3_grid_too_thin_for_the_meier_fit_r
+  class: derived
+  system: ermno3
+  split: seed
+  description: ErMnO3 grid too thin for the Meier fit (rules off)
+  injection:
+    patch:
+      policy.fit.min_points_per_coef: 100
+    jobs:
+    - all
+  expected:
+    detect:
+    - f5
+    - THIN_GRID
+    gate: G5 THIN_GRID
+- id: F048
+  name: ca3ti2o7_surface_mirror_symmetry_checked
+  class: limit
+  system: ca3ti2o7
+  split: held-out
+  description: Ca3Ti2O7 surface mirror symmetry checked at a tightened tolerance (1e-6 meV/f.u.)
+  injection:
+    patch:
+      policy.surface.mirror_tol_meV: 1.0e-06
+    jobs:
+    - all
+  expected:
+    detect:
+    - f5
+    - MIRROR
+    gate: G5 MIRROR
+- id: F049
+  name: cssni3_plane_fit_rms_above_a_tightened_l
+  class: limit
+  system: cssni3
+  split: held-out
+  description: CsSnI3 plane fit RMS above a tightened limit
+  injection:
+    patch:
+      policy.fit.max_rms_meV: 0.01
+    jobs:
+    - all
+  expected:
+    detect:
+    - f5
+    - RESIDUALS
+    gate: G5 RESIDUALS
+- id: F050
+  name: inmno3_plane_fit_cv_error_above_a_tighte
+  class: limit
+  system: inmno3
+  split: held-out
+  description: InMnO3 plane fit CV error above a tightened limit (after R5)
+  injection:
+    patch:
+      policy.fit.max_cv_rms_meV: 0.01
+    jobs:
+    - all
+  expected:
+    detect:
+    - f5
+    - CV_ERROR
+    gate: G5 CV_ERROR
+- id: F051
+  name: bifeo3_degree_12_fit_rms_above_a_tighten
+  class: limit
+  system: bifeo3
+  split: held-out
+  description: BiFeO3 degree-12 fit RMS above a tightened limit
+  injection:
+    patch:
+      policy.fit.max_rms_meV: 0.1
+    jobs:
+    - all
+  expected:
+    detect:
+    - f5
+    - RESIDUALS
+    gate: G5 RESIDUALS
+- id: F052
+  name: hfo2_closure_t3_t2_t5_misses_a_tightened
+  class: limit
+  system: hfo2_T3
+  split: seed
+  description: HfO2 closure T3 = T2 + T5 misses a tightened limit
+  injection:
+    patch:
+      policy.path.network.closure_meV: 0.01
+    jobs:
+    - all
+  expected:
+    detect:
+    - f5
+    - CLOSURE
+    gate: G5 CLOSURE
+- id: F053
+  name: hfo2_t3_child_cell_carries_a_4_88_deg_ri
+  class: limit
+  system: hfo2_T3
+  split: held-out
+  description: HfO2 T3 child cell carries a 4.88 deg rigid rotation; a rotation limit of 1 deg is set (Q36)
+  injection:
+    patch:
+      policy.path.max_rigid_rotation_deg: 1.0
+    jobs:
+    - all
+  expected:
+    detect:
+    - f2
+    - PATH_LATTICE
+    gate: G2 PATH_LATTICE

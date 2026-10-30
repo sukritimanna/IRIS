@@ -1,0 +1,319 @@
+policy,case,system,group,split,class,gate,code,choice,label,dropped_rules,reason
+rules_only,C01,cssni3,cssni3,seed,rules_off,G4,WALLTIME,resubmit,correct,f2_single_mode_sg_fixed_lattice,rule f4_walltime_resubmit
+rules_only_loso,C01,cssni3,cssni3,seed,rules_off,G4,WALLTIME,resubmit,correct,f2_single_mode_sg_fixed_lattice,rule f4_walltime_resubmit
+tree,C01,cssni3,cssni3,seed,rules_off,G4,WALLTIME,resubmit,correct,f2_single_mode_sg_fixed_lattice,G4: Walltime: resubmit unchanged.
+tree_loso,C01,cssni3,cssni3,seed,rules_off,G4,WALLTIME,resubmit,correct,f2_single_mode_sg_fixed_lattice,G4: Walltime: resubmit unchanged.
+retrieval,C01,cssni3,cssni3,seed,rules_off,G4,WALLTIME,stop,safe,f2_single_mode_sg_fixed_lattice,nearest C07 (sim 1.000)
+retrieval_loso,C01,cssni3,cssni3,seed,rules_off,G4,WALLTIME,resubmit,correct,f2_single_mode_sg_fixed_lattice,"nearest C23 (ermno3, sim 1.000)"
+rules_only,C02,cssni3,cssni3,seed,rules_off,G4,NELM,robust_mixing,correct,f2_single_mode_sg_fixed_lattice,rule f4_nelm_robust_mixing
+rules_only_loso,C02,cssni3,cssni3,seed,rules_off,G4,NELM,robust_mixing,correct,f2_single_mode_sg_fixed_lattice,rule f4_nelm_robust_mixing
+tree,C02,cssni3,cssni3,seed,rules_off,G4,NELM,robust_mixing,correct,f2_single_mode_sg_fixed_lattice,G4: SCF step limit: resubmit with robust mixing.
+tree_loso,C02,cssni3,cssni3,seed,rules_off,G4,NELM,robust_mixing,correct,f2_single_mode_sg_fixed_lattice,G4: SCF step limit: resubmit with robust mixing.
+retrieval,C02,cssni3,cssni3,seed,rules_off,G4,NELM,stop,safe,f2_single_mode_sg_fixed_lattice,nearest C08 (sim 1.000)
+retrieval_loso,C02,cssni3,cssni3,seed,rules_off,G4,NELM,robust_mixing,correct,f2_single_mode_sg_fixed_lattice,"nearest C29 (inmno3, sim 1.000)"
+rules_only,C03,cssni3,cssni3,seed,rules_off,G2,TRANSLATION,remove_translation,correct,f2_single_mode_sg_fixed_lattice,rule f2_translation
+rules_only_loso,C03,cssni3,cssni3,seed,rules_off,G2,TRANSLATION,remove_translation,correct,f2_single_mode_sg_fixed_lattice,rule f2_translation
+tree,C03,cssni3,cssni3,seed,rules_off,G2,TRANSLATION,remove_translation,correct,f2_single_mode_sg_fixed_lattice,G2: A rigid translation left in a polar vector is removed by subtracting the mean displacement.
+tree_loso,C03,cssni3,cssni3,seed,rules_off,G2,TRANSLATION,remove_translation,correct,f2_single_mode_sg_fixed_lattice,G2: A rigid translation left in a polar vector is removed by subtracting the mean displacement.
+retrieval,C03,cssni3,cssni3,seed,rules_off,G2,TRANSLATION,remove_translation,correct,f2_single_mode_sg_fixed_lattice,nearest C35 (sim 0.629)
+retrieval_loso,C03,cssni3,cssni3,seed,rules_off,G2,TRANSLATION,remove_translation,correct,f2_single_mode_sg_fixed_lattice,"nearest C35 (ermno3, sim 0.629)"
+rules_only,C04,cssni3,cssni3,seed,rules_off,G1,NO_BASIS,widen_basis_search,correct,f2_single_mode_sg_fixed_lattice,rule f1_no_basis_dmax_ladder
+rules_only_loso,C04,cssni3,cssni3,seed,rules_off,G1,NO_BASIS,widen_basis_search,correct,f2_single_mode_sg_fixed_lattice,rule f1_no_basis_dmax_ladder
+tree,C04,cssni3,cssni3,seed,rules_off,G1,NO_BASIS,widen_basis_search,correct,f2_single_mode_sg_fixed_lattice,"G1: If no basis was found, widening the atom-matching search is the usual fix."
+tree_loso,C04,cssni3,cssni3,seed,rules_off,G1,NO_BASIS,widen_basis_search,correct,f2_single_mode_sg_fixed_lattice,"G1: If no basis was found, widening the atom-matching search is the usual fix."
+retrieval,C04,cssni3,cssni3,seed,rules_off,G1,NO_BASIS,widen_basis_search,correct,f2_single_mode_sg_fixed_lattice,nearest C28 (sim 1.000)
+retrieval_loso,C04,cssni3,cssni3,seed,rules_off,G1,NO_BASIS,widen_basis_search,correct,f2_single_mode_sg_fixed_lattice,"nearest C28 (ca3ti2o7, sim 1.000)"
+rules_only,C05,cssni3,cssni3,seed,rules_off,G2,SINGLE_MODE_SG,rebuild_fixed_lattice,correct,f2_single_mode_sg_fixed_lattice,rule f2_single_mode_sg_fixed_lattice
+rules_only_loso,C05,cssni3,cssni3,seed,rules_off,G2,SINGLE_MODE_SG,stop,safe,f2_single_mode_sg_fixed_lattice,no rule for this failure (rule f2_single_mode_sg_fixed_lattice seeded by the held-out system)
+tree,C05,cssni3,cssni3,seed,rules_off,G2,SINGLE_MODE_SG,rebuild_fixed_lattice,correct,f2_single_mode_sg_fixed_lattice,G2: A strict single-mode space-group mismatch ...: rebuild on the fixed parent lattice.
+tree_loso,C05,cssni3,cssni3,seed,rules_off,G2,SINGLE_MODE_SG,stop,safe,f2_single_mode_sg_fixed_lattice,no Guidance for this gate (Guidance sentence seeded by the held-out system removed)
+retrieval,C05,cssni3,cssni3,seed,rules_off,G2,SINGLE_MODE_SG,rebuild_fixed_lattice,correct,f2_single_mode_sg_fixed_lattice,nearest C34 (sim 0.498)
+retrieval_loso,C05,cssni3,cssni3,seed,rules_off,G2,SINGLE_MODE_SG,rebuild_fixed_lattice,correct,f2_single_mode_sg_fixed_lattice,"nearest C34 (ermno3, sim 0.498)"
+rules_only,C06,cssni3,cssni3,seed,rules_off,G5,THIN_GRID,densify,correct,f2_single_mode_sg_fixed_lattice,rule f5_thin_grid_densify
+rules_only_loso,C06,cssni3,cssni3,seed,rules_off,G5,THIN_GRID,densify,correct,f2_single_mode_sg_fixed_lattice,rule f5_thin_grid_densify
+tree,C06,cssni3,cssni3,seed,rules_off,G5,THIN_GRID,densify,correct,f2_single_mode_sg_fixed_lattice,G5: A coverage failure means the grid is too thin ...: go back to f2 and densify.
+tree_loso,C06,cssni3,cssni3,seed,rules_off,G5,THIN_GRID,densify,correct,f2_single_mode_sg_fixed_lattice,G5: A coverage failure means the grid is too thin ...: go back to f2 and densify.
+retrieval,C06,cssni3,cssni3,seed,rules_off,G5,THIN_GRID,densify,correct,f2_single_mode_sg_fixed_lattice,nearest C46 (sim 1.000)
+retrieval_loso,C06,cssni3,cssni3,seed,rules_off,G5,THIN_GRID,densify,correct,f2_single_mode_sg_fixed_lattice,"nearest C46 (inmno3, sim 1.000)"
+rules_only,C07,cssni3,cssni3,seed,used_up,G4,WALLTIME,stop,correct,f2_single_mode_sg_fixed_lattice,rule f4_walltime_resubmit used up (1 of 1)
+rules_only_loso,C07,cssni3,cssni3,seed,used_up,G4,WALLTIME,stop,correct,f2_single_mode_sg_fixed_lattice,rule f4_walltime_resubmit used up (1 of 1)
+tree,C07,cssni3,cssni3,seed,used_up,G4,WALLTIME,stop,correct,f2_single_mode_sg_fixed_lattice,"a fix was already tried for this failure (G4: flag or stop, no choice given; G6: re-run once)"
+tree_loso,C07,cssni3,cssni3,seed,used_up,G4,WALLTIME,stop,correct,f2_single_mode_sg_fixed_lattice,"a fix was already tried for this failure (G4: flag or stop, no choice given; G6: re-run once)"
+retrieval,C07,cssni3,cssni3,seed,used_up,G4,WALLTIME,resubmit,safe,f2_single_mode_sg_fixed_lattice,nearest C01 (sim 1.000)
+retrieval_loso,C07,cssni3,cssni3,seed,used_up,G4,WALLTIME,resubmit,safe,f2_single_mode_sg_fixed_lattice,"nearest C23 (ermno3, sim 1.000)"
+rules_only,C08,cssni3,cssni3,seed,used_up,G4,NELM,stop,correct,f2_single_mode_sg_fixed_lattice,rule f4_nelm_robust_mixing used up (1 of 1)
+rules_only_loso,C08,cssni3,cssni3,seed,used_up,G4,NELM,stop,correct,f2_single_mode_sg_fixed_lattice,rule f4_nelm_robust_mixing used up (1 of 1)
+tree,C08,cssni3,cssni3,seed,used_up,G4,NELM,stop,correct,f2_single_mode_sg_fixed_lattice,"a fix was already tried for this failure (G4: flag or stop, no choice given; G6: re-run once)"
+tree_loso,C08,cssni3,cssni3,seed,used_up,G4,NELM,stop,correct,f2_single_mode_sg_fixed_lattice,"a fix was already tried for this failure (G4: flag or stop, no choice given; G6: re-run once)"
+retrieval,C08,cssni3,cssni3,seed,used_up,G4,NELM,robust_mixing,harmful,f2_single_mode_sg_fixed_lattice,nearest C02 (sim 1.000)
+retrieval_loso,C08,cssni3,cssni3,seed,used_up,G4,NELM,robust_mixing,harmful,f2_single_mode_sg_fixed_lattice,"nearest C29 (inmno3, sim 1.000)"
+rules_only,C09,cssni3,cssni3,seed,used_up,G2,OVER_BUDGET,stop,correct,f2_single_mode_sg_fixed_lattice,no rule for this failure
+rules_only_loso,C09,cssni3,cssni3,seed,used_up,G2,OVER_BUDGET,stop,correct,f2_single_mode_sg_fixed_lattice,no rule for this failure
+tree,C09,cssni3,cssni3,seed,used_up,G2,OVER_BUDGET,stop,correct,f2_single_mode_sg_fixed_lattice,G2: Over budget cannot be fixed here.
+tree_loso,C09,cssni3,cssni3,seed,used_up,G2,OVER_BUDGET,stop,correct,f2_single_mode_sg_fixed_lattice,G2: Over budget cannot be fixed here.
+retrieval,C09,cssni3,cssni3,seed,used_up,G2,OVER_BUDGET,stop,correct,f2_single_mode_sg_fixed_lattice,no all memory case with G2 OVER_BUDGET
+retrieval_loso,C09,cssni3,cssni3,seed,used_up,G2,OVER_BUDGET,stop,correct,f2_single_mode_sg_fixed_lattice,no memory case of another system with G2 OVER_BUDGET
+rules_only,C10,cssni3_d4,cssni3,seed,judgment,G5,SECONDARY_COUPLED,stop,safe,f2_single_mode_sg_fixed_lattice,no rule for this failure
+rules_only_loso,C10,cssni3_d4,cssni3,seed,judgment,G5,SECONDARY_COUPLED,stop,safe,f2_single_mode_sg_fixed_lattice,no rule for this failure
+tree,C10,cssni3_d4,cssni3,seed,judgment,G5,SECONDARY_COUPLED,stop,safe,f2_single_mode_sg_fixed_lattice,G5: Failures that concern the model or the stored data are not fixed by densifying.
+tree_loso,C10,cssni3_d4,cssni3,seed,judgment,G5,SECONDARY_COUPLED,stop,safe,f2_single_mode_sg_fixed_lattice,G5: Failures that concern the model or the stored data are not fixed by densifying.
+retrieval,C10,cssni3_d4,cssni3,seed,judgment,G5,SECONDARY_COUPLED,stop,safe,f2_single_mode_sg_fixed_lattice,no all memory case with G5 SECONDARY_COUPLED
+retrieval_loso,C10,cssni3_d4,cssni3,seed,judgment,G5,SECONDARY_COUPLED,stop,safe,f2_single_mode_sg_fixed_lattice,no memory case of another system with G5 SECONDARY_COUPLED
+rules_only,C11,inmno3,inmno3,seed,judgment,G2,R5_BORDERLINE,stop,safe,,no rule for this failure
+rules_only_loso,C11,inmno3,inmno3,seed,judgment,G2,R5_BORDERLINE,stop,safe,,no rule for this failure
+tree,C11,inmno3,inmno3,seed,judgment,G2,R5_BORDERLINE,stop,safe,,"G2: R5_BORDERLINE ... is a modelling choice: include, exclude or anchor (no choice given -> stop)."
+tree_loso,C11,inmno3,inmno3,seed,judgment,G2,R5_BORDERLINE,stop,safe,,"G2: R5_BORDERLINE ... is a modelling choice: include, exclude or anchor (no choice given -> stop)."
+retrieval,C11,inmno3,inmno3,seed,judgment,G2,R5_BORDERLINE,stop,safe,,no all memory case with G2 R5_BORDERLINE
+retrieval_loso,C11,inmno3,inmno3,seed,judgment,G2,R5_BORDERLINE,stop,safe,,no memory case of another system with G2 R5_BORDERLINE
+rules_only,C12,ca3ti2o7,ca3ti2o7,seed,rules_off,G2,TRANSLATION,remove_translation,correct,,rule f2_translation
+rules_only_loso,C12,ca3ti2o7,ca3ti2o7,seed,rules_off,G2,TRANSLATION,remove_translation,correct,,rule f2_translation
+tree,C12,ca3ti2o7,ca3ti2o7,seed,rules_off,G2,TRANSLATION,remove_translation,correct,,G2: A rigid translation left in a polar vector is removed by subtracting the mean displacement.
+tree_loso,C12,ca3ti2o7,ca3ti2o7,seed,rules_off,G2,TRANSLATION,remove_translation,correct,,G2: A rigid translation left in a polar vector is removed by subtracting the mean displacement.
+retrieval,C12,ca3ti2o7,ca3ti2o7,seed,rules_off,G2,TRANSLATION,remove_translation,correct,,nearest C35 (sim 0.629)
+retrieval_loso,C12,ca3ti2o7,ca3ti2o7,seed,rules_off,G2,TRANSLATION,remove_translation,correct,,"nearest C35 (ermno3, sim 0.629)"
+rules_only,C13,hfo2_T1,hfo2,seed,rules_off,G4,WALLTIME,resubmit,correct,f1_no_basis_dmax_ladder,rule f4_walltime_resubmit
+rules_only_loso,C13,hfo2_T1,hfo2,seed,rules_off,G4,WALLTIME,resubmit,correct,f1_no_basis_dmax_ladder,rule f4_walltime_resubmit
+tree,C13,hfo2_T1,hfo2,seed,rules_off,G4,WALLTIME,resubmit,correct,f1_no_basis_dmax_ladder,G4: Walltime: resubmit unchanged.
+tree_loso,C13,hfo2_T1,hfo2,seed,rules_off,G4,WALLTIME,resubmit,correct,f1_no_basis_dmax_ladder,G4: Walltime: resubmit unchanged.
+retrieval,C13,hfo2_T1,hfo2,seed,rules_off,G4,WALLTIME,stop,safe,f1_no_basis_dmax_ladder,nearest C27 (sim 1.000)
+retrieval_loso,C13,hfo2_T1,hfo2,seed,rules_off,G4,WALLTIME,resubmit,correct,f1_no_basis_dmax_ladder,"nearest C20 (bifeo3, sim 0.525)"
+rules_only,C14,hfo2_T1,hfo2,seed,rules_off,G4,NELM,robust_mixing,correct,f1_no_basis_dmax_ladder,rule f4_nelm_robust_mixing
+rules_only_loso,C14,hfo2_T1,hfo2,seed,rules_off,G4,NELM,robust_mixing,correct,f1_no_basis_dmax_ladder,rule f4_nelm_robust_mixing
+tree,C14,hfo2_T1,hfo2,seed,rules_off,G4,NELM,robust_mixing,correct,f1_no_basis_dmax_ladder,G4: SCF step limit: resubmit with robust mixing.
+tree_loso,C14,hfo2_T1,hfo2,seed,rules_off,G4,NELM,robust_mixing,correct,f1_no_basis_dmax_ladder,G4: SCF step limit: resubmit with robust mixing.
+retrieval,C14,hfo2_T1,hfo2,seed,rules_off,G4,NELM,robust_mixing,correct,f1_no_basis_dmax_ladder,nearest C43 (sim 1.000)
+retrieval_loso,C14,hfo2_T1,hfo2,seed,rules_off,G4,NELM,robust_mixing,correct,f1_no_basis_dmax_ladder,"nearest C21 (bifeo3, sim 0.524)"
+rules_only,C15,hfo2_T1,hfo2,seed,decoy,G5,CLOSURE,stop,correct,f1_no_basis_dmax_ladder,no rule for this failure
+rules_only_loso,C15,hfo2_T1,hfo2,seed,decoy,G5,CLOSURE,stop,correct,f1_no_basis_dmax_ladder,no rule for this failure
+tree,C15,hfo2_T1,hfo2,seed,decoy,G5,CLOSURE,stop,correct,f1_no_basis_dmax_ladder,G5: Failures that concern the model or the stored data are not fixed by densifying.
+tree_loso,C15,hfo2_T1,hfo2,seed,decoy,G5,CLOSURE,stop,correct,f1_no_basis_dmax_ladder,G5: Failures that concern the model or the stored data are not fixed by densifying.
+retrieval,C15,hfo2_T1,hfo2,seed,decoy,G5,CLOSURE,stop,correct,f1_no_basis_dmax_ladder,nearest C52 (sim 0.802)
+retrieval_loso,C15,hfo2_T1,hfo2,seed,decoy,G5,CLOSURE,stop,correct,f1_no_basis_dmax_ladder,no memory case of another system with G5 CLOSURE
+rules_only,C16,hfo2_T1,hfo2,seed,decoy,G5,CROSS_SETTING,stop,correct,f1_no_basis_dmax_ladder,no rule for this failure
+rules_only_loso,C16,hfo2_T1,hfo2,seed,decoy,G5,CROSS_SETTING,stop,correct,f1_no_basis_dmax_ladder,no rule for this failure
+tree,C16,hfo2_T1,hfo2,seed,decoy,G5,CROSS_SETTING,stop,correct,f1_no_basis_dmax_ladder,G5: Failures that concern the model or the stored data are not fixed by densifying.
+tree_loso,C16,hfo2_T1,hfo2,seed,decoy,G5,CROSS_SETTING,stop,correct,f1_no_basis_dmax_ladder,G5: Failures that concern the model or the stored data are not fixed by densifying.
+retrieval,C16,hfo2_T1,hfo2,seed,decoy,G5,CROSS_SETTING,stop,correct,f1_no_basis_dmax_ladder,no all memory case with G5 CROSS_SETTING
+retrieval_loso,C16,hfo2_T1,hfo2,seed,decoy,G5,CROSS_SETTING,stop,correct,f1_no_basis_dmax_ladder,no memory case of another system with G5 CROSS_SETTING
+rules_only,C17,hfo2_T1,hfo2,seed,no_rule,G4,DFT_INCONSISTENT,stop,correct,f1_no_basis_dmax_ladder,no rule for this failure
+rules_only_loso,C17,hfo2_T1,hfo2,seed,no_rule,G4,DFT_INCONSISTENT,stop,correct,f1_no_basis_dmax_ladder,no rule for this failure
+tree,C17,hfo2_T1,hfo2,seed,no_rule,G4,DFT_INCONSISTENT,stop,correct,f1_no_basis_dmax_ladder,"G4: Inconsistent settings, magnetism or configuration values are for the human."
+tree_loso,C17,hfo2_T1,hfo2,seed,no_rule,G4,DFT_INCONSISTENT,stop,correct,f1_no_basis_dmax_ladder,"G4: Inconsistent settings, magnetism or configuration values are for the human."
+retrieval,C17,hfo2_T1,hfo2,seed,no_rule,G4,DFT_INCONSISTENT,stop,correct,f1_no_basis_dmax_ladder,no all memory case with G4 DFT_INCONSISTENT
+retrieval_loso,C17,hfo2_T1,hfo2,seed,no_rule,G4,DFT_INCONSISTENT,stop,correct,f1_no_basis_dmax_ladder,no memory case of another system with G4 DFT_INCONSISTENT
+rules_only,C18,hfo2_T1,hfo2,seed,no_rule,G4,MAGNETIC,stop,correct,f1_no_basis_dmax_ladder,no rule for this failure
+rules_only_loso,C18,hfo2_T1,hfo2,seed,no_rule,G4,MAGNETIC,stop,correct,f1_no_basis_dmax_ladder,no rule for this failure
+tree,C18,hfo2_T1,hfo2,seed,no_rule,G4,MAGNETIC,stop,correct,f1_no_basis_dmax_ladder,"G4: Inconsistent settings, magnetism or configuration values are for the human."
+tree_loso,C18,hfo2_T1,hfo2,seed,no_rule,G4,MAGNETIC,stop,correct,f1_no_basis_dmax_ladder,"G4: Inconsistent settings, magnetism or configuration values are for the human."
+retrieval,C18,hfo2_T1,hfo2,seed,no_rule,G4,MAGNETIC,stop,correct,f1_no_basis_dmax_ladder,no all memory case with G4 MAGNETIC
+retrieval_loso,C18,hfo2_T1,hfo2,seed,no_rule,G4,MAGNETIC,stop,correct,f1_no_basis_dmax_ladder,no memory case of another system with G4 MAGNETIC
+rules_only,C19,hfo2_T1,hfo2,seed,no_rule,G4,PER_FU,stop,correct,f1_no_basis_dmax_ladder,no rule for this failure
+rules_only_loso,C19,hfo2_T1,hfo2,seed,no_rule,G4,PER_FU,stop,correct,f1_no_basis_dmax_ladder,no rule for this failure
+tree,C19,hfo2_T1,hfo2,seed,no_rule,G4,PER_FU,stop,correct,f1_no_basis_dmax_ladder,"G4: Inconsistent settings, magnetism or configuration values are for the human."
+tree_loso,C19,hfo2_T1,hfo2,seed,no_rule,G4,PER_FU,stop,correct,f1_no_basis_dmax_ladder,"G4: Inconsistent settings, magnetism or configuration values are for the human."
+retrieval,C19,hfo2_T1,hfo2,seed,no_rule,G4,PER_FU,stop,correct,f1_no_basis_dmax_ladder,no all memory case with G4 PER_FU
+retrieval_loso,C19,hfo2_T1,hfo2,seed,no_rule,G4,PER_FU,stop,correct,f1_no_basis_dmax_ladder,no memory case of another system with G4 PER_FU
+rules_only,C20,bifeo3,bifeo3,held-out,rules_off,G4,WALLTIME,resubmit,correct,f4_nelm_robust_mixing;f4_walltime_resubmit,rule f4_walltime_resubmit
+rules_only_loso,C20,bifeo3,bifeo3,held-out,rules_off,G4,WALLTIME,stop,safe,f4_nelm_robust_mixing;f4_walltime_resubmit,no rule for this failure (rule f4_walltime_resubmit seeded by the held-out system)
+tree,C20,bifeo3,bifeo3,held-out,rules_off,G4,WALLTIME,resubmit,correct,f4_nelm_robust_mixing;f4_walltime_resubmit,G4: Walltime: resubmit unchanged.
+tree_loso,C20,bifeo3,bifeo3,held-out,rules_off,G4,WALLTIME,stop,safe,f4_nelm_robust_mixing;f4_walltime_resubmit,"G4: Inconsistent settings, magnetism or configuration values are for the human. (Guidance sentence seeded by the held-out system removed)"
+retrieval,C20,bifeo3,bifeo3,held-out,rules_off,G4,WALLTIME,resubmit,correct,f4_nelm_robust_mixing;f4_walltime_resubmit,nearest C13 (sim 0.470)
+retrieval_loso,C20,bifeo3,bifeo3,held-out,rules_off,G4,WALLTIME,resubmit,correct,f4_nelm_robust_mixing;f4_walltime_resubmit,"nearest C13 (hfo2_T1, sim 0.470)"
+rules_only,C21,bifeo3,bifeo3,held-out,rules_off,G4,NELM,robust_mixing,correct,f4_nelm_robust_mixing;f4_walltime_resubmit,rule f4_nelm_robust_mixing
+rules_only_loso,C21,bifeo3,bifeo3,held-out,rules_off,G4,NELM,stop,safe,f4_nelm_robust_mixing;f4_walltime_resubmit,no rule for this failure (rule f4_nelm_robust_mixing seeded by the held-out system)
+tree,C21,bifeo3,bifeo3,held-out,rules_off,G4,NELM,robust_mixing,correct,f4_nelm_robust_mixing;f4_walltime_resubmit,G4: SCF step limit: resubmit with robust mixing.
+tree_loso,C21,bifeo3,bifeo3,held-out,rules_off,G4,NELM,stop,safe,f4_nelm_robust_mixing;f4_walltime_resubmit,"G4: Inconsistent settings, magnetism or configuration values are for the human. (Guidance sentence seeded by the held-out system removed)"
+retrieval,C21,bifeo3,bifeo3,held-out,rules_off,G4,NELM,robust_mixing,correct,f4_nelm_robust_mixing;f4_walltime_resubmit,nearest C14 (sim 0.493)
+retrieval_loso,C21,bifeo3,bifeo3,held-out,rules_off,G4,NELM,robust_mixing,correct,f4_nelm_robust_mixing;f4_walltime_resubmit,"nearest C14 (hfo2_T1, sim 0.493)"
+rules_only,C22,bifeo3,bifeo3,held-out,no_rule,G4,SCF_LIMITED,stop,correct,f4_nelm_robust_mixing;f4_walltime_resubmit,no rule for this failure
+rules_only_loso,C22,bifeo3,bifeo3,held-out,no_rule,G4,SCF_LIMITED,stop,correct,f4_nelm_robust_mixing;f4_walltime_resubmit,no rule for this failure
+tree,C22,bifeo3,bifeo3,held-out,no_rule,G4,SCF_LIMITED,stop,correct,f4_nelm_robust_mixing;f4_walltime_resubmit,"G4: Inconsistent settings, magnetism or configuration values are for the human."
+tree_loso,C22,bifeo3,bifeo3,held-out,no_rule,G4,SCF_LIMITED,stop,correct,f4_nelm_robust_mixing;f4_walltime_resubmit,"G4: Inconsistent settings, magnetism or configuration values are for the human."
+retrieval,C22,bifeo3,bifeo3,held-out,no_rule,G4,SCF_LIMITED,stop,correct,f4_nelm_robust_mixing;f4_walltime_resubmit,no all memory case with G4 SCF_LIMITED
+retrieval_loso,C22,bifeo3,bifeo3,held-out,no_rule,G4,SCF_LIMITED,stop,correct,f4_nelm_robust_mixing;f4_walltime_resubmit,no memory case of another system with G4 SCF_LIMITED
+rules_only,C23,ermno3,ermno3,held-out,rules_off,G4,WALLTIME,resubmit,correct,,rule f4_walltime_resubmit
+rules_only_loso,C23,ermno3,ermno3,held-out,rules_off,G4,WALLTIME,resubmit,correct,,rule f4_walltime_resubmit
+tree,C23,ermno3,ermno3,held-out,rules_off,G4,WALLTIME,resubmit,correct,,G4: Walltime: resubmit unchanged.
+tree_loso,C23,ermno3,ermno3,held-out,rules_off,G4,WALLTIME,resubmit,correct,,G4: Walltime: resubmit unchanged.
+retrieval,C23,ermno3,ermno3,held-out,rules_off,G4,WALLTIME,resubmit,correct,,nearest C01 (sim 1.000)
+retrieval_loso,C23,ermno3,ermno3,held-out,rules_off,G4,WALLTIME,resubmit,correct,,"nearest C01 (cssni3, sim 1.000)"
+rules_only,C24,ermno3,ermno3,held-out,decoy,G5,RESIDUALS,stop,correct,,no rule for this failure
+rules_only_loso,C24,ermno3,ermno3,held-out,decoy,G5,RESIDUALS,stop,correct,,no rule for this failure
+tree,C24,ermno3,ermno3,held-out,decoy,G5,RESIDUALS,stop,correct,,G5: Failures that concern the model or the stored data are not fixed by densifying.
+tree_loso,C24,ermno3,ermno3,held-out,decoy,G5,RESIDUALS,stop,correct,,G5: Failures that concern the model or the stored data are not fixed by densifying.
+retrieval,C24,ermno3,ermno3,held-out,decoy,G5,RESIDUALS,stop,correct,,nearest C25 (sim 1.000)
+retrieval_loso,C24,ermno3,ermno3,held-out,decoy,G5,RESIDUALS,stop,correct,,"nearest C25 (inmno3_joint, sim 1.000)"
+rules_only,C25,inmno3_joint,inmno3,held-out,no_rule,G5,RESIDUALS,stop,correct,,no rule for this failure
+rules_only_loso,C25,inmno3_joint,inmno3,held-out,no_rule,G5,RESIDUALS,stop,correct,,no rule for this failure
+tree,C25,inmno3_joint,inmno3,held-out,no_rule,G5,RESIDUALS,stop,correct,,G5: Failures that concern the model or the stored data are not fixed by densifying.
+tree_loso,C25,inmno3_joint,inmno3,held-out,no_rule,G5,RESIDUALS,stop,correct,,G5: Failures that concern the model or the stored data are not fixed by densifying.
+retrieval,C25,inmno3_joint,inmno3,held-out,no_rule,G5,RESIDUALS,stop,correct,,nearest C24 (sim 1.000)
+retrieval_loso,C25,inmno3_joint,inmno3,held-out,no_rule,G5,RESIDUALS,stop,correct,,"nearest C24 (ermno3, sim 1.000)"
+rules_only,C26,hfo2_T5,hfo2,held-out,decoy,G2,PATH_LATTICE,stop,correct,f1_no_basis_dmax_ladder,no rule for this failure
+rules_only_loso,C26,hfo2_T5,hfo2,held-out,decoy,G2,PATH_LATTICE,stop,correct,f1_no_basis_dmax_ladder,no rule for this failure
+tree,C26,hfo2_T5,hfo2,held-out,decoy,G2,PATH_LATTICE,stop,correct,f1_no_basis_dmax_ladder,no Guidance for this gate
+tree_loso,C26,hfo2_T5,hfo2,held-out,decoy,G2,PATH_LATTICE,stop,correct,f1_no_basis_dmax_ladder,no Guidance for this gate
+retrieval,C26,hfo2_T5,hfo2,held-out,decoy,G2,PATH_LATTICE,stop,correct,f1_no_basis_dmax_ladder,nearest C53 (sim 1.000)
+retrieval_loso,C26,hfo2_T5,hfo2,held-out,decoy,G2,PATH_LATTICE,stop,correct,f1_no_basis_dmax_ladder,no memory case of another system with G2 PATH_LATTICE
+rules_only,C27,hfo2_T4,hfo2,held-out,used_up,G4,WALLTIME,stop,correct,f1_no_basis_dmax_ladder,rule f4_walltime_resubmit used up (1 of 1)
+rules_only_loso,C27,hfo2_T4,hfo2,held-out,used_up,G4,WALLTIME,stop,correct,f1_no_basis_dmax_ladder,rule f4_walltime_resubmit used up (1 of 1)
+tree,C27,hfo2_T4,hfo2,held-out,used_up,G4,WALLTIME,stop,correct,f1_no_basis_dmax_ladder,"a fix was already tried for this failure (G4: flag or stop, no choice given; G6: re-run once)"
+tree_loso,C27,hfo2_T4,hfo2,held-out,used_up,G4,WALLTIME,stop,correct,f1_no_basis_dmax_ladder,"a fix was already tried for this failure (G4: flag or stop, no choice given; G6: re-run once)"
+retrieval,C27,hfo2_T4,hfo2,held-out,used_up,G4,WALLTIME,resubmit,safe,f1_no_basis_dmax_ladder,nearest C13 (sim 1.000)
+retrieval_loso,C27,hfo2_T4,hfo2,held-out,used_up,G4,WALLTIME,resubmit,safe,f1_no_basis_dmax_ladder,"nearest C20 (bifeo3, sim 0.525)"
+rules_only,C28,ca3ti2o7,ca3ti2o7,seed,rules_off,G1,NO_BASIS,widen_basis_search,correct,,rule f1_no_basis_dmax_ladder
+rules_only_loso,C28,ca3ti2o7,ca3ti2o7,seed,rules_off,G1,NO_BASIS,widen_basis_search,correct,,rule f1_no_basis_dmax_ladder
+tree,C28,ca3ti2o7,ca3ti2o7,seed,rules_off,G1,NO_BASIS,widen_basis_search,correct,,"G1: If no basis was found, widening the atom-matching search is the usual fix."
+tree_loso,C28,ca3ti2o7,ca3ti2o7,seed,rules_off,G1,NO_BASIS,widen_basis_search,correct,,"G1: If no basis was found, widening the atom-matching search is the usual fix."
+retrieval,C28,ca3ti2o7,ca3ti2o7,seed,rules_off,G1,NO_BASIS,widen_basis_search,correct,,nearest C04 (sim 1.000)
+retrieval_loso,C28,ca3ti2o7,ca3ti2o7,seed,rules_off,G1,NO_BASIS,widen_basis_search,correct,,"nearest C04 (cssni3, sim 1.000)"
+rules_only,C29,inmno3,inmno3,seed,rules_off,G4,NELM,robust_mixing,correct,,rule f4_nelm_robust_mixing
+rules_only_loso,C29,inmno3,inmno3,seed,rules_off,G4,NELM,robust_mixing,correct,,rule f4_nelm_robust_mixing
+tree,C29,inmno3,inmno3,seed,rules_off,G4,NELM,robust_mixing,correct,,G4: SCF step limit: resubmit with robust mixing.
+tree_loso,C29,inmno3,inmno3,seed,rules_off,G4,NELM,robust_mixing,correct,,G4: SCF step limit: resubmit with robust mixing.
+retrieval,C29,inmno3,inmno3,seed,rules_off,G4,NELM,robust_mixing,correct,,nearest C02 (sim 1.000)
+retrieval_loso,C29,inmno3,inmno3,seed,rules_off,G4,NELM,robust_mixing,correct,,"nearest C02 (cssni3, sim 1.000)"
+rules_only,C30,ermno3,ermno3,seed,rules_off,G1,NO_BASIS,widen_basis_search,correct,,rule f1_no_basis_dmax_ladder
+rules_only_loso,C30,ermno3,ermno3,seed,rules_off,G1,NO_BASIS,widen_basis_search,correct,,rule f1_no_basis_dmax_ladder
+tree,C30,ermno3,ermno3,seed,rules_off,G1,NO_BASIS,widen_basis_search,correct,,"G1: If no basis was found, widening the atom-matching search is the usual fix."
+tree_loso,C30,ermno3,ermno3,seed,rules_off,G1,NO_BASIS,widen_basis_search,correct,,"G1: If no basis was found, widening the atom-matching search is the usual fix."
+retrieval,C30,ermno3,ermno3,seed,rules_off,G1,NO_BASIS,widen_basis_search,correct,,nearest C04 (sim 1.000)
+retrieval_loso,C30,ermno3,ermno3,seed,rules_off,G1,NO_BASIS,widen_basis_search,correct,,"nearest C04 (cssni3, sim 1.000)"
+rules_only,C31,hfo2_T3,hfo2,seed,rules_off,G1,NO_BASIS,widen_basis_search,correct,f1_no_basis_dmax_ladder,rule f1_no_basis_dmax_ladder
+rules_only_loso,C31,hfo2_T3,hfo2,seed,rules_off,G1,NO_BASIS,stop,safe,f1_no_basis_dmax_ladder,no rule for this failure (rule f1_no_basis_dmax_ladder seeded by the held-out system)
+tree,C31,hfo2_T3,hfo2,seed,rules_off,G1,NO_BASIS,widen_basis_search,correct,f1_no_basis_dmax_ladder,"G1: If no basis was found, widening the atom-matching search is the usual fix."
+tree_loso,C31,hfo2_T3,hfo2,seed,rules_off,G1,NO_BASIS,stop,safe,f1_no_basis_dmax_ladder,"G1: A pair that is not group-subgroup, or space groups that disagree, cannot be fixed here. (Guidance sentence seeded by the held-out system removed)"
+retrieval,C31,hfo2_T3,hfo2,seed,rules_off,G1,NO_BASIS,widen_basis_search,correct,f1_no_basis_dmax_ladder,nearest C04 (sim 1.000)
+retrieval_loso,C31,hfo2_T3,hfo2,seed,rules_off,G1,NO_BASIS,widen_basis_search,correct,f1_no_basis_dmax_ladder,"nearest C04 (cssni3, sim 1.000)"
+rules_only,C32,bifeo3,bifeo3,held-out,rules_off,G1,NO_BASIS,widen_basis_search,correct,f4_nelm_robust_mixing;f4_walltime_resubmit,rule f1_no_basis_dmax_ladder
+rules_only_loso,C32,bifeo3,bifeo3,held-out,rules_off,G1,NO_BASIS,widen_basis_search,correct,f4_nelm_robust_mixing;f4_walltime_resubmit,rule f1_no_basis_dmax_ladder
+tree,C32,bifeo3,bifeo3,held-out,rules_off,G1,NO_BASIS,widen_basis_search,correct,f4_nelm_robust_mixing;f4_walltime_resubmit,"G1: If no basis was found, widening the atom-matching search is the usual fix."
+tree_loso,C32,bifeo3,bifeo3,held-out,rules_off,G1,NO_BASIS,widen_basis_search,correct,f4_nelm_robust_mixing;f4_walltime_resubmit,"G1: If no basis was found, widening the atom-matching search is the usual fix."
+retrieval,C32,bifeo3,bifeo3,held-out,rules_off,G1,NO_BASIS,widen_basis_search,correct,f4_nelm_robust_mixing;f4_walltime_resubmit,nearest C04 (sim 1.000)
+retrieval_loso,C32,bifeo3,bifeo3,held-out,rules_off,G1,NO_BASIS,widen_basis_search,correct,f4_nelm_robust_mixing;f4_walltime_resubmit,"nearest C04 (cssni3, sim 1.000)"
+rules_only,C33,ca3ti2o7,ca3ti2o7,seed,decoy,G5,COVERAGE,stop,correct,,no rule for this failure
+rules_only_loso,C33,ca3ti2o7,ca3ti2o7,seed,decoy,G5,COVERAGE,stop,correct,,no rule for this failure
+tree,C33,ca3ti2o7,ca3ti2o7,seed,decoy,G5,COVERAGE,densify,harmful,,G5: A coverage failure means the grid is too thin ...: go back to f2 and densify.
+tree_loso,C33,ca3ti2o7,ca3ti2o7,seed,decoy,G5,COVERAGE,densify,harmful,,G5: A coverage failure means the grid is too thin ...: go back to f2 and densify.
+retrieval,C33,ca3ti2o7,ca3ti2o7,seed,decoy,G5,COVERAGE,stop,correct,,no all memory case with G5 COVERAGE
+retrieval_loso,C33,ca3ti2o7,ca3ti2o7,seed,decoy,G5,COVERAGE,stop,correct,,no memory case of another system with G5 COVERAGE
+rules_only,C34,ermno3,ermno3,seed,rules_off,G2,SINGLE_MODE_SG,rebuild_fixed_lattice,correct,,rule f2_single_mode_sg_fixed_lattice
+rules_only_loso,C34,ermno3,ermno3,seed,rules_off,G2,SINGLE_MODE_SG,rebuild_fixed_lattice,correct,,rule f2_single_mode_sg_fixed_lattice
+tree,C34,ermno3,ermno3,seed,rules_off,G2,SINGLE_MODE_SG,rebuild_fixed_lattice,correct,,G2: A strict single-mode space-group mismatch ...: rebuild on the fixed parent lattice.
+tree_loso,C34,ermno3,ermno3,seed,rules_off,G2,SINGLE_MODE_SG,rebuild_fixed_lattice,correct,,G2: A strict single-mode space-group mismatch ...: rebuild on the fixed parent lattice.
+retrieval,C34,ermno3,ermno3,seed,rules_off,G2,SINGLE_MODE_SG,rebuild_fixed_lattice,correct,,nearest C05 (sim 0.498)
+retrieval_loso,C34,ermno3,ermno3,seed,rules_off,G2,SINGLE_MODE_SG,rebuild_fixed_lattice,correct,,"nearest C05 (cssni3, sim 0.498)"
+rules_only,C35,ermno3,ermno3,seed,rules_off,G2,TRANSLATION,remove_translation,correct,,rule f2_translation
+rules_only_loso,C35,ermno3,ermno3,seed,rules_off,G2,TRANSLATION,remove_translation,correct,,rule f2_translation
+tree,C35,ermno3,ermno3,seed,rules_off,G2,TRANSLATION,remove_translation,correct,,G2: A rigid translation left in a polar vector is removed by subtracting the mean displacement.
+tree_loso,C35,ermno3,ermno3,seed,rules_off,G2,TRANSLATION,remove_translation,correct,,G2: A rigid translation left in a polar vector is removed by subtracting the mean displacement.
+retrieval,C35,ermno3,ermno3,seed,rules_off,G2,TRANSLATION,remove_translation,correct,,nearest C36 (sim 1.000)
+retrieval_loso,C35,ermno3,ermno3,seed,rules_off,G2,TRANSLATION,remove_translation,correct,,"nearest C36 (inmno3, sim 1.000)"
+rules_only,C36,inmno3,inmno3,seed,rules_off,G2,TRANSLATION,remove_translation,correct,,rule f2_translation
+rules_only_loso,C36,inmno3,inmno3,seed,rules_off,G2,TRANSLATION,remove_translation,correct,,rule f2_translation
+tree,C36,inmno3,inmno3,seed,rules_off,G2,TRANSLATION,remove_translation,correct,,G2: A rigid translation left in a polar vector is removed by subtracting the mean displacement.
+tree_loso,C36,inmno3,inmno3,seed,rules_off,G2,TRANSLATION,remove_translation,correct,,G2: A rigid translation left in a polar vector is removed by subtracting the mean displacement.
+retrieval,C36,inmno3,inmno3,seed,rules_off,G2,TRANSLATION,remove_translation,correct,,nearest C35 (sim 1.000)
+retrieval_loso,C36,inmno3,inmno3,seed,rules_off,G2,TRANSLATION,remove_translation,correct,,"nearest C35 (ermno3, sim 1.000)"
+rules_only,C37,ca3ti2o7,ca3ti2o7,held-out,rules_off,G4,WALLTIME,resubmit,correct,,rule f4_walltime_resubmit
+rules_only_loso,C37,ca3ti2o7,ca3ti2o7,held-out,rules_off,G4,WALLTIME,resubmit,correct,,rule f4_walltime_resubmit
+tree,C37,ca3ti2o7,ca3ti2o7,held-out,rules_off,G4,WALLTIME,resubmit,correct,,G4: Walltime: resubmit unchanged.
+tree_loso,C37,ca3ti2o7,ca3ti2o7,held-out,rules_off,G4,WALLTIME,resubmit,correct,,G4: Walltime: resubmit unchanged.
+retrieval,C37,ca3ti2o7,ca3ti2o7,held-out,rules_off,G4,WALLTIME,resubmit,correct,,nearest C01 (sim 1.000)
+retrieval_loso,C37,ca3ti2o7,ca3ti2o7,held-out,rules_off,G4,WALLTIME,resubmit,correct,,"nearest C01 (cssni3, sim 1.000)"
+rules_only,C38,inmno3,inmno3,seed,rules_off,G4,WALLTIME,resubmit,correct,,rule f4_walltime_resubmit
+rules_only_loso,C38,inmno3,inmno3,seed,rules_off,G4,WALLTIME,resubmit,correct,,rule f4_walltime_resubmit
+tree,C38,inmno3,inmno3,seed,rules_off,G4,WALLTIME,resubmit,correct,,G4: Walltime: resubmit unchanged.
+tree_loso,C38,inmno3,inmno3,seed,rules_off,G4,WALLTIME,resubmit,correct,,G4: Walltime: resubmit unchanged.
+retrieval,C38,inmno3,inmno3,seed,rules_off,G4,WALLTIME,resubmit,correct,,nearest C01 (sim 1.000)
+retrieval_loso,C38,inmno3,inmno3,seed,rules_off,G4,WALLTIME,resubmit,correct,,"nearest C01 (cssni3, sim 1.000)"
+rules_only,C39,hfo2_T3,hfo2,seed,rules_off,G4,WALLTIME,resubmit,correct,f1_no_basis_dmax_ladder,rule f4_walltime_resubmit
+rules_only_loso,C39,hfo2_T3,hfo2,seed,rules_off,G4,WALLTIME,resubmit,correct,f1_no_basis_dmax_ladder,rule f4_walltime_resubmit
+tree,C39,hfo2_T3,hfo2,seed,rules_off,G4,WALLTIME,resubmit,correct,f1_no_basis_dmax_ladder,G4: Walltime: resubmit unchanged.
+tree_loso,C39,hfo2_T3,hfo2,seed,rules_off,G4,WALLTIME,resubmit,correct,f1_no_basis_dmax_ladder,G4: Walltime: resubmit unchanged.
+retrieval,C39,hfo2_T3,hfo2,seed,rules_off,G4,WALLTIME,resubmit,correct,f1_no_basis_dmax_ladder,nearest C13 (sim 1.000)
+retrieval_loso,C39,hfo2_T3,hfo2,seed,rules_off,G4,WALLTIME,resubmit,correct,f1_no_basis_dmax_ladder,"nearest C20 (bifeo3, sim 0.525)"
+rules_only,C40,cssni3_d4,cssni3,held-out,rules_off,G4,WALLTIME,resubmit,correct,f2_single_mode_sg_fixed_lattice,rule f4_walltime_resubmit
+rules_only_loso,C40,cssni3_d4,cssni3,held-out,rules_off,G4,WALLTIME,resubmit,correct,f2_single_mode_sg_fixed_lattice,rule f4_walltime_resubmit
+tree,C40,cssni3_d4,cssni3,held-out,rules_off,G4,WALLTIME,resubmit,correct,f2_single_mode_sg_fixed_lattice,G4: Walltime: resubmit unchanged.
+tree_loso,C40,cssni3_d4,cssni3,held-out,rules_off,G4,WALLTIME,resubmit,correct,f2_single_mode_sg_fixed_lattice,G4: Walltime: resubmit unchanged.
+retrieval,C40,cssni3_d4,cssni3,held-out,rules_off,G4,WALLTIME,resubmit,correct,f2_single_mode_sg_fixed_lattice,nearest C01 (sim 1.000)
+retrieval_loso,C40,cssni3_d4,cssni3,held-out,rules_off,G4,WALLTIME,resubmit,correct,f2_single_mode_sg_fixed_lattice,"nearest C23 (ermno3, sim 1.000)"
+rules_only,C41,ca3ti2o7,ca3ti2o7,seed,rules_off,G4,NELM,robust_mixing,correct,,rule f4_nelm_robust_mixing
+rules_only_loso,C41,ca3ti2o7,ca3ti2o7,seed,rules_off,G4,NELM,robust_mixing,correct,,rule f4_nelm_robust_mixing
+tree,C41,ca3ti2o7,ca3ti2o7,seed,rules_off,G4,NELM,robust_mixing,correct,,G4: SCF step limit: resubmit with robust mixing.
+tree_loso,C41,ca3ti2o7,ca3ti2o7,seed,rules_off,G4,NELM,robust_mixing,correct,,G4: SCF step limit: resubmit with robust mixing.
+retrieval,C41,ca3ti2o7,ca3ti2o7,seed,rules_off,G4,NELM,robust_mixing,correct,,nearest C02 (sim 1.000)
+retrieval_loso,C41,ca3ti2o7,ca3ti2o7,seed,rules_off,G4,NELM,robust_mixing,correct,,"nearest C02 (cssni3, sim 1.000)"
+rules_only,C42,ermno3,ermno3,seed,rules_off,G4,NELM,robust_mixing,correct,,rule f4_nelm_robust_mixing
+rules_only_loso,C42,ermno3,ermno3,seed,rules_off,G4,NELM,robust_mixing,correct,,rule f4_nelm_robust_mixing
+tree,C42,ermno3,ermno3,seed,rules_off,G4,NELM,robust_mixing,correct,,G4: SCF step limit: resubmit with robust mixing.
+tree_loso,C42,ermno3,ermno3,seed,rules_off,G4,NELM,robust_mixing,correct,,G4: SCF step limit: resubmit with robust mixing.
+retrieval,C42,ermno3,ermno3,seed,rules_off,G4,NELM,robust_mixing,correct,,nearest C02 (sim 1.000)
+retrieval_loso,C42,ermno3,ermno3,seed,rules_off,G4,NELM,robust_mixing,correct,,"nearest C02 (cssni3, sim 1.000)"
+rules_only,C43,hfo2_T5,hfo2,seed,rules_off,G4,NELM,robust_mixing,correct,f1_no_basis_dmax_ladder,rule f4_nelm_robust_mixing
+rules_only_loso,C43,hfo2_T5,hfo2,seed,rules_off,G4,NELM,robust_mixing,correct,f1_no_basis_dmax_ladder,rule f4_nelm_robust_mixing
+tree,C43,hfo2_T5,hfo2,seed,rules_off,G4,NELM,robust_mixing,correct,f1_no_basis_dmax_ladder,G4: SCF step limit: resubmit with robust mixing.
+tree_loso,C43,hfo2_T5,hfo2,seed,rules_off,G4,NELM,robust_mixing,correct,f1_no_basis_dmax_ladder,G4: SCF step limit: resubmit with robust mixing.
+retrieval,C43,hfo2_T5,hfo2,seed,rules_off,G4,NELM,robust_mixing,correct,f1_no_basis_dmax_ladder,nearest C14 (sim 1.000)
+retrieval_loso,C43,hfo2_T5,hfo2,seed,rules_off,G4,NELM,robust_mixing,correct,f1_no_basis_dmax_ladder,"nearest C21 (bifeo3, sim 0.524)"
+rules_only,C44,ca3ti2o7,ca3ti2o7,seed,used_up,G4,NELM,stop,correct,,rule f4_nelm_robust_mixing used up (1 of 1)
+rules_only_loso,C44,ca3ti2o7,ca3ti2o7,seed,used_up,G4,NELM,stop,correct,,rule f4_nelm_robust_mixing used up (1 of 1)
+tree,C44,ca3ti2o7,ca3ti2o7,seed,used_up,G4,NELM,stop,correct,,"a fix was already tried for this failure (G4: flag or stop, no choice given; G6: re-run once)"
+tree_loso,C44,ca3ti2o7,ca3ti2o7,seed,used_up,G4,NELM,stop,correct,,"a fix was already tried for this failure (G4: flag or stop, no choice given; G6: re-run once)"
+retrieval,C44,ca3ti2o7,ca3ti2o7,seed,used_up,G4,NELM,robust_mixing,harmful,,nearest C02 (sim 1.000)
+retrieval_loso,C44,ca3ti2o7,ca3ti2o7,seed,used_up,G4,NELM,robust_mixing,harmful,,"nearest C02 (cssni3, sim 1.000)"
+rules_only,C45,ermno3,ermno3,seed,used_up,G4,WALLTIME,stop,correct,,rule f4_walltime_resubmit used up (1 of 1)
+rules_only_loso,C45,ermno3,ermno3,seed,used_up,G4,WALLTIME,stop,correct,,rule f4_walltime_resubmit used up (1 of 1)
+tree,C45,ermno3,ermno3,seed,used_up,G4,WALLTIME,stop,correct,,"a fix was already tried for this failure (G4: flag or stop, no choice given; G6: re-run once)"
+tree_loso,C45,ermno3,ermno3,seed,used_up,G4,WALLTIME,stop,correct,,"a fix was already tried for this failure (G4: flag or stop, no choice given; G6: re-run once)"
+retrieval,C45,ermno3,ermno3,seed,used_up,G4,WALLTIME,resubmit,safe,,nearest C01 (sim 1.000)
+retrieval_loso,C45,ermno3,ermno3,seed,used_up,G4,WALLTIME,resubmit,safe,,"nearest C01 (cssni3, sim 1.000)"
+rules_only,C46,inmno3,inmno3,seed,rules_off,G5,THIN_GRID,densify,correct,,rule f5_thin_grid_densify
+rules_only_loso,C46,inmno3,inmno3,seed,rules_off,G5,THIN_GRID,densify,correct,,rule f5_thin_grid_densify
+tree,C46,inmno3,inmno3,seed,rules_off,G5,THIN_GRID,densify,correct,,G5: A coverage failure means the grid is too thin ...: go back to f2 and densify.
+tree_loso,C46,inmno3,inmno3,seed,rules_off,G5,THIN_GRID,densify,correct,,G5: A coverage failure means the grid is too thin ...: go back to f2 and densify.
+retrieval,C46,inmno3,inmno3,seed,rules_off,G5,THIN_GRID,densify,correct,,nearest C06 (sim 1.000)
+retrieval_loso,C46,inmno3,inmno3,seed,rules_off,G5,THIN_GRID,densify,correct,,"nearest C06 (cssni3, sim 1.000)"
+rules_only,C47,ermno3,ermno3,seed,rules_off,G5,THIN_GRID,densify,correct,,rule f5_thin_grid_densify
+rules_only_loso,C47,ermno3,ermno3,seed,rules_off,G5,THIN_GRID,densify,correct,,rule f5_thin_grid_densify
+tree,C47,ermno3,ermno3,seed,rules_off,G5,THIN_GRID,densify,correct,,G5: A coverage failure means the grid is too thin ...: go back to f2 and densify.
+tree_loso,C47,ermno3,ermno3,seed,rules_off,G5,THIN_GRID,densify,correct,,G5: A coverage failure means the grid is too thin ...: go back to f2 and densify.
+retrieval,C47,ermno3,ermno3,seed,rules_off,G5,THIN_GRID,densify,correct,,nearest C06 (sim 1.000)
+retrieval_loso,C47,ermno3,ermno3,seed,rules_off,G5,THIN_GRID,densify,correct,,"nearest C06 (cssni3, sim 1.000)"
+rules_only,C48,ca3ti2o7,ca3ti2o7,held-out,decoy,G5,MIRROR,stop,correct,,no rule for this failure
+rules_only_loso,C48,ca3ti2o7,ca3ti2o7,held-out,decoy,G5,MIRROR,stop,correct,,no rule for this failure
+tree,C48,ca3ti2o7,ca3ti2o7,held-out,decoy,G5,MIRROR,stop,correct,,G5: Failures that concern the model or the stored data are not fixed by densifying.
+tree_loso,C48,ca3ti2o7,ca3ti2o7,held-out,decoy,G5,MIRROR,stop,correct,,G5: Failures that concern the model or the stored data are not fixed by densifying.
+retrieval,C48,ca3ti2o7,ca3ti2o7,held-out,decoy,G5,MIRROR,stop,correct,,no all memory case with G5 MIRROR
+retrieval_loso,C48,ca3ti2o7,ca3ti2o7,held-out,decoy,G5,MIRROR,stop,correct,,no memory case of another system with G5 MIRROR
+rules_only,C49,cssni3,cssni3,held-out,decoy,G5,RESIDUALS,stop,correct,f2_single_mode_sg_fixed_lattice,no rule for this failure
+rules_only_loso,C49,cssni3,cssni3,held-out,decoy,G5,RESIDUALS,stop,correct,f2_single_mode_sg_fixed_lattice,no rule for this failure
+tree,C49,cssni3,cssni3,held-out,decoy,G5,RESIDUALS,stop,correct,f2_single_mode_sg_fixed_lattice,G5: Failures that concern the model or the stored data are not fixed by densifying.
+tree_loso,C49,cssni3,cssni3,held-out,decoy,G5,RESIDUALS,stop,correct,f2_single_mode_sg_fixed_lattice,G5: Failures that concern the model or the stored data are not fixed by densifying.
+retrieval,C49,cssni3,cssni3,held-out,decoy,G5,RESIDUALS,stop,correct,f2_single_mode_sg_fixed_lattice,nearest C24 (sim 0.574)
+retrieval_loso,C49,cssni3,cssni3,held-out,decoy,G5,RESIDUALS,stop,correct,f2_single_mode_sg_fixed_lattice,"nearest C24 (ermno3, sim 0.574)"
+rules_only,C50,inmno3,inmno3,held-out,decoy,G5,CV_ERROR,stop,correct,,no rule for this failure
+rules_only_loso,C50,inmno3,inmno3,held-out,decoy,G5,CV_ERROR,stop,correct,,no rule for this failure
+tree,C50,inmno3,inmno3,held-out,decoy,G5,CV_ERROR,stop,correct,,G5: Failures that concern the model or the stored data are not fixed by densifying.
+tree_loso,C50,inmno3,inmno3,held-out,decoy,G5,CV_ERROR,stop,correct,,G5: Failures that concern the model or the stored data are not fixed by densifying.
+retrieval,C50,inmno3,inmno3,held-out,decoy,G5,CV_ERROR,stop,correct,,no all memory case with G5 CV_ERROR
+retrieval_loso,C50,inmno3,inmno3,held-out,decoy,G5,CV_ERROR,stop,correct,,no memory case of another system with G5 CV_ERROR
+rules_only,C51,bifeo3,bifeo3,held-out,decoy,G5,RESIDUALS,stop,correct,f4_nelm_robust_mixing;f4_walltime_resubmit,no rule for this failure
+rules_only_loso,C51,bifeo3,bifeo3,held-out,decoy,G5,RESIDUALS,stop,correct,f4_nelm_robust_mixing;f4_walltime_resubmit,no rule for this failure
+tree,C51,bifeo3,bifeo3,held-out,decoy,G5,RESIDUALS,stop,correct,f4_nelm_robust_mixing;f4_walltime_resubmit,G5: Failures that concern the model or the stored data are not fixed by densifying.
+tree_loso,C51,bifeo3,bifeo3,held-out,decoy,G5,RESIDUALS,stop,correct,f4_nelm_robust_mixing;f4_walltime_resubmit,G5: Failures that concern the model or the stored data are not fixed by densifying.
+retrieval,C51,bifeo3,bifeo3,held-out,decoy,G5,RESIDUALS,stop,correct,f4_nelm_robust_mixing;f4_walltime_resubmit,nearest C49 (sim 0.494)
+retrieval_loso,C51,bifeo3,bifeo3,held-out,decoy,G5,RESIDUALS,stop,correct,f4_nelm_robust_mixing;f4_walltime_resubmit,"nearest C49 (cssni3, sim 0.494)"
+rules_only,C52,hfo2_T3,hfo2,seed,decoy,G5,CLOSURE,stop,correct,f1_no_basis_dmax_ladder,no rule for this failure
+rules_only_loso,C52,hfo2_T3,hfo2,seed,decoy,G5,CLOSURE,stop,correct,f1_no_basis_dmax_ladder,no rule for this failure
+tree,C52,hfo2_T3,hfo2,seed,decoy,G5,CLOSURE,stop,correct,f1_no_basis_dmax_ladder,G5: Failures that concern the model or the stored data are not fixed by densifying.
+tree_loso,C52,hfo2_T3,hfo2,seed,decoy,G5,CLOSURE,stop,correct,f1_no_basis_dmax_ladder,G5: Failures that concern the model or the stored data are not fixed by densifying.
+retrieval,C52,hfo2_T3,hfo2,seed,decoy,G5,CLOSURE,stop,correct,f1_no_basis_dmax_ladder,nearest C15 (sim 0.802)
+retrieval_loso,C52,hfo2_T3,hfo2,seed,decoy,G5,CLOSURE,stop,correct,f1_no_basis_dmax_ladder,no memory case of another system with G5 CLOSURE
+rules_only,C53,hfo2_T3,hfo2,held-out,decoy,G2,PATH_LATTICE,stop,correct,f1_no_basis_dmax_ladder,no rule for this failure
+rules_only_loso,C53,hfo2_T3,hfo2,held-out,decoy,G2,PATH_LATTICE,stop,correct,f1_no_basis_dmax_ladder,no rule for this failure
+tree,C53,hfo2_T3,hfo2,held-out,decoy,G2,PATH_LATTICE,stop,correct,f1_no_basis_dmax_ladder,no Guidance for this gate
+tree_loso,C53,hfo2_T3,hfo2,held-out,decoy,G2,PATH_LATTICE,stop,correct,f1_no_basis_dmax_ladder,no Guidance for this gate
+retrieval,C53,hfo2_T3,hfo2,held-out,decoy,G2,PATH_LATTICE,stop,correct,f1_no_basis_dmax_ladder,nearest C26 (sim 1.000)
+retrieval_loso,C53,hfo2_T3,hfo2,held-out,decoy,G2,PATH_LATTICE,stop,correct,f1_no_basis_dmax_ladder,no memory case of another system with G2 PATH_LATTICE

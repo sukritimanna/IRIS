@@ -1,0 +1,16 @@
+# frozen 2026-10-19T04:48:29+00:00: Experiment E v2 (user decision b, 2026-10-18 23:47), a declared sensitivity rerun after the v1 results: only the system-profile descriptions in the prompt changed (functional, magnetic order, U scheme read from each profile file; v1 showed the same 'Mn3+ d4 magnetic' for all six InMnO3 profiles). Requests, schema, baseline, scoring unchanged; outputs go to results/E/v2. v1 frozen files and results kept in results/E/v1 (v1 FROZEN.sha256 2d697afcfec01b3a410924de7b05f02243bee9186cae31a2e367ea033a2a910c).
+81f659b6c9e212ba45181bb18db35ba47b3b000bb405386886baa7af95242eac  requests.yaml
+528533ce3d797a4eecf62c7aa37e20c61c51da233531d11e1ce9dada4745d4d8  make_requests.py
+81b5eff355e24872b388c04fc8b14f53b2e3952405ad25a9709e1e3a2a896f88  library.py
+b0ecb968806f719cbfaa0a456b522ba0b6543ddfb5be76d0e19690f84918e8b9  schema.py
+bcec199af4ad00aacbf55e1d8d2bf8288bc179c8dc4ac2b27b91a9d516ca18ea  build.py
+f833d408aa1132165a0df36cc7618c3050de2f96e8f1e724ee54e994acae69b4  baseline.py
+bc96283e8d036b2778cf0536131f4bde43739a25c34540e8fc3ed910b612d2c7  llm_json.py
+4dc9cea7b7bf293e5e2788d590328d102aebfa31374a1c32912e44d40e34b367  run_e.py
+5e87378d793c911882ba760dc550498d24535bce189de0804517eb640d31f7de  system_prompt.txt
+0e7761933e63bd3ee9a8c8633167a80f0230d29b46aef32e79ec87498fc501b9  json_schema.json
+dbcf2b2927f2f0538566338459a168f8d9c250bd050a64957bdc8e8e01801a2e  BASELINE.sha256
+c94da4e889392ff0e2e1e1141366cdd75a04929e3b3ab5c53d7d964125d2cf86  ../iris_agent/gates.py
+cb7ce629dbc93acc41b4b6498ce5d991addec89ccc68ee95e2f503bbbb40fc4c  ../iris_agent/nodes/f0_intake.py
+5879b32c5a9921541b9ea5f8bdc6c7554c7e25dab0365c85f3eefda5f77861ba  ../iris_agent/llm.py
+f055db34baeddb725fd751e9bc8f6e0e9b006e8913f8941d93b1c671ad525161  ../eval/models.yaml

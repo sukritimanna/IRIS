@@ -1,0 +1,2147 @@
+# Experiment E test requests -- DRAFT, not frozen (intake/make_requests.py)
+version: 1
+critical_fields:
+- structures
+- transition
+- analysis
+- strain_policy
+- system_profile
+- budget
+requests:
+- id: E01
+  kind: paraphrase
+  style: expert
+  text: 'CsSnI3 Pm-3m (#221) -> Pnma (#62): M3+ (+) R4+ tilt plane, fixed cubic cell with strain at zero, cssni3 profile, Landau fit, at most
+    1100 runs.'
+  attachments:
+  - mp-614013
+  - mp-568570
+  reference_config: cssni3
+  reference:
+    system: cssni3
+    parent_sg: 221
+    child_sg: 62
+    transition: cssni3_221_62
+    analysis: plane
+    strain_policy: P1
+    system_profile: cssni3
+    budget: 1100
+    outputs: &id001
+    - energy_surface
+    - landau_coefficients
+    - stationary_points
+  acceptable:
+    system:
+    - cssni3
+    parent_sg:
+    - 221
+    child_sg:
+    - 62
+    transition:
+    - cssni3_221_62
+    analysis:
+    - plane
+    strain_policy:
+    - P1
+    - P2
+    system_profile:
+    - cssni3
+    budget:
+    - 1100
+    outputs: *id001
+  expected_outcome: config
+  stated:
+  - analysis
+  - budget
+  - child_sg
+  - parent_sg
+  - strain_policy
+  - system
+  - system_profile
+  - transition
+  defensible: {}
+  accept_configs:
+  - cssni3
+- id: E02
+  kind: paraphrase
+  style: terse
+  text: map the CsSnI3 octahedral-tilt landscape
+  attachments: []
+  reference_config: cssni3
+  reference:
+    system: cssni3
+    parent_sg: 221
+    child_sg: 62
+    transition: cssni3_221_62
+    analysis: plane
+    strain_policy: P1
+    system_profile: cssni3
+    budget: 1100
+    outputs: &id002
+    - energy_surface
+    - landau_coefficients
+    - stationary_points
+  acceptable:
+    system:
+    - cssni3
+    parent_sg:
+    - 221
+    child_sg:
+    - 62
+    transition:
+    - cssni3_221_62
+    analysis:
+    - plane
+    - null
+    strain_policy:
+    - P1
+    - P2
+    - null
+    system_profile:
+    - cssni3
+    - null
+    budget:
+    - 1100
+    - null
+    outputs: *id002
+  expected_outcome: config
+  stated:
+  - system
+  defensible: {}
+  accept_configs:
+  - cssni3
+  - cssni3_d4
+- id: E03
+  kind: paraphrase
+  style: non-specialist
+  text: Why does cubic CsSnI3 distort into its orthorhombic low-temperature phase? Compute the energy surface of the tilting.
+  attachments: []
+  reference_config: cssni3
+  reference:
+    system: cssni3
+    parent_sg: 221
+    child_sg: 62
+    transition: cssni3_221_62
+    analysis: plane
+    strain_policy: P1
+    system_profile: cssni3
+    budget: 1100
+    outputs: &id003
+    - energy_surface
+    - landau_coefficients
+    - stationary_points
+  acceptable:
+    system:
+    - cssni3
+    parent_sg:
+    - 221
+    child_sg:
+    - 62
+    transition:
+    - cssni3_221_62
+    analysis:
+    - plane
+    - null
+    strain_policy:
+    - P1
+    - P2
+    - null
+    system_profile:
+    - cssni3
+    - null
+    budget:
+    - 1100
+    - null
+    outputs: *id003
+  expected_outcome: config
+  stated:
+  - system
+  defensible: {}
+  accept_configs:
+  - cssni3
+  - cssni3_d4
+- id: E04
+  kind: paraphrase
+  style: expert
+  text: 'CsSnI3 #221 -> #62, M3+/R4+ plane at fixed cubic cell, cssni3 profile, <= 1100 runs, plus the D4 hard-secondary check: X5+ scans at the
+    origin, on the ring and near the child (0.8 of the child primaries).'
+  attachments: []
+  reference_config: cssni3_d4
+  reference:
+    system: cssni3
+    parent_sg: 221
+    child_sg: 62
+    transition: cssni3_221_62
+    analysis: plane
+    strain_policy: P1
+    system_profile: cssni3
+    budget: 1100
+    outputs: &id004
+    - energy_surface
+    - landau_coefficients
+    - stationary_points
+    - d4_secondary_check
+  acceptable:
+    system:
+    - cssni3
+    parent_sg:
+    - 221
+    child_sg:
+    - 62
+    transition:
+    - cssni3_221_62
+    analysis:
+    - plane
+    strain_policy:
+    - P1
+    - P2
+    system_profile:
+    - cssni3
+    budget:
+    - 1100
+    outputs: *id004
+  expected_outcome: config
+  stated:
+  - analysis
+  - budget
+  - child_sg
+  - outputs
+  - parent_sg
+  - strain_policy
+  - system
+  - system_profile
+  - transition
+  defensible: {}
+  accept_configs:
+  - cssni3_d4
+- id: E05
+  kind: paraphrase
+  style: terse
+  text: CsSnI3 tilt landscape + check the X5+ held at zero
+  attachments: []
+  reference_config: cssni3_d4
+  reference:
+    system: cssni3
+    parent_sg: 221
+    child_sg: 62
+    transition: cssni3_221_62
+    analysis: plane
+    strain_policy: P1
+    system_profile: cssni3
+    budget: 1100
+    outputs: &id005
+    - energy_surface
+    - landau_coefficients
+    - stationary_points
+    - d4_secondary_check
+  acceptable:
+    system:
+    - cssni3
+    parent_sg:
+    - 221
+    child_sg:
+    - 62
+    transition:
+    - cssni3_221_62
+    analysis:
+    - plane
+    - null
+    strain_policy:
+    - P1
+    - P2
+    - null
+    system_profile:
+    - cssni3
+    - null
+    budget:
+    - 1100
+    - null
+    outputs: *id005
+  expected_outcome: config
+  stated:
+  - outputs
+  - system
+  defensible: {}
+  accept_configs:
+  - cssni3_d4
+- id: E06
+  kind: paraphrase
+  style: non-specialist
+  text: Compute the tilting energy map of CsSnI3, and check whether a distortion we leave out (kept at zero) would lower the energy if we let
+    it in.
+  attachments: []
+  reference_config: cssni3_d4
+  reference:
+    system: cssni3
+    parent_sg: 221
+    child_sg: 62
+    transition: cssni3_221_62
+    analysis: plane
+    strain_policy: P1
+    system_profile: cssni3
+    budget: 1100
+    outputs: &id006
+    - energy_surface
+    - landau_coefficients
+    - stationary_points
+    - d4_secondary_check
+  acceptable:
+    system:
+    - cssni3
+    parent_sg:
+    - 221
+    child_sg:
+    - 62
+    transition:
+    - cssni3_221_62
+    analysis:
+    - plane
+    - null
+    strain_policy:
+    - P1
+    - P2
+    - null
+    system_profile:
+    - cssni3
+    - null
+    budget:
+    - 1100
+    - null
+    outputs: *id006
+  expected_outcome: config
+  stated:
+  - outputs
+  - system
+  defensible: {}
+  accept_configs:
+  - cssni3_d4
+- id: E07
+  kind: paraphrase
+  style: expert
+  text: 'Ca3Ti2O7 I4/mmm (#139) -> A2_1am (#36): X3- rotation x X2+ tilt energy surface, fixed cell, GM5- held at zero, ca3ti2o7 profile, <= 1400
+    runs.'
+  attachments:
+  - mp-4163
+  reference_config: ca3ti2o7
+  reference:
+    system: ca3ti2o7
+    parent_sg: 139
+    child_sg: 36
+    transition: ca3ti2o7_139_36
+    analysis: plane
+    strain_policy: P1
+    system_profile: ca3ti2o7
+    budget: 1400
+    outputs: &id007
+    - energy_surface
+    - stationary_points
+  acceptable:
+    system:
+    - ca3ti2o7
+    parent_sg:
+    - 139
+    child_sg:
+    - 36
+    transition:
+    - ca3ti2o7_139_36
+    analysis:
+    - plane
+    strain_policy:
+    - P1
+    - P2
+    system_profile:
+    - ca3ti2o7
+    budget:
+    - 1400
+    outputs: *id007
+  expected_outcome: config
+  stated:
+  - analysis
+  - budget
+  - child_sg
+  - parent_sg
+  - strain_policy
+  - system
+  - system_profile
+  - transition
+  defensible: {}
+  accept_configs:
+  - ca3ti2o7
+- id: E08
+  kind: paraphrase
+  style: terse
+  text: map the Ca3Ti2O7 rotation-tilt energy surface
+  attachments: []
+  reference_config: ca3ti2o7
+  reference:
+    system: ca3ti2o7
+    parent_sg: 139
+    child_sg: 36
+    transition: ca3ti2o7_139_36
+    analysis: plane
+    strain_policy: P1
+    system_profile: ca3ti2o7
+    budget: 1400
+    outputs: &id008
+    - energy_surface
+    - stationary_points
+  acceptable:
+    system:
+    - ca3ti2o7
+    parent_sg:
+    - 139
+    child_sg:
+    - 36
+    transition:
+    - ca3ti2o7_139_36
+    analysis:
+    - plane
+    - null
+    strain_policy:
+    - P1
+    - P2
+    - null
+    system_profile:
+    - ca3ti2o7
+    - null
+    budget:
+    - 1400
+    - null
+    outputs: *id008
+  expected_outcome: config
+  stated:
+  - system
+  defensible: {}
+  accept_configs:
+  - ca3ti2o7
+- id: E09
+  kind: paraphrase
+  style: non-specialist
+  text: Ca3Ti2O7 is said to be a hybrid improper ferroelectric. Compute the energy map of the two octahedral rotations that make it polar.
+  attachments: []
+  reference_config: ca3ti2o7
+  reference:
+    system: ca3ti2o7
+    parent_sg: 139
+    child_sg: 36
+    transition: ca3ti2o7_139_36
+    analysis: plane
+    strain_policy: P1
+    system_profile: ca3ti2o7
+    budget: 1400
+    outputs: &id009
+    - energy_surface
+    - stationary_points
+  acceptable:
+    system:
+    - ca3ti2o7
+    parent_sg:
+    - 139
+    child_sg:
+    - 36
+    transition:
+    - ca3ti2o7_139_36
+    analysis:
+    - plane
+    - null
+    strain_policy:
+    - P1
+    - P2
+    - null
+    system_profile:
+    - ca3ti2o7
+    - null
+    budget:
+    - 1400
+    - null
+    outputs: *id009
+  expected_outcome: config
+  stated:
+  - system
+  defensible: {}
+  accept_configs:
+  - ca3ti2o7
+- id: E10
+  kind: paraphrase
+  style: expert
+  text: P6_3/mmc -> P6_3cm InMnO3, K3-GM2- plane at Phi = 0, fixed (child) lattice, LDA+U A-AFM profile, Meier-form fit, <= 230 runs.
+  attachments: []
+  reference_config: inmno3
+  reference:
+    system: inmno3
+    parent_sg: 194
+    child_sg: 185
+    transition: inmno3_194_185
+    analysis: plane
+    strain_policy: P1
+    system_profile: inmno3_aafm_v2
+    budget: 230
+    outputs: &id010
+    - energy_surface
+    - landau_coefficients
+    - stationary_points
+  acceptable:
+    system:
+    - inmno3
+    parent_sg:
+    - 194
+    child_sg:
+    - 185
+    transition:
+    - inmno3_194_185
+    analysis:
+    - plane
+    strain_policy:
+    - P1
+    - P2
+    system_profile:
+    - inmno3_aafm_v2
+    budget:
+    - 230
+    outputs: *id010
+  expected_outcome: config
+  stated:
+  - analysis
+  - budget
+  - child_sg
+  - parent_sg
+  - strain_policy
+  - system
+  - system_profile
+  - transition
+  defensible:
+    system_profile:
+    - inmno3_aafm_v2_lt1
+  accept_configs:
+  - inmno3
+- id: E11
+  kind: paraphrase
+  style: terse
+  text: map the InMnO3 trimerization landscape
+  attachments: []
+  reference_config: inmno3
+  reference:
+    system: inmno3
+    parent_sg: 194
+    child_sg: 185
+    transition: inmno3_194_185
+    analysis: plane
+    strain_policy: P1
+    system_profile: inmno3_aafm_v2
+    budget: 230
+    outputs: &id011
+    - energy_surface
+    - landau_coefficients
+    - stationary_points
+  acceptable:
+    system:
+    - inmno3
+    parent_sg:
+    - 194
+    child_sg:
+    - 185
+    transition:
+    - inmno3_194_185
+    analysis:
+    - plane
+    - joint_fit
+    - null
+    strain_policy:
+    - P1
+    - P2
+    - null
+    system_profile:
+    - inmno3_aafm_v2
+    - null
+    budget:
+    - 230
+    - null
+    outputs: *id011
+  expected_outcome: config
+  stated:
+  - system
+  defensible: {}
+  accept_configs:
+  - inmno3
+  - inmno3_joint
+- id: E12
+  kind: paraphrase
+  style: non-specialist
+  text: How does InMnO3 become ferroelectric? Compute the energy surface.
+  attachments: []
+  reference_config: inmno3
+  reference:
+    system: inmno3
+    parent_sg: 194
+    child_sg: 185
+    transition: inmno3_194_185
+    analysis: plane
+    strain_policy: P1
+    system_profile: inmno3_aafm_v2
+    budget: 230
+    outputs: &id012
+    - energy_surface
+    - landau_coefficients
+    - stationary_points
+  acceptable:
+    system:
+    - inmno3
+    parent_sg:
+    - 194
+    child_sg:
+    - 185
+    transition:
+    - inmno3_194_185
+    analysis:
+    - plane
+    - joint_fit
+    - null
+    strain_policy:
+    - P1
+    - P2
+    - null
+    system_profile:
+    - inmno3_aafm_v2
+    - null
+    budget:
+    - 230
+    - null
+    outputs: *id012
+  expected_outcome: config
+  stated:
+  - system
+  defensible: {}
+  accept_configs:
+  - inmno3
+  - inmno3_joint
+- id: E13
+  kind: paraphrase
+  style: expert
+  text: 'InMnO3 #194 -> #185: joint fit of the K3-GM2- plane (Phi = 0) and the hat wedge (Phi 0-30 deg), fixed child cell, LDA+U A-AFM profile,
+    <= 420 runs; report the hat height and brim barrier.'
+  attachments: []
+  reference_config: inmno3_joint
+  reference:
+    system: inmno3
+    parent_sg: 194
+    child_sg: 185
+    transition: inmno3_194_185
+    analysis: joint_fit
+    strain_policy: P1
+    system_profile: inmno3_aafm_v2
+    budget: 420
+    outputs: &id013
+    - energy_surface
+    - landau_coefficients
+    - hat_and_brim
+  acceptable:
+    system:
+    - inmno3
+    parent_sg:
+    - 194
+    child_sg:
+    - 185
+    transition:
+    - inmno3_194_185
+    analysis:
+    - joint_fit
+    strain_policy:
+    - P1
+    - P2
+    system_profile:
+    - inmno3_aafm_v2
+    budget:
+    - 420
+    outputs: *id013
+  expected_outcome: config
+  stated:
+  - analysis
+  - budget
+  - child_sg
+  - outputs
+  - parent_sg
+  - strain_policy
+  - system
+  - system_profile
+  - transition
+  defensible:
+    system_profile:
+    - inmno3_aafm_v2_lt1
+  accept_configs:
+  - inmno3_joint
+- id: E14
+  kind: paraphrase
+  style: terse
+  text: InMnO3 joint plane + hat fit
+  attachments: []
+  reference_config: inmno3_joint
+  reference:
+    system: inmno3
+    parent_sg: 194
+    child_sg: 185
+    transition: inmno3_194_185
+    analysis: joint_fit
+    strain_policy: P1
+    system_profile: inmno3_aafm_v2
+    budget: 420
+    outputs: &id014
+    - energy_surface
+    - landau_coefficients
+    - hat_and_brim
+  acceptable:
+    system:
+    - inmno3
+    parent_sg:
+    - 194
+    child_sg:
+    - 185
+    transition:
+    - inmno3_194_185
+    analysis:
+    - joint_fit
+    strain_policy:
+    - P1
+    - P2
+    - null
+    system_profile:
+    - inmno3_aafm_v2
+    - null
+    budget:
+    - 420
+    - null
+    outputs: *id014
+  expected_outcome: config
+  stated:
+  - analysis
+  - system
+  defensible: {}
+  accept_configs:
+  - inmno3_joint
+- id: E15
+  kind: paraphrase
+  style: non-specialist
+  text: For InMnO3, fit one energy model to both the flat trimerization-polarization map and the energies at different trimerization angles, and
+    tell me how high the Mexican hat is.
+  attachments: []
+  reference_config: inmno3_joint
+  reference:
+    system: inmno3
+    parent_sg: 194
+    child_sg: 185
+    transition: inmno3_194_185
+    analysis: joint_fit
+    strain_policy: P1
+    system_profile: inmno3_aafm_v2
+    budget: 420
+    outputs: &id015
+    - energy_surface
+    - landau_coefficients
+    - hat_and_brim
+  acceptable:
+    system:
+    - inmno3
+    parent_sg:
+    - 194
+    child_sg:
+    - 185
+    transition:
+    - inmno3_194_185
+    analysis:
+    - joint_fit
+    strain_policy:
+    - P1
+    - P2
+    - null
+    system_profile:
+    - inmno3_aafm_v2
+    - null
+    budget:
+    - 420
+    - null
+    outputs: *id015
+  expected_outcome: config
+  stated:
+  - analysis
+  - outputs
+  - system
+  defensible: {}
+  accept_configs:
+  - inmno3_joint
+- id: E16
+  kind: paraphrase
+  style: expert
+  text: P6_3/mmc -> P6_3cm ErMnO3, K3-GM2- plane at Phi = 0 plus the GM2- axis, fixed child lattice, LDA+U A-AFM profile (ermno3_aafm), Meier-form
+    fit, <= 240 runs.
+  attachments: []
+  reference_config: ermno3
+  reference:
+    system: ermno3
+    parent_sg: 194
+    child_sg: 185
+    transition: ermno3_194_185
+    analysis: plane
+    strain_policy: P1
+    system_profile: ermno3_aafm
+    budget: 240
+    outputs: &id016
+    - energy_surface
+    - landau_coefficients
+    - stationary_points
+  acceptable:
+    system:
+    - ermno3
+    parent_sg:
+    - 194
+    child_sg:
+    - 185
+    transition:
+    - ermno3_194_185
+    analysis:
+    - plane
+    strain_policy:
+    - P1
+    - P2
+    system_profile:
+    - ermno3_aafm
+    budget:
+    - 240
+    outputs: *id016
+  expected_outcome: config
+  stated:
+  - analysis
+  - budget
+  - child_sg
+  - parent_sg
+  - strain_policy
+  - system
+  - system_profile
+  - transition
+  defensible: {}
+  accept_configs:
+  - ermno3
+- id: E17
+  kind: paraphrase
+  style: terse
+  text: map the ErMnO3 trimerization landscape
+  attachments: []
+  reference_config: ermno3
+  reference:
+    system: ermno3
+    parent_sg: 194
+    child_sg: 185
+    transition: ermno3_194_185
+    analysis: plane
+    strain_policy: P1
+    system_profile: ermno3_aafm
+    budget: 240
+    outputs: &id017
+    - energy_surface
+    - landau_coefficients
+    - stationary_points
+  acceptable:
+    system:
+    - ermno3
+    parent_sg:
+    - 194
+    child_sg:
+    - 185
+    transition:
+    - ermno3_194_185
+    analysis:
+    - plane
+    - joint_fit
+    - null
+    strain_policy:
+    - P1
+    - P2
+    - null
+    system_profile:
+    - ermno3_aafm
+    - null
+    budget:
+    - 240
+    - null
+    outputs: *id017
+  expected_outcome: config
+  stated:
+  - system
+  defensible: {}
+  accept_configs:
+  - ermno3
+  - ermno3_joint
+- id: E18
+  kind: paraphrase
+  style: non-specialist
+  text: How does ErMnO3 become ferroelectric? Compute the energy surface.
+  attachments: []
+  reference_config: ermno3
+  reference:
+    system: ermno3
+    parent_sg: 194
+    child_sg: 185
+    transition: ermno3_194_185
+    analysis: plane
+    strain_policy: P1
+    system_profile: ermno3_aafm
+    budget: 240
+    outputs: &id018
+    - energy_surface
+    - landau_coefficients
+    - stationary_points
+  acceptable:
+    system:
+    - ermno3
+    parent_sg:
+    - 194
+    child_sg:
+    - 185
+    transition:
+    - ermno3_194_185
+    analysis:
+    - plane
+    - joint_fit
+    - null
+    strain_policy:
+    - P1
+    - P2
+    - null
+    system_profile:
+    - ermno3_aafm
+    - null
+    budget:
+    - 240
+    - null
+    outputs: *id018
+  expected_outcome: config
+  stated:
+  - system
+  defensible: {}
+  accept_configs:
+  - ermno3
+  - ermno3_joint
+- id: E19
+  kind: paraphrase
+  style: expert
+  text: 'ErMnO3 #194 -> #185: joint fit of the K3-GM2- plane (Phi = 0, with the GM2- axis) and the hat wedge, fixed child cell, ermno3_aafm profile,
+    <= 420 runs; hat height and brim barrier.'
+  attachments: []
+  reference_config: ermno3_joint
+  reference:
+    system: ermno3
+    parent_sg: 194
+    child_sg: 185
+    transition: ermno3_194_185
+    analysis: joint_fit
+    strain_policy: P1
+    system_profile: ermno3_aafm
+    budget: 420
+    outputs: &id019
+    - energy_surface
+    - landau_coefficients
+    - hat_and_brim
+  acceptable:
+    system:
+    - ermno3
+    parent_sg:
+    - 194
+    child_sg:
+    - 185
+    transition:
+    - ermno3_194_185
+    analysis:
+    - joint_fit
+    strain_policy:
+    - P1
+    - P2
+    system_profile:
+    - ermno3_aafm
+    budget:
+    - 420
+    outputs: *id019
+  expected_outcome: config
+  stated:
+  - analysis
+  - budget
+  - child_sg
+  - outputs
+  - parent_sg
+  - strain_policy
+  - system
+  - system_profile
+  - transition
+  defensible: {}
+  accept_configs:
+  - ermno3_joint
+- id: E20
+  kind: paraphrase
+  style: terse
+  text: ErMnO3 joint plane + hat fit
+  attachments: []
+  reference_config: ermno3_joint
+  reference:
+    system: ermno3
+    parent_sg: 194
+    child_sg: 185
+    transition: ermno3_194_185
+    analysis: joint_fit
+    strain_policy: P1
+    system_profile: ermno3_aafm
+    budget: 420
+    outputs: &id020
+    - energy_surface
+    - landau_coefficients
+    - hat_and_brim
+  acceptable:
+    system:
+    - ermno3
+    parent_sg:
+    - 194
+    child_sg:
+    - 185
+    transition:
+    - ermno3_194_185
+    analysis:
+    - joint_fit
+    strain_policy:
+    - P1
+    - P2
+    - null
+    system_profile:
+    - ermno3_aafm
+    - null
+    budget:
+    - 420
+    - null
+    outputs: *id020
+  expected_outcome: config
+  stated:
+  - analysis
+  - system
+  defensible: {}
+  accept_configs:
+  - ermno3_joint
+- id: E21
+  kind: paraphrase
+  style: non-specialist
+  text: For ErMnO3, fit one energy model to both the flat trimerization-polarization map and the energies at different trimerization angles, and
+    tell me how high the Mexican hat is.
+  attachments: []
+  reference_config: ermno3_joint
+  reference:
+    system: ermno3
+    parent_sg: 194
+    child_sg: 185
+    transition: ermno3_194_185
+    analysis: joint_fit
+    strain_policy: P1
+    system_profile: ermno3_aafm
+    budget: 420
+    outputs: &id021
+    - energy_surface
+    - landau_coefficients
+    - hat_and_brim
+  acceptable:
+    system:
+    - ermno3
+    parent_sg:
+    - 194
+    child_sg:
+    - 185
+    transition:
+    - ermno3_194_185
+    analysis:
+    - joint_fit
+    strain_policy:
+    - P1
+    - P2
+    - null
+    system_profile:
+    - ermno3_aafm
+    - null
+    budget:
+    - 420
+    - null
+    outputs: *id021
+  expected_outcome: config
+  stated:
+  - analysis
+  - outputs
+  - system
+  defensible: {}
+  accept_configs:
+  - ermno3_joint
+- id: E22
+  kind: paraphrase
+  style: expert
+  text: 'BiFeO3 Pm-3m (#221) -> R3c (#161): six-component GM4- (+) R5- grid on the 10-atom fcc(2a_c) cell, fixed cubic lattice at the child volume,
+    PBEsol+U G-AFM profile, invariant-polynomial fit, <= 10400 runs.'
+  attachments: []
+  reference_config: bifeo3
+  reference:
+    system: bifeo3
+    parent_sg: 221
+    child_sg: 161
+    transition: bifeo3_221_161
+    analysis: grid6d
+    strain_policy: P1
+    system_profile: bifeo3
+    budget: 10400
+    outputs: &id022
+    - energy_surface
+    - landau_coefficients
+    - stationary_points
+  acceptable:
+    system:
+    - bifeo3
+    parent_sg:
+    - 221
+    child_sg:
+    - 161
+    transition:
+    - bifeo3_221_161
+    analysis:
+    - grid6d
+    strain_policy:
+    - P1
+    - P2
+    system_profile:
+    - bifeo3
+    budget:
+    - 10400
+    outputs: *id022
+  expected_outcome: config
+  stated:
+  - analysis
+  - budget
+  - child_sg
+  - parent_sg
+  - strain_policy
+  - system
+  - system_profile
+  - transition
+  defensible: {}
+  accept_configs:
+  - bifeo3
+- id: E23
+  kind: paraphrase
+  style: terse
+  text: full 6D polarization-rotation energy grid for BiFeO3
+  attachments: []
+  reference_config: bifeo3
+  reference:
+    system: bifeo3
+    parent_sg: 221
+    child_sg: 161
+    transition: bifeo3_221_161
+    analysis: grid6d
+    strain_policy: P1
+    system_profile: bifeo3
+    budget: 10400
+    outputs: &id023
+    - energy_surface
+    - landau_coefficients
+    - stationary_points
+  acceptable:
+    system:
+    - bifeo3
+    parent_sg:
+    - 221
+    child_sg:
+    - 161
+    transition:
+    - bifeo3_221_161
+    analysis:
+    - grid6d
+    strain_policy:
+    - P1
+    - P2
+    - null
+    system_profile:
+    - bifeo3
+    - null
+    budget:
+    - 10400
+    - null
+    outputs: *id023
+  expected_outcome: config
+  stated:
+  - analysis
+  - system
+  defensible: {}
+  accept_configs:
+  - bifeo3
+- id: E24
+  kind: paraphrase
+  style: non-specialist
+  text: In BiFeO3 the polarization and the rotation of the oxygen octahedra can each point in three directions. Compute the energy as a function
+    of all six and find the stable phases.
+  attachments: []
+  reference_config: bifeo3
+  reference:
+    system: bifeo3
+    parent_sg: 221
+    child_sg: 161
+    transition: bifeo3_221_161
+    analysis: grid6d
+    strain_policy: P1
+    system_profile: bifeo3
+    budget: 10400
+    outputs: &id024
+    - energy_surface
+    - landau_coefficients
+    - stationary_points
+  acceptable:
+    system:
+    - bifeo3
+    parent_sg:
+    - 221
+    child_sg:
+    - 161
+    transition:
+    - bifeo3_221_161
+    analysis:
+    - grid6d
+    strain_policy:
+    - P1
+    - P2
+    - null
+    system_profile:
+    - bifeo3
+    - null
+    budget:
+    - 10400
+    - null
+    outputs: *id024
+  expected_outcome: config
+  stated:
+  - analysis
+  - outputs
+  - system
+  defensible: {}
+  accept_configs:
+  - bifeo3
+- id: E25
+  kind: paraphrase
+  style: expert
+  text: 'HfO2 P4_2/nmc (#137) -> Pca2_1 (#29): straight-line irrep path, amplitudes and strain scaled together, 10 points, hfo2 (PBE) profile,
+    <= 20 runs.'
+  attachments: []
+  reference_config: hfo2_T1
+  reference:
+    system: hfo2
+    parent_sg: 137
+    child_sg: 29
+    transition: hfo2_137_29
+    analysis: path
+    strain_policy: P3
+    system_profile: hfo2
+    budget: 20
+    outputs: &id025
+    - energy_surface
+    - barrier
+    - path_network_checks
+  acceptable:
+    system:
+    - hfo2
+    parent_sg:
+    - 137
+    child_sg:
+    - 29
+    transition:
+    - hfo2_137_29
+    analysis:
+    - path
+    strain_policy:
+    - P3
+    system_profile:
+    - hfo2
+    budget:
+    - 20
+    outputs: *id025
+  expected_outcome: config
+  stated:
+  - analysis
+  - budget
+  - child_sg
+  - parent_sg
+  - strain_policy
+  - system
+  - system_profile
+  - transition
+  defensible: {}
+  accept_configs:
+  - hfo2_T1
+- id: E26
+  kind: paraphrase
+  style: terse
+  text: tetragonal -> polar orthorhombic HfO2 path
+  attachments: []
+  reference_config: hfo2_T1
+  reference:
+    system: hfo2
+    parent_sg: 137
+    child_sg: 29
+    transition: hfo2_137_29
+    analysis: path
+    strain_policy: P3
+    system_profile: hfo2
+    budget: 20
+    outputs: &id026
+    - energy_surface
+    - barrier
+    - path_network_checks
+  acceptable:
+    system:
+    - hfo2
+    parent_sg:
+    - 137
+    child_sg:
+    - 29
+    transition:
+    - hfo2_137_29
+    analysis:
+    - path
+    strain_policy:
+    - P3
+    - null
+    system_profile:
+    - hfo2
+    - null
+    budget:
+    - 20
+    - null
+    outputs: *id026
+  expected_outcome: config
+  stated:
+  - analysis
+  - system
+  - transition
+  defensible: {}
+  accept_configs:
+  - hfo2_T1
+- id: E27
+  kind: paraphrase
+  style: non-specialist
+  text: How much energy does it take for tetragonal hafnia to turn into the ferroelectric orthorhombic phase? Compute the energy along the way.
+  attachments: []
+  reference_config: hfo2_T1
+  reference:
+    system: hfo2
+    parent_sg: 137
+    child_sg: 29
+    transition: hfo2_137_29
+    analysis: path
+    strain_policy: P3
+    system_profile: hfo2
+    budget: 20
+    outputs: &id027
+    - energy_surface
+    - barrier
+    - path_network_checks
+  acceptable:
+    system:
+    - hfo2
+    parent_sg:
+    - 137
+    child_sg:
+    - 29
+    transition:
+    - hfo2_137_29
+    analysis:
+    - path
+    strain_policy:
+    - P3
+    - null
+    system_profile:
+    - hfo2
+    - null
+    budget:
+    - 20
+    - null
+    outputs: *id027
+  expected_outcome: config
+  stated:
+  - analysis
+  - system
+  - transition
+  defensible: {}
+  accept_configs:
+  - hfo2_T1
+- id: E28
+  kind: paraphrase
+  style: expert
+  text: 'HfO2 P4_2/nmc (#137) -> Pbcn (#60): straight-line irrep path, amplitudes and strain scaled together, 10 points, hfo2 (PBE) profile, <=
+    20 runs.'
+  attachments: []
+  reference_config: hfo2_T2
+  reference:
+    system: hfo2
+    parent_sg: 137
+    child_sg: 60
+    transition: hfo2_137_60
+    analysis: path
+    strain_policy: P3
+    system_profile: hfo2
+    budget: 20
+    outputs: &id028
+    - energy_surface
+    - barrier
+    - path_network_checks
+  acceptable:
+    system:
+    - hfo2
+    parent_sg:
+    - 137
+    child_sg:
+    - 60
+    transition:
+    - hfo2_137_60
+    analysis:
+    - path
+    strain_policy:
+    - P3
+    system_profile:
+    - hfo2
+    budget:
+    - 20
+    outputs: *id028
+  expected_outcome: config
+  stated:
+  - analysis
+  - budget
+  - child_sg
+  - parent_sg
+  - strain_policy
+  - system
+  - system_profile
+  - transition
+  defensible: {}
+  accept_configs:
+  - hfo2_T2
+- id: E29
+  kind: paraphrase
+  style: terse
+  text: tetragonal -> Pbcn HfO2 path
+  attachments: []
+  reference_config: hfo2_T2
+  reference:
+    system: hfo2
+    parent_sg: 137
+    child_sg: 60
+    transition: hfo2_137_60
+    analysis: path
+    strain_policy: P3
+    system_profile: hfo2
+    budget: 20
+    outputs: &id029
+    - energy_surface
+    - barrier
+    - path_network_checks
+  acceptable:
+    system:
+    - hfo2
+    parent_sg:
+    - 137
+    child_sg:
+    - 60
+    transition:
+    - hfo2_137_60
+    analysis:
+    - path
+    strain_policy:
+    - P3
+    - null
+    system_profile:
+    - hfo2
+    - null
+    budget:
+    - 20
+    - null
+    outputs: *id029
+  expected_outcome: config
+  stated:
+  - analysis
+  - system
+  - transition
+  defensible: {}
+  accept_configs:
+  - hfo2_T2
+- id: E30
+  kind: paraphrase
+  style: non-specialist
+  text: How much energy does it take for tetragonal hafnia to turn into its non-polar orthorhombic (Pbcn) phase? Compute the energy along the
+    way.
+  attachments: []
+  reference_config: hfo2_T2
+  reference:
+    system: hfo2
+    parent_sg: 137
+    child_sg: 60
+    transition: hfo2_137_60
+    analysis: path
+    strain_policy: P3
+    system_profile: hfo2
+    budget: 20
+    outputs: &id030
+    - energy_surface
+    - barrier
+    - path_network_checks
+  acceptable:
+    system:
+    - hfo2
+    parent_sg:
+    - 137
+    child_sg:
+    - 60
+    transition:
+    - hfo2_137_60
+    analysis:
+    - path
+    strain_policy:
+    - P3
+    - null
+    system_profile:
+    - hfo2
+    - null
+    budget:
+    - 20
+    - null
+    outputs: *id030
+  expected_outcome: config
+  stated:
+  - analysis
+  - system
+  - transition
+  defensible: {}
+  accept_configs:
+  - hfo2_T2
+- id: E31
+  kind: paraphrase
+  style: expert
+  text: 'HfO2 P4_2/nmc (#137) -> P2_1/c (#14): straight-line irrep path, amplitudes and strain scaled together, 10 points, hfo2 (PBE) profile,
+    <= 20 runs.'
+  attachments: []
+  reference_config: hfo2_T3
+  reference:
+    system: hfo2
+    parent_sg: 137
+    child_sg: 14
+    transition: hfo2_137_14
+    analysis: path
+    strain_policy: P3
+    system_profile: hfo2
+    budget: 20
+    outputs: &id031
+    - energy_surface
+    - barrier
+    - path_network_checks
+  acceptable:
+    system:
+    - hfo2
+    parent_sg:
+    - 137
+    child_sg:
+    - 14
+    transition:
+    - hfo2_137_14
+    analysis:
+    - path
+    strain_policy:
+    - P3
+    system_profile:
+    - hfo2
+    budget:
+    - 20
+    outputs: *id031
+  expected_outcome: config
+  stated:
+  - analysis
+  - budget
+  - child_sg
+  - parent_sg
+  - strain_policy
+  - system
+  - system_profile
+  - transition
+  defensible: {}
+  accept_configs:
+  - hfo2_T3
+- id: E32
+  kind: paraphrase
+  style: terse
+  text: tetragonal -> monoclinic HfO2 path
+  attachments: []
+  reference_config: hfo2_T3
+  reference:
+    system: hfo2
+    parent_sg: 137
+    child_sg: 14
+    transition: hfo2_137_14
+    analysis: path
+    strain_policy: P3
+    system_profile: hfo2
+    budget: 20
+    outputs: &id032
+    - energy_surface
+    - barrier
+    - path_network_checks
+  acceptable:
+    system:
+    - hfo2
+    parent_sg:
+    - 137
+    child_sg:
+    - 14
+    transition:
+    - hfo2_137_14
+    analysis:
+    - path
+    strain_policy:
+    - P3
+    - null
+    system_profile:
+    - hfo2
+    - null
+    budget:
+    - 20
+    - null
+    outputs: *id032
+  expected_outcome: config
+  stated:
+  - analysis
+  - system
+  - transition
+  defensible: {}
+  accept_configs:
+  - hfo2_T3
+- id: E33
+  kind: paraphrase
+  style: non-specialist
+  text: How much energy does it take for tetragonal hafnia to turn into the monoclinic ground state? Compute the energy along the way.
+  attachments: []
+  reference_config: hfo2_T3
+  reference:
+    system: hfo2
+    parent_sg: 137
+    child_sg: 14
+    transition: hfo2_137_14
+    analysis: path
+    strain_policy: P3
+    system_profile: hfo2
+    budget: 20
+    outputs: &id033
+    - energy_surface
+    - barrier
+    - path_network_checks
+  acceptable:
+    system:
+    - hfo2
+    parent_sg:
+    - 137
+    child_sg:
+    - 14
+    transition:
+    - hfo2_137_14
+    analysis:
+    - path
+    strain_policy:
+    - P3
+    - null
+    system_profile:
+    - hfo2
+    - null
+    budget:
+    - 20
+    - null
+    outputs: *id033
+  expected_outcome: config
+  stated:
+  - analysis
+  - system
+  - transition
+  defensible: {}
+  accept_configs:
+  - hfo2_T3
+- id: E34
+  kind: paraphrase
+  style: expert
+  text: 'HfO2 Pbcn (#60) -> Pca2_1 (#29): straight-line irrep path, amplitudes and strain scaled together, 10 points, hfo2 (PBE) profile, <= 20
+    runs.'
+  attachments: []
+  reference_config: hfo2_T4
+  reference:
+    system: hfo2
+    parent_sg: 60
+    child_sg: 29
+    transition: hfo2_60_29
+    analysis: path
+    strain_policy: P3
+    system_profile: hfo2
+    budget: 20
+    outputs: &id034
+    - energy_surface
+    - barrier
+    - path_network_checks
+  acceptable:
+    system:
+    - hfo2
+    parent_sg:
+    - 60
+    child_sg:
+    - 29
+    transition:
+    - hfo2_60_29
+    analysis:
+    - path
+    strain_policy:
+    - P3
+    system_profile:
+    - hfo2
+    budget:
+    - 20
+    outputs: *id034
+  expected_outcome: config
+  stated:
+  - analysis
+  - budget
+  - child_sg
+  - parent_sg
+  - strain_policy
+  - system
+  - system_profile
+  - transition
+  defensible: {}
+  accept_configs:
+  - hfo2_T4
+- id: E35
+  kind: paraphrase
+  style: terse
+  text: Pbcn -> polar orthorhombic HfO2 path
+  attachments: []
+  reference_config: hfo2_T4
+  reference:
+    system: hfo2
+    parent_sg: 60
+    child_sg: 29
+    transition: hfo2_60_29
+    analysis: path
+    strain_policy: P3
+    system_profile: hfo2
+    budget: 20
+    outputs: &id035
+    - energy_surface
+    - barrier
+    - path_network_checks
+  acceptable:
+    system:
+    - hfo2
+    parent_sg:
+    - 60
+    child_sg:
+    - 29
+    transition:
+    - hfo2_60_29
+    analysis:
+    - path
+    strain_policy:
+    - P3
+    - null
+    system_profile:
+    - hfo2
+    - null
+    budget:
+    - 20
+    - null
+    outputs: *id035
+  expected_outcome: config
+  stated:
+  - analysis
+  - system
+  - transition
+  defensible: {}
+  accept_configs:
+  - hfo2_T4
+- id: E36
+  kind: paraphrase
+  style: non-specialist
+  text: How much energy does it take for the non-polar orthorhombic (Pbcn) phase of hafnia to turn into the ferroelectric orthorhombic phase?
+    Compute the energy along the way.
+  attachments: []
+  reference_config: hfo2_T4
+  reference:
+    system: hfo2
+    parent_sg: 60
+    child_sg: 29
+    transition: hfo2_60_29
+    analysis: path
+    strain_policy: P3
+    system_profile: hfo2
+    budget: 20
+    outputs: &id036
+    - energy_surface
+    - barrier
+    - path_network_checks
+  acceptable:
+    system:
+    - hfo2
+    parent_sg:
+    - 60
+    child_sg:
+    - 29
+    transition:
+    - hfo2_60_29
+    analysis:
+    - path
+    strain_policy:
+    - P3
+    - null
+    system_profile:
+    - hfo2
+    - null
+    budget:
+    - 20
+    - null
+    outputs: *id036
+  expected_outcome: config
+  stated:
+  - analysis
+  - system
+  - transition
+  defensible: {}
+  accept_configs:
+  - hfo2_T4
+- id: E37
+  kind: paraphrase
+  style: expert
+  text: 'HfO2 Pbcn (#60) -> P2_1/c (#14): straight-line irrep path, amplitudes and strain scaled together, 10 points, hfo2 (PBE) profile, <= 20
+    runs.'
+  attachments: []
+  reference_config: hfo2_T5
+  reference:
+    system: hfo2
+    parent_sg: 60
+    child_sg: 14
+    transition: hfo2_60_14
+    analysis: path
+    strain_policy: P3
+    system_profile: hfo2
+    budget: 20
+    outputs: &id037
+    - energy_surface
+    - barrier
+    - path_network_checks
+  acceptable:
+    system:
+    - hfo2
+    parent_sg:
+    - 60
+    child_sg:
+    - 14
+    transition:
+    - hfo2_60_14
+    analysis:
+    - path
+    strain_policy:
+    - P3
+    system_profile:
+    - hfo2
+    budget:
+    - 20
+    outputs: *id037
+  expected_outcome: config
+  stated:
+  - analysis
+  - budget
+  - child_sg
+  - parent_sg
+  - strain_policy
+  - system
+  - system_profile
+  - transition
+  defensible: {}
+  accept_configs:
+  - hfo2_T5
+- id: E38
+  kind: paraphrase
+  style: terse
+  text: Pbcn -> monoclinic HfO2 path
+  attachments: []
+  reference_config: hfo2_T5
+  reference:
+    system: hfo2
+    parent_sg: 60
+    child_sg: 14
+    transition: hfo2_60_14
+    analysis: path
+    strain_policy: P3
+    system_profile: hfo2
+    budget: 20
+    outputs: &id038
+    - energy_surface
+    - barrier
+    - path_network_checks
+  acceptable:
+    system:
+    - hfo2
+    parent_sg:
+    - 60
+    child_sg:
+    - 14
+    transition:
+    - hfo2_60_14
+    analysis:
+    - path
+    strain_policy:
+    - P3
+    - null
+    system_profile:
+    - hfo2
+    - null
+    budget:
+    - 20
+    - null
+    outputs: *id038
+  expected_outcome: config
+  stated:
+  - analysis
+  - system
+  - transition
+  defensible: {}
+  accept_configs:
+  - hfo2_T5
+- id: E39
+  kind: paraphrase
+  style: non-specialist
+  text: How much energy does it take for the non-polar orthorhombic (Pbcn) phase of hafnia to turn into the monoclinic ground state? Compute the
+    energy along the way.
+  attachments: []
+  reference_config: hfo2_T5
+  reference:
+    system: hfo2
+    parent_sg: 60
+    child_sg: 14
+    transition: hfo2_60_14
+    analysis: path
+    strain_policy: P3
+    system_profile: hfo2
+    budget: 20
+    outputs: &id039
+    - energy_surface
+    - barrier
+    - path_network_checks
+  acceptable:
+    system:
+    - hfo2
+    parent_sg:
+    - 60
+    child_sg:
+    - 14
+    transition:
+    - hfo2_60_14
+    analysis:
+    - path
+    strain_policy:
+    - P3
+    - null
+    system_profile:
+    - hfo2
+    - null
+    budget:
+    - 20
+    - null
+    outputs: *id039
+  expected_outcome: config
+  stated:
+  - analysis
+  - system
+  - transition
+  defensible: {}
+  accept_configs:
+  - hfo2_T5
+- id: U01
+  kind: underspecified
+  style: underspecified
+  text: map the BiFeO3 landscape
+  attachments: []
+  reference_config: null
+  expected_outcome: ask
+  acceptable:
+    outcome:
+    - ask (G0 AMBIGUOUS)
+    question_about: which order parameters / analysis (only the six-component GM4- (+) R5- grid is stored)
+  defensible_guesses:
+  - bifeo3
+  accept_configs:
+  - bifeo3
+- id: U02
+  kind: underspecified
+  style: underspecified
+  text: hafnia transition
+  attachments: []
+  reference_config: null
+  expected_outcome: ask
+  acceptable:
+    outcome:
+    - ask (G0 AMBIGUOUS)
+    question_about: which of the five stored hafnia transitions (137->29, 137->60, 137->14, 60->29, 60->14) and what to compute
+  defensible_guesses: []
+  accept_configs: []
+- id: U03
+  kind: underspecified
+  style: underspecified
+  text: compute the energy barrier for HfO2 going to the monoclinic phase
+  attachments: []
+  reference_config: null
+  expected_outcome: ask
+  acceptable:
+    outcome:
+    - ask (G0 AMBIGUOUS)
+    question_about: 'from which phase: tetragonal #137 (137->14) or Pbcn #60 (60->14)'
+  defensible_guesses:
+  - hfo2_T3
+  - hfo2_T5
+  accept_configs: []
+- id: U04
+  kind: underspecified
+  style: underspecified
+  text: map the octahedral tilt landscape of the perovskite
+  attachments: []
+  reference_config: null
+  expected_outcome: ask
+  acceptable:
+    outcome:
+    - ask (G0 AMBIGUOUS)
+    question_about: which system (CsSnI3, Ca3Ti2O7 or BiFeO3)
+  defensible_guesses:
+  - cssni3
+  - ca3ti2o7
+  - bifeo3
+  accept_configs: []
+- id: U05
+  kind: underspecified
+  style: underspecified
+  text: ErMnO3, please
+  attachments: []
+  reference_config: null
+  expected_outcome: ask
+  acceptable:
+    outcome:
+    - ask (G0 AMBIGUOUS)
+    question_about: 'what to compute: the K3-GM2- plane or the joint plane + hat fit'
+  defensible_guesses:
+  - ermno3
+  - ermno3_joint
+  accept_configs: []
+- id: O01
+  kind: out_of_scope
+  style: out_of_scope
+  text: 'Compute the group-subgroup path from monoclinic HfO2 (P2_1/c, #14) up to tetragonal P4_2/nmc (#137), with #14 as the parent.'
+  attachments: []
+  reference_config: null
+  expected_outcome: refuse_or_ask
+  acceptable:
+    outcome:
+    - refuse (G0 OUT_OF_SCOPE)
+    - ask (G0 AMBIGUOUS)
+    why: 'no group-subgroup route: #137 is not a subgroup of #14 (the stored path runs 137 -> 14)'
+- id: O02
+  kind: out_of_scope
+  style: out_of_scope
+  text: Map the CsSnI3 tilt plane with Quantum ESPRESSO and a hybrid functional.
+  attachments: []
+  reference_config: null
+  expected_outcome: refuse_or_ask
+  acceptable:
+    outcome:
+    - refuse (G0 OUT_OF_SCOPE)
+    - ask (G0 AMBIGUOUS)
+    why: 'unsupported engine / settings: the build runs VASP DFT profiles only (replay here)'
+- id: O03
+  kind: out_of_scope
+  style: out_of_scope
+  text: Run 20 ps of NVT molecular dynamics on BiFeO3 at 600 K and give me the polarization autocorrelation.
+  attachments: []
+  reference_config: null
+  expected_outcome: refuse_or_ask
+  acceptable:
+    outcome:
+    - refuse (G0 OUT_OF_SCOPE)
+    - ask (G0 AMBIGUOUS)
+    why: MD is not an IRIS analysis
+- id: N01
+  kind: new_material
+  style: new_material
+  text: 'PbTiO3 Pm-3m (#221) -> P4mm (#99): polar GM4- landscape, energy surface of two polarization components (P_z vs P_x) on a fixed cubic
+    cell.'
+  attachments: []
+  reference_config: null
+  expected_outcome: needs_new_dft
+  acceptable:
+    formula:
+    - PbTiO3
+    parent_sg:
+    - 221
+    child_sg:
+    - 99
+    analysis:
+    - plane
+    system_profile:
+    - null
+    strain_policy:
+    - null
+    - P1
+    - P2
+    - P5
+    outcome:
+    - valid config, G0 NEEDS_NEW_DFT (no stored data), no borrowed profile
+- id: N02
+  kind: new_material
+  style: new_material
+  text: 'YInO3 P6_3/mmc -> P6_3cm: K3-GM2- plane at Phi = 0, fixed child cell.'
+  attachments: []
+  reference_config: null
+  expected_outcome: needs_new_dft
+  acceptable:
+    formula:
+    - YInO3
+    parent_sg:
+    - 194
+    child_sg:
+    - 185
+    analysis:
+    - plane
+    system_profile:
+    - null
+    - yino3
+    strain_policy:
+    - null
+    - P1
+    - P2
+    - P5
+    outcome:
+    - valid config, G0 NEEDS_NEW_DFT (no stored data), no borrowed profile
+- id: N03
+  kind: new_material
+  style: new_material
+  text: 'Ca3Mn2O7 I4/mmm (#139) -> A2_1am (#36): X3- rotation x X2+ tilt energy surface, fixed cell.'
+  attachments: []
+  reference_config: null
+  expected_outcome: needs_new_dft
+  acceptable:
+    formula:
+    - Ca3Mn2O7
+    parent_sg:
+    - 139
+    child_sg:
+    - 36
+    analysis:
+    - plane
+    system_profile:
+    - null
+    strain_policy:
+    - null
+    - P1
+    - P2
+    - P5
+    outcome:
+    - valid config, G0 NEEDS_NEW_DFT (no stored data), no borrowed profile

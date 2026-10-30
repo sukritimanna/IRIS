@@ -1,0 +1,106 @@
+{
+ "id": "C53",
+ "captured_from": {
+  "system": "hfo2_T3",
+  "fault": "F053",
+  "patch": {
+   "policy.path.max_rigid_rotation_deg": 1.0
+  },
+  "ablations": [],
+  "decision": 1,
+  "script": [],
+  "steps": []
+ },
+ "node": "f2",
+ "gate": "G2",
+ "code": "PATH_LATTICE",
+ "prompt_id": "subagent_G2",
+ "prompt_values": {
+  "system": "hfo2",
+  "node": "f2",
+  "node_name": "Path Planner",
+  "gate": "G2",
+  "code": "PATH_LATTICE",
+  "detail": "the child cell carries a rigid rotation of 4.875 deg relative to the parent (> 1.0); the interpolated cells are not a pure strain path",
+  "tests": [
+   {
+    "test": "child_metric",
+    "status": "fail",
+    "code": "PATH_LATTICE",
+    "detail": "the child cell carries a rigid rotation of 4.875 deg relative to the parent (> 1.0); the interpolated cells are not a pure strain path"
+   },
+   {
+    "test": "end_is_child",
+    "status": "pass"
+   },
+   {
+    "test": "space_groups",
+    "status": "pass"
+   },
+   {
+    "test": "equals_stored",
+    "status": "pass"
+   }
+  ],
+  "options": [
+   {
+    "id": "include_borderline",
+    "text": "R5: include the borderline irreps as axes"
+   },
+   {
+    "id": "exclude_borderline",
+    "text": "R5: exclude the borderline irreps"
+   },
+   {
+    "id": "anchor_only",
+    "text": "R5: keep the borderline irreps as anchor points only"
+   },
+   {
+    "id": "rebuild_fixed_lattice",
+    "text": "Rebuild single-mode frames on the fixed parent lattice"
+   },
+   {
+    "id": "remove_translation",
+    "text": "Subtract the rigid translation (mean displacement) from the polar mode vectors"
+   },
+   {
+    "id": "stop",
+    "text": "Stop and ask the human"
+   }
+  ],
+  "history": "nothing yet",
+  "attempts": 0,
+  "max_retry": 3
+ },
+ "menu": [
+  {
+   "id": "include_borderline",
+   "text": "R5: include the borderline irreps as axes"
+  },
+  {
+   "id": "exclude_borderline",
+   "text": "R5: exclude the borderline irreps"
+  },
+  {
+   "id": "anchor_only",
+   "text": "R5: keep the borderline irreps as anchor points only"
+  },
+  {
+   "id": "rebuild_fixed_lattice",
+   "text": "Rebuild single-mode frames on the fixed parent lattice"
+  },
+  {
+   "id": "remove_translation",
+   "text": "Subtract the rigid translation (mean displacement) from the polar mode vectors"
+  },
+  {
+   "id": "stop",
+   "text": "Stop and ask the human"
+  }
+ ],
+ "system_prompt": "You are the G2 recovery sub-agent of IRIS, a workflow that maps symmetry-mode energy landscapes.\nStep f2 (Path Planner) produced an output that failed gate G2. The gate is plain Python; its verdict\nis final and you cannot change it. You choose which listed fix to try next.\n\nGate G2 checks: grid valid: c1 the active set generates H; c2 atom matching, translation-free vectors, calibration, strict single-mode space group; c3 budget and full descent-tree coverage; every frame's space group and minimum distance.\nGuidance: A strict single-mode space-group mismatch is usually the frame being built on the strained movie cell: rebuild on the fixed parent lattice. A rigid translation left in a polar vector is removed by subtracting the mean displacement. R5_BORDERLINE (a small margin between the smallest active and the largest inactive irrep) is a modelling choice: include, exclude or anchor the borderline irreps. Over budget cannot be fixed here.\n\nRules:\n- Answer with JSON {\"id\": ..., \"reason\": ...} and nothing else.\n- \"id\" must be exactly one of the option ids you are given. Choose \"stop\" if none fits or if the\n  same fix has already failed (see the history).\n- The reason is one sentence. It may quote numbers from the input; it must not introduce new ones.\n- Do not propose new calculations, new options, or edits to any number.",
+ "user_template": "System: {system}\nFailed: {node} {node_name}, gate {gate}, code {code}\nDetail: {detail}\nChecks run by the gate:\n{tests}\n\nRetries used on this step: {attempts} of {max_retry}\nWhat has been tried so far in this run:\n{history}\n\nOptions (choose one id):\n{options}",
+ "user_prompt": "System: hfo2\nFailed: f2 Path Planner, gate G2, code PATH_LATTICE\nDetail: the child cell carries a rigid rotation of 4.875 deg relative to the parent (> 1.0); the interpolated cells are not a pure strain path\nChecks run by the gate:\n[\n {\n  \"test\": \"child_metric\",\n  \"status\": \"fail\",\n  \"code\": \"PATH_LATTICE\",\n  \"detail\": \"the child cell carries a rigid rotation of 4.875 deg relative to the parent (> 1.0); the interpolated cells are not a pure strain path\"\n },\n {\n  \"test\": \"end_is_child\",\n  \"status\": \"pass\"\n },\n {\n  \"test\": \"space_groups\",\n  \"status\": \"pass\"\n },\n {\n  \"test\": \"equals_stored\",\n  \"status\": \"pass\"\n }\n]\n\nRetries used on this step: 0 of 3\nWhat has been tried so far in this run:\nnothing yet\n\nOptions (choose one id):\n[\n {\n  \"id\": \"include_borderline\",\n  \"text\": \"R5: include the borderline irreps as axes\"\n },\n {\n  \"id\": \"exclude_borderline\",\n  \"text\": \"R5: exclude the borderline irreps\"\n },\n {\n  \"id\": \"anchor_only\",\n  \"text\": \"R5: keep the borderline irreps as anchor points only\"\n },\n {\n  \"id\": \"rebuild_fixed_lattice\",\n  \"text\": \"Rebuild single-mode frames on the fixed parent lattice\"\n },\n {\n  \"id\": \"remove_translation\",\n  \"text\": \"Subtract the rigid translation (mean displacement) from the polar mode vectors\"\n },\n {\n  \"id\": \"stop\",\n  \"text\": \"Stop and ask the human\"\n }\n]",
+ "system_prompt_bare": "You are the G2 recovery sub-agent of IRIS, a workflow that maps symmetry-mode energy landscapes.\nStep f2 (Path Planner) produced an output that failed gate G2. The gate is plain Python; its verdict\nis final and you cannot change it. You choose which listed fix to try next.\n\nGate G2 checks: grid valid: c1 the active set generates H; c2 atom matching, translation-free vectors, calibration, strict single-mode space group; c3 budget and full descent-tree coverage; every frame's space group and minimum distance.\n\nRules:\n- Answer with JSON {\"id\": ..., \"reason\": ...} and nothing else.\n- \"id\" must be exactly one of the option ids you are given. Choose \"stop\" if none fits or if the\n  same fix has already failed (see the history).\n- The reason is one sentence. It may quote numbers from the input; it must not introduce new ones.\n- Do not propose new calculations, new options, or edits to any number.",
+ "prompt_sha256": "2bff9a065d039514"
+}

@@ -1,0 +1,11 @@
+# Experiment A: the non-LLM policies as sub-agent providers (iris_agent/llm.py provider `policy`).
+#   python -m iris_agent.subagent_bench --models policies/models.yaml --tag A_cases --repeats 1
+#   python -m iris_agent.inject --faults eval/faults.yaml --models policies/models.yaml --llm tree --tag A_tree
+version: 1
+reference: tree
+defaults: {mode: constrained, temperature: null, seed: 0}
+models:
+  tree:           {provider: policy, policy: tree,           model: policy-tree,           tier: policy}
+  retrieval:      {provider: policy, policy: retrieval,      model: policy-retrieval,      tier: policy}
+  retrieval_seed: {provider: policy, policy: retrieval_seed, model: policy-retrieval-seed, tier: policy}
+  rules_only:     {provider: policy, policy: rules_only,     model: policy-rules-only,     tier: policy}

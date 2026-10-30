@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use IRIS, please cite the paper below."
+title: "IRIS: an agentic eye on symmetry-derived paths and energy landscapes of structural phase transitions"
+type: software
+authors:
+  - family-names: Manna
+    given-names: Sukriti
+    orcid: "https://orcid.org/0000-0002-3193-7803"
+  - family-names: Agrawal
+    given-names: Sraddha
+  - family-names: Ramesh
+    given-names: Ramamoorthy
+  - family-names: Ganesh
+    given-names: Panchapakesan
+  - family-names: Darancet
+    given-names: Pierre
+  - family-names: Sankaranarayanan
+    given-names: Subramanian K. R. S.
+year: 2026
+license: MIT
+repository-code: "https://github.com/<owner>/IRIS"
+preferred-citation:
+  type: article
+  title: "IRIS: an agentic eye on symmetry-derived paths and energy landscapes of structural phase transitions"
+  authors:
+    - family-names: Manna
+      given-names: Sukriti
+    - family-names: Agrawal
+      given-names: Sraddha
+    - family-names: Ramesh
+      given-names: Ramamoorthy
+    - family-names: Ganesh
+      given-names: Panchapakesan
+    - family-names: Darancet
+      given-names: Pierre
+    - family-names: Sankaranarayanan
+      given-names: Subramanian K. R. S.
+  year: 2026
+  journal: "submitted"

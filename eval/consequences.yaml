@@ -1,0 +1,781 @@
+# Experiment C: consequence classes of a recovery option (frozen with eval/; written by consequences/build_yaml.py).
+#
+# A branch = the faulted run forked at the failed gate, the option injected through Command(resume=...), then run to END
+# with all gates on, the same retry budget, rules on, no sub-agent; further human questions are answered with the
+# published decision (R5 include_borderline, D4 accept_secondary_hold) or `stop` (then human_needed = true).
+# Numbers are compared with the fault-free replay of the same config (E1), quantity by quantity, with the tolerance
+# below: |value - clean| <= tol (tol = the precision f6 re-derives that quantity with; null = must be equal).
+version: 1
+source: f6 tolerances of the clean E1 replays (test_runs/E1_<config>)
+classes:
+  stopped: 'the option is `stop`: the run ends and the human takes over (nothing else happens)'
+  not-evaluable: the branch needs data replay does not have (it ends at G3 UNMATCHED after the option asked for frames that were never computed,
+    e.g. densify) — production would have to compute them
+  rejected: after the option a gate fails again and the branch ends without completing (stop / retry budget / human), i.e. the gates refused the
+    option's result
+  scope-change: 'the branch completes, but the result is about something else: the set of reported quantities, the active irreps or the number
+    of frames with an energy differ from the fault-free replay'
+  accepted-wrong: the branch completes with the same scope, but at least one reported number differs from the fault-free replay by more than its
+    tolerance
+  accepted-wasted: the branch completes with every number within tolerance, but submits more DFT runs than the cheapest branch of the same case
+    that also completes correctly
+  accepted-correct: the branch completes with every number within tolerance at the lowest run count of its case
+order:
+- stopped
+- not-evaluable
+- rejected
+- scope-change
+- accepted-wrong
+- accepted-wasted
+- accepted-correct
+compatible_with_label:
+  correct:
+  - accepted-correct
+  - stopped
+  - not-evaluable
+  safe:
+  - stopped
+  - accepted-correct
+  - accepted-wasted
+  - rejected
+  - not-evaluable
+  harmful:
+  - accepted-wrong
+  - accepted-wasted
+  - rejected
+  - scope-change
+  - not-evaluable
+comparison:
+  identical: '|Δ| <= 1e-12 (or equal for non-numbers)'
+  within_tolerance: '|Δ| <= tol'
+  different: '|Δ| > tol for at least one quantity'
+tolerances:
+  cssni3:
+    parent primitive cells in the frame: 1.0e-09
+    A_p R4+: 0.0002
+    A_s R4+: 0.0003
+    A_p R5+: 0.0002
+    A_s R5+: 0.0003
+    A_p X5+: 0.0002
+    A_s X5+: 0.0003
+    A_p M2+: 0.0002
+    A_s M2+: 0.0003
+    A_p M3+: 0.0002
+    A_s M3+: 0.0003
+    active set: null
+    primaries: null
+    held at zero: null
+    c1 intersection SG: null
+    grid frames in SG 62: null
+    grid frames in SG 74: null
+    grid frames in SG 127: null
+    grid frames in SG 221: null
+    grid frames (m^n): null
+    frames matched to stored structures: null
+    linked energies equal to the CSV: null
+    formula units per cell: null
+    nodes in fit (r ≤ rmax): null
+    Landau a1: 1.148628003189283e-06
+    Landau b1: 1.2668832527305804e-06
+    Landau c1: 1.0210601857885199e-06
+    Landau a2: 1.1553547352266728e-06
+    Landau b2: 1.2605640534832168e-06
+    Landau c2: 1.0129246539684395e-06
+    Landau λ: 1.255162178114289e-06
+    Landau μ: 1.0323000107017821e-06
+    RMS residual: 1.0e-06
+    ring radius min: 0.011
+    ring radius max: 0.011
+    ring depth below parent: 0.05
+    ring corrugation: 0.05
+    DFT-grid ring radius (grid minimum): 0.006
+    DFT-grid ring corrugation: 0.051
+    DFT-grid radial-minimum radius min: 0.006
+    DFT-grid radial-minimum radius max: 0.006
+    DFT-grid valley floor min: 0.051
+    DFT-grid valley floor max: 0.051
+  cssni3_d4:
+    parent primitive cells in the frame: 1.0e-09
+    A_p R4+: 0.0002
+    A_s R4+: 0.0003
+    A_p R5+: 0.0002
+    A_s R5+: 0.0003
+    A_p X5+: 0.0002
+    A_s X5+: 0.0003
+    A_p M2+: 0.0002
+    A_s M2+: 0.0003
+    A_p M3+: 0.0002
+    A_s M3+: 0.0003
+    active set: null
+    primaries: null
+    held at zero: null
+    c1 intersection SG: null
+    grid frames in SG 62: null
+    grid frames in SG 74: null
+    grid frames in SG 127: null
+    grid frames in SG 221: null
+    grid frames (m^n): null
+    frames matched to stored structures: null
+    linked energies equal to the CSV: null
+    formula units per cell: null
+    nodes in fit (r ≤ rmax): null
+    Landau a1: 1.148628003189283e-06
+    Landau b1: 1.2668832527305804e-06
+    Landau c1: 1.0210601857885199e-06
+    Landau a2: 1.1553547352266728e-06
+    Landau b2: 1.2605640534832168e-06
+    Landau c2: 1.0129246539684395e-06
+    Landau λ: 1.255162178114289e-06
+    Landau μ: 1.0323000107017821e-06
+    RMS residual: 1.0e-06
+    ring radius min: 0.011
+    ring radius max: 0.011
+    ring depth below parent: 0.05
+    ring corrugation: 0.05
+    DFT-grid ring radius (grid minimum): 0.006
+    DFT-grid ring corrugation: 0.051
+    DFT-grid radial-minimum radius min: 0.006
+    DFT-grid radial-minimum radius max: 0.006
+    DFT-grid valley floor min: 0.051
+    DFT-grid valley floor max: 0.051
+    'D4 origin: curvature (meV/Å²/f.u.)': 1.0e-06
+    'D4 origin: relaxed X5+ (Å)': 0.0002
+    'D4 origin: energy released (meV/f.u.)': 0.0001
+    'D4 ring: curvature (meV/Å²/f.u.)': 1.0e-06
+    'D4 ring: relaxed X5+ (Å)': 0.0002
+    'D4 ring: energy released (meV/f.u.)': 0.0001
+    'D4 child80: curvature (meV/Å²/f.u.)': 1.0e-06
+    'D4 child80: relaxed X5+ (Å)': 0.0002
+    'D4 child80: energy released (meV/f.u.)': 0.0001
+    D4 reference (ring corrugation of the fit, meV/f.u.): 1.0e-09
+  ca3ti2o7:
+    parent primitive cells in the frame: 1.0e-09
+    A_p GM1+: 0.0002
+    A_s GM1+: 0.0003
+    A_p GM5-: 0.0002
+    A_s GM5-: 0.0003
+    A_p X2+: 0.0002
+    A_s X2+: 0.0003
+    A_p X3-: 0.0002
+    A_s X3-: 0.0003
+    active set: null
+    primaries: null
+    held at zero: null
+    c1 intersection SG: null
+    grid frames in SG 36: null
+    grid frames in SG 63: null
+    grid frames in SG 64: null
+    grid frames in SG 139: null
+    grid frames (m^n): null
+    frames matched to stored structures: null
+    linked energies equal to the CSV: null
+    formula units per cell: null
+    surface nodes with energy: null
+    E_min (eV/cell): 1.0e-09
+    E range above E_min: 1.0e-06
+    grid minima (A_p, Å): null
+    supercell size s (A_s = A_p √s): 0.0
+    grid minima (A_s, Å): null
+    mirror max|E(x,y)-E(-x,y)|: 1.0e-06
+    mirror max|E(x,y)-E(x,-y)|: 1.0e-06
+    E parent (Q = 0): 1.0e-06
+    E cmcm (DFT anchor): 1.0e-06
+    E cmce (DFT anchor): 1.0e-06
+    E a21am (DFT anchor): 1.0e-06
+    E child at its A_p (bilinear): 1.0e-06
+    'script: mirror x (printed to 3 dp)': 0.0006
+    'script: E cmcm (printed to 2 dp)': 0.006
+    'script: E cmce (printed to 2 dp)': 0.006
+    'script: E a21am (printed to 2 dp)': 0.006
+  inmno3:
+    parent primitive cells in the frame: 1.0e-09
+    A_p GM1+: 0.0002
+    A_s GM1+: 0.0003
+    A_p GM2-: 0.0002
+    A_s GM2-: 0.0003
+    A_p K1: 0.0002
+    A_s K1: 0.0003
+    A_p K3: 0.0002
+    A_s K3: 0.0003
+    active set: null
+    primaries: null
+    held at zero: null
+    c1 intersection SG: null
+    grid frames in SG 185: null
+    grid frames in SG 186: null
+    grid frames in SG 194: null
+    grid frames (m^n): null
+    frames matched to stored structures: null
+    linked energies equal to the CSV: null
+    formula units per cell: null
+    nodes in fit window: null
+    a (A_p, eV/cell): 4.633448148365975e-06
+    a (A_s, eV/cell): 2.2111493827886585e-06
+    b (A_p, eV/cell): 1.1968758740693088e-05
+    b (A_s, eV/cell): 2.218750971188121e-06
+    c (A_p, eV/cell): 2.1551777406968648e-05
+    c (A_s, eV/cell): 1.761176940998839e-06
+    a_P (A_p, eV/cell): 9.125239845704298e-06
+    a_P (A_s, eV/cell): 3.708413281901433e-06
+    g (A_p, eV/cell): 9.872204245771307e-06
+    g (A_s, eV/cell): 1.9858004717523675e-06
+    g' (A_p, eV/cell): 4.933698041762218e-05
+    g' (A_s, eV/cell): 6.370775601958021e-06
+    RMS residual: 1.0e-06
+    K3 well Q* (A_p): 0.001
+    well depth: 0.05
+    coupled minimum Q (A_p): 0.001
+    coupled minimum P (A_p): 0.001
+    hat height (parent - coupled min): 0.05
+  inmno3_joint:
+    parent primitive cells in the frame: 1.0e-09
+    A_p GM1+: 0.0002
+    A_s GM1+: 0.0003
+    A_p GM2-: 0.0002
+    A_s GM2-: 0.0003
+    A_p K1: 0.0002
+    A_s K1: 0.0003
+    A_p K3: 0.0002
+    A_s K3: 0.0003
+    active set: null
+    primaries: null
+    held at zero: null
+    c1 intersection SG: null
+    'second K3 component: max |e2 - (T e1 - T² e1)/√3|': 1.0e-09
+    polar frames in SG 158: null
+    polar frames in SG 165: null
+    polar frames in SG 185: null
+    grid frames in SG 185: null
+    grid frames in SG 186: null
+    grid frames in SG 194: null
+    grid frames (m^n): null
+    frames matched to stored structures: null
+    linked energies equal to the CSV: null
+    formula units per cell: null
+    joint fit nodes (plane): null
+    joint fit nodes (hat): null
+    a (A_s, eV/cell): 2.206708729207299e-06
+    b (A_s, eV/cell): 2.207453569170512e-06
+    c (A_s, eV/cell): 1.697983156343598e-06
+    c' (A_s, eV/cell): 1.067788039108064e-06
+    a_P (A_s, eV/cell): 3.660252654567081e-06
+    g (A_s, eV/cell): 1.9617637639231303e-06
+    g' (A_s, eV/cell): 6.309262294368366e-06
+    joint RMS residual: 1.0e-06
+    hat height (meV/f.u.): 0.05
+    brim barrier, Q and P relaxed (meV/f.u.): 0.05
+    coupled minimum Q at Phi = 0 (A_s): 0.002
+  ermno3:
+    parent primitive cells in the frame: 1.0e-09
+    A_p GM1+: 0.0002
+    A_s GM1+: 0.0003
+    A_p GM2-: 0.0002
+    A_s GM2-: 0.0003
+    A_p K1: 0.0002
+    A_s K1: 0.0003
+    A_p K3: 0.0002
+    A_s K3: 0.0003
+    active set: null
+    primaries: null
+    held at zero: null
+    c1 intersection SG: null
+    grid frames in SG 185: null
+    grid frames in SG 186: null
+    grid frames in SG 194: null
+    grid frames (m^n): null
+    frames matched to stored structures: null
+    linked energies equal to the CSV: null
+    formula units per cell: null
+    nodes in fit window: null
+    P-axis points used for a_P: null
+    a (A_p, eV/cell): 1.2111521500739595e-05
+    a (A_s, eV/cell): 4.703840500246532e-06
+    b (A_p, eV/cell): 3.6596520090370646e-05
+    b (A_s, eV/cell): 4.955168898930073e-06
+    c (A_p, eV/cell): 1.3766867697179129e-05
+    c (A_s, eV/cell): 1.4728469517473754e-06
+    a_P (A_p, eV/cell): 2.747511886547574e-06
+    a_P (A_s, eV/cell): 1.5825039621825247e-06
+    g (A_p, eV/cell): 2.1702005995859404e-05
+    g (A_s, eV/cell): 3.3002228884288233e-06
+    g' (A_p, eV/cell): 9.792411225559143e-05
+    g' (A_s, eV/cell): 1.1769345806176829e-05
+    RMS residual: 1.0e-06
+    K3 well Q* (A_p): 0.001
+    well depth: 0.05
+    coupled minimum Q (A_p): 0.001
+    coupled minimum P (A_p): 0.001
+    hat height (parent - coupled min): 0.05
+  ermno3_joint:
+    parent primitive cells in the frame: 1.0e-09
+    A_p GM1+: 0.0002
+    A_s GM1+: 0.0003
+    A_p GM2-: 0.0002
+    A_s GM2-: 0.0003
+    A_p K1: 0.0002
+    A_s K1: 0.0003
+    A_p K3: 0.0002
+    A_s K3: 0.0003
+    active set: null
+    primaries: null
+    held at zero: null
+    c1 intersection SG: null
+    'second K3 component: max |e2 - (T e1 - T² e1)/√3|': 1.0e-09
+    polar frames in SG 158: null
+    polar frames in SG 165: null
+    polar frames in SG 185: null
+    grid frames in SG 185: null
+    grid frames in SG 186: null
+    grid frames in SG 194: null
+    grid frames (m^n): null
+    frames matched to stored structures: null
+    linked energies equal to the CSV: null
+    formula units per cell: null
+    joint fit nodes (plane): null
+    joint fit nodes (hat): null
+    a_P from the P axis (A_s, eV/cell): 1.0e-09
+    a (A_s, eV/cell): 4.708765754346264e-06
+    b (A_s, eV/cell): 4.976071814369554e-06
+    c (A_s, eV/cell): 1.4241450570502963e-06
+    c' (A_s, eV/cell): 1.0402940778264126e-06
+    a_P (A_s, eV/cell): 1.5825039621825247e-06
+    g (A_s, eV/cell): 3.2655609960038126e-06
+    g' (A_s, eV/cell): 1.1330471078933291e-05
+    joint RMS residual: 1.0e-06
+    hat height (meV/f.u.): 0.05
+    brim barrier, Q and P relaxed (meV/f.u.): 0.05
+    coupled minimum Q at Phi = 0 (A_s): 0.002
+  bifeo3:
+    96 operation matrices = grid toolkit's: null
+    '|P1|^2 on the 10-atom cell (= n_cells 2)': 1.0e-09
+    '|P2|^2 on the 10-atom cell (= n_cells 2)': 1.0e-09
+    '|P3|^2 on the 10-atom cell (= n_cells 2)': 1.0e-09
+    '|R1|^2 on the 10-atom cell (= n_cells 2)': 1.0e-09
+    '|R2|^2 on the 10-atom cell (= n_cells 2)': 1.0e-09
+    '|R3|^2 on the 10-atom cell (= n_cells 2)': 1.0e-09
+    GM4- per-component A_p (Å): 0.0001
+    R5- per-component A_p (Å): 0.0001
+    'main_V1: orbits (Burnside on the saved nodes)': null
+    'main_V1: orbits kept by the contact cut': null
+    'main_V0: orbits (Burnside on the saved nodes)': null
+    'main_V0: orbits kept by the contact cut': null
+    frames with role control_img: null
+    frames with role fill: null
+    frames with role mep: null
+    frames with role origin: null
+    frames with role plane_check: null
+    frames with role production: null
+    frames with role refine: null
+    frames matched to stored POSCARs: null
+    energies differing from the collected CSV (> 1e-6 meV/f.u.): null
+    invariants = toolkit's landau6d/inv.py (same list, same order): null
+    invariants (count): null
+    fit rows in the window: null
+    training RMS (meV/f.u.): 0.0001
+    training max |residual| (meV/f.u.): 0.001
+    'QR vs lstsq model on all rows: max |ΔE| (meV/f.u.)': 0.001
+    'R3c: E (meV/f.u.)': 0.01
+    'R3c: |P| (Å)': 0.0002
+    'R3c: |R| (Å)': 0.0002
+    'R3c: Hessian index': null
+    'R3c: space group of the structure': null
+    'Ima2: E (meV/f.u.)': 0.01
+    'Ima2: |P| (Å)': 0.0002
+    'Ima2: |R| (Å)': 0.0002
+    'Ima2: Hessian index': null
+    'Ima2: space group of the structure': null
+    'I4cm: E (meV/f.u.)': 0.01
+    'I4cm: |P| (Å)': 0.0002
+    'I4cm: |R| (Å)': 0.0002
+    'I4cm: Hessian index': null
+    'I4cm: space group of the structure': null
+    'R3m: E (meV/f.u.)': 0.01
+    'R3m: |P| (Å)': 0.0002
+    'R3m: |R| (Å)': 0.0002
+    'R3m: Hessian index': null
+    'R3m: space group of the structure': null
+    'Amm2: E (meV/f.u.)': 0.01
+    'Amm2: |P| (Å)': 0.0002
+    'Amm2: |R| (Å)': 0.0002
+    'Amm2: Hessian index': null
+    'Amm2: space group of the structure': null
+    'P4mm: E (meV/f.u.)': 0.01
+    'P4mm: |P| (Å)': 0.0002
+    'P4mm: |R| (Å)': 0.0002
+    'P4mm: Hessian index': null
+    'P4mm: space group of the structure': null
+    'R-3c: E (meV/f.u.)': 0.01
+    'R-3c: |P| (Å)': 0.0002
+    'R-3c: |R| (Å)': 0.0002
+    'R-3c: Hessian index': null
+    'R-3c: space group of the structure': null
+    'Imma: E (meV/f.u.)': 0.01
+    'Imma: |P| (Å)': 0.0002
+    'Imma: |R| (Å)': 0.0002
+    'Imma: Hessian index': null
+    'Imma: space group of the structure': null
+    'I4/mcm: E (meV/f.u.)': 0.01
+    'I4/mcm: |P| (Å)': 0.0002
+    'I4/mcm: |R| (Å)': 0.0002
+    'I4/mcm: Hessian index': null
+    'I4/mcm: space group of the structure': null
+    'V0: training RMS (meV/f.u.)': 0.0001
+    'V0 R3c: E (meV/f.u.)': 0.01
+    'V0 Ima2: E (meV/f.u.)': 0.01
+    'V0 I4cm: E (meV/f.u.)': 0.01
+    'V0 R3m: E (meV/f.u.)': 0.01
+    'V0 Amm2: E (meV/f.u.)': 0.01
+    'V0 P4mm: E (meV/f.u.)': 0.01
+    'V0 R-3c: E (meV/f.u.)': 0.01
+    'V0 Imma: E (meV/f.u.)': 0.01
+    'V0 I4/mcm: E (meV/f.u.)': 0.01
+    global minimum = R3c (60 BFGS starts): 0.1
+  hfo2_T1:
+    parent primitive cells in the frame: 1.0e-09
+    A_p GM1+: 0.0002
+    A_p GM5-: 0.0002
+    A_p M1: 0.0002
+    A_p M3: 0.0002
+    active set: null
+    path irreps = every displacive irrep: null
+    L00 space group (stored POSCAR): null
+    L00 d_min (Å): 0.0002
+    L01 space group (stored POSCAR): null
+    L01 d_min (Å): 0.0002
+    L02 space group (stored POSCAR): null
+    L02 d_min (Å): 0.0002
+    L03 space group (stored POSCAR): null
+    L03 d_min (Å): 0.0002
+    L04 space group (stored POSCAR): null
+    L04 d_min (Å): 0.0002
+    L05 space group (stored POSCAR): null
+    L05 d_min (Å): 0.0002
+    L06 space group (stored POSCAR): null
+    L06 d_min (Å): 0.0002
+    L07 space group (stored POSCAR): null
+    L07 d_min (Å): 0.0002
+    L08 space group (stored POSCAR): null
+    L08 d_min (Å): 0.0002
+    L09 space group (stored POSCAR): null
+    L09 d_min (Å): 0.0002
+    f.u. per cell: null
+    L00 E0 (eV/cell): 1.0e-09
+    L00 dE (meV/f.u.): 0.0006
+    L00 converged (CSV): null
+    L01 E0 (eV/cell): 1.0e-09
+    L01 dE (meV/f.u.): 0.0006
+    L01 converged (CSV): null
+    L02 E0 (eV/cell): 1.0e-09
+    L02 dE (meV/f.u.): 0.0006
+    L02 converged (CSV): null
+    L03 E0 (eV/cell): 1.0e-09
+    L03 dE (meV/f.u.): 0.0006
+    L03 converged (CSV): null
+    L04 E0 (eV/cell): 1.0e-09
+    L04 dE (meV/f.u.): 0.0006
+    L04 converged (CSV): null
+    L05 E0 (eV/cell): 1.0e-09
+    L05 dE (meV/f.u.): 0.0006
+    L05 converged (CSV): null
+    L06 E0 (eV/cell): 1.0e-09
+    L06 dE (meV/f.u.): 0.0006
+    L06 converged (CSV): null
+    L07 E0 (eV/cell): 1.0e-09
+    L07 dE (meV/f.u.): 0.0006
+    L07 converged (CSV): null
+    L08 E0 (eV/cell): 1.0e-09
+    L08 dE (meV/f.u.): 0.0006
+    L08 converged (CSV): null
+    L09 E0 (eV/cell): 1.0e-09
+    L09 dE (meV/f.u.): 0.0006
+    L09 converged (CSV): null
+    barrier (meV/f.u.): 1.0e-09
+    barrier point: null
+    dE end (meV/f.u.): 1.0e-09
+    barrier vs energies_summary.json (meV/f.u.): 0.0006
+    barrier lambda vs energies_summary.json: 0.0001
+    dE end vs energies_summary.json (meV/f.u.): 0.0006
+    spline barrier (meV/f.u.): 0.01
+    spline barrier lambda: 0.0002
+    cross-setting T1_137-29__lin10:L00 - T2_137-60__lin10:L00 (meV/f.u.): 1.0e-06
+    cross-setting T1_137-29__lin10:L00 - T3_137-14__lin10:L00 (meV/f.u.): 1.0e-06
+    cross-setting T1_137-29__lin10:L09 - T4_60-29__lin10:L09 (meV/f.u.): 1.0e-06
+    closure gap T1_137-29 - (T2_137-60 + T4_60-29) (meV/f.u.): 1.0e-06
+    closure gap = cross-setting differences (T2_137-60 + T4_60-29): 1.0e-09
+  hfo2_T2:
+    parent primitive cells in the frame: 1.0e-09
+    A_p GM1+: 0.0002
+    A_p M1: 0.0002
+    active set: null
+    path irreps = every displacive irrep: null
+    L00 space group (stored POSCAR): null
+    L00 d_min (Å): 0.0002
+    L01 space group (stored POSCAR): null
+    L01 d_min (Å): 0.0002
+    L02 space group (stored POSCAR): null
+    L02 d_min (Å): 0.0002
+    L03 space group (stored POSCAR): null
+    L03 d_min (Å): 0.0002
+    L04 space group (stored POSCAR): null
+    L04 d_min (Å): 0.0002
+    L05 space group (stored POSCAR): null
+    L05 d_min (Å): 0.0002
+    L06 space group (stored POSCAR): null
+    L06 d_min (Å): 0.0002
+    L07 space group (stored POSCAR): null
+    L07 d_min (Å): 0.0002
+    L08 space group (stored POSCAR): null
+    L08 d_min (Å): 0.0002
+    L09 space group (stored POSCAR): null
+    L09 d_min (Å): 0.0002
+    f.u. per cell: null
+    L00 E0 (eV/cell): 1.0e-09
+    L00 dE (meV/f.u.): 0.0006
+    L00 converged (CSV): null
+    L01 E0 (eV/cell): 1.0e-09
+    L01 dE (meV/f.u.): 0.0006
+    L01 converged (CSV): null
+    L02 E0 (eV/cell): 1.0e-09
+    L02 dE (meV/f.u.): 0.0006
+    L02 converged (CSV): null
+    L03 E0 (eV/cell): 1.0e-09
+    L03 dE (meV/f.u.): 0.0006
+    L03 converged (CSV): null
+    L04 E0 (eV/cell): 1.0e-09
+    L04 dE (meV/f.u.): 0.0006
+    L04 converged (CSV): null
+    L05 E0 (eV/cell): 1.0e-09
+    L05 dE (meV/f.u.): 0.0006
+    L05 converged (CSV): null
+    L06 E0 (eV/cell): 1.0e-09
+    L06 dE (meV/f.u.): 0.0006
+    L06 converged (CSV): null
+    L07 E0 (eV/cell): 1.0e-09
+    L07 dE (meV/f.u.): 0.0006
+    L07 converged (CSV): null
+    L08 E0 (eV/cell): 1.0e-09
+    L08 dE (meV/f.u.): 0.0006
+    L08 converged (CSV): null
+    L09 E0 (eV/cell): 1.0e-09
+    L09 dE (meV/f.u.): 0.0006
+    L09 converged (CSV): null
+    barrier (meV/f.u.): 1.0e-09
+    barrier point: null
+    dE end (meV/f.u.): 1.0e-09
+    barrier vs energies_summary.json (meV/f.u.): 0.0006
+    barrier lambda vs energies_summary.json: 0.0001
+    dE end vs energies_summary.json (meV/f.u.): 0.0006
+    spline barrier (meV/f.u.): 0.01
+    spline barrier lambda: 0.0002
+    cross-setting T2_137-60__lin10:L00 - T1_137-29__lin10:L00 (meV/f.u.): 1.0e-06
+    cross-setting T2_137-60__lin10:L00 - T3_137-14__lin10:L00 (meV/f.u.): 1.0e-06
+    cross-setting T2_137-60__lin10:L09 - T4_60-29__lin10:L00 (meV/f.u.): 1.0e-06
+    cross-setting T2_137-60__lin10:L09 - T5_60-14__lin10:L00 (meV/f.u.): 1.0e-06
+  hfo2_T3:
+    parent primitive cells in the frame: 1.0e-09
+    A_p GM1+: 0.0002
+    A_p GM5+: 0.0002
+    A_p M1: 0.0002
+    A_p M3: 0.0002
+    active set: null
+    path irreps = every displacive irrep: null
+    L00 space group (stored POSCAR): null
+    L00 d_min (Å): 0.0002
+    L01 space group (stored POSCAR): null
+    L01 d_min (Å): 0.0002
+    L02 space group (stored POSCAR): null
+    L02 d_min (Å): 0.0002
+    L03 space group (stored POSCAR): null
+    L03 d_min (Å): 0.0002
+    L04 space group (stored POSCAR): null
+    L04 d_min (Å): 0.0002
+    L05 space group (stored POSCAR): null
+    L05 d_min (Å): 0.0002
+    L06 space group (stored POSCAR): null
+    L06 d_min (Å): 0.0002
+    L07 space group (stored POSCAR): null
+    L07 d_min (Å): 0.0002
+    L08 space group (stored POSCAR): null
+    L08 d_min (Å): 0.0002
+    L09 space group (stored POSCAR): null
+    L09 d_min (Å): 0.0002
+    f.u. per cell: null
+    L00 E0 (eV/cell): 1.0e-09
+    L00 dE (meV/f.u.): 0.0006
+    L00 converged (CSV): null
+    L01 E0 (eV/cell): 1.0e-09
+    L01 dE (meV/f.u.): 0.0006
+    L01 converged (CSV): null
+    L02 E0 (eV/cell): 1.0e-09
+    L02 dE (meV/f.u.): 0.0006
+    L02 converged (CSV): null
+    L03 E0 (eV/cell): 1.0e-09
+    L03 dE (meV/f.u.): 0.0006
+    L03 converged (CSV): null
+    L04 E0 (eV/cell): 1.0e-09
+    L04 dE (meV/f.u.): 0.0006
+    L04 converged (CSV): null
+    L05 E0 (eV/cell): 1.0e-09
+    L05 dE (meV/f.u.): 0.0006
+    L05 converged (CSV): null
+    L06 E0 (eV/cell): 1.0e-09
+    L06 dE (meV/f.u.): 0.0006
+    L06 converged (CSV): null
+    L07 E0 (eV/cell): 1.0e-09
+    L07 dE (meV/f.u.): 0.0006
+    L07 converged (CSV): null
+    L08 E0 (eV/cell): 1.0e-09
+    L08 dE (meV/f.u.): 0.0006
+    L08 converged (CSV): null
+    L09 E0 (eV/cell): 1.0e-09
+    L09 dE (meV/f.u.): 0.0006
+    L09 converged (CSV): null
+    barrier (meV/f.u.): 1.0e-09
+    barrier point: null
+    dE end (meV/f.u.): 1.0e-09
+    barrier vs energies_summary.json (meV/f.u.): 0.0006
+    barrier lambda vs energies_summary.json: 0.0001
+    dE end vs energies_summary.json (meV/f.u.): 0.0006
+    spline barrier (meV/f.u.): 0.01
+    spline barrier lambda: 0.0002
+    cross-setting T3_137-14__lin10:L00 - T1_137-29__lin10:L00 (meV/f.u.): 1.0e-06
+    cross-setting T3_137-14__lin10:L00 - T2_137-60__lin10:L00 (meV/f.u.): 1.0e-06
+    cross-setting T3_137-14__lin10:L09 - T5_60-14__lin10:L09 (meV/f.u.): 1.0e-06
+    closure gap T3_137-14 - (T2_137-60 + T5_60-14) (meV/f.u.): 1.0e-06
+    closure gap = cross-setting differences (T2_137-60 + T5_60-14): 1.0e-09
+  hfo2_T4:
+    parent primitive cells in the frame: 1.0e-09
+    A_p GM1+: 0.0002
+    A_p GM2-: 0.0002
+    active set: null
+    path irreps = every displacive irrep: null
+    L00 space group (stored POSCAR): null
+    L00 d_min (Å): 0.0002
+    L01 space group (stored POSCAR): null
+    L01 d_min (Å): 0.0002
+    L02 space group (stored POSCAR): null
+    L02 d_min (Å): 0.0002
+    L03 space group (stored POSCAR): null
+    L03 d_min (Å): 0.0002
+    L04 space group (stored POSCAR): null
+    L04 d_min (Å): 0.0002
+    L05 space group (stored POSCAR): null
+    L05 d_min (Å): 0.0002
+    L06 space group (stored POSCAR): null
+    L06 d_min (Å): 0.0002
+    L07 space group (stored POSCAR): null
+    L07 d_min (Å): 0.0002
+    L08 space group (stored POSCAR): null
+    L08 d_min (Å): 0.0002
+    L09 space group (stored POSCAR): null
+    L09 d_min (Å): 0.0002
+    f.u. per cell: null
+    L00 E0 (eV/cell): 1.0e-09
+    L00 dE (meV/f.u.): 0.0006
+    L00 converged (CSV): null
+    L01 E0 (eV/cell): 1.0e-09
+    L01 dE (meV/f.u.): 0.0006
+    L01 converged (CSV): null
+    L02 E0 (eV/cell): 1.0e-09
+    L02 dE (meV/f.u.): 0.0006
+    L02 converged (CSV): null
+    L03 E0 (eV/cell): 1.0e-09
+    L03 dE (meV/f.u.): 0.0006
+    L03 converged (CSV): null
+    L04 E0 (eV/cell): 1.0e-09
+    L04 dE (meV/f.u.): 0.0006
+    L04 converged (CSV): null
+    L05 E0 (eV/cell): 1.0e-09
+    L05 dE (meV/f.u.): 0.0006
+    L05 converged (CSV): null
+    L06 E0 (eV/cell): 1.0e-09
+    L06 dE (meV/f.u.): 0.0006
+    L06 converged (CSV): null
+    L07 E0 (eV/cell): 1.0e-09
+    L07 dE (meV/f.u.): 0.0006
+    L07 converged (CSV): null
+    L08 E0 (eV/cell): 1.0e-09
+    L08 dE (meV/f.u.): 0.0006
+    L08 converged (CSV): null
+    L09 E0 (eV/cell): 1.0e-09
+    L09 dE (meV/f.u.): 0.0006
+    L09 converged (CSV): null
+    barrier (meV/f.u.): 1.0e-09
+    barrier point: null
+    dE end (meV/f.u.): 1.0e-09
+    barrier vs energies_summary.json (meV/f.u.): 0.0006
+    barrier lambda vs energies_summary.json: 0.0001
+    dE end vs energies_summary.json (meV/f.u.): 0.0006
+    spline barrier (meV/f.u.): 0.01
+    spline barrier lambda: 0.0002
+    cross-setting T4_60-29__lin10:L00 - T2_137-60__lin10:L09 (meV/f.u.): 1.0e-06
+    cross-setting T4_60-29__lin10:L00 - T5_60-14__lin10:L00 (meV/f.u.): 1.0e-06
+    cross-setting T4_60-29__lin10:L09 - T1_137-29__lin10:L09 (meV/f.u.): 1.0e-06
+  hfo2_T5:
+    parent primitive cells in the frame: 1.0e-09
+    A_p GM1+: 0.0002
+    A_p GM3+: 0.0002
+    active set: null
+    path irreps = every displacive irrep: null
+    L00 space group (stored POSCAR): null
+    L00 d_min (Å): 0.0002
+    L01 space group (stored POSCAR): null
+    L01 d_min (Å): 0.0002
+    L02 space group (stored POSCAR): null
+    L02 d_min (Å): 0.0002
+    L03 space group (stored POSCAR): null
+    L03 d_min (Å): 0.0002
+    L04 space group (stored POSCAR): null
+    L04 d_min (Å): 0.0002
+    L05 space group (stored POSCAR): null
+    L05 d_min (Å): 0.0002
+    L06 space group (stored POSCAR): null
+    L06 d_min (Å): 0.0002
+    L07 space group (stored POSCAR): null
+    L07 d_min (Å): 0.0002
+    L08 space group (stored POSCAR): null
+    L08 d_min (Å): 0.0002
+    L09 space group (stored POSCAR): null
+    L09 d_min (Å): 0.0002
+    f.u. per cell: null
+    L00 E0 (eV/cell): 1.0e-09
+    L00 dE (meV/f.u.): 0.0006
+    L00 converged (CSV): null
+    L01 E0 (eV/cell): 1.0e-09
+    L01 dE (meV/f.u.): 0.0006
+    L01 converged (CSV): null
+    L02 E0 (eV/cell): 1.0e-09
+    L02 dE (meV/f.u.): 0.0006
+    L02 converged (CSV): null
+    L03 E0 (eV/cell): 1.0e-09
+    L03 dE (meV/f.u.): 0.0006
+    L03 converged (CSV): null
+    L04 E0 (eV/cell): 1.0e-09
+    L04 dE (meV/f.u.): 0.0006
+    L04 converged (CSV): null
+    L05 E0 (eV/cell): 1.0e-09
+    L05 dE (meV/f.u.): 0.0006
+    L05 converged (CSV): null
+    L06 E0 (eV/cell): 1.0e-09
+    L06 dE (meV/f.u.): 0.0006
+    L06 converged (CSV): null
+    L07 E0 (eV/cell): 1.0e-09
+    L07 dE (meV/f.u.): 0.0006
+    L07 converged (CSV): null
+    L08 E0 (eV/cell): 1.0e-09
+    L08 dE (meV/f.u.): 0.0006
+    L08 converged (CSV): null
+    L09 E0 (eV/cell): 1.0e-09
+    L09 dE (meV/f.u.): 0.0006
+    L09 converged (CSV): null
+    barrier (meV/f.u.): 1.0e-09
+    barrier point: null
+    dE end (meV/f.u.): 1.0e-09
+    barrier vs energies_summary.json (meV/f.u.): 0.0006
+    barrier lambda vs energies_summary.json: 0.0001
+    dE end vs energies_summary.json (meV/f.u.): 0.0006
+    spline barrier (meV/f.u.): 0.01
+    spline barrier lambda: 0.0002
+    cross-setting T5_60-14__lin10:L00 - T2_137-60__lin10:L09 (meV/f.u.): 1.0e-06
+    cross-setting T5_60-14__lin10:L00 - T4_60-29__lin10:L00 (meV/f.u.): 1.0e-06
+    cross-setting T5_60-14__lin10:L09 - T3_137-14__lin10:L09 (meV/f.u.): 1.0e-06

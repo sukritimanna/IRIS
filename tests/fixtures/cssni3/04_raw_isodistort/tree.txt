@@ -1,0 +1,188 @@
+
+
+
+
+ISODISTORT: subgroup tree
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ISODISTORT
+
+
+SUITE
+HELP
+
+
+
+
+
+
+ISODISTORT: subgroup tree
+Subgroup           1 
+221 Pm-3m, basis={(0,-1,0),(-1,0,0),(0,0,-1)}, origin=(0,0,0), s=1, i=1
+Minimal supergroups: 
+Maximal subgroups:  2
+a=6.28623,b=6.28623,c=6.28623,alpha=90.00000,beta=90.00000,gamma=90.00000
+Order parameters:
+GM1+ (a)
+
+Active k vectors:
+(0,0,0)
+
+This subgroup does not produce any selected distortions
+Subgroup           2 
+123 P4/mmm, basis={(-1,0,0),(0,0,-1),(0,-1,0)}, origin=(0,0,0), s=1, i=3
+Minimal supergroups:  1
+Maximal subgroups:  3,  4,  5
+a=6.28623,b=6.28623,c=6.28623,alpha=90.00000,beta=90.00000,gamma=90.00000
+Order parameters:
+GM1+ (a)
+GM3+ (a,-1.732a)
+
+Active k vectors:
+(0,0,0)
+
+
+Subgroup           3 
+ 65 Cmmm, basis={(1,0,-1),(1,0,1),(0,-1,0)}, origin=(0,0,0), s=1, i=6
+Minimal supergroups:  2
+Maximal subgroups:  6,  7,  8
+a=8.89007,b=8.89007,c=6.28623,alpha=90.00000,beta=90.00000,gamma=90.00000
+Order parameters:
+GM1+ (a)
+GM3+ (a,-1.732a)
+GM5+ (0,0,a)
+
+Active k vectors:
+(0,0,0)
+
+
+
+Subgroup           4 
+127 P4/mbm, basis={(-1,0,1),(-1,0,-1),(0,-1,0)}, origin=(-1/2,0,1/2), s=2, i=6
+Minimal supergroups:  2
+Maximal subgroups:  6
+a=8.89007,b=8.89007,c=6.28623,alpha=90.00000,beta=90.00000,gamma=90.00000
+Order parameters:
+GM1+ (a)
+GM3+ (a,-1.732a)
+M2+ (0;a;0)
+
+Active k vectors:
+(0,0,0), 
+
+(1/2,0,1/2)
+
+Subgroup           5 
+127 P4/mbm, basis={(-1,0,1),(-1,0,-1),(0,-1,0)}, origin=(0,0,0), s=2, i=6
+Minimal supergroups:  2
+Maximal subgroups:  6
+a=8.89007,b=8.89007,c=6.28623,alpha=90.00000,beta=90.00000,gamma=90.00000
+Order parameters:
+GM1+ (a)
+GM3+ (a,-1.732a)
+M3+ (0;a;0)
+
+Active k vectors:
+(0,0,0), 
+
+(1/2,0,1/2)
+
+Subgroup           6 
+ 55 Pbam, basis={(1,0,-1),(-1,0,-1),(0,1,0)}, origin=(0,0,0), s=2, i=12
+Minimal supergroups:  3,  4,  5
+Maximal subgroups:  9
+a=8.89007,b=8.89007,c=6.28623,alpha=90.00000,beta=90.00000,gamma=90.00000
+Order parameters:
+GM1+ (a)
+GM3+ (a,-1.732a)
+GM5+ (0,0,a)
+M2+ (0;a;0)
+M3+ (0;a;0)
+
+Active k vectors:
+(0,0,0), 
+
+
+(1/2,0,1/2)
+
+
+Subgroup           7 
+ 63 Cmcm, basis={(-1,0,-1),(-1,0,1),(0,2,0)}, origin=(0,0,0), s=2, i=12
+Minimal supergroups:  3
+Maximal subgroups:  9
+a=8.89007,b=8.89007,c=12.57246,alpha=90.00000,beta=90.00000,gamma=90.00000
+Order parameters:
+GM1+ (a)
+GM3+ (a,-1.732a)
+GM5+ (0,0,a)
+X5+ (a,a;0,0;0,0)
+
+Active k vectors:
+(0,0,0), 
+
+
+(0,1/2,0)
+
+Subgroup           8 
+ 74 Imma, basis={(0,2,0),(1,0,-1),(-1,0,-1)}, origin=(0,-1/2,-1/2), s=2, i=12
+Minimal supergroups:  3
+Maximal subgroups:  9
+a=12.57246,b=8.89007,c=8.89007,alpha=90.00000,beta=90.00000,gamma=90.00000
+Order parameters:
+GM1+ (a)
+GM3+ (a,-1.732a)
+GM5+ (0,0,a)
+R4+ (a,-a,0)
+R5+ (a,a,0)
+
+Active k vectors:
+(0,0,0), 
+
+
+(1/2,1/2,1/2)
+
+
+Subgroup           9 
+ 62 Pnma, basis={(1,0,-1),(0,2,0),(1,0,1)}, origin=(0,0,0), s=4, i=24
+Minimal supergroups:  6,  7,  8
+Maximal subgroups: 
+a=8.89007,b=12.57246,c=8.89007,alpha=90.00000,beta=90.00000,gamma=90.00000
+Order parameters:
+GM1+ (a)
+GM3+ (a,-1.732a)
+GM5+ (0,0,a)
+R4+ (a,-a,0)
+R5+ (a,a,0)
+X5+ (a,a;0,0;0,0)
+M2+ (0;a;0)
+M3+ (0;a;0)
+
+Active k vectors:
+(0,0,0), 
+
+
+(1/2,1/2,1/2), 
+
+(0,1/2,0), 
+(1/2,0,1/2)
+
+
+
+
+
+
+

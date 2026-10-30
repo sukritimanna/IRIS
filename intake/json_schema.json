@@ -1,0 +1,217 @@
+{
+ "type": "object",
+ "properties": {
+  "system": {
+   "anyOf": [
+    {
+     "type": "string",
+     "enum": [
+      "cssni3",
+      "ca3ti2o7",
+      "inmno3",
+      "ermno3",
+      "bifeo3",
+      "hfo2",
+      "new"
+     ]
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "formula": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "parent_sg": {
+   "anyOf": [
+    {
+     "type": "integer"
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "child_sg": {
+   "anyOf": [
+    {
+     "type": "integer"
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "transition": {
+   "anyOf": [
+    {
+     "type": "string",
+     "enum": [
+      "cssni3_221_62",
+      "ca3ti2o7_139_36",
+      "inmno3_194_185",
+      "ermno3_194_185",
+      "bifeo3_221_161",
+      "hfo2_137_29",
+      "hfo2_137_60",
+      "hfo2_137_14",
+      "hfo2_60_29",
+      "hfo2_60_14"
+     ]
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "analysis": {
+   "anyOf": [
+    {
+     "type": "string",
+     "enum": [
+      "plane",
+      "joint_fit",
+      "grid6d",
+      "path"
+     ]
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "strain_policy": {
+   "anyOf": [
+    {
+     "type": "string",
+     "enum": [
+      "P1",
+      "P2",
+      "P3",
+      "P4",
+      "P5"
+     ]
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "system_profile": {
+   "anyOf": [
+    {
+     "type": "string",
+     "enum": [
+      "bifeo3",
+      "ca3ti2o7",
+      "cssni3",
+      "ermno3_aafm",
+      "hfo2",
+      "inmno3",
+      "inmno3_aafm",
+      "inmno3_aafm_v2",
+      "inmno3_aafm_v2_lt1",
+      "inmno3_fm",
+      "inmno3_frust_v2",
+      "yino3"
+     ]
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "budget": {
+   "anyOf": [
+    {
+     "type": "integer"
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "outputs": {
+   "type": "array",
+   "items": {
+    "type": "string",
+    "enum": [
+     "energy_surface",
+     "landau_coefficients",
+     "stationary_points",
+     "barrier",
+     "d4_secondary_check",
+     "hat_and_brim",
+     "path_network_checks"
+    ]
+   }
+  },
+  "clarify_field": {
+   "anyOf": [
+    {
+     "type": "string",
+     "enum": [
+      "system",
+      "transition",
+      "analysis",
+      "strain_policy",
+      "system_profile",
+      "budget",
+      "outputs"
+     ]
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "question": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "out_of_scope": {
+   "type": "boolean"
+  },
+  "out_of_scope_reason": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "null"
+    }
+   ]
+  }
+ },
+ "required": [
+  "system",
+  "formula",
+  "parent_sg",
+  "child_sg",
+  "transition",
+  "analysis",
+  "strain_policy",
+  "system_profile",
+  "budget",
+  "outputs",
+  "clarify_field",
+  "question",
+  "out_of_scope",
+  "out_of_scope_reason"
+ ],
+ "additionalProperties": false
+}

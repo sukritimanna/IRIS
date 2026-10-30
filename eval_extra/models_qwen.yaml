@@ -1,0 +1,13 @@
+# Extra panel model, outside the frozen eval/ (added 2026-10-19 for the Qwen run on Perlmutter; not in the arXiv results).
+# Qwen served by vLLM (OpenAI-compatible Chat Completions) on a Perlmutter GPU node, reached through an SSH tunnel:
+#   http://localhost:8000/v1  ->  <compute node>:8000
+# No key: the server runs without one (api_key_env: none). Structured output = response_format json_schema (vLLM
+# guided decoding). Reasoning ("thinking") is on by default for Qwen3.x; the vLLM reasoning parser strips it from the
+# content, so max_tokens must leave room for it.
+version: 1
+pinned: "2026-10-19: Qwen/Qwen3.8-27B (model card on Hugging Face); confirm the exact id and revision on the run day"
+reference: qwen-27b
+defaults: {mode: constrained, temperature: null, seed: 0, timeout_s: 600}
+models:
+  qwen-27b: {provider: openai, base_url: "http://localhost:8000/v1", api: chat, api_key_env: none,
+             model: Qwen/Qwen3.8-27B, tier: mid, max_tokens: 16384, price_usd_per_mtok: null}

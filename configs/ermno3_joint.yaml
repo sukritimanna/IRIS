@@ -1,0 +1,114 @@
+# ermno3 STAGE 2 (agreed 16 Oct 2026): the plane of configs/ermno3.yaml PLUS the polar (Q, Phi, P) hat wedge,
+# and the joint Meier fit with the six-fold term c' (demo/ermno3/landau/joint_hat_fit.py, notebook coefficients).
+# The second K3 component comes from a parent-lattice translation (120 deg phase shift); the wedge Phi = 0-30 deg is
+# declared (D5 by symmetry E(Phi) = E(-Phi) = E(Phi + 60 deg), P -> -P; the general orbit reduction is not built).
+# ErMnO3 194 -> 185 (hexagonal manganite, LDA+U A-AFM) — every data path and policy value of this run.
+# Paths under repo_root are READ ONLY. IRIS writes only under agent_root (enforced in code).
+#
+# Plane replay (agreed 16 Oct 2026), as InMnO3 stage 1: the (K3, GM2-) plane at Phi = 0 (stored grid
+# "plane", 15 x 15 = 225, translation-free labels) plus the 11-point P axis (stored grid "paxis", here
+# anchors). The published fit (demo/ermno3/landau/compare_meier_final.md) fixes a_P from the P axis
+# (P^2 + P^4 + P^6 up to 0.5 A_p) and fits the other five coefficients on the plane (|Q| <= 0.66, |P| <= 0.08).
+# The hat grid and the joint fit are stage 2.
+system: ermno3
+thread_id: ermno3_194_185_joint
+request: "joint plane + hat: map the ErMnO3 (K3, GM2-) plane at Phi = 0 plus the GM2- axis, fixed child cell, DFT LDA+U A-AFM; parent.cif, child.cif"
+
+run:
+  mode: replay
+  engine: dft
+  budget_runs: 420               # plane + P axis (ErMnO3) + 175 hat frames
+  allow_live_submission: false   # must stay false: no DFT/VASP/MACE/Slurm in this build
+  jobs:
+    wait: true
+    part_size: 40
+  replay:
+    extra_references:            # the stored hat wedge: its own manifest labels and energies
+      - {tag: hat, grid: demo/runs/ermno3_lda_194_to_185__20260923_141731/step4_energy_hat, energies: demo/ermno3/energies/hat_energies.csv,
+         labels: {K3: Q_A, GM2-: P_A, phi: theta_deg}}
+    poscar_dirs:                 # planepax manifest = plane ids 0-224 + paxis ids 0-10 (as 225-235)
+      - {dir: demo/runs/ermno3_lda_194_to_185__20260923_141731/step4_energy_plane/03_grid, id_offset: 0}
+      - {dir: demo/runs/ermno3_lda_194_to_185__20260923_141731/step4_energy_paxis/03_grid, id_offset: 225}
+
+paths:
+  repo_root: ~/Workspace/myProjects/imhafo2
+  agent_root: ~/Workspace/myProjects/imhafo2/IRIS_AGENT
+  test_runs: test_runs
+  parent_cif: demo/ermno3/structures/parent_lda_sg194.cif
+  child_cif: demo/ermno3/structures/child_lda_sg185.cif
+  system_json: demo/staged_walkthrough/systems/ermno3_aafm.json
+  walkthrough: demo/staged_walkthrough
+  reference_run: demo/runs/ermno3_lda_194_to_185__20260923_141731
+  isodistort_stored: demo/runs/ermno3_lda_194_to_185__20260923_141731/step3_isodistort/04_raw_isodistort
+  reference_grid: demo/runs/ermno3_lda_194_to_185__20260923_141731/step4_energy_planepax
+  energies_csv: demo/ermno3/energies/planepax_energies.csv
+  reference_fit: demo/ermno3/landau/landau_QP_meierform_lda_aafm.json        # regression only (free plane fit)
+
+expected:
+  parent_sg: 194
+  child_sg: 185
+  parent_sha256: 5a44dd12bd9b22a77b2606b048133fc4ab09a913b10a086f4a04d7e6de9f3572   # = RUN_MANIFEST.json
+  child_sha256: c2824fb9d6ba8574fc5112a52c1569cbe3d2db3e9d2b6cd333a6fe20d94a46c6
+
+policy:
+  a_thr: 0.05
+  amplitude_basis: As_tf
+  r5_margin: 0.1
+  strain_policy: P2              # fixed CHILD cell (30-atom P6_3cm lattice), strain irreps zero (R1)
+  d_cut: 1.0
+  grid:                          # D2 per axis: m = 15 each, N = 225 (the stored plane grid)
+    q_max: 0.75498722
+    dq: 0.10785531714285714
+    axes:
+      K3:   {q_max: 0.75498722, dq: 0.10785531714285714}               # Å A_p (1.2506 x child 0.6037)
+      GM2-: {q_max: 0.15800226511621604, dq: 0.022571752159459436}     # Å translation-free A_p
+    polar:                       # the hat wedge (stored step4_energy_hat): K3 amplitude Q, direction phi, GM2- amplitude P
+      irrep: K3
+      secondary: GM2-
+      tag: hat
+      Q: [0.4, 0.5, 0.6, 0.7, 0.8]
+      phi_deg: [0.0, 5.0, 10.0, 15.0, 20.0, 25.0, 30.0]
+      P: [-0.2, -0.1, 0.0, 0.1, 0.2]
+      translation: [-0.3333333333333333, 0.3333333333333333, 0.0]   # parent lattice vector, child fractional (120 deg)
+      expected_sg: [185, 165, 158]   # phi = 0 mod 60: P6_3cm; phi = 30 mod 60, P = 0: P-3c1; otherwise P3c1
+      reduction: "wedge 0-30 deg declared (E(phi) = E(-phi) = E(phi + 60 deg), P -> -P)"
+  anchors:                       # the stored P axis (paxis ids 0-10): Q_K3 = 0, P = -0.5 ... 0.5 Å A_p
+    - {name: pax_m5, Q: {GM2-: -0.5}}
+    - {name: pax_m4, Q: {GM2-: -0.4}}
+    - {name: pax_m3, Q: {GM2-: -0.3}}
+    - {name: pax_m2, Q: {GM2-: -0.2}}
+    - {name: pax_m1, Q: {GM2-: -0.1}}
+    - {name: pax_p0, Q: {GM2-: 0.0}}
+    - {name: pax_p1, Q: {GM2-: 0.1}}
+    - {name: pax_p2, Q: {GM2-: 0.2}}
+    - {name: pax_p3, Q: {GM2-: 0.3}}
+    - {name: pax_p4, Q: {GM2-: 0.4}}
+    - {name: pax_p5, Q: {GM2-: 0.5}}
+  analysis: meier_joint
+  fit:
+    joint: {qmax: 0.66, pmax_plane: 0.08, pmax_hat: 0.10, aP: axis, brim_q_As: [0.3, 1.6], brim_n: 4000}
+    qmax: 0.66                   # Å A_p, plane window as published
+    pmax: 0.08
+    aP_axis:                     # a_P from the P axis, then fixed (published: |P| <= 0.5, P^2+P^4+P^6)
+      tag_prefix: anchor_pax
+      pmax: 0.5
+      powers: [2, 4, 6]
+      sensitivity:               # reported only (Q20): every window x powers choice, same two-step fit
+        pmax: [0.2, 0.3, 0.4, 0.5]
+        powers: [[2, 4], [2, 4, 6]]
+    per_fu: 6
+    cv_folds: 10
+    max_rms_meV: 8.0             # PROPOSED, meV per cell (published fit: 6.0)
+    max_cv_rms_meV: 10.0         # PROPOSED
+    max_abs_res_meV: 25.0        # PROPOSED
+    min_points_per_coef: 10
+    edge_margin_steps: 0.5       # PROVISIONAL (as InMnO3, Q17)
+    rmax: 0.66                   # unused by meier_QP (schema)
+
+retry:
+  max_per_node: 3
+
+llm:
+  enabled: false
+  model: null
+  api_key_env: ANTHROPIC_API_KEY

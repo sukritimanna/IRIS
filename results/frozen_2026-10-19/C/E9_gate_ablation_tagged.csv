@@ -1,0 +1,108 @@
+fault,name,class,system,split,ablated_gate,gated_detected_by,gated_runs_before_detection,detected_by,runs_before_detection,extra_runs_wasted,runs_submitted_total,final,verdict,numbers_identical,human_interventions,thread,gated_runs_on_unusable_result,ablated_runs_on_unusable_result,extra_runs_on_unusable_result,is_detecting_gate,fault_kind,detection_tag,g6_caught,g6_oracle_rows,replay_oracle,production_valid_detection
+F001,walltime,job,cssni3,seed,G0,G4 WALLTIME,962,G4 WALLTIME,962,0,1002,completed,harmless,True,0,E9_g0_F001,0,0,0,False,error,none,False,,False,True
+F001,walltime,job,cssni3,seed,G1,G4 WALLTIME,962,G4 WALLTIME,962,0,1002,completed,harmless,True,0,E9_g1_F001,0,0,0,False,error,none,False,,False,True
+F001,walltime,job,cssni3,seed,G2,G4 WALLTIME,962,G4 WALLTIME,962,0,1002,completed,harmless,True,0,E9_g2_F001,0,0,0,False,error,none,False,,False,True
+F001,walltime,job,cssni3,seed,G3,G4 WALLTIME,962,G4 WALLTIME,962,0,1002,completed,harmless,True,0,E9_g3_F001,0,0,0,False,error,none,False,,False,True
+F001,walltime,job,cssni3,seed,G4,G4 WALLTIME,962,G6 MISMATCH,962,0,962,stopped,stopped,,1,E9_g4_F001,0,962,962,True,error,replay_oracle,True,linked energies equal to the CSV,True,False
+F001,walltime,job,cssni3,seed,G5,G4 WALLTIME,962,G4 WALLTIME,962,0,1002,completed,harmless,True,0,E9_g5_F001,0,0,0,False,error,none,False,,False,True
+F001,walltime,job,cssni3,seed,G6,G4 WALLTIME,962,G4 WALLTIME,962,0,1002,completed,harmless,True,0,E9_g6_F001,0,0,0,False,error,none,False,,False,True
+F002,nelm,job,cssni3,seed,G0,G4 NELM,962,G4 NELM,962,0,1002,completed,harmless,True,0,E9_g0_F002,0,0,0,False,error,none,False,,False,True
+F002,nelm,job,cssni3,seed,G1,G4 NELM,962,G4 NELM,962,0,1002,completed,harmless,True,0,E9_g1_F002,0,0,0,False,error,none,False,,False,True
+F002,nelm,job,cssni3,seed,G2,G4 NELM,962,G4 NELM,962,0,1002,completed,harmless,True,0,E9_g2_F002,0,0,0,False,error,none,False,,False,True
+F002,nelm,job,cssni3,seed,G3,G4 NELM,962,G4 NELM,962,0,1002,completed,harmless,True,0,E9_g3_F002,0,0,0,False,error,none,False,,False,True
+F002,nelm,job,cssni3,seed,G4,G4 NELM,962,G6 MISMATCH,962,0,962,stopped,stopped,,1,E9_g4_F002,0,962,962,True,error,replay_oracle,True,linked energies equal to the CSV,True,False
+F002,nelm,job,cssni3,seed,G5,G4 NELM,962,G4 NELM,962,0,1002,completed,harmless,True,0,E9_g5_F002,0,0,0,False,error,none,False,,False,True
+F002,nelm,job,cssni3,seed,G6,G4 NELM,962,G4 NELM,962,0,1002,completed,harmless,True,0,E9_g6_F002,0,0,0,False,error,none,False,,False,True
+F003,translation,vectors,cssni3,seed,G0,G2 TRANSLATION,0,G2 TRANSLATION,0,0,962,completed,harmless,True,0,E9_g0_F003,0,0,0,False,error,none,False,,False,True
+F003,translation,vectors,cssni3,seed,G1,G2 TRANSLATION,0,G2 TRANSLATION,0,0,962,completed,harmless,True,0,E9_g1_F003,0,0,0,False,error,none,False,,False,True
+F003,translation,vectors,cssni3,seed,G2,G2 TRANSLATION,0,G3 UNMATCHED,31,31,31,stopped,stopped,,1,E9_g2_F003,0,31,31,True,error,replay_oracle,False,,True,False
+F003,translation,vectors,cssni3,seed,G3,G2 TRANSLATION,0,G2 TRANSLATION,0,0,962,completed,harmless,True,0,E9_g3_F003,0,0,0,False,error,none,False,,False,True
+F003,translation,vectors,cssni3,seed,G4,G2 TRANSLATION,0,G2 TRANSLATION,0,0,962,completed,harmless,True,0,E9_g4_F003,0,0,0,False,error,none,False,,False,True
+F003,translation,vectors,cssni3,seed,G5,G2 TRANSLATION,0,G2 TRANSLATION,0,0,962,completed,harmless,True,0,E9_g5_F003,0,0,0,False,error,none,False,,False,True
+F003,translation,vectors,cssni3,seed,G6,G2 TRANSLATION,0,G2 TRANSLATION,0,0,962,completed,harmless,True,0,E9_g6_F003,0,0,0,False,error,none,False,,False,True
+F004,no_basis,crystallography,cssni3,seed,G0,G1 NO_BASIS,0,G1 NO_BASIS,0,0,962,completed,harmless,True,0,E9_g0_F004,0,0,0,False,limit,none,False,,False,True
+F004,no_basis,crystallography,cssni3,seed,G1,G1 NO_BASIS,0,none,962,962,962,completed,harmless,True,0,E9_g1_F004,0,0,0,True,limit,,False,,False,
+F004,no_basis,crystallography,cssni3,seed,G2,G1 NO_BASIS,0,G1 NO_BASIS,0,0,962,completed,harmless,True,0,E9_g2_F004,0,0,0,False,limit,none,False,,False,True
+F004,no_basis,crystallography,cssni3,seed,G3,G1 NO_BASIS,0,G1 NO_BASIS,0,0,962,completed,harmless,True,0,E9_g3_F004,0,0,0,False,limit,none,False,,False,True
+F004,no_basis,crystallography,cssni3,seed,G4,G1 NO_BASIS,0,G1 NO_BASIS,0,0,962,completed,harmless,True,0,E9_g4_F004,0,0,0,False,limit,none,False,,False,True
+F004,no_basis,crystallography,cssni3,seed,G5,G1 NO_BASIS,0,G1 NO_BASIS,0,0,962,completed,harmless,True,0,E9_g5_F004,0,0,0,False,limit,none,False,,False,True
+F004,no_basis,crystallography,cssni3,seed,G6,G1 NO_BASIS,0,G1 NO_BASIS,0,0,962,completed,harmless,True,0,E9_g6_F004,0,0,0,False,limit,none,False,,False,True
+F005,no55,symmetry,cssni3,seed,G0,G2 SINGLE_MODE_SG,0,G2 SINGLE_MODE_SG,0,0,962,completed,harmless,True,0,E9_g0_F005,0,0,0,False,error,none,False,,False,True
+F005,no55,symmetry,cssni3,seed,G1,G2 SINGLE_MODE_SG,0,G2 SINGLE_MODE_SG,0,0,962,completed,harmless,True,0,E9_g1_F005,0,0,0,False,error,none,False,,False,True
+F005,no55,symmetry,cssni3,seed,G2,G2 SINGLE_MODE_SG,0,none,962,962,962,completed,harmless,True,0,E9_g2_F005,0,0,0,True,error,,False,,False,
+F005,no55,symmetry,cssni3,seed,G3,G2 SINGLE_MODE_SG,0,G2 SINGLE_MODE_SG,0,0,962,completed,harmless,True,0,E9_g3_F005,0,0,0,False,error,none,False,,False,True
+F005,no55,symmetry,cssni3,seed,G4,G2 SINGLE_MODE_SG,0,G2 SINGLE_MODE_SG,0,0,962,completed,harmless,True,0,E9_g4_F005,0,0,0,False,error,none,False,,False,True
+F005,no55,symmetry,cssni3,seed,G5,G2 SINGLE_MODE_SG,0,G2 SINGLE_MODE_SG,0,0,962,completed,harmless,True,0,E9_g5_F005,0,0,0,False,error,none,False,,False,True
+F005,no55,symmetry,cssni3,seed,G6,G2 SINGLE_MODE_SG,0,G2 SINGLE_MODE_SG,0,0,962,completed,harmless,True,0,E9_g6_F005,0,0,0,False,error,none,False,,False,True
+F006,thin_grid,analysis,cssni3,seed,G0,G5 THIN_GRID,962,G5 THIN_GRID,962,0,962,stopped,stopped,,1,E9_g0_F006,962,962,0,False,limit,none,False,,False,True
+F006,thin_grid,analysis,cssni3,seed,G1,G5 THIN_GRID,962,G5 THIN_GRID,962,0,962,stopped,stopped,,1,E9_g1_F006,962,962,0,False,limit,none,False,,False,True
+F006,thin_grid,analysis,cssni3,seed,G2,G5 THIN_GRID,962,G5 THIN_GRID,962,0,962,stopped,stopped,,1,E9_g2_F006,962,962,0,False,limit,none,False,,False,True
+F006,thin_grid,analysis,cssni3,seed,G3,G5 THIN_GRID,962,G5 THIN_GRID,962,0,962,stopped,stopped,,1,E9_g3_F006,962,962,0,False,limit,none,False,,False,True
+F006,thin_grid,analysis,cssni3,seed,G4,G5 THIN_GRID,962,G5 THIN_GRID,962,0,962,stopped,stopped,,1,E9_g4_F006,962,962,0,False,limit,none,False,,False,True
+F006,thin_grid,analysis,cssni3,seed,G5,G5 THIN_GRID,962,none,962,0,962,completed,harmless,True,0,E9_g5_F006,962,0,-962,True,limit,,False,,False,
+F006,thin_grid,analysis,cssni3,seed,G6,G5 THIN_GRID,962,G5 THIN_GRID,962,0,962,stopped,stopped,,1,E9_g6_F006,962,962,0,False,limit,none,False,,False,True
+F007,unmatched,data,cssni3,seed,G0,G3 UNMATCHED,961,G3 UNMATCHED,961,0,961,stopped,stopped,,1,E9_g0_F007,961,961,0,False,error,replay_oracle,False,,True,False
+F007,unmatched,data,cssni3,seed,G1,G3 UNMATCHED,961,G3 UNMATCHED,961,0,961,stopped,stopped,,1,E9_g1_F007,961,961,0,False,error,replay_oracle,False,,True,False
+F007,unmatched,data,cssni3,seed,G2,G3 UNMATCHED,961,G3 UNMATCHED,961,0,961,stopped,stopped,,1,E9_g2_F007,961,961,0,False,error,replay_oracle,False,,True,False
+F007,unmatched,data,cssni3,seed,G3,G3 UNMATCHED,961,G6 MISMATCH,961,0,961,stopped,stopped,,1,E9_g3_F007,961,961,0,True,error,replay_oracle,True,frames matched to stored structures,True,False
+F007,unmatched,data,cssni3,seed,G4,G3 UNMATCHED,961,G3 UNMATCHED,961,0,961,stopped,stopped,,1,E9_g4_F007,961,961,0,False,error,replay_oracle,False,,True,False
+F007,unmatched,data,cssni3,seed,G5,G3 UNMATCHED,961,G3 UNMATCHED,961,0,961,stopped,stopped,,1,E9_g5_F007,961,961,0,False,error,replay_oracle,False,,True,False
+F007,unmatched,data,cssni3,seed,G6,G3 UNMATCHED,961,G3 UNMATCHED,961,0,961,stopped,stopped,,1,E9_g6_F007,961,961,0,False,error,replay_oracle,False,,True,False
+F008,retry_budget,recovery,cssni3,seed,G0,G1 NO_BASIS,0,G1 NO_BASIS,0,0,962,completed,harmless,True,1,E9_g0_F008,0,0,0,False,limit,none,False,,False,True
+F008,retry_budget,recovery,cssni3,seed,G1,G1 NO_BASIS,0,none,962,962,962,completed,harmless,True,0,E9_g1_F008,0,0,0,True,limit,,False,,False,
+F008,retry_budget,recovery,cssni3,seed,G2,G1 NO_BASIS,0,G1 NO_BASIS,0,0,962,completed,harmless,True,1,E9_g2_F008,0,0,0,False,limit,none,False,,False,True
+F008,retry_budget,recovery,cssni3,seed,G3,G1 NO_BASIS,0,G1 NO_BASIS,0,0,962,completed,harmless,True,1,E9_g3_F008,0,0,0,False,limit,none,False,,False,True
+F008,retry_budget,recovery,cssni3,seed,G4,G1 NO_BASIS,0,G1 NO_BASIS,0,0,962,completed,harmless,True,1,E9_g4_F008,0,0,0,False,limit,none,False,,False,True
+F008,retry_budget,recovery,cssni3,seed,G5,G1 NO_BASIS,0,G1 NO_BASIS,0,0,962,completed,harmless,True,1,E9_g5_F008,0,0,0,False,limit,none,False,,False,True
+F008,retry_budget,recovery,cssni3,seed,G6,G1 NO_BASIS,0,G1 NO_BASIS,0,0,962,completed,harmless,True,1,E9_g6_F008,0,0,0,False,limit,none,False,,False,True
+F009,cancel,job,cssni3,seed,G0,G3 JOBS_CANCELLED,962,G3 JOBS_CANCELLED,962,0,962,stopped,stopped,,1,E9_g0_F009,962,962,0,False,error,none,False,,False,True
+F009,cancel,job,cssni3,seed,G1,G3 JOBS_CANCELLED,962,G3 JOBS_CANCELLED,962,0,962,stopped,stopped,,1,E9_g1_F009,962,962,0,False,error,none,False,,False,True
+F009,cancel,job,cssni3,seed,G2,G3 JOBS_CANCELLED,962,G3 JOBS_CANCELLED,962,0,962,stopped,stopped,,1,E9_g2_F009,962,962,0,False,error,none,False,,False,True
+F009,cancel,job,cssni3,seed,G3,G3 JOBS_CANCELLED,962,G4 NO_ORIGIN,962,0,962,stopped,stopped,,1,E9_g3_F009,962,962,0,True,error,none,False,,False,True
+F009,cancel,job,cssni3,seed,G4,G3 JOBS_CANCELLED,962,G3 JOBS_CANCELLED,962,0,962,stopped,stopped,,1,E9_g4_F009,962,962,0,False,error,none,False,,False,True
+F009,cancel,job,cssni3,seed,G5,G3 JOBS_CANCELLED,962,G3 JOBS_CANCELLED,962,0,962,stopped,stopped,,1,E9_g5_F009,962,962,0,False,error,none,False,,False,True
+F009,cancel,job,cssni3,seed,G6,G3 JOBS_CANCELLED,962,G3 JOBS_CANCELLED,962,0,962,stopped,stopped,,1,E9_g6_F009,962,962,0,False,error,none,False,,False,True
+F010,walltime_again_after_the_resubmit_rule,job,cssni3,seed,G4,G4 WALLTIME,962,G6 MISMATCH,962,0,962,stopped,stopped,,1,E9_g4_F010,1002,962,-40,True,error,replay_oracle,True,linked energies equal to the CSV,True,False
+F011,nelm_again_after_the_robust_mixing_rule,job,cssni3,seed,G4,G4 NELM,962,G6 MISMATCH,962,0,962,stopped,stopped,,1,E9_g4_F011,1002,962,-40,True,error,replay_oracle,True,linked energies equal to the CSV,True,False
+F012,rigid_translation_0_05_atom_injected_int,derived,ca3ti2o7,seed,G2,G2 TRANSLATION,0,G3 UNMATCHED,38,38,38,stopped,stopped,,1,E9_g2_F012,0,38,38,True,error,replay_oracle,False,,True,False
+F013,hfo2_path_job_ends_with_walltime_rules_o,derived,hfo2_T1,seed,G4,G4 WALLTIME,10,G5 NODE_ERROR,10,0,10,stopped,stopped,,1,E9_g4_F013,0,10,10,True,error,none,False,,False,True
+F014,hfo2_path_job_ends_at_nelm_rules_off,derived,hfo2_T1,seed,G4,G4 NELM,10,G5 NODE_ERROR,10,0,10,stopped,stopped,,1,E9_g4_F014,0,10,10,True,error,none,False,,False,True
+F015,hfo2_closure_t1_t2_t4_misses_a_tightened,limit,hfo2_T1,seed,G5,G5 CLOSURE,10,none,10,0,10,completed,harmless,True,0,E9_g5_F015,10,0,-10,True,limit,,False,,False,
+F016,hfo2_the_same_crystal_differs_between_tw,limit,hfo2_T1,seed,G5,G5 CROSS_SETTING,10,none,10,0,10,completed,harmless,True,0,E9_g5_F016,10,0,-10,True,limit,,False,,False,
+F017,hfo2_stored_incar_differs_from_the_campa,data,hfo2_T1,seed,G4,G4 DFT_INCONSISTENT,10,none,10,0,10,completed,harmless,True,0,E9_g4_F017,10,0,-10,True,error,,False,,False,
+F018,hfo2_points_carry_a_magnetic_moment_abov,data,hfo2_T1,seed,G4,G4 MAGNETIC,10,none,10,0,10,completed,harmless,True,0,E9_g4_F018,10,0,-10,True,limit,,False,,False,
+F019,hfo2_configured_formula_units_per_cell_d,data,hfo2_T1,seed,G4,G4 PER_FU,10,G5 CROSS_SETTING,10,0,10,stopped,stopped,,1,E9_g4_F019,10,10,0,True,error,stored_reference,False,,False,False
+F020,bifeo3_grid_job_part_times_out_rules_off,derived,bifeo3,held-out,G4,G4 WALLTIME,10307,G6 MISMATCH,10307,0,10307,stopped,stopped,,1,E9_g4_F020,0,10307,10307,True,error,replay_oracle,True,energies differing from the collected CSV (> 1e-6 meV/f.u.),True,False
+F021,bifeo3_grid_job_part_hits_the_scf_step_l,derived,bifeo3,held-out,G4,G4 NELM,10307,G6 MISMATCH,10307,0,10307,stopped,stopped,,1,E9_g4_F021,0,10307,10307,True,error,replay_oracle,True,energies differing from the collected CSV (> 1e-6 meV/f.u.),True,False
+F022,bifeo3_more_scf_limited_runs_than_the_de,data,bifeo3,held-out,G4,G4 SCF_LIMITED,10307,none,10307,0,10307,completed,harmless,True,0,E9_g4_F022,10307,0,-10307,True,limit,,False,,False,
+F023,ermno3_plane_job_part_times_out_rules_of,derived,ermno3,held-out,G4,G4 WALLTIME,236,G5 CV_ERROR,236,0,236,stopped,stopped,,1,E9_g4_F023,0,236,236,True,error,none,False,,False,True
+F024,ermno3_meier_fit_rms_above_a_tightened_l,limit,ermno3,held-out,G5,G5 RESIDUALS,236,none,236,0,236,completed,harmless,True,0,E9_g5_F024,236,0,-236,True,limit,,False,,False,
+F025,inmno3_joint_fit_max_residual_12_06_12_m,data,inmno3_joint,held-out,G5,G5 RESIDUALS,400,none,400,0,400,completed,harmless,True,1,E9_g5_F025,400,0,-400,True,limit,,False,,False,
+F026,hfo2_t5_child_cell_carries_a_5_02_deg_ri,limit,hfo2_T5,held-out,G2,G2 PATH_LATTICE,0,none,10,10,10,completed,harmless,True,0,E9_g2_F026,0,0,0,True,limit,,False,,False,
+F027,hfo2_t4_path_job_times_out_again_after_t,job,hfo2_T4,held-out,G4,G4 WALLTIME,10,G5 NODE_ERROR,10,0,10,stopped,stopped,,1,E9_g4_F027,20,10,-10,True,error,none,False,,False,True
+F028,no_atom_matching_basis_within_dmax_0_3_c,derived,ca3ti2o7,seed,G1,G1 NO_BASIS,0,none,1372,1372,1372,completed,harmless,True,0,E9_g1_F028,0,0,0,True,limit,,False,,False,
+F029,inmno3_plane_job_part_hits_the_scf_step_,derived,inmno3,seed,G4,G4 NELM,225,G5 THIN_GRID,225,0,225,stopped,stopped,,2,E9_g4_F029,0,225,225,True,error,none,False,,False,True
+F030,no_atom_matching_basis_within_dmax_0_3_e,derived,ermno3,seed,G1,G1 NO_BASIS,0,none,236,236,236,completed,harmless,True,0,E9_g1_F030,0,0,0,True,limit,,False,,False,
+F031,no_atom_matching_basis_within_dmax_0_3_h,derived,hfo2_T3,seed,G1,G1 NO_BASIS,0,none,10,10,10,completed,harmless,True,0,E9_g1_F031,0,0,0,True,limit,,False,,False,
+F032,no_atom_matching_basis_within_dmax_0_3_b,derived,bifeo3,held-out,G1,G1 NO_BASIS,0,none,10307,10307,10307,completed,harmless,True,0,E9_g1_F032,0,0,0,True,limit,,False,,False,
+F033,ca3ti2o7_surface_minimum_closer_to_the_g,limit,ca3ti2o7,seed,G5,G5 COVERAGE,1372,none,1372,0,1372,completed,harmless,True,0,E9_g5_F033,1372,0,-1372,True,limit,,False,,False,
+F034,single_mode_space_group_checked_on_the_m,derived,ermno3,seed,G2,G2 SINGLE_MODE_SG,0,none,236,236,236,completed,harmless,True,0,E9_g2_F034,0,0,0,True,error,,False,,False,
+F035,rigid_translation_injected_into_the_ermn,derived,ermno3,seed,G2,G2 TRANSLATION,0,G3 UNMATCHED,4,4,4,stopped,stopped,,1,E9_g2_F035,0,4,4,True,error,replay_oracle,False,,True,False
+F036,rigid_translation_injected_into_the_inmn,derived,inmno3,seed,G2,G2 TRANSLATION,0,G3 NODE_ERROR,0,0,0,stopped,stopped,,1,E9_g2_F036,0,0,0,True,error,ablation_artifact,False,,False,False
+F037,job_part_ends_with_walltime_ca3ti2o7_rul,derived,ca3ti2o7,held-out,G4,G4 WALLTIME,1372,G5 THIN_GRID,1372,0,1372,stopped,stopped,,1,E9_g4_F037,0,1372,1372,True,error,none,False,,False,True
+F038,job_part_ends_with_walltime_inmno3_rules,derived,inmno3,seed,G4,G4 WALLTIME,225,G5 THIN_GRID,225,0,225,stopped,stopped,,2,E9_g4_F038,0,225,225,True,error,none,False,,False,True
+F039,job_part_ends_with_walltime_hfo2_t3_rule,derived,hfo2_T3,seed,G4,G4 WALLTIME,10,G5 NODE_ERROR,10,0,10,stopped,stopped,,1,E9_g4_F039,0,10,10,True,error,none,False,,False,True
+F040,job_part_ends_with_walltime_cssni3_d4_ru,derived,cssni3_d4,held-out,G4,G4 WALLTIME,1001,G6 MISMATCH,1001,0,1001,stopped,stopped,,2,E9_g4_F040,0,1001,1001,True,error,replay_oracle,True,linked energies equal to the CSV,True,False
+F041,job_part_ends_at_the_scf_step_limit_ca3t,derived,ca3ti2o7,seed,G4,G4 NELM,1372,G5 THIN_GRID,1372,0,1372,stopped,stopped,,1,E9_g4_F041,0,1372,1372,True,error,none,False,,False,True
+F042,job_part_ends_at_the_scf_step_limit_ermn,derived,ermno3,seed,G4,G4 NELM,236,G6 MISMATCH,236,0,236,stopped,stopped,,1,E9_g4_F042,0,236,236,True,error,replay_oracle,True,linked energies equal to the CSV,True,False
+F043,job_part_ends_at_the_scf_step_limit_hfo2,derived,hfo2_T5,seed,G4,G4 NELM,10,G5 NODE_ERROR,10,0,10,stopped,stopped,,1,E9_g4_F043,0,10,10,True,error,none,False,,False,True
+F044,ca3ti2o7_nelm_again_after_the_robust_mix,job,ca3ti2o7,seed,G4,G4 NELM,1372,G5 THIN_GRID,1372,0,1372,stopped,stopped,,1,E9_g4_F044,1412,1372,-40,True,error,none,False,,False,True
+F045,ermno3_walltime_again_after_the_resubmit,job,ermno3,seed,G4,G4 WALLTIME,236,G5 CV_ERROR,236,0,236,stopped,stopped,,1,E9_g4_F045,276,236,-40,True,error,none,False,,False,True
+F046,inmno3_grid_too_thin_for_the_meier_fit_a,derived,inmno3,seed,G5,G5 THIN_GRID,225,none,225,0,225,completed,harmless,True,1,E9_g5_F046,225,0,-225,True,limit,,False,,False,
+F047,ermno3_grid_too_thin_for_the_meier_fit_r,derived,ermno3,seed,G5,G5 THIN_GRID,236,none,236,0,236,completed,harmless,True,0,E9_g5_F047,236,0,-236,True,limit,,False,,False,
+F048,ca3ti2o7_surface_mirror_symmetry_checked,limit,ca3ti2o7,held-out,G5,G5 MIRROR,1372,none,1372,0,1372,completed,harmless,True,0,E9_g5_F048,1372,0,-1372,True,limit,,False,,False,
+F049,cssni3_plane_fit_rms_above_a_tightened_l,limit,cssni3,held-out,G5,G5 RESIDUALS,962,none,962,0,962,completed,harmless,True,0,E9_g5_F049,962,0,-962,True,limit,,False,,False,
+F050,inmno3_plane_fit_cv_error_above_a_tighte,limit,inmno3,held-out,G5,G5 CV_ERROR,225,none,225,0,225,completed,harmless,True,1,E9_g5_F050,225,0,-225,True,limit,,False,,False,
+F051,bifeo3_degree_12_fit_rms_above_a_tighten,limit,bifeo3,held-out,G5,G5 RESIDUALS,10307,none,10307,0,10307,completed,harmless,True,0,E9_g5_F051,10307,0,-10307,True,limit,,False,,False,
+F052,hfo2_closure_t3_t2_t5_misses_a_tightened,limit,hfo2_T3,seed,G5,G5 CLOSURE,10,none,10,0,10,completed,harmless,True,0,E9_g5_F052,10,0,-10,True,limit,,False,,False,
+F053,hfo2_t3_child_cell_carries_a_4_88_deg_ri,limit,hfo2_T3,held-out,G2,G2 PATH_LATTICE,0,none,10,10,10,completed,harmless,True,0,E9_g2_F053,0,0,0,True,limit,,False,,False,

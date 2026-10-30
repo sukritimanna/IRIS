@@ -1,0 +1,78 @@
+# InMnO3 194 -> 185 (hexagonal manganite, LDA+U A-AFM) — every data path and policy value of this run.
+# Paths under repo_root are READ ONLY. IRIS writes only under agent_root (enforced in code).
+#
+# Stage 1 (agreed 16 Oct 2026): replay of the (K3, GM2-) plane at Phi = 0, stored grid plane_v2_tf
+# (15 x 15 = 225 frames, labels = translation-free A_p), and the Meier-form (Q, P) fit of that plane.
+# The polar (Q, Phi, P) hat grid and the joint plane + hat fit are stage 2 (need a second K3 component and D5).
+#   - R5 is decided at run time by the human (the run pauses at G2 R5_BORDERLINE; answer include_borderline)
+#   - K3 counts as 1 axis (direction (a,0), D1 fixed-ratio rule) on this plane
+#   - stored frames still carry the old GM2- rigid translation: matched modulo a rigid shift (logged)
+system: inmno3
+thread_id: inmno3_194_185_plane
+request: "map the InMnO3 (K3, GM2-) plane at Phi = 0, fixed child cell, DFT LDA+U A-AFM; parent.cif, child.cif"
+
+run:
+  mode: replay
+  engine: dft
+  budget_runs: 230               # 15 x 15 = 225 frames
+  allow_live_submission: false   # must stay false: no DFT/VASP/MACE/Slurm in this build
+  jobs:
+    wait: true
+    part_size: 40
+  replay:
+    match_modulo_translation: true   # stored plane_v2 POSCARs: GM2- built before the polar-origin fix
+    max_rigid_shift_A: 0.05          # G3 RIGID_SHIFT above this (expected <= 0.015 Å per atom at the P edge)
+
+paths:
+  repo_root: ~/Workspace/myProjects/imhafo2
+  agent_root: ~/Workspace/myProjects/imhafo2/IRIS_AGENT
+  test_runs: test_runs
+  parent_cif: demo/inmno3/structures_v2/parent_lda_sg194.cif
+  child_cif: demo/inmno3/structures_v2/child_lda_sg185.cif
+  system_json: demo/staged_walkthrough/systems/inmno3_aafm_v2.json
+  walkthrough: demo/staged_walkthrough
+  reference_run: demo/runs/inmno3_lda_194_to_185__20260921_144814
+  isodistort_stored: demo/runs/inmno3_lda_194_to_185__20260921_144814/step3_isodistort/04_raw_isodistort
+  reference_grid: demo/runs/inmno3_lda_194_to_185__20260921_144814/step4_energy_plane_v2_tf
+  energies_csv: demo/inmno3/energies/plane_v2_energies.csv
+  reference_fit: demo/inmno3/landau/landau_QP_meierform_lda_aafm_tf.json      # regression only
+
+expected:
+  parent_sg: 194
+  child_sg: 185
+  parent_sha256: 8fe6ad71cbfabee7e5255979626a3ba108e18f611313fa5f54463d0fa39067ad   # = RUN_MANIFEST.json
+  child_sha256: fc8c3041671c287e69008c70020e65b3905c0b97944a8f61eb462332a74cec54
+
+policy:
+  a_thr: 0.05
+  amplitude_basis: As_tf         # R2 on translation-free amplitudes (GM2-: f_T = 0.04)
+  r5_margin: 0.1
+  strain_policy: P2              # fixed CHILD cell (30-atom P6_3cm lattice), strain irreps zero (R1)
+  d_cut: 1.0
+  grid:                          # D2 per axis: m = 15 each, N = 225 (the stored plane_v2_tf grid)
+    q_max: 0.66                  # default (required); the per-irrep axes below are used
+    dq: 0.09428571428571429
+    axes:
+      K3:   {q_max: 0.66, dq: 0.09428571428571429}                 # Å of A_p (= 1.25 x child 0.528)
+      GM2-: {q_max: 0.2352937643216287, dq: 0.033613394903089816}  # Å of translation-free A_p
+  analysis: meier_QP             # Meier Eq. 12 on the plane, see nodes/f5_meier.py
+  fit:
+    qmax: 0.58                   # Å A_p, fit window as published (compare_meier_tf.md)
+    pmax: 0.08                   # Å A_p (translation-free)
+    per_fu: 6                    # 30-atom cell = 6 InMnO3; energies of the (Q, P) fit are per cell
+    cv_folds: 10
+    max_rms_meV: 5.0             # PROPOSED, meV per cell (published fit: 3.9)
+    max_cv_rms_meV: 6.0          # PROPOSED, meV per cell
+    max_abs_res_meV: 12.0        # PROPOSED, meV per cell (published fit: 9.2)
+    min_points_per_coef: 10
+    edge_margin_steps: 0.5       # PROVISIONAL: the coupled minimum (Q = 0.510 Å) is 0.75 K3 steps inside the
+                                 # published window edge 0.58 Å; with 1 or 2 steps G5 COVERAGE fails (open question)
+    rmax: 0.66                   # unused by meier_QP (schema)
+
+retry:
+  max_per_node: 3
+
+llm:
+  enabled: false
+  model: null
+  api_key_env: ANTHROPIC_API_KEY

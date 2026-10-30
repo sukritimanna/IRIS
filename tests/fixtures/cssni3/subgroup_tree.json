@@ -1,0 +1,78 @@
+{
+ "parent": 221,
+ "child": 62,
+ "intermediates": [
+  123,
+  65,
+  127,
+  127,
+  55,
+  63,
+  74
+ ],
+ "chain": [
+  {
+   "sg": 221,
+   "symbol": "Pm-3m",
+   "i": 1,
+   "s": 1,
+   "order_parameters": "GM1+"
+  },
+  {
+   "sg": 123,
+   "symbol": "P4/mmm",
+   "i": 3,
+   "s": 1,
+   "order_parameters": "GM1+, GM3+"
+  },
+  {
+   "sg": 65,
+   "symbol": "Cmmm",
+   "i": 6,
+   "s": 1,
+   "order_parameters": "GM1+, GM3+, GM5+"
+  },
+  {
+   "sg": 127,
+   "symbol": "P4/mbm",
+   "i": 6,
+   "s": 2,
+   "order_parameters": "GM1+, GM3+, M2+"
+  },
+  {
+   "sg": 127,
+   "symbol": "P4/mbm",
+   "i": 6,
+   "s": 2,
+   "order_parameters": "GM1+, GM3+, M3+"
+  },
+  {
+   "sg": 55,
+   "symbol": "Pbam",
+   "i": 12,
+   "s": 2,
+   "order_parameters": "GM1+, GM3+, GM5+, M2+, M3+"
+  },
+  {
+   "sg": 63,
+   "symbol": "Cmcm",
+   "i": 12,
+   "s": 2,
+   "order_parameters": "GM1+, GM3+, GM5+, X5+"
+  },
+  {
+   "sg": 74,
+   "symbol": "Imma",
+   "i": 12,
+   "s": 2,
+   "order_parameters": "GM1+, GM3+, GM5+, R4+, R5+"
+  },
+  {
+   "sg": 62,
+   "symbol": "Pnma",
+   "i": 24,
+   "s": 4,
+   "order_parameters": "GM1+, GM3+, GM5+, R4+, R5+, X5+, M2+, M3+"
+  }
+ ]
+}

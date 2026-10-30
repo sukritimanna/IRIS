@@ -1,0 +1,93 @@
+{
+ "parent_sg": 221,
+ "child_sg": 62,
+ "a_thr": 0.05,
+ "subgroup_relation": "CONFIRMED",
+ "status": "PASS",
+ "active": [
+  "M3+",
+  "R4+",
+  "R5+",
+  "X5+"
+ ],
+ "order_params": [
+  "M3+",
+  "R4+",
+  "R5+",
+  "X5+"
+ ],
+ "negligible": [
+  "M2+"
+ ],
+ "trilinear": false,
+ "dim_note": "The order-parameter dimensionality is NOT fixed by the decomposition. There are 4 active displacive modes; the TRUE independent dimension equals the number of PRIMARY (soft, double-well) modes, which requires the DFT energy curvature to determine. Do not assume 2D.",
+ "n_active": 4,
+ "polar_modes": [],
+ "antipolar_modes": [
+  "M3+",
+  "R4+",
+  "R5+",
+  "X5+"
+ ],
+ "symmetric_modes": [],
+ "candidate_couplings": [
+  "biquadratic M3+\u00b2\u00d7R4+\u00b2 (always symmetry-allowed; sign decides cooperative vs competing tilts)"
+ ],
+ "strain": [
+  {
+   "irrep": "GM1+",
+   "amplitude": -0.02184
+  },
+  {
+   "irrep": "GM3+",
+   "amplitude": 0.02045
+  },
+  {
+   "irrep": "GM5+",
+   "amplitude": 0.00413
+  }
+ ],
+ "sectors": [
+  "M",
+  "R",
+  "X"
+ ],
+ "dim": "\u22644D (bounded: at most 4 active modes; true dimension = number of SOFT/primary modes, undetermined until the energy surface is computed)",
+ "dominant": {
+  "M": "M3+",
+  "R": "R4+",
+  "X": "X5+"
+ },
+ "type": "structural (non-polar child)",
+ "gap": 0.0835,
+ "confidence": "MEDIUM",
+ "unambiguous": false,
+ "As": {
+  "R4+": 0.4572,
+  "R5+": 0.1721,
+  "X5+": 0.0896,
+  "M2+": 0.006,
+  "M3+": 1.6862
+ },
+ "Ap": {
+  "R4+": 0.2286,
+  "R5+": 0.0861,
+  "X5+": 0.0448,
+  "M2+": 0.003,
+  "M3+": 0.8431
+ },
+ "intermediates": [
+  123,
+  65,
+  127,
+  127,
+  55,
+  63,
+  74
+ ],
+ "amplitude_conventions": {
+  "As": "normalized",
+  "Ap": "physical (\u00c5)",
+  "dmax": "max atomic displ (\u00c5)"
+ }
+}

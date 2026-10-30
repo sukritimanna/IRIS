@@ -1,0 +1,80 @@
+{
+ "id": "C30",
+ "captured_from": {
+  "system": "ermno3",
+  "fault": "F030",
+  "patch": {
+   "policy.basis_dmax_A": 0.3
+  },
+  "ablations": [
+   "no-rules"
+  ],
+  "decision": 1,
+  "script": [],
+  "steps": []
+ },
+ "node": "f1",
+ "gate": "G1",
+ "code": "NO_BASIS",
+ "prompt_id": "subagent_G1",
+ "prompt_values": {
+  "system": "ermno3",
+  "node": "f1",
+  "node_name": "Crystallographer",
+  "gate": "G1",
+  "code": "NO_BASIS",
+  "detail": "atom-matching basis search found no candidate within dmax 0.3 Å (smallest max displacement 0.3162 Å)",
+  "tests": [
+   {
+    "test": "H_subgroup_of_G",
+    "status": "pass"
+   },
+   {
+    "test": "basis_det_equals_k",
+    "status": "fail",
+    "code": "NO_BASIS",
+    "detail": "atom-matching basis search found no candidate within dmax 0.3 Å (smallest max displacement 0.3162 Å)"
+   },
+   {
+    "test": "isodistort_sg_equals_spglib",
+    "status": "pass"
+   },
+   {
+    "test": "mode_norms_equal_As",
+    "status": "pass"
+   },
+   {
+    "test": "components_consistent",
+    "status": "pass"
+   }
+  ],
+  "options": [
+   {
+    "id": "widen_basis_search",
+    "text": "Widen the atom-matching basis search (dmax 2.0 A)"
+   },
+   {
+    "id": "stop",
+    "text": "Stop and ask the human"
+   }
+  ],
+  "history": "nothing yet",
+  "attempts": 0,
+  "max_retry": 3
+ },
+ "menu": [
+  {
+   "id": "widen_basis_search",
+   "text": "Widen the atom-matching basis search (dmax 2.0 A)"
+  },
+  {
+   "id": "stop",
+   "text": "Stop and ask the human"
+  }
+ ],
+ "system_prompt": "You are the G1 recovery sub-agent of IRIS, a workflow that maps symmetry-mode energy landscapes.\nStep f1 (Crystallographer) produced an output that failed gate G1. The gate is plain Python; its verdict\nis final and you cannot change it. You choose which listed fix to try next.\n\nGate G1 checks: decomposition valid: H is a subgroup of G, basis determinant equals the index k, ISODISTORT space group equals spglib.\nGuidance: If no basis was found, widening the atom-matching search is the usual fix. A pair that is not group-subgroup, or space groups that disagree, cannot be fixed here.\n\nRules:\n- Answer with JSON {\"id\": ..., \"reason\": ...} and nothing else.\n- \"id\" must be exactly one of the option ids you are given. Choose \"stop\" if none fits or if the\n  same fix has already failed (see the history).\n- The reason is one sentence. It may quote numbers from the input; it must not introduce new ones.\n- Do not propose new calculations, new options, or edits to any number.",
+ "user_template": "System: {system}\nFailed: {node} {node_name}, gate {gate}, code {code}\nDetail: {detail}\nChecks run by the gate:\n{tests}\n\nRetries used on this step: {attempts} of {max_retry}\nWhat has been tried so far in this run:\n{history}\n\nOptions (choose one id):\n{options}",
+ "user_prompt": "System: ermno3\nFailed: f1 Crystallographer, gate G1, code NO_BASIS\nDetail: atom-matching basis search found no candidate within dmax 0.3 Å (smallest max displacement 0.3162 Å)\nChecks run by the gate:\n[\n {\n  \"test\": \"H_subgroup_of_G\",\n  \"status\": \"pass\"\n },\n {\n  \"test\": \"basis_det_equals_k\",\n  \"status\": \"fail\",\n  \"code\": \"NO_BASIS\",\n  \"detail\": \"atom-matching basis search found no candidate within dmax 0.3 \\u00c5 (smallest max displacement 0.3162 \\u00c5)\"\n },\n {\n  \"test\": \"isodistort_sg_equals_spglib\",\n  \"status\": \"pass\"\n },\n {\n  \"test\": \"mode_norms_equal_As\",\n  \"status\": \"pass\"\n },\n {\n  \"test\": \"components_consistent\",\n  \"status\": \"pass\"\n }\n]\n\nRetries used on this step: 0 of 3\nWhat has been tried so far in this run:\nnothing yet\n\nOptions (choose one id):\n[\n {\n  \"id\": \"widen_basis_search\",\n  \"text\": \"Widen the atom-matching basis search (dmax 2.0 A)\"\n },\n {\n  \"id\": \"stop\",\n  \"text\": \"Stop and ask the human\"\n }\n]",
+ "system_prompt_bare": "You are the G1 recovery sub-agent of IRIS, a workflow that maps symmetry-mode energy landscapes.\nStep f1 (Crystallographer) produced an output that failed gate G1. The gate is plain Python; its verdict\nis final and you cannot change it. You choose which listed fix to try next.\n\nGate G1 checks: decomposition valid: H is a subgroup of G, basis determinant equals the index k, ISODISTORT space group equals spglib.\n\nRules:\n- Answer with JSON {\"id\": ..., \"reason\": ...} and nothing else.\n- \"id\" must be exactly one of the option ids you are given. Choose \"stop\" if none fits or if the\n  same fix has already failed (see the history).\n- The reason is one sentence. It may quote numbers from the input; it must not introduce new ones.\n- Do not propose new calculations, new options, or edits to any number.",
+ "prompt_sha256": "c45cfef0e1f5c343"
+}

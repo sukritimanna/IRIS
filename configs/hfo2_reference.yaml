@@ -1,0 +1,21 @@
+# HfO2 paths: certified decompositions (Paper 1 values, claude/hfo2-paths-runbook.md "Decompositions") and the
+# frozen-path DFT results of 2026-10-08 (runbook table), per transition. A_p in Å; energies meV/f.u.
+transitions:
+  T1: {Ap: {M1: 0.6254, M3: 0.5327, GM5-: 0.7818, GM1+: 0.1731}, Ap_tf: {GM5-: 0.6379}, f_T: {GM5-: 0.33},
+       strain: {}, barrier: [6.43, 0.222], dE_end: -87.38, paper1_barrier: 6.1}
+  T2: {Ap: {M1: 1.0141, GM1+: 0.6160}, strain: {GM1+: [0.0027, 0.1130], GM4+: [0.0482]},
+       barrier: [24.68, 0.333], dE_end: -99.37, paper1_barrier: 23.6}
+  T3: {Ap: {M1: 0.7793, M3: 0.7198, GM5+: 0.5527, GM1+: 0.3902}, strain: {GM5+: [0.1147]},
+       barrier: [43.95, 0.333], dE_end: -170.43, paper1_barrier: 43.0}
+  T4: {Ap: {GM2-: 1.3866, GM1+: 0.9405}, strain: {GM1+: [0.028, -0.090, -0.034]}, barrier: [80.50, 0.556], dE_end: 12.05}
+  T5: {Ap: {GM3+: 1.3588, GM1+: 0.6216}, strain: {GM1+: [0.058, -0.084, -0.026], GM3+: [-0.1143]},
+       barrier: [52.37, 0.444], dE_end: -71.03}
+closure_meV: 0.06            # E(T2 end) + E(T4 end) = E(T1 end); E(T2) + E(T5) = E(T3)
+closure:                     # runbook "Energy closure": [sum of the chain, own dE_end], meV/f.u.
+  T1: [-87.32, -87.38]
+  T3: [-170.40, -170.43]
+cross_setting_meV:           # runbook "Cross-setting checks" (spread of E/f.u. of the same crystal)
+  "P4_2/nmc parent": 0.000
+  Pbcn: 0.017
+  Pca2_1: 0.042
+  P2_1/c: 0.005

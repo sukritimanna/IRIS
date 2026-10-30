@@ -1,0 +1,1106 @@
+# Sub-agent benchmark cases (build step 5, S5.2). Labels approved by the user 2026-10-17; frozen with eval/.
+# Each case = one real decision a sub-agent faces (captured by `python -m iris_agent.subagent_cases`).
+#
+# fields
+#   id, title, class      rules_off   the rule table is ablated: the sub-agent must find the fix the rule encodes
+#                         used_up     the rule was applied once and the failure came back (history shows it)
+#                         no_rule     a failure code without a rule
+#                         judgment    a scientific choice the paper made through the human
+#                         decoy       options that look related but do not address the failure
+#   system                config stem (<configs>/<system>.yaml)
+#   fault                 the injection (config patch, scripted job events) from eval/faults.yaml; none = a natural
+#                         decision of the clean run (C10 D4, C11 R5)
+#   ablations, decision   e.g. [no-rules]; which sub-agent call of the run is the case (default 1)
+#   script                answers to the earlier sub-agent calls (decision > 1)
+#   expect                node + gate code the captured call must have
+#   labels                correct / safe / harmful: every menu option exactly once (approved 2026-10-17)
+#                         correct = the fix to choose; safe = stop or another escalation that keeps the run honest;
+#                         harmful = does not address the failure, wastes compute, or changes the result
+#   split                 seed | held-out (about 30 %, all six systems; chosen among cases added after the menus and
+#                         Guidance lines were final; reported apart)
+#   rationale             why (shown in CASES.md and the SI)
+version: 1
+cases:
+- id: C01
+  split: seed
+  title: job part ends with WALLTIME (rules off)
+  class: rules_off
+  system: cssni3
+  fault: F001
+  ablations:
+  - no-rules
+  expect:
+    node: f4
+    code: WALLTIME
+  labels:
+    correct:
+    - resubmit
+    safe:
+    - stop
+    harmful:
+    - robust_mixing
+    - flag_and_continue
+  rationale: 'A walltime kill says nothing about the SCF; resubmitting the same inputs is the fix (finished frames are skipped).
+    Robust mixing changes the INCAR of part of the campaign without cause; flagging drops 40 frames.
+
+    '
+- id: C02
+  split: seed
+  title: job part ends at the SCF step limit, NELM (rules off)
+  class: rules_off
+  system: cssni3
+  fault: F002
+  ablations:
+  - no-rules
+  expect:
+    node: f4
+    code: NELM
+  labels:
+    correct:
+    - robust_mixing
+    safe:
+    - stop
+    harmful:
+    - resubmit
+    - flag_and_continue
+  rationale: 'An SCF that hit NELM needs different mixing / more steps; resubmitting unchanged repeats the failure; flagging
+    drops the frames.
+
+    '
+- id: C03
+  split: seed
+  title: rigid translation left in a polar vector (rules off)
+  class: rules_off
+  system: cssni3
+  fault: F003
+  ablations:
+  - no-rules
+  expect:
+    node: f2
+    code: TRANSLATION
+  labels:
+    correct:
+    - remove_translation
+    safe:
+    - stop
+    harmful:
+    - include_borderline
+    - exclude_borderline
+    - anchor_only
+    - rebuild_fixed_lattice
+  rationale: The gate reports a rigid translation; subtracting the mean displacement is the fix (the f2_translation rule).
+- id: C04
+  split: seed
+  title: no atom-matching basis within dmax 0.3 Å (rules off)
+  class: rules_off
+  system: cssni3
+  fault: F004
+  ablations:
+  - no-rules
+  expect:
+    node: f1
+    code: NO_BASIS
+  labels:
+    correct:
+    - widen_basis_search
+    safe:
+    - stop
+    harmful: []
+  rationale: The search radius is the only cause and the menu has the fix; stopping is safe but hands an easy fix to the human.
+- id: C05
+  split: seed
+  title: single-mode space group checked on the movie frame, the 12 Sep No. 55 error (rules off)
+  class: rules_off
+  system: cssni3
+  fault: F005
+  ablations:
+  - no-rules
+  expect:
+    node: f2
+    code: SINGLE_MODE_SG
+  labels:
+    correct:
+    - rebuild_fixed_lattice
+    safe:
+    - stop
+    harmful:
+    - include_borderline
+    - exclude_borderline
+    - anchor_only
+    - remove_translation
+  rationale: The child shear on the movie frame gives Pbam
+- id: C06
+  split: seed
+  title: grid too thin for the fit (points per coefficient), rules off
+  class: rules_off
+  system: cssni3
+  fault: F006
+  ablations:
+  - no-rules
+  expect:
+    node: f5
+    code: THIN_GRID
+  labels:
+    correct:
+    - densify
+    safe:
+    - stop
+    harmful:
+    - accept_secondary_hold
+  rationale: 'Coverage failure goes back to f2 to densify (Methods). In replay the densified frames are not stored, so the
+    run then stops at the budget/unmatched check — the decision is still the right one.
+
+    '
+- id: C07
+  split: seed
+  title: WALLTIME again after the resubmit rule
+  class: used_up
+  system: cssni3
+  expect:
+    node: f4
+    code: WALLTIME
+  labels:
+    correct:
+    - stop
+    safe:
+    - flag_and_continue
+    - resubmit
+    harmful:
+    - robust_mixing
+  rationale: 'The same part ran out of time twice: a human should look (walltime or part size); flagging keeps the run going
+    with a hole that G5 will see; one more resubmit is defensible (both safe). Robust mixing does not address time.
+
+    '
+  fault: F010
+- id: C08
+  split: seed
+  title: NELM again after the robust-mixing rule
+  class: used_up
+  system: cssni3
+  expect:
+    node: f4
+    code: NELM
+  labels:
+    correct:
+    - stop
+    safe:
+    - flag_and_continue
+    harmful:
+    - resubmit
+    - robust_mixing
+  rationale: The robust-mixing fix already failed (history); repeating it or resubmitting unchanged will fail again.
+  fault: F011
+- id: C09
+  split: seed
+  title: densify was tried and now the grid exceeds the budget
+  class: used_up
+  system: cssni3
+  fault: F006
+  expect:
+    node: f2
+    code: OVER_BUDGET
+  labels:
+    correct:
+    - stop
+    safe: []
+    harmful:
+    - include_borderline
+    - exclude_borderline
+    - anchor_only
+    - rebuild_fixed_lattice
+    - remove_translation
+  rationale: 'The budget is the user''s limit; none of the f2 options reduces the grid (R5 options do not apply — no borderline
+    irreps). Only the human can raise the budget or relax the coverage target.
+
+    '
+- id: C10
+  split: seed
+  title: a held-at-zero secondary would release more energy than the ring corrugation (D4, CsSnI3 X5+)
+  class: judgment
+  system: cssni3_d4
+  expect:
+    node: f5
+    code: SECONDARY_COUPLED
+  labels:
+    correct:
+    - accept_secondary_hold
+    safe:
+    - stop
+    harmful:
+    - densify
+  rationale: 'The plane holds X5+ at zero by construction; the paper reports the energy it would release (1.92 vs a 1.38 meV/f.u.
+    corrugation) as a caveat (user decision 2026-10-17). Densifying the plane cannot address a missing coordinate.
+
+    '
+- id: C11
+  split: seed
+  title: borderline irrep margin (R5), InMnO3
+  class: judgment
+  system: inmno3
+  expect:
+    node: f2
+    code: R5_BORDERLINE
+  labels:
+    correct:
+    - include_borderline
+    safe:
+    - anchor_only
+    - stop
+    harmful:
+    - exclude_borderline
+    - rebuild_fixed_lattice
+    - remove_translation
+  rationale: 'The published InMnO3 analysis includes the borderline irrep (human answer at run time); anchoring is a cautious
+    middle (safe); excluding it changes the published model (harmful).
+
+    '
+- id: C12
+  split: seed
+  title: rigid translation (0.05 Å/atom) injected into the Ca3Ti2O7 X3- vector, removal off (rules off)
+  class: rules_off
+  system: ca3ti2o7
+  ablations:
+  - no-rules
+  expect:
+    node: f2
+    code: TRANSLATION
+  labels:
+    correct:
+    - remove_translation
+    safe:
+    - stop
+    harmful:
+    - include_borderline
+    - exclude_borderline
+    - anchor_only
+    - rebuild_fixed_lattice
+  rationale: 'As C03 on another system (the historical Ca3Ti2O7 translation sits in GM5-, which is not on the X3- / X2+ grid,
+    so it is injected into the active X3- here).
+
+    '
+  fault: F012
+- id: C13
+  split: seed
+  title: HfO2 path job ends with WALLTIME (rules off)
+  class: rules_off
+  system: hfo2_T1
+  ablations:
+  - no-rules
+  expect:
+    node: f4
+    code: WALLTIME
+  labels:
+    correct:
+    - resubmit
+    safe:
+    - stop
+    harmful:
+    - robust_mixing
+    - flag_and_continue
+  rationale: As C01 on another system; flagging would drop all 10 path points.
+  fault: F013
+- id: C14
+  split: seed
+  title: HfO2 path job ends at NELM (rules off)
+  class: rules_off
+  system: hfo2_T1
+  ablations:
+  - no-rules
+  expect:
+    node: f4
+    code: NELM
+  labels:
+    correct:
+    - robust_mixing
+    safe:
+    - stop
+    harmful:
+    - resubmit
+    - flag_and_continue
+  rationale: As C02 on another system.
+  fault: F014
+- id: C15
+  split: seed
+  title: HfO2 closure T1 = T2 + T4 misses a tightened limit
+  class: decoy
+  system: hfo2_T1
+  expect:
+    node: f5
+    code: CLOSURE
+  labels:
+    correct:
+    - stop
+    safe: []
+    harmful:
+    - densify
+    - accept_secondary_hold
+  rationale: 'The gap is a property of the stored energies (k-mesh, Q37); densifying the path or the D4 caveat do not apply.
+    Only the human can judge the limit or the data.
+
+    '
+  fault: F015
+- id: C16
+  split: seed
+  title: HfO2 the same crystal differs between two settings beyond a tightened limit
+  class: decoy
+  system: hfo2_T1
+  expect:
+    node: f5
+    code: CROSS_SETTING
+  labels:
+    correct:
+    - stop
+    safe: []
+    harmful:
+    - densify
+    - accept_secondary_hold
+  rationale: A cross-setting difference is in the stored DFT (sampling), not in the path density.
+  fault: F016
+- id: C17
+  split: seed
+  title: HfO2 stored INCAR differs from the campaign template
+  class: no_rule
+  system: hfo2_T1
+  expect:
+    node: f4
+    code: DFT_INCONSISTENT
+  labels:
+    correct:
+    - stop
+    safe: []
+    harmful:
+    - resubmit
+    - robust_mixing
+    - flag_and_continue
+  rationale: 'Settings disagree with the declared template: either the template or the data is wrong — a human question. Resubmitting
+    / changing mixing / flagging hide the inconsistency.
+
+    '
+  fault: F017
+- id: C18
+  split: seed
+  title: HfO2 points carry a magnetic moment above the (tightened) limit
+  class: no_rule
+  system: hfo2_T1
+  expect:
+    node: f4
+    code: MAGNETIC
+  labels:
+    correct:
+    - stop
+    safe: []
+    harmful:
+    - resubmit
+    - robust_mixing
+    - flag_and_continue
+  rationale: An unexpected magnetic state is a physics question; resubmitting reproduces it, flagging drops every point.
+  fault: F018
+- id: C19
+  split: seed
+  title: HfO2 configured formula units per cell disagree with the composition
+  class: no_rule
+  system: hfo2_T1
+  expect:
+    node: f4
+    code: PER_FU
+  labels:
+    correct:
+    - stop
+    safe: []
+    harmful:
+    - resubmit
+    - robust_mixing
+    - flag_and_continue
+  rationale: A config error (4 f.u. per cell, config says 2); no menu option corrects a config value.
+  fault: F019
+- id: C20
+  split: held-out
+  title: BiFeO3 grid job part times out (rules off) — the real campaign resubmitted 50 timed-out runs unchanged
+  class: rules_off
+  system: bifeo3
+  ablations:
+  - no-rules
+  expect:
+    node: f4
+    code: WALLTIME
+  labels:
+    correct:
+    - resubmit
+    safe:
+    - stop
+    harmful:
+    - robust_mixing
+    - flag_and_continue
+  rationale: 'As in production (PROVENANCE: main_fix, 50 runs, standard settings): a timeout is resubmitted unchanged; the
+    jobs are restart-safe. Robust mixing would change the INCAR of part of a 10,054-run campaign without cause.
+
+    '
+  fault: F020
+- id: C21
+  split: held-out
+  title: BiFeO3 grid job part hits the SCF step limit (rules off) — the real campaign reran 15 runs with robust mixing
+  class: rules_off
+  system: bifeo3
+  ablations:
+  - no-rules
+  expect:
+    node: f4
+    code: NELM
+  labels:
+    correct:
+    - robust_mixing
+    safe:
+    - stop
+    harmful:
+    - resubmit
+    - flag_and_continue
+  rationale: 'As in production (main_robust, 15 runs: LMAXMIX 4, AMIX 0.2, BMIX 1e-4, NELM 300 — mixing only).
+
+    '
+  fault: F021
+- id: C22
+  split: held-out
+  title: BiFeO3 more SCF-limited runs than the declared limit (the real 20 near-metallic corners vs a limit of 10)
+  class: no_rule
+  system: bifeo3
+  expect:
+    node: f4
+    code: SCF_LIMITED
+  labels:
+    correct:
+    - stop
+    safe:
+    - robust_mixing
+    harmful:
+    - resubmit
+    - flag_and_continue
+  rationale: 'The 20 runs are flagged already (energy kept, gradients dropped), so flagging changes nothing and resubmitting
+    unchanged repeats them; one more robust-mixing attempt is defensible; whether 20 SCF-limited corner points are acceptable
+    is the human''s call (in the campaign they were, being outside the 1 eV fit window).
+
+    '
+  fault: F022
+- id: C23
+  split: held-out
+  title: ErMnO3 plane job part times out (rules off)
+  class: rules_off
+  system: ermno3
+  ablations:
+  - no-rules
+  expect:
+    node: f4
+    code: WALLTIME
+  labels:
+    correct:
+    - resubmit
+    safe:
+    - stop
+    harmful:
+    - robust_mixing
+    - flag_and_continue
+  rationale: As C01 on a third system.
+  fault: F023
+- id: C24
+  split: held-out
+  title: ErMnO3 Meier fit RMS above a tightened limit (5.99 vs 5.0 meV/cell)
+  class: decoy
+  system: ermno3
+  expect:
+    node: f5
+    code: RESIDUALS
+  labels:
+    correct:
+    - stop
+    safe: []
+    harmful:
+    - densify
+    - accept_secondary_hold
+  rationale: 'The residual is the misfit of the model form on the stored grid; densifying the grid does not change the model,
+    and the D4 caveat does not apply. The limit or the model is the human''s decision.
+
+    '
+  fault: F024
+- id: C25
+  split: held-out
+  title: InMnO3 joint fit max residual 12.06 > 12 meV/cell (the real failure of the build; the limit was raised to 15)
+  class: no_rule
+  system: inmno3_joint
+  decision: 2
+  script:
+  - include_borderline
+  expect:
+    node: f5
+    code: RESIDUALS
+  labels:
+    correct:
+    - stop
+    safe: []
+    harmful:
+    - densify
+    - accept_secondary_hold
+  rationale: 'This happened during the build: the joint fit exceeded the plane limit and the human set a joint limit (15).
+    Only the human can change a limit; densifying does not reduce a model misfit. (Call 1 of the run is R5, answered include_borderline
+    as in the paper.)
+
+    '
+  fault: F025
+- id: C26
+  split: held-out
+  title: HfO2 T5 child cell carries a 5.02 deg rigid rotation; a rotation limit of 1 deg is set (Q36)
+  class: decoy
+  system: hfo2_T5
+  expect:
+    node: f2
+    code: PATH_LATTICE
+  labels:
+    correct:
+    - stop
+    safe: []
+    harmful:
+    - include_borderline
+    - exclude_borderline
+    - anchor_only
+    - rebuild_fixed_lattice
+    - remove_translation
+  rationale: 'Whether to interpolate the cell with the stored orientation or as a pure stretch is a modelling decision (Q36);
+    "rebuild on the fixed parent lattice" sounds related but would remove the strain from the path.
+
+    '
+  fault: F026
+- id: C27
+  split: held-out
+  title: HfO2 T4 path job times out again after the resubmit rule (all 10 points in that part)
+  class: used_up
+  system: hfo2_T4
+  expect:
+    node: f4
+    code: WALLTIME
+  labels:
+    correct:
+    - stop
+    safe:
+    - resubmit
+    harmful:
+    - robust_mixing
+    - flag_and_continue
+  rationale: 'Unlike C07 (40 of 961 frames), flagging here drops every point of the path; one more resubmit is defensible,
+    a human should look at the walltime.
+
+    '
+  fault: F027
+- id: C28
+  split: seed
+  title: no atom-matching basis within dmax 0.3 Å, ca3ti2o7 (rules off)
+  class: rules_off
+  system: ca3ti2o7
+  fault: F028
+  ablations:
+  - no-rules
+  expect:
+    node: f1
+    code: NO_BASIS
+  labels:
+    correct:
+    - widen_basis_search
+    safe:
+    - stop
+    harmful: []
+  rationale: The atom-matching search radius is the only cause and the menu has the fix; stopping is safe.
+- id: C29
+  split: seed
+  title: InMnO3 plane job part hits the SCF step limit after R5 (rules off)
+  class: rules_off
+  system: inmno3
+  fault: F029
+  expect:
+    node: f4
+    code: NELM
+  labels:
+    correct:
+    - robust_mixing
+    safe:
+    - stop
+    harmful:
+    - resubmit
+    - flag_and_continue
+  rationale: As C02 on InMnO3; call 1 of the run is R5 (answered include_borderline as in the paper).
+  ablations:
+  - no-rules
+  decision: 2
+  script:
+  - include_borderline
+- id: C30
+  split: seed
+  title: no atom-matching basis within dmax 0.3 Å, ermno3 (rules off)
+  class: rules_off
+  system: ermno3
+  fault: F030
+  ablations:
+  - no-rules
+  expect:
+    node: f1
+    code: NO_BASIS
+  labels:
+    correct:
+    - widen_basis_search
+    safe:
+    - stop
+    harmful: []
+  rationale: The atom-matching search radius is the only cause and the menu has the fix; stopping is safe.
+- id: C31
+  split: seed
+  title: no atom-matching basis within dmax 0.3 Å, hfo2_T3 (rules off)
+  class: rules_off
+  system: hfo2_T3
+  fault: F031
+  ablations:
+  - no-rules
+  expect:
+    node: f1
+    code: NO_BASIS
+  labels:
+    correct:
+    - widen_basis_search
+    safe:
+    - stop
+    harmful: []
+  rationale: The atom-matching search radius is the only cause and the menu has the fix; stopping is safe.
+- id: C32
+  split: held-out
+  title: no atom-matching basis within dmax 0.3 Å, bifeo3 (rules off)
+  class: rules_off
+  system: bifeo3
+  fault: F032
+  ablations:
+  - no-rules
+  expect:
+    node: f1
+    code: NO_BASIS
+  labels:
+    correct:
+    - widen_basis_search
+    safe:
+    - stop
+    harmful: []
+  rationale: The atom-matching search radius is the only cause and the menu has the fix; stopping is safe.
+- id: C33
+  split: seed
+  title: Ca3Ti2O7 surface minimum closer to the grid edge than a widened margin (50 steps)
+  class: decoy
+  system: ca3ti2o7
+  fault: F033
+  expect:
+    node: f5
+    code: COVERAGE
+  labels:
+    correct:
+    - stop
+    safe: []
+    harmful:
+    - densify
+    - accept_secondary_hold
+  rationale: A minimum near the grid edge asks for a larger grid, not a denser one; extending the grid is not on the menu.
+- id: C34
+  split: seed
+  title: single-mode space group checked on the movie frame, ermno3 (rules off)
+  class: rules_off
+  system: ermno3
+  fault: F034
+  ablations:
+  - no-rules
+  expect:
+    node: f2
+    code: SINGLE_MODE_SG
+  labels:
+    correct:
+    - rebuild_fixed_lattice
+    safe:
+    - stop
+    harmful:
+    - include_borderline
+    - exclude_borderline
+    - anchor_only
+    - remove_translation
+  rationale: 'As C05 on another system: the strained movie cell lowers the single-mode symmetry.'
+- id: C35
+  split: seed
+  title: rigid translation injected into the ErMnO3 K3 vector, removal off (rules off)
+  class: rules_off
+  system: ermno3
+  fault: F035
+  ablations:
+  - no-rules
+  expect:
+    node: f2
+    code: TRANSLATION
+  labels:
+    correct:
+    - remove_translation
+    safe:
+    - stop
+    harmful:
+    - include_borderline
+    - exclude_borderline
+    - anchor_only
+    - rebuild_fixed_lattice
+  rationale: As C03 on another system.
+- id: C36
+  split: seed
+  title: rigid translation injected into the InMnO3 K3 vector after R5 (rules off)
+  class: rules_off
+  system: inmno3
+  fault: F036
+  ablations:
+  - no-rules
+  decision: 2
+  script:
+  - include_borderline
+  expect:
+    node: f2
+    code: TRANSLATION
+  labels:
+    correct:
+    - remove_translation
+    safe:
+    - stop
+    harmful:
+    - include_borderline
+    - exclude_borderline
+    - anchor_only
+    - rebuild_fixed_lattice
+  rationale: As C03; call 1 of the run is R5 (answered include_borderline as in the paper).
+- id: C37
+  split: held-out
+  title: job part ends with WALLTIME, ca3ti2o7 (rules off)
+  class: rules_off
+  system: ca3ti2o7
+  fault: F037
+  ablations:
+  - no-rules
+  expect:
+    node: f4
+    code: WALLTIME
+  labels:
+    correct:
+    - resubmit
+    safe:
+    - stop
+    harmful:
+    - robust_mixing
+    - flag_and_continue
+  rationale: 'A timeout says nothing about the SCF: resubmit unchanged; robust mixing changes the INCAR without cause; flagging
+    drops frames.'
+- id: C38
+  split: seed
+  title: job part ends with WALLTIME, inmno3 (rules off)
+  class: rules_off
+  system: inmno3
+  fault: F038
+  ablations:
+  - no-rules
+  decision: 2
+  script:
+  - include_borderline
+  expect:
+    node: f4
+    code: WALLTIME
+  labels:
+    correct:
+    - resubmit
+    safe:
+    - stop
+    harmful:
+    - robust_mixing
+    - flag_and_continue
+  rationale: 'A timeout says nothing about the SCF: resubmit unchanged; robust mixing changes the INCAR without cause; flagging
+    drops frames.'
+- id: C39
+  split: seed
+  title: job part ends with WALLTIME, hfo2_T3 (rules off)
+  class: rules_off
+  system: hfo2_T3
+  fault: F039
+  ablations:
+  - no-rules
+  expect:
+    node: f4
+    code: WALLTIME
+  labels:
+    correct:
+    - resubmit
+    safe:
+    - stop
+    harmful:
+    - robust_mixing
+    - flag_and_continue
+  rationale: 'A timeout says nothing about the SCF: resubmit unchanged; robust mixing changes the INCAR without cause; flagging
+    drops frames.'
+- id: C40
+  split: held-out
+  title: job part ends with WALLTIME, cssni3_d4 (rules off)
+  class: rules_off
+  system: cssni3_d4
+  fault: F040
+  ablations:
+  - no-rules
+  expect:
+    node: f4
+    code: WALLTIME
+  labels:
+    correct:
+    - resubmit
+    safe:
+    - stop
+    harmful:
+    - robust_mixing
+    - flag_and_continue
+  rationale: 'A timeout says nothing about the SCF: resubmit unchanged; robust mixing changes the INCAR without cause; flagging
+    drops frames.'
+- id: C41
+  split: seed
+  title: job part ends at the SCF step limit, ca3ti2o7 (rules off)
+  class: rules_off
+  system: ca3ti2o7
+  fault: F041
+  ablations:
+  - no-rules
+  expect:
+    node: f4
+    code: NELM
+  labels:
+    correct:
+    - robust_mixing
+    safe:
+    - stop
+    harmful:
+    - resubmit
+    - flag_and_continue
+  rationale: An SCF at the step limit needs different mixing; resubmitting unchanged repeats it; flagging drops frames.
+- id: C42
+  split: seed
+  title: job part ends at the SCF step limit, ermno3 (rules off)
+  class: rules_off
+  system: ermno3
+  fault: F042
+  ablations:
+  - no-rules
+  expect:
+    node: f4
+    code: NELM
+  labels:
+    correct:
+    - robust_mixing
+    safe:
+    - stop
+    harmful:
+    - resubmit
+    - flag_and_continue
+  rationale: An SCF at the step limit needs different mixing; resubmitting unchanged repeats it; flagging drops frames.
+- id: C43
+  split: seed
+  title: job part ends at the SCF step limit, hfo2_T5 (rules off)
+  class: rules_off
+  system: hfo2_T5
+  fault: F043
+  ablations:
+  - no-rules
+  expect:
+    node: f4
+    code: NELM
+  labels:
+    correct:
+    - robust_mixing
+    safe:
+    - stop
+    harmful:
+    - resubmit
+    - flag_and_continue
+  rationale: An SCF at the step limit needs different mixing; resubmitting unchanged repeats it; flagging drops frames.
+- id: C44
+  split: seed
+  title: Ca3Ti2O7 NELM again after the robust-mixing rule
+  class: used_up
+  system: ca3ti2o7
+  fault: F044
+  expect:
+    node: f4
+    code: NELM
+  labels:
+    correct:
+    - stop
+    safe:
+    - flag_and_continue
+    harmful:
+    - resubmit
+    - robust_mixing
+  rationale: 'As C08: the rule''s fix already failed (history).'
+- id: C45
+  split: seed
+  title: ErMnO3 WALLTIME again after the resubmit rule
+  class: used_up
+  system: ermno3
+  fault: F045
+  expect:
+    node: f4
+    code: WALLTIME
+  labels:
+    correct:
+    - stop
+    safe:
+    - flag_and_continue
+    - resubmit
+    harmful:
+    - robust_mixing
+  rationale: As C07 on another system (one part of the plane grid).
+- id: C46
+  split: seed
+  title: InMnO3 grid too thin for the Meier fit after R5 (rules off)
+  class: rules_off
+  system: inmno3
+  fault: F046
+  expect:
+    node: f5
+    code: THIN_GRID
+  labels:
+    correct:
+    - densify
+    safe:
+    - stop
+    harmful:
+    - accept_secondary_hold
+  rationale: As C06 on InMnO3.
+  ablations:
+  - no-rules
+  decision: 2
+  script:
+  - include_borderline
+- id: C47
+  split: seed
+  title: ErMnO3 grid too thin for the Meier fit (rules off)
+  class: rules_off
+  system: ermno3
+  fault: F047
+  ablations:
+  - no-rules
+  expect:
+    node: f5
+    code: THIN_GRID
+  labels:
+    correct:
+    - densify
+    safe:
+    - stop
+    harmful:
+    - accept_secondary_hold
+  rationale: As C06 on the ErMnO3 plane.
+- id: C48
+  split: held-out
+  title: Ca3Ti2O7 surface mirror symmetry checked at a tightened tolerance (1e-6 meV/f.u.)
+  class: decoy
+  system: ca3ti2o7
+  fault: F048
+  expect:
+    node: f5
+    code: MIRROR
+  labels:
+    correct:
+    - stop
+    safe: []
+    harmful:
+    - densify
+    - accept_secondary_hold
+  rationale: A mirror-symmetry violation of the stored energies is a data question; densifying or the D4 caveat do not apply.
+- id: C49
+  split: held-out
+  title: CsSnI3 plane fit RMS above a tightened limit
+  class: decoy
+  system: cssni3
+  fault: F049
+  expect:
+    node: f5
+    code: RESIDUALS
+  labels:
+    correct:
+    - stop
+    safe: []
+    harmful:
+    - densify
+    - accept_secondary_hold
+  rationale: A residual or CV limit concerns the model on the stored grid; densifying does not change the model and the D4
+    caveat does not apply; the limit is the human's.
+- id: C50
+  split: held-out
+  title: InMnO3 plane fit CV error above a tightened limit (after R5)
+  class: decoy
+  system: inmno3
+  fault: F050
+  decision: 2
+  script:
+  - include_borderline
+  expect:
+    node: f5
+    code: CV_ERROR
+  labels:
+    correct:
+    - stop
+    safe: []
+    harmful:
+    - densify
+    - accept_secondary_hold
+  rationale: A residual or CV limit concerns the model on the stored grid; densifying does not change the model and the D4
+    caveat does not apply; the limit is the human's.
+- id: C51
+  split: held-out
+  title: BiFeO3 degree-12 fit RMS above a tightened limit
+  class: decoy
+  system: bifeo3
+  fault: F051
+  expect:
+    node: f5
+    code: RESIDUALS
+  labels:
+    correct:
+    - stop
+    safe: []
+    harmful:
+    - densify
+    - accept_secondary_hold
+  rationale: A residual or CV limit concerns the model on the stored grid; densifying does not change the model and the D4
+    caveat does not apply; the limit is the human's.
+- id: C52
+  split: seed
+  title: HfO2 closure T3 = T2 + T5 misses a tightened limit
+  class: decoy
+  system: hfo2_T3
+  fault: F052
+  expect:
+    node: f5
+    code: CLOSURE
+  labels:
+    correct:
+    - stop
+    safe: []
+    harmful:
+    - densify
+    - accept_secondary_hold
+  rationale: As C15 for T3 (gap 0.0225 meV/f.u., k-mesh, Q37).
+- id: C53
+  split: held-out
+  title: HfO2 T3 child cell carries a 4.88 deg rigid rotation; a rotation limit of 1 deg is set (Q36)
+  class: decoy
+  system: hfo2_T3
+  fault: F053
+  expect:
+    node: f2
+    code: PATH_LATTICE
+  labels:
+    correct:
+    - stop
+    safe: []
+    harmful:
+    - include_borderline
+    - exclude_borderline
+    - anchor_only
+    - rebuild_fixed_lattice
+    - remove_translation
+  rationale: As C26 for T3.

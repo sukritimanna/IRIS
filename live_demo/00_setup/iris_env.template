@@ -1,0 +1,9 @@
+# Copy to ~/.iris_env on Carbon, chmod 600, fill in. Sourced by the demo scripts; never committed, never printed.
+export ANTHROPIC_API_KEY=
+export MP_API_KEY=
+# where everything lives on Carbon (code, env, runs, recording)
+export IRIS_LIVE=<your-scratch>/iris_live
+export IRIS_REPO=$IRIS_LIVE/imhafo2            # your imhafo2 checkout (needs demo/staged_walkthrough AND iris/ package)
+export IRIS_AGENT=$IRIS_REPO/IRIS_AGENT
+export IRIS_CONFIGS=$IRIS_AGENT/configs         # intake library (frozen E1 configs)
+export IRIS_POTCAR=<your-potcar-library>     # writePotcar library: <dir>/<Element>/POTCAR

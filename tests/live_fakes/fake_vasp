@@ -1,0 +1,20 @@
+#!/usr/bin/env python3
+# FAKE VASP for tests: double-well energy in lambda (from frame.json), writes OSZICAR/OUTCAR. Honors env FAKE_FAIL=nelm|kill for frame names in FAKE_FAIL_POINTS.
+import json, os, sys, time, re
+fr = json.load(open("frame.json")); lam = fr["lambda"]
+mode = os.environ.get("FAKE_FAIL", ""); pts = os.environ.get("FAKE_FAIL_POINTS", "").split(",")
+nelm = int(re.search(r"NELM\s*=\s*(\d+)", open("INCAR").read()).group(1))
+if mode == "kill" and fr["name"] in pts and not os.path.exists("../.killed_" + fr["name"]):
+    open("../.killed_" + fr["name"], "w").write("x"); open("OSZICAR", "w").write("DAV:   1    -0.1E+02   -0.1E+02   -0.1E+02  100   0.1E+02\n"); os.kill(os.getppid(), 9); sys.exit(1)
+if lam is None:                                               # plane frame: 4mm double well in (Q1, Q2) [Å]
+    q1, q2 = [float(v) for v in fr["Q"].values()]
+    E = -40.0 - 0.20*(q1**2 + q2**2) + 10.0*(q1**4 + q2**4) + 25.0*(q1**2)*(q2**2)   # min on the axis at q = 0.1 A
+else:
+    E = -40.0 + 0.05*(lam**2) - 0.08*(lam**4) + 0.02*(lam**6)   # eV per 5-atom cell
+steps = nelm if (mode == "nelm" and fr["name"] in pts and nelm < 200) else 12
+with open("OSZICAR", "w") as f:
+    for k in range(1, steps + 1):
+        dE = 10.0**(-1 - 0.6*k) if steps < nelm else 1e-3
+        f.write(f"DAV: {k:3d}    {E: .10E}   {-dE: .5E}   {-dE: .5E}   100   0.1E+00\n")
+    f.write(f"   1 F= {E-0.0001: .8E} E0= {E: .8E}  d E = {E: .5E}\n")
+open("OUTCAR", "w").write("fake OUTCAR\n General timing and accounting informations for this job:\n")

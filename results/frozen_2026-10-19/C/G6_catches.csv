@@ -1,0 +1,17 @@
+thread,checkpoint,n_rows_failing,oracle_rows_failing,rederive_rows_failing,frames_flagged_or_unlinked,replay_oracle
+C_C01_flag_and_continue,2026-10-19T02:20:31.297143+00:00,1,linked energies equal to the CSV,,True,True
+C_C02_flag_and_continue,2026-10-19T02:21:09.179162+00:00,1,linked energies equal to the CSV,,True,True
+C_C07_flag_and_continue,2026-10-19T02:24:55.201084+00:00,1,linked energies equal to the CSV,,True,True
+C_C08_flag_and_continue,2026-10-19T02:25:12.135442+00:00,1,linked energies equal to the CSV,,True,True
+C_C20_flag_and_continue,2026-10-19T03:13:47.236773+00:00,1,energies differing from the collected CSV (> 1e-6 meV/f.u.),,True,True
+C_C40_flag_and_continue,2026-10-19T03:46:59.572010+00:00,1,linked energies equal to the CSV,,True,True
+C_C42_flag_and_continue,2026-10-19T03:47:16.513494+00:00,17,linked energies equal to the CSV,"nodes in fit window; a (A_p, eV/cell); a (A_s, eV/cell); b (A_p, eV/cell); b (A_s, eV/cell); c (A_p, eV/cell); c (A_s, eV/cell); g (A_p, eV/cell); g (A_s, eV/cell); g' (A_p, eV/cell); g' (A_s, eV/cell); RMS residual",True,True
+E9_g3_F007,2026-10-17T19:36:53.669040+00:00,1,frames matched to stored structures,,True,True
+E9_g4_F001,2026-10-17T19:32:27.307976+00:00,1,linked energies equal to the CSV,,True,True
+E9_g4_F002,2026-10-17T19:33:10.688221+00:00,1,linked energies equal to the CSV,,True,True
+E9_g4_F010,2026-10-17T19:38:20.135604+00:00,1,linked energies equal to the CSV,,True,True
+E9_g4_F011,2026-10-17T19:38:26.424733+00:00,1,linked energies equal to the CSV,,True,True
+E9_g4_F020,2026-10-17T19:44:50.280137+00:00,1,energies differing from the collected CSV (> 1e-6 meV/f.u.),,True,True
+E9_g4_F021,2026-10-17T19:48:49.496263+00:00,1,energies differing from the collected CSV (> 1e-6 meV/f.u.),,True,True
+E9_g4_F040,2026-10-17T20:01:27.100119+00:00,1,linked energies equal to the CSV,,True,True
+E9_g4_F042,2026-10-17T20:01:39.381120+00:00,17,linked energies equal to the CSV,"nodes in fit window; a (A_p, eV/cell); a (A_s, eV/cell); b (A_p, eV/cell); b (A_s, eV/cell); c (A_p, eV/cell); c (A_s, eV/cell); g (A_p, eV/cell); g (A_s, eV/cell); g' (A_p, eV/cell); g' (A_s, eV/cell); RMS residual",True,True

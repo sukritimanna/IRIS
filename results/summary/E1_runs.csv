@@ -1,0 +1,14 @@
+config,thread,status,last_node,gate_trail,gate_failures,rule_fixes,subagent_fixes,human_interventions,human_questions,g6_quantities,g6_matching,wall_time_s
+cssni3,E1_cssni3,completed,f6,G0 OK > G1 OK > G2 OK > G3 OK > G4 OK > G5 OK > G6 OK,0,0,0,0,,43,43,20.3
+cssni3_d4,E1_cssni3_d4,completed,f6,G0 OK > G1 OK > G2 OK > G3 OK > G4 OK > G5 SECONDARY_COUPLED > G5 OK > G6 OK,1,0,0,1,SECONDARY_COUPLED,53,53,4.1
+ca3ti2o7,E1_ca3ti2o7,completed,f6,G0 OK > G1 OK > G2 OK > G3 OK > G4 OK > G5 OK > G6 OK,0,0,0,0,,38,38,48.8
+inmno3,E1_inmno3,completed,f6,G0 OK > G1 OK > G2 R5_BORDERLINE > G2 OK > G3 OK > G4 OK > G5 OK > G6 OK,1,0,0,1,R5_BORDERLINE,39,39,66.4
+inmno3_joint,E1_inmno3_joint,completed,f6,G0 OK > G1 OK > G2 R5_BORDERLINE > G2 OK > G3 OK > G4 OK > G5 OK > G6 OK,1,0,0,1,R5_BORDERLINE,37,37,1.4
+ermno3,E1_ermno3,completed,f6,G0 OK > G1 OK > G2 OK > G3 OK > G4 OK > G5 OK > G6 OK,0,0,0,0,,40,40,67.6
+ermno3_joint,E1_ermno3_joint,completed,f6,G0 OK > G1 OK > G2 OK > G3 OK > G4 OK > G5 OK > G6 OK,0,0,0,0,,38,38,1.4
+bifeo3,E1_bifeo3,completed,f6,G0 OK > G1 OK > G2 OK > G3 OK > G4 OK > G5 OK > G6 OK,0,0,0,0,,84,84,106.6
+hfo2_T1,E1_hfo2_T1,completed,f6,G0 OK > G1 OK > G2 OK > G3 OK > G4 OK > G5 OK > G6 OK,0,0,0,0,,71,71,2.5
+hfo2_T2,E1_hfo2_T2,completed,f6,G0 OK > G1 OK > G2 OK > G3 OK > G4 OK > G5 OK > G6 OK,0,0,0,0,,68,68,4.7
+hfo2_T3,E1_hfo2_T3,completed,f6,G0 OK > G1 OK > G2 OK > G3 OK > G4 OK > G5 OK > G6 OK,0,0,0,0,,71,71,2.5
+hfo2_T4,E1_hfo2_T4,completed,f6,G0 OK > G1 OK > G2 OK > G3 OK > G4 OK > G5 OK > G6 OK,0,0,0,0,,67,67,2.5
+hfo2_T5,E1_hfo2_T5,completed,f6,G0 OK > G1 OK > G2 OK > G3 OK > G4 OK > G5 OK > G6 OK,0,0,0,0,,67,67,2.4

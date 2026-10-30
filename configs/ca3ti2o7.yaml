@@ -1,0 +1,83 @@
+# Ca3Ti2O7 139 -> 36 (hybrid improper ferroelectric) — every data path and policy value of this run.
+# Paths under repo_root are READ ONLY. IRIS writes only under agent_root (enforced in code).
+#
+# Replay of the manuscript (X3-, X2+) plane, demo/ca3ti2o7/xplane (1369 nodes + 3 anchors), in TRUE A_p.
+# The stored xplane labels are A_s of the 48-atom cell (= 4 primitive parent cells, s = 2: A_s = A_p √2),
+# so Q = label / √2 (run.replay.label_scale). Agreed with the user (16 Oct 2026):
+#   - primaries from the translation-free walk (policy.amplitude_basis As_tf) -> X3- + X2+
+#   - GM5- held at 0, overriding R4, recorded with its reason (policy.hold_at_zero)
+system: ca3ti2o7
+thread_id: ca3ti2o7_139_36_xplane
+request: "map the Ca3Ti2O7 (X3-, X2+) energy surface, fixed cell, DFT, GM5- held at 0; parent.cif, child.cif"
+
+run:
+  mode: replay
+  engine: dft
+  budget_runs: 1400              # 37^2 = 1369 grid nodes + 3 anchors
+  allow_live_submission: false   # must stay false: no DFT/VASP/MACE/Slurm in this build
+  jobs:
+    wait: true
+    part_size: 40
+  replay:
+    label_scale: 0.7071067811865475   # stored xplane label (A_s) -> Q (A_p); labels only pick candidates
+
+paths:
+  repo_root: ~/Workspace/myProjects/imhafo2
+  agent_root: ~/Workspace/myProjects/imhafo2/IRIS_AGENT
+  test_runs: test_runs
+  parent_cif: demo/ca3ti2o7/structures/paraelectric_constructed_sg139.cif
+  child_cif: demo/ca3ti2o7/structures/ferroelectric_mp-4163_sg36.cif
+  system_json: demo/staged_walkthrough/systems/ca3ti2o7.json
+  walkthrough: demo/staged_walkthrough
+  reference_run: demo/runs/ca3ti2o7_139_to_36__20260913_060027
+  isodistort_stored: demo/runs/ca3ti2o7_139_to_36__20260913_060027/step3_isodistort/04_raw_isodistort
+  reference_grid: demo/ca3ti2o7/xplane                     # the manuscript plane (POSCARs + manifest)
+  energies_csv: demo/ca3ti2o7/xplane_energies.csv
+  movie_grid: demo/runs/ca3ti2o7_139_to_36__20260913_060027/step4_energy_cube          # c2 calibration only
+  movie_vectors: demo/runs/ca3ti2o7_139_to_36__20260913_060027/step4_energy_cube/01_eigenvectors
+  surface_script: demo/ca3ti2o7/plot_ca3ti2o7_plane.py     # run unchanged by f5 (analysis: surface)
+  reference_figure_csv: demo/ca3ti2o7/ca3ti2o7_plane_plane.csv   # regression only
+
+expected:
+  parent_sg: 139
+  child_sg: 36
+  parent_sha256: 28038e997de4cfc4d8fb652acfef16c82219594ef206fcc9e9deb09f04d0150a
+  child_sha256: 88c3d8131329220520edc3d56d70a279f75cc47c2b8f45f133c7724b83f1bff1
+
+policy:
+  a_thr: 0.05
+  amplitude_basis: As_tf         # A_s of the translation-free vector (GM5-: f_T = 0.75)
+  hold_at_zero: [GM5-]
+  hold_at_zero_reason: >-
+    manuscript plane: the polar GM5- is induced by the trilinear X3- X2+ GM5- term and held at 0, as in
+    the CsSnI3 primaries-only plane (user decision 16 Oct 2026; overrides R4)
+  r5_margin: 0.1
+  strain_policy: P2              # fixed parent cell (48-atom child frame); strain irreps zero (R1)
+  d_cut: 1.0
+  grid:                          # D2: m = 2 q_max/dq + 1 = 37, N = 1369
+    q_max: 1.2727922061357855    # Å of A_p (= ±1.8 on the stored A_s labels)
+    dq: 0.07071067811865475      # Å of A_p (= 0.1 on the stored labels)
+  anchors:                       # the stored anchors, ids 1369-1371 (labels 0.822 / 0.599 = A_s)
+    - {name: cmcm, Q: {X3-: 0.581241774135342}}
+    - {name: cmce, Q: {X2+: 0.42355696193074194}}
+    - {name: a21am, Q: {X3-: 0.581241774135342, X2+: 0.42355696193074194}}
+  analysis: surface              # the DFT surface itself (no Landau fit), see nodes/f5_surface.py
+  surface:
+    mirror_tol_meV: 1.0          # proposed: parent mirror symmetry at the noise level (stored data: 0.44)
+    edge_margin_steps: 2
+  fit:                           # per_fu is used by f4/f5; the rest only by the Landau analysis
+    rmax: 1.2727922061357855
+    per_fu: 4                    # 48-atom cell = 4 Ca3Ti2O7
+    cv_folds: 10
+    max_rms_meV: 0.5
+    max_cv_rms_meV: 0.5
+    max_abs_res_meV: 2.0
+    min_points_per_coef: 10
+
+retry:
+  max_per_node: 3
+
+llm:
+  enabled: false
+  model: null
+  api_key_env: ANTHROPIC_API_KEY

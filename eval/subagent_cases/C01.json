@@ -1,0 +1,81 @@
+{
+ "id": "C01",
+ "captured_from": {
+  "system": "cssni3",
+  "fault": "F001",
+  "patch": {},
+  "ablations": [
+   "no-rules"
+  ],
+  "decision": 1,
+  "script": [],
+  "steps": [
+   "jobs: {'event': 'job_end', 'parts': [0, 1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]}",
+   "jobs: {'event': 'job_end', 'parts': [3], 'failed': {'3': 'WALLTIME'}}"
+  ]
+ },
+ "node": "f4",
+ "gate": "G4",
+ "code": "WALLTIME",
+ "prompt_id": "subagent_G4",
+ "prompt_values": {
+  "system": "cssni3",
+  "node": "f4",
+  "node_name": "Reviewer",
+  "gate": "G4",
+  "code": "WALLTIME",
+  "detail": "40 frames from failed jobs (WALLTIME), first: frame 120",
+  "tests": [
+   {
+    "test": "converged_or_flagged",
+    "status": "fail",
+    "code": "WALLTIME",
+    "detail": "40 frames from failed jobs (WALLTIME), first: frame 120"
+   }
+  ],
+  "options": [
+   {
+    "id": "resubmit",
+    "text": "Resubmit the failed parts unchanged"
+   },
+   {
+    "id": "robust_mixing",
+    "text": "Resubmit the failed parts with robust mixing"
+   },
+   {
+    "id": "flag_and_continue",
+    "text": "Flag the frames and continue without them"
+   },
+   {
+    "id": "stop",
+    "text": "Stop and ask the human"
+   }
+  ],
+  "history": "nothing yet",
+  "attempts": 0,
+  "max_retry": 3
+ },
+ "menu": [
+  {
+   "id": "resubmit",
+   "text": "Resubmit the failed parts unchanged"
+  },
+  {
+   "id": "robust_mixing",
+   "text": "Resubmit the failed parts with robust mixing"
+  },
+  {
+   "id": "flag_and_continue",
+   "text": "Flag the frames and continue without them"
+  },
+  {
+   "id": "stop",
+   "text": "Stop and ask the human"
+  }
+ ],
+ "system_prompt": "You are the G4 recovery sub-agent of IRIS, a workflow that maps symmetry-mode energy landscapes.\nStep f4 (Reviewer) produced an output that failed gate G4. The gate is plain Python; its verdict\nis final and you cannot change it. You choose which listed fix to try next.\n\nGate G4 checks: energies converged (OSZICAR |dE| < EDIFF in fewer than NELM steps) or flagged.\nGuidance: Walltime: resubmit unchanged. SCF step limit: resubmit with robust mixing. If a fix was already tried for the same failure, choose between flagging the frames and stopping. Inconsistent settings, magnetism or configuration values are for the human.\n\nRules:\n- Answer with JSON {\"id\": ..., \"reason\": ...} and nothing else.\n- \"id\" must be exactly one of the option ids you are given. Choose \"stop\" if none fits or if the\n  same fix has already failed (see the history).\n- The reason is one sentence. It may quote numbers from the input; it must not introduce new ones.\n- Do not propose new calculations, new options, or edits to any number.",
+ "user_template": "System: {system}\nFailed: {node} {node_name}, gate {gate}, code {code}\nDetail: {detail}\nChecks run by the gate:\n{tests}\n\nRetries used on this step: {attempts} of {max_retry}\nWhat has been tried so far in this run:\n{history}\n\nOptions (choose one id):\n{options}",
+ "user_prompt": "System: cssni3\nFailed: f4 Reviewer, gate G4, code WALLTIME\nDetail: 40 frames from failed jobs (WALLTIME), first: frame 120\nChecks run by the gate:\n[\n {\n  \"test\": \"converged_or_flagged\",\n  \"status\": \"fail\",\n  \"code\": \"WALLTIME\",\n  \"detail\": \"40 frames from failed jobs (WALLTIME), first: frame 120\"\n }\n]\n\nRetries used on this step: 0 of 3\nWhat has been tried so far in this run:\nnothing yet\n\nOptions (choose one id):\n[\n {\n  \"id\": \"resubmit\",\n  \"text\": \"Resubmit the failed parts unchanged\"\n },\n {\n  \"id\": \"robust_mixing\",\n  \"text\": \"Resubmit the failed parts with robust mixing\"\n },\n {\n  \"id\": \"flag_and_continue\",\n  \"text\": \"Flag the frames and continue without them\"\n },\n {\n  \"id\": \"stop\",\n  \"text\": \"Stop and ask the human\"\n }\n]",
+ "system_prompt_bare": "You are the G4 recovery sub-agent of IRIS, a workflow that maps symmetry-mode energy landscapes.\nStep f4 (Reviewer) produced an output that failed gate G4. The gate is plain Python; its verdict\nis final and you cannot change it. You choose which listed fix to try next.\n\nGate G4 checks: energies converged (OSZICAR |dE| < EDIFF in fewer than NELM steps) or flagged.\n\nRules:\n- Answer with JSON {\"id\": ..., \"reason\": ...} and nothing else.\n- \"id\" must be exactly one of the option ids you are given. Choose \"stop\" if none fits or if the\n  same fix has already failed (see the history).\n- The reason is one sentence. It may quote numbers from the input; it must not introduce new ones.\n- Do not propose new calculations, new options, or edits to any number.",
+ "prompt_sha256": "029d080346b910c9"
+}

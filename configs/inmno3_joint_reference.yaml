@@ -1,0 +1,14 @@
+# InMnO3 stage 2 (plane + hat, joint Meier fit with c'). paper = the coefficients used by the manuscript figure
+# notebook (fig_manganites_hat_landau_vs_dft.ipynb) = demo/inmno3/landau/joint_hat_fit.py output.
+paper:
+  active: [K3, GM2-]
+  hat_frames: 175
+  hat_frames_by_sg: {"185": 25, "165": 5, "158": 145}
+  coef_As: {a: -1.206, b: 1.206, c: 0.700, "c'": 0.068, a_P: 2.663, g: 0.962, "g'": 5.310}
+  n_fit: [65, 63]
+  rms_meV: 3.4
+  rms_plane_hat: [4.0, 2.5]
+  hat_meV_per_fu: 43.1
+  brim_meV_per_fu: 3.32
+  brim_c0_meV_per_fu: 4.94
+stored: {}

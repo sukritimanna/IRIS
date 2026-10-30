@@ -1,0 +1,19 @@
+# Reference values for the Ca3Ti2O7 replay regression (true A_p axes).
+# paper:  manuscript / notes values (to be confirmed against the pasted manuscript paragraph — open item).
+# stored: files read (read-only) and compared number by number. The stored xplane labels and the
+#         figure CSV are in the old units (A_s of the 48-atom cell); IRIS reports A_p = label / √2.
+paper:
+  Ap:  {X3-: 0.822, X2+: 0.599, GM5-: 0.792}       # Å, step 3 (ISODISTORT A_p)
+  As:  {X3-: 1.163, X2+: 0.847, GM5-: 1.120}
+  primaries: [X3-, X2+]
+  active: [X3-, X2+]
+  held_at_zero: [GM5-]
+  calibration_s: {X3-: 1.25, X2+: 2.50}            # A_child / A_movie per irrep (Methods definition)
+  grid: {n: 2, m: 37, N: 1369}
+  phases_meV: {parent: 489.4, cmcm: 189.0, cmce: 324.4, a21am: 97.8}   # at the stored anchors (old labels 0.822/0.599)
+  range_meV: 3680
+  minimum_As: [1.30, 0.30]                          # old-label position of the grid minimum (|x|, |y|)
+stored:
+  figure_csv: reference_figure_csv                  # paths key: ca3ti2o7_plane_plane.csv (old labels)
+  grid_manifest: reference_grid
+  classification: reference_run

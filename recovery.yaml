@@ -1,0 +1,90 @@
+# IRIS recovery table. recover() looks up (node, gate code) here first; if there is no rule, or the
+# rule's steps are used up, or it needs something switched off (e.g. the LLM), it asks the node's
+# gate sub-agent to pick ONE of the node's listed options; if that gives nothing, it interrupts for a
+# human. Seeded from fixes applied by hand. Step 4 tests each rule by fault injection on the replay.
+#
+# rule fields
+#   fix:      config patch merged into the overrides of the node that runs next ("goto", else the
+#             failing node); "goto" re-routes there
+#   ladder:   {key: [v1, v2, ...]} - attempt k of this rule sets key = v_k (then the rule is used up)
+#   requires: [llm]  - rule only applies when that capability is on
+#   source:   where the fix came from (goes into the audit log)
+version: 1
+
+rules:
+  - id: f0_schema_reask
+    node: f0
+    code: SCHEMA
+    fix: {reask_llm_with_errors: true}
+    requires: [llm]
+    source: "f0 intake: re-ask the LLM with the validator's error list (step 6)"
+
+  - id: f1_no_basis_dmax_ladder
+    node: f1
+    code: NO_BASIS
+    ladder: {basis_dmax_A: [1.0, 1.5, 2.0]}
+    source: "hand fix: ISODISTORT nearest-site matcher needs dmax 1.5-2.0 A under large strain"
+
+  - id: f2_translation
+    node: f2
+    code: TRANSLATION
+    fix: {subtract_mean_displacement: true}
+    source: "hand fix: rigid translation in polar Gamma modes (BiFeO3 GM4-, Ca3Ti2O7 GM5-, HfO2 GM5-)"
+
+  - id: f2_single_mode_sg_fixed_lattice
+    node: f2
+    code: SINGLE_MODE_SG
+    fix: {single_mode_check_on: fixed_parent_lattice, zero_strain: true}
+    source: "CsSnI3 No. 55 (12 Sep): check was run on the raw movie frame (child GM5+ shear -> Pbam #55); rebuild on the fixed parent lattice and re-check strictly at 1e-2"
+
+  - id: f4_walltime_resubmit
+    node: f4
+    code: WALLTIME
+    fix: {goto: f3, resubmit_failed: true}
+    source: "hand fix: Perlmutter walltime -> resubmit the same part (finished frames are skipped)"
+
+  - id: f4_nelm_robust_mixing
+    node: f4
+    code: NELM
+    fix: {goto: f3, resubmit_failed: true, incar: {AMIX: 0.2, BMIX: 0.0001, NELM: 300}}
+    source: "hand fix: SCF step limit -> resubmit the failed part with robust mixing"
+
+  - id: f5_thin_grid_densify
+    node: f5
+    code: THIN_GRID
+    fix: {goto: f2, densify: 2}
+    source: "Methods: G5 coverage failure goes back to f2"
+
+# Menus for the gate sub-agents (step 5) and for the human. The LLM may only return one id from the
+# failing node's list plus a one-sentence reason; it never computes, decides pass/fail or writes numbers.
+# Every option must change something a node reads (tests/test_gates_recover.py checks the patch keys).
+# Removed 2026-10-17 (S5.2) because no node read their patch: reask_llm (returns with the LLM intake, step 6),
+# retry_tolerance_ladder, add_subthreshold_irrep, reduce_grid, f3 wait, restrict_fit_radius; zero_strain dropped
+# from rebuild_fixed_lattice for the same reason. Added: remove_translation (the f2_translation rule's fix).
+options:
+  f0:
+    - {id: stop, patch: {abort: true}, text: "Stop and ask the human for a corrected config"}
+  f1:
+    - {id: widen_basis_search, patch: {basis_dmax_A: 2.0}, text: "Widen the atom-matching basis search (dmax 2.0 A)"}
+    - {id: stop, patch: {abort: true}, text: "Stop and ask the human"}
+  f2:
+    - {id: include_borderline, patch: {r5_decision: include}, text: "R5: include the borderline irreps as axes"}
+    - {id: exclude_borderline, patch: {r5_decision: exclude}, text: "R5: exclude the borderline irreps"}
+    - {id: anchor_only, patch: {r5_decision: anchor_only}, text: "R5: keep the borderline irreps as anchor points only"}
+    - {id: rebuild_fixed_lattice, patch: {single_mode_check_on: fixed_parent_lattice}, text: "Rebuild single-mode frames on the fixed parent lattice"}
+    - {id: remove_translation, patch: {subtract_mean_displacement: true}, text: "Subtract the rigid translation (mean displacement) from the polar mode vectors"}
+    - {id: stop, patch: {abort: true}, text: "Stop and ask the human"}
+  f3:
+    - {id: stop, patch: {abort: true}, text: "Stop and ask the human"}
+  f4:
+    - {id: resubmit, patch: {goto: f3, resubmit_failed: true}, text: "Resubmit the failed parts unchanged"}
+    - {id: robust_mixing, patch: {goto: f3, resubmit_failed: true, incar: {AMIX: 0.2, BMIX: 0.0001, NELM: 300}}, text: "Resubmit the failed parts with robust mixing"}
+    - {id: flag_and_continue, patch: {flag_unconverged: true}, text: "Flag the frames and continue without them (G4 then stops with MISSING_FRAMES unless a human authorises the smaller grid)"}
+    - {id: stop, patch: {abort: true}, text: "Stop and ask the human"}
+  f5:
+    - {id: densify, patch: {goto: f2, densify: 2}, text: "Go back to f2 and densify the grid"}
+    - {id: accept_secondary_hold, patch: {d4_accept: true}, text: "D4: keep the secondary at zero and report the energy it would release as a caveat"}
+    - {id: stop, patch: {abort: true}, text: "Stop and ask the human"}
+  f6:
+    - {id: rerun_analysis, patch: {goto: f5}, text: "Re-run f5 and re-check"}
+    - {id: stop, patch: {abort: true}, text: "Stop and ask the human"}

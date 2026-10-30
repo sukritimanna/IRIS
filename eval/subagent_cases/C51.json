@@ -1,0 +1,86 @@
+{
+ "id": "C51",
+ "captured_from": {
+  "system": "bifeo3",
+  "fault": "F051",
+  "patch": {
+   "policy.fit.max_rms_meV": 0.1
+  },
+  "ablations": [],
+  "decision": 1,
+  "script": [],
+  "steps": []
+ },
+ "node": "f5",
+ "gate": "G5",
+ "code": "RESIDUALS",
+ "prompt_id": "subagent_G5",
+ "prompt_values": {
+  "system": "bifeo3",
+  "node": "f5",
+  "node_name": "Analyst",
+  "gate": "G5",
+  "code": "RESIDUALS",
+  "detail": "training RMS 0.49 (limit 0.1), max 4.31 (limit 5.0) meV/f.u.",
+  "tests": [
+   {
+    "test": "invariants_complete",
+    "status": "pass"
+   },
+   {
+    "test": "cv_error_ok",
+    "status": "pass"
+   },
+   {
+    "test": "residuals_ok",
+    "status": "fail",
+    "code": "RESIDUALS",
+    "detail": "training RMS 0.49 (limit 0.1), max 4.31 (limit 5.0) meV/f.u."
+   },
+   {
+    "test": "coverage_ok",
+    "status": "pass"
+   },
+   {
+    "test": "child_is_ground_state",
+    "status": "pass"
+   }
+  ],
+  "options": [
+   {
+    "id": "densify",
+    "text": "Go back to f2 and densify the grid"
+   },
+   {
+    "id": "accept_secondary_hold",
+    "text": "D4: keep the secondary at zero and report the energy it would release as a caveat"
+   },
+   {
+    "id": "stop",
+    "text": "Stop and ask the human"
+   }
+  ],
+  "history": "nothing yet",
+  "attempts": 0,
+  "max_retry": 3
+ },
+ "menu": [
+  {
+   "id": "densify",
+   "text": "Go back to f2 and densify the grid"
+  },
+  {
+   "id": "accept_secondary_hold",
+   "text": "D4: keep the secondary at zero and report the energy it would release as a caveat"
+  },
+  {
+   "id": "stop",
+   "text": "Stop and ask the human"
+  }
+ ],
+ "system_prompt": "You are the G5 recovery sub-agent of IRIS, a workflow that maps symmetry-mode energy landscapes.\nStep f5 (Analyst) produced an output that failed gate G5. The gate is plain Python; its verdict\nis final and you cannot change it. You choose which listed fix to try next.\n\nGate G5 checks: fit acceptable: cross-validated error, residuals, coverage of the fit region.\nGuidance: A coverage failure means the grid is too thin where the fit needs it: go back to f2 and densify. Failures that concern the model or the stored data are not fixed by densifying.\n\nRules:\n- Answer with JSON {\"id\": ..., \"reason\": ...} and nothing else.\n- \"id\" must be exactly one of the option ids you are given. Choose \"stop\" if none fits or if the\n  same fix has already failed (see the history).\n- The reason is one sentence. It may quote numbers from the input; it must not introduce new ones.\n- Do not propose new calculations, new options, or edits to any number.",
+ "user_template": "System: {system}\nFailed: {node} {node_name}, gate {gate}, code {code}\nDetail: {detail}\nChecks run by the gate:\n{tests}\n\nRetries used on this step: {attempts} of {max_retry}\nWhat has been tried so far in this run:\n{history}\n\nOptions (choose one id):\n{options}",
+ "user_prompt": "System: bifeo3\nFailed: f5 Analyst, gate G5, code RESIDUALS\nDetail: training RMS 0.49 (limit 0.1), max 4.31 (limit 5.0) meV/f.u.\nChecks run by the gate:\n[\n {\n  \"test\": \"invariants_complete\",\n  \"status\": \"pass\"\n },\n {\n  \"test\": \"cv_error_ok\",\n  \"status\": \"pass\"\n },\n {\n  \"test\": \"residuals_ok\",\n  \"status\": \"fail\",\n  \"code\": \"RESIDUALS\",\n  \"detail\": \"training RMS 0.49 (limit 0.1), max 4.31 (limit 5.0) meV/f.u.\"\n },\n {\n  \"test\": \"coverage_ok\",\n  \"status\": \"pass\"\n },\n {\n  \"test\": \"child_is_ground_state\",\n  \"status\": \"pass\"\n }\n]\n\nRetries used on this step: 0 of 3\nWhat has been tried so far in this run:\nnothing yet\n\nOptions (choose one id):\n[\n {\n  \"id\": \"densify\",\n  \"text\": \"Go back to f2 and densify the grid\"\n },\n {\n  \"id\": \"accept_secondary_hold\",\n  \"text\": \"D4: keep the secondary at zero and report the energy it would release as a caveat\"\n },\n {\n  \"id\": \"stop\",\n  \"text\": \"Stop and ask the human\"\n }\n]",
+ "system_prompt_bare": "You are the G5 recovery sub-agent of IRIS, a workflow that maps symmetry-mode energy landscapes.\nStep f5 (Analyst) produced an output that failed gate G5. The gate is plain Python; its verdict\nis final and you cannot change it. You choose which listed fix to try next.\n\nGate G5 checks: fit acceptable: cross-validated error, residuals, coverage of the fit region.\n\nRules:\n- Answer with JSON {\"id\": ..., \"reason\": ...} and nothing else.\n- \"id\" must be exactly one of the option ids you are given. Choose \"stop\" if none fits or if the\n  same fix has already failed (see the history).\n- The reason is one sentence. It may quote numbers from the input; it must not introduce new ones.\n- Do not propose new calculations, new options, or edits to any number.",
+ "prompt_sha256": "c653167effbd74c4"
+}

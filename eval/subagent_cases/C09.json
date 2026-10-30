@@ -1,0 +1,128 @@
+{
+ "id": "C09",
+ "captured_from": {
+  "system": "cssni3",
+  "fault": "F006",
+  "patch": {
+   "policy.fit.min_points_per_coef": 100
+  },
+  "ablations": [],
+  "decision": 1,
+  "script": [],
+  "steps": [
+   "jobs: {'event': 'job_end', 'parts': 'all'}"
+  ]
+ },
+ "node": "f2",
+ "gate": "G2",
+ "code": "OVER_BUDGET",
+ "prompt_id": "subagent_G2",
+ "prompt_values": {
+  "system": "cssni3",
+  "node": "f2",
+  "node_name": "Path Planner",
+  "gate": "G2",
+  "code": "OVER_BUDGET",
+  "detail": "grid not built: N = m^n = 61^2 = 3721 (+1 anchors) > budget 1100 at dq = 0.04 Å; D3 reduction not implemented",
+  "tests": [
+   {
+    "test": "c1_active_set_generates_H",
+    "status": "pass"
+   },
+   {
+    "test": "c2_atom_matching",
+    "status": "pass"
+   },
+   {
+    "test": "c2_translation_free",
+    "status": "pass"
+   },
+   {
+    "test": "c2_calibration",
+    "status": "pass"
+   },
+   {
+    "test": "c2_single_mode_sg_strict",
+    "status": "pass"
+   },
+   {
+    "test": "c3_budget_and_tree_coverage",
+    "status": "fail",
+    "code": "OVER_BUDGET",
+    "detail": "grid not built: N = m^n = 61^2 = 3721 (+1 anchors) > budget 1100 at dq = 0.04 Å; D3 reduction not implemented"
+   },
+   {
+    "test": "audit_every_frame_sg_and_dmin",
+    "status": "pass"
+   }
+  ],
+  "options": [
+   {
+    "id": "include_borderline",
+    "text": "R5: include the borderline irreps as axes"
+   },
+   {
+    "id": "exclude_borderline",
+    "text": "R5: exclude the borderline irreps"
+   },
+   {
+    "id": "anchor_only",
+    "text": "R5: keep the borderline irreps as anchor points only"
+   },
+   {
+    "id": "rebuild_fixed_lattice",
+    "text": "Rebuild single-mode frames on the fixed parent lattice"
+   },
+   {
+    "id": "remove_translation",
+    "text": "Subtract the rigid translation (mean displacement) from the polar mode vectors"
+   },
+   {
+    "id": "stop",
+    "text": "Stop and ask the human"
+   }
+  ],
+  "history": [
+   {
+    "node": "f5",
+    "code": "THIN_GRID",
+    "level": "rule",
+    "rule": "f5_thin_grid_densify",
+    "route": "f2"
+   }
+  ],
+  "attempts": 0,
+  "max_retry": 3
+ },
+ "menu": [
+  {
+   "id": "include_borderline",
+   "text": "R5: include the borderline irreps as axes"
+  },
+  {
+   "id": "exclude_borderline",
+   "text": "R5: exclude the borderline irreps"
+  },
+  {
+   "id": "anchor_only",
+   "text": "R5: keep the borderline irreps as anchor points only"
+  },
+  {
+   "id": "rebuild_fixed_lattice",
+   "text": "Rebuild single-mode frames on the fixed parent lattice"
+  },
+  {
+   "id": "remove_translation",
+   "text": "Subtract the rigid translation (mean displacement) from the polar mode vectors"
+  },
+  {
+   "id": "stop",
+   "text": "Stop and ask the human"
+  }
+ ],
+ "system_prompt": "You are the G2 recovery sub-agent of IRIS, a workflow that maps symmetry-mode energy landscapes.\nStep f2 (Path Planner) produced an output that failed gate G2. The gate is plain Python; its verdict\nis final and you cannot change it. You choose which listed fix to try next.\n\nGate G2 checks: grid valid: c1 the active set generates H; c2 atom matching, translation-free vectors, calibration, strict single-mode space group; c3 budget and full descent-tree coverage; every frame's space group and minimum distance.\nGuidance: A strict single-mode space-group mismatch is usually the frame being built on the strained movie cell: rebuild on the fixed parent lattice. A rigid translation left in a polar vector is removed by subtracting the mean displacement. R5_BORDERLINE (a small margin between the smallest active and the largest inactive irrep) is a modelling choice: include, exclude or anchor the borderline irreps. Over budget cannot be fixed here.\n\nRules:\n- Answer with JSON {\"id\": ..., \"reason\": ...} and nothing else.\n- \"id\" must be exactly one of the option ids you are given. Choose \"stop\" if none fits or if the\n  same fix has already failed (see the history).\n- The reason is one sentence. It may quote numbers from the input; it must not introduce new ones.\n- Do not propose new calculations, new options, or edits to any number.",
+ "user_template": "System: {system}\nFailed: {node} {node_name}, gate {gate}, code {code}\nDetail: {detail}\nChecks run by the gate:\n{tests}\n\nRetries used on this step: {attempts} of {max_retry}\nWhat has been tried so far in this run:\n{history}\n\nOptions (choose one id):\n{options}",
+ "user_prompt": "System: cssni3\nFailed: f2 Path Planner, gate G2, code OVER_BUDGET\nDetail: grid not built: N = m^n = 61^2 = 3721 (+1 anchors) > budget 1100 at dq = 0.04 Å; D3 reduction not implemented\nChecks run by the gate:\n[\n {\n  \"test\": \"c1_active_set_generates_H\",\n  \"status\": \"pass\"\n },\n {\n  \"test\": \"c2_atom_matching\",\n  \"status\": \"pass\"\n },\n {\n  \"test\": \"c2_translation_free\",\n  \"status\": \"pass\"\n },\n {\n  \"test\": \"c2_calibration\",\n  \"status\": \"pass\"\n },\n {\n  \"test\": \"c2_single_mode_sg_strict\",\n  \"status\": \"pass\"\n },\n {\n  \"test\": \"c3_budget_and_tree_coverage\",\n  \"status\": \"fail\",\n  \"code\": \"OVER_BUDGET\",\n  \"detail\": \"grid not built: N = m^n = 61^2 = 3721 (+1 anchors) > budget 1100 at dq = 0.04 \\u00c5; D3 reduction not implemented\"\n },\n {\n  \"test\": \"audit_every_frame_sg_and_dmin\",\n  \"status\": \"pass\"\n }\n]\n\nRetries used on this step: 0 of 3\nWhat has been tried so far in this run:\n[\n {\n  \"node\": \"f5\",\n  \"code\": \"THIN_GRID\",\n  \"level\": \"rule\",\n  \"rule\": \"f5_thin_grid_densify\",\n  \"route\": \"f2\"\n }\n]\n\nOptions (choose one id):\n[\n {\n  \"id\": \"include_borderline\",\n  \"text\": \"R5: include the borderline irreps as axes\"\n },\n {\n  \"id\": \"exclude_borderline\",\n  \"text\": \"R5: exclude the borderline irreps\"\n },\n {\n  \"id\": \"anchor_only\",\n  \"text\": \"R5: keep the borderline irreps as anchor points only\"\n },\n {\n  \"id\": \"rebuild_fixed_lattice\",\n  \"text\": \"Rebuild single-mode frames on the fixed parent lattice\"\n },\n {\n  \"id\": \"remove_translation\",\n  \"text\": \"Subtract the rigid translation (mean displacement) from the polar mode vectors\"\n },\n {\n  \"id\": \"stop\",\n  \"text\": \"Stop and ask the human\"\n }\n]",
+ "system_prompt_bare": "You are the G2 recovery sub-agent of IRIS, a workflow that maps symmetry-mode energy landscapes.\nStep f2 (Path Planner) produced an output that failed gate G2. The gate is plain Python; its verdict\nis final and you cannot change it. You choose which listed fix to try next.\n\nGate G2 checks: grid valid: c1 the active set generates H; c2 atom matching, translation-free vectors, calibration, strict single-mode space group; c3 budget and full descent-tree coverage; every frame's space group and minimum distance.\n\nRules:\n- Answer with JSON {\"id\": ..., \"reason\": ...} and nothing else.\n- \"id\" must be exactly one of the option ids you are given. Choose \"stop\" if none fits or if the\n  same fix has already failed (see the history).\n- The reason is one sentence. It may quote numbers from the input; it must not introduce new ones.\n- Do not propose new calculations, new options, or edits to any number.",
+ "prompt_sha256": "df7b1c49aefc8035"
+}

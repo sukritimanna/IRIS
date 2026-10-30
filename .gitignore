@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+# run state (checkpoints and audit logs of your own runs; never commit)
+test_runs/
+*.sqlite
+# secrets
+.env
+.iris_env
+*.key
+# licensed pseudopotentials
+POTCAR*

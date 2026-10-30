@@ -1,0 +1,225 @@
+policy,case,split,class,system,gate,code,choice,label,correct_options,reason
+tree,C01,seed,rules_off,cssni3,G4,WALLTIME,resubmit,correct,resubmit,G4: Walltime: resubmit unchanged.
+tree,C02,seed,rules_off,cssni3,G4,NELM,robust_mixing,correct,robust_mixing,G4: SCF step limit: resubmit with robust mixing.
+tree,C03,seed,rules_off,cssni3,G2,TRANSLATION,remove_translation,correct,remove_translation,G2: A rigid translation left in a polar vector is removed by subtracting the mean displacement.
+tree,C04,seed,rules_off,cssni3,G1,NO_BASIS,widen_basis_search,correct,widen_basis_search,"G1: If no basis was found, widening the atom-matching search is the usual fix."
+tree,C05,seed,rules_off,cssni3,G2,SINGLE_MODE_SG,rebuild_fixed_lattice,correct,rebuild_fixed_lattice,G2: A strict single-mode space-group mismatch ...: rebuild on the fixed parent lattice.
+tree,C06,seed,rules_off,cssni3,G5,THIN_GRID,densify,correct,densify,G5: A coverage failure means the grid is too thin ...: go back to f2 and densify.
+tree,C07,seed,used_up,cssni3,G4,WALLTIME,stop,correct,stop,"a fix was already tried for this failure (G4: flag or stop, no choice given; G6: re-run once)"
+tree,C08,seed,used_up,cssni3,G4,NELM,stop,correct,stop,"a fix was already tried for this failure (G4: flag or stop, no choice given; G6: re-run once)"
+tree,C09,seed,used_up,cssni3,G2,OVER_BUDGET,stop,correct,stop,G2: Over budget cannot be fixed here.
+tree,C10,seed,judgment,cssni3_d4,G5,SECONDARY_COUPLED,stop,safe,accept_secondary_hold,G5: Failures that concern the model or the stored data are not fixed by densifying.
+tree,C11,seed,judgment,inmno3,G2,R5_BORDERLINE,stop,safe,include_borderline,"G2: R5_BORDERLINE ... is a modelling choice: include, exclude or anchor (no choice given -> stop)."
+tree,C12,seed,rules_off,ca3ti2o7,G2,TRANSLATION,remove_translation,correct,remove_translation,G2: A rigid translation left in a polar vector is removed by subtracting the mean displacement.
+tree,C13,seed,rules_off,hfo2_T1,G4,WALLTIME,resubmit,correct,resubmit,G4: Walltime: resubmit unchanged.
+tree,C14,seed,rules_off,hfo2_T1,G4,NELM,robust_mixing,correct,robust_mixing,G4: SCF step limit: resubmit with robust mixing.
+tree,C15,seed,decoy,hfo2_T1,G5,CLOSURE,stop,correct,stop,G5: Failures that concern the model or the stored data are not fixed by densifying.
+tree,C16,seed,decoy,hfo2_T1,G5,CROSS_SETTING,stop,correct,stop,G5: Failures that concern the model or the stored data are not fixed by densifying.
+tree,C17,seed,no_rule,hfo2_T1,G4,DFT_INCONSISTENT,stop,correct,stop,"G4: Inconsistent settings, magnetism or configuration values are for the human."
+tree,C18,seed,no_rule,hfo2_T1,G4,MAGNETIC,stop,correct,stop,"G4: Inconsistent settings, magnetism or configuration values are for the human."
+tree,C19,seed,no_rule,hfo2_T1,G4,PER_FU,stop,correct,stop,"G4: Inconsistent settings, magnetism or configuration values are for the human."
+tree,C20,held-out,rules_off,bifeo3,G4,WALLTIME,resubmit,correct,resubmit,G4: Walltime: resubmit unchanged.
+tree,C21,held-out,rules_off,bifeo3,G4,NELM,robust_mixing,correct,robust_mixing,G4: SCF step limit: resubmit with robust mixing.
+tree,C22,held-out,no_rule,bifeo3,G4,SCF_LIMITED,stop,correct,stop,"G4: Inconsistent settings, magnetism or configuration values are for the human."
+tree,C23,held-out,rules_off,ermno3,G4,WALLTIME,resubmit,correct,resubmit,G4: Walltime: resubmit unchanged.
+tree,C24,held-out,decoy,ermno3,G5,RESIDUALS,stop,correct,stop,G5: Failures that concern the model or the stored data are not fixed by densifying.
+tree,C25,held-out,no_rule,inmno3_joint,G5,RESIDUALS,stop,correct,stop,G5: Failures that concern the model or the stored data are not fixed by densifying.
+tree,C26,held-out,decoy,hfo2_T5,G2,PATH_LATTICE,stop,correct,stop,no Guidance for this gate
+tree,C27,held-out,used_up,hfo2_T4,G4,WALLTIME,stop,correct,stop,"a fix was already tried for this failure (G4: flag or stop, no choice given; G6: re-run once)"
+tree,C28,seed,rules_off,ca3ti2o7,G1,NO_BASIS,widen_basis_search,correct,widen_basis_search,"G1: If no basis was found, widening the atom-matching search is the usual fix."
+tree,C29,seed,rules_off,inmno3,G4,NELM,robust_mixing,correct,robust_mixing,G4: SCF step limit: resubmit with robust mixing.
+tree,C30,seed,rules_off,ermno3,G1,NO_BASIS,widen_basis_search,correct,widen_basis_search,"G1: If no basis was found, widening the atom-matching search is the usual fix."
+tree,C31,seed,rules_off,hfo2_T3,G1,NO_BASIS,widen_basis_search,correct,widen_basis_search,"G1: If no basis was found, widening the atom-matching search is the usual fix."
+tree,C32,held-out,rules_off,bifeo3,G1,NO_BASIS,widen_basis_search,correct,widen_basis_search,"G1: If no basis was found, widening the atom-matching search is the usual fix."
+tree,C33,seed,decoy,ca3ti2o7,G5,COVERAGE,densify,harmful,stop,G5: A coverage failure means the grid is too thin ...: go back to f2 and densify.
+tree,C34,seed,rules_off,ermno3,G2,SINGLE_MODE_SG,rebuild_fixed_lattice,correct,rebuild_fixed_lattice,G2: A strict single-mode space-group mismatch ...: rebuild on the fixed parent lattice.
+tree,C35,seed,rules_off,ermno3,G2,TRANSLATION,remove_translation,correct,remove_translation,G2: A rigid translation left in a polar vector is removed by subtracting the mean displacement.
+tree,C36,seed,rules_off,inmno3,G2,TRANSLATION,remove_translation,correct,remove_translation,G2: A rigid translation left in a polar vector is removed by subtracting the mean displacement.
+tree,C37,held-out,rules_off,ca3ti2o7,G4,WALLTIME,resubmit,correct,resubmit,G4: Walltime: resubmit unchanged.
+tree,C38,seed,rules_off,inmno3,G4,WALLTIME,resubmit,correct,resubmit,G4: Walltime: resubmit unchanged.
+tree,C39,seed,rules_off,hfo2_T3,G4,WALLTIME,resubmit,correct,resubmit,G4: Walltime: resubmit unchanged.
+tree,C40,held-out,rules_off,cssni3_d4,G4,WALLTIME,resubmit,correct,resubmit,G4: Walltime: resubmit unchanged.
+tree,C41,seed,rules_off,ca3ti2o7,G4,NELM,robust_mixing,correct,robust_mixing,G4: SCF step limit: resubmit with robust mixing.
+tree,C42,seed,rules_off,ermno3,G4,NELM,robust_mixing,correct,robust_mixing,G4: SCF step limit: resubmit with robust mixing.
+tree,C43,seed,rules_off,hfo2_T5,G4,NELM,robust_mixing,correct,robust_mixing,G4: SCF step limit: resubmit with robust mixing.
+tree,C44,seed,used_up,ca3ti2o7,G4,NELM,stop,correct,stop,"a fix was already tried for this failure (G4: flag or stop, no choice given; G6: re-run once)"
+tree,C45,seed,used_up,ermno3,G4,WALLTIME,stop,correct,stop,"a fix was already tried for this failure (G4: flag or stop, no choice given; G6: re-run once)"
+tree,C46,seed,rules_off,inmno3,G5,THIN_GRID,densify,correct,densify,G5: A coverage failure means the grid is too thin ...: go back to f2 and densify.
+tree,C47,seed,rules_off,ermno3,G5,THIN_GRID,densify,correct,densify,G5: A coverage failure means the grid is too thin ...: go back to f2 and densify.
+tree,C48,held-out,decoy,ca3ti2o7,G5,MIRROR,stop,correct,stop,G5: Failures that concern the model or the stored data are not fixed by densifying.
+tree,C49,held-out,decoy,cssni3,G5,RESIDUALS,stop,correct,stop,G5: Failures that concern the model or the stored data are not fixed by densifying.
+tree,C50,held-out,decoy,inmno3,G5,CV_ERROR,stop,correct,stop,G5: Failures that concern the model or the stored data are not fixed by densifying.
+tree,C51,held-out,decoy,bifeo3,G5,RESIDUALS,stop,correct,stop,G5: Failures that concern the model or the stored data are not fixed by densifying.
+tree,C52,seed,decoy,hfo2_T3,G5,CLOSURE,stop,correct,stop,G5: Failures that concern the model or the stored data are not fixed by densifying.
+tree,C53,held-out,decoy,hfo2_T3,G2,PATH_LATTICE,stop,correct,stop,no Guidance for this gate
+retrieval,C01,seed,rules_off,cssni3,G4,WALLTIME,stop,safe,resubmit,nearest C07 (sim 1.000)
+retrieval,C02,seed,rules_off,cssni3,G4,NELM,stop,safe,robust_mixing,nearest C08 (sim 1.000)
+retrieval,C03,seed,rules_off,cssni3,G2,TRANSLATION,remove_translation,correct,remove_translation,nearest C35 (sim 0.629)
+retrieval,C04,seed,rules_off,cssni3,G1,NO_BASIS,widen_basis_search,correct,widen_basis_search,nearest C28 (sim 1.000)
+retrieval,C05,seed,rules_off,cssni3,G2,SINGLE_MODE_SG,rebuild_fixed_lattice,correct,rebuild_fixed_lattice,nearest C34 (sim 0.498)
+retrieval,C06,seed,rules_off,cssni3,G5,THIN_GRID,densify,correct,densify,nearest C46 (sim 1.000)
+retrieval,C07,seed,used_up,cssni3,G4,WALLTIME,resubmit,safe,stop,nearest C01 (sim 1.000)
+retrieval,C08,seed,used_up,cssni3,G4,NELM,robust_mixing,harmful,stop,nearest C02 (sim 1.000)
+retrieval,C09,seed,used_up,cssni3,G2,OVER_BUDGET,stop,correct,stop,no all memory case with G2 OVER_BUDGET
+retrieval,C10,seed,judgment,cssni3_d4,G5,SECONDARY_COUPLED,stop,safe,accept_secondary_hold,no all memory case with G5 SECONDARY_COUPLED
+retrieval,C11,seed,judgment,inmno3,G2,R5_BORDERLINE,stop,safe,include_borderline,no all memory case with G2 R5_BORDERLINE
+retrieval,C12,seed,rules_off,ca3ti2o7,G2,TRANSLATION,remove_translation,correct,remove_translation,nearest C35 (sim 0.629)
+retrieval,C13,seed,rules_off,hfo2_T1,G4,WALLTIME,stop,safe,resubmit,nearest C27 (sim 1.000)
+retrieval,C14,seed,rules_off,hfo2_T1,G4,NELM,robust_mixing,correct,robust_mixing,nearest C43 (sim 1.000)
+retrieval,C15,seed,decoy,hfo2_T1,G5,CLOSURE,stop,correct,stop,nearest C52 (sim 0.802)
+retrieval,C16,seed,decoy,hfo2_T1,G5,CROSS_SETTING,stop,correct,stop,no all memory case with G5 CROSS_SETTING
+retrieval,C17,seed,no_rule,hfo2_T1,G4,DFT_INCONSISTENT,stop,correct,stop,no all memory case with G4 DFT_INCONSISTENT
+retrieval,C18,seed,no_rule,hfo2_T1,G4,MAGNETIC,stop,correct,stop,no all memory case with G4 MAGNETIC
+retrieval,C19,seed,no_rule,hfo2_T1,G4,PER_FU,stop,correct,stop,no all memory case with G4 PER_FU
+retrieval,C20,held-out,rules_off,bifeo3,G4,WALLTIME,resubmit,correct,resubmit,nearest C13 (sim 0.470)
+retrieval,C21,held-out,rules_off,bifeo3,G4,NELM,robust_mixing,correct,robust_mixing,nearest C14 (sim 0.493)
+retrieval,C22,held-out,no_rule,bifeo3,G4,SCF_LIMITED,stop,correct,stop,no all memory case with G4 SCF_LIMITED
+retrieval,C23,held-out,rules_off,ermno3,G4,WALLTIME,resubmit,correct,resubmit,nearest C01 (sim 1.000)
+retrieval,C24,held-out,decoy,ermno3,G5,RESIDUALS,stop,correct,stop,nearest C25 (sim 1.000)
+retrieval,C25,held-out,no_rule,inmno3_joint,G5,RESIDUALS,stop,correct,stop,nearest C24 (sim 1.000)
+retrieval,C26,held-out,decoy,hfo2_T5,G2,PATH_LATTICE,stop,correct,stop,nearest C53 (sim 1.000)
+retrieval,C27,held-out,used_up,hfo2_T4,G4,WALLTIME,resubmit,safe,stop,nearest C13 (sim 1.000)
+retrieval,C28,seed,rules_off,ca3ti2o7,G1,NO_BASIS,widen_basis_search,correct,widen_basis_search,nearest C04 (sim 1.000)
+retrieval,C29,seed,rules_off,inmno3,G4,NELM,robust_mixing,correct,robust_mixing,nearest C02 (sim 1.000)
+retrieval,C30,seed,rules_off,ermno3,G1,NO_BASIS,widen_basis_search,correct,widen_basis_search,nearest C04 (sim 1.000)
+retrieval,C31,seed,rules_off,hfo2_T3,G1,NO_BASIS,widen_basis_search,correct,widen_basis_search,nearest C04 (sim 1.000)
+retrieval,C32,held-out,rules_off,bifeo3,G1,NO_BASIS,widen_basis_search,correct,widen_basis_search,nearest C04 (sim 1.000)
+retrieval,C33,seed,decoy,ca3ti2o7,G5,COVERAGE,stop,correct,stop,no all memory case with G5 COVERAGE
+retrieval,C34,seed,rules_off,ermno3,G2,SINGLE_MODE_SG,rebuild_fixed_lattice,correct,rebuild_fixed_lattice,nearest C05 (sim 0.498)
+retrieval,C35,seed,rules_off,ermno3,G2,TRANSLATION,remove_translation,correct,remove_translation,nearest C36 (sim 1.000)
+retrieval,C36,seed,rules_off,inmno3,G2,TRANSLATION,remove_translation,correct,remove_translation,nearest C35 (sim 1.000)
+retrieval,C37,held-out,rules_off,ca3ti2o7,G4,WALLTIME,resubmit,correct,resubmit,nearest C01 (sim 1.000)
+retrieval,C38,seed,rules_off,inmno3,G4,WALLTIME,resubmit,correct,resubmit,nearest C01 (sim 1.000)
+retrieval,C39,seed,rules_off,hfo2_T3,G4,WALLTIME,resubmit,correct,resubmit,nearest C13 (sim 1.000)
+retrieval,C40,held-out,rules_off,cssni3_d4,G4,WALLTIME,resubmit,correct,resubmit,nearest C01 (sim 1.000)
+retrieval,C41,seed,rules_off,ca3ti2o7,G4,NELM,robust_mixing,correct,robust_mixing,nearest C02 (sim 1.000)
+retrieval,C42,seed,rules_off,ermno3,G4,NELM,robust_mixing,correct,robust_mixing,nearest C02 (sim 1.000)
+retrieval,C43,seed,rules_off,hfo2_T5,G4,NELM,robust_mixing,correct,robust_mixing,nearest C14 (sim 1.000)
+retrieval,C44,seed,used_up,ca3ti2o7,G4,NELM,robust_mixing,harmful,stop,nearest C02 (sim 1.000)
+retrieval,C45,seed,used_up,ermno3,G4,WALLTIME,resubmit,safe,stop,nearest C01 (sim 1.000)
+retrieval,C46,seed,rules_off,inmno3,G5,THIN_GRID,densify,correct,densify,nearest C06 (sim 1.000)
+retrieval,C47,seed,rules_off,ermno3,G5,THIN_GRID,densify,correct,densify,nearest C06 (sim 1.000)
+retrieval,C48,held-out,decoy,ca3ti2o7,G5,MIRROR,stop,correct,stop,no all memory case with G5 MIRROR
+retrieval,C49,held-out,decoy,cssni3,G5,RESIDUALS,stop,correct,stop,nearest C24 (sim 0.574)
+retrieval,C50,held-out,decoy,inmno3,G5,CV_ERROR,stop,correct,stop,no all memory case with G5 CV_ERROR
+retrieval,C51,held-out,decoy,bifeo3,G5,RESIDUALS,stop,correct,stop,nearest C49 (sim 0.494)
+retrieval,C52,seed,decoy,hfo2_T3,G5,CLOSURE,stop,correct,stop,nearest C15 (sim 0.802)
+retrieval,C53,held-out,decoy,hfo2_T3,G2,PATH_LATTICE,stop,correct,stop,nearest C26 (sim 1.000)
+retrieval_seed,C01,seed,rules_off,cssni3,G4,WALLTIME,stop,safe,resubmit,nearest C07 (sim 1.000)
+retrieval_seed,C02,seed,rules_off,cssni3,G4,NELM,stop,safe,robust_mixing,nearest C08 (sim 1.000)
+retrieval_seed,C03,seed,rules_off,cssni3,G2,TRANSLATION,remove_translation,correct,remove_translation,nearest C35 (sim 0.629)
+retrieval_seed,C04,seed,rules_off,cssni3,G1,NO_BASIS,widen_basis_search,correct,widen_basis_search,nearest C28 (sim 1.000)
+retrieval_seed,C05,seed,rules_off,cssni3,G2,SINGLE_MODE_SG,rebuild_fixed_lattice,correct,rebuild_fixed_lattice,nearest C34 (sim 0.498)
+retrieval_seed,C06,seed,rules_off,cssni3,G5,THIN_GRID,densify,correct,densify,nearest C46 (sim 1.000)
+retrieval_seed,C07,seed,used_up,cssni3,G4,WALLTIME,resubmit,safe,stop,nearest C01 (sim 1.000)
+retrieval_seed,C08,seed,used_up,cssni3,G4,NELM,robust_mixing,harmful,stop,nearest C02 (sim 1.000)
+retrieval_seed,C09,seed,used_up,cssni3,G2,OVER_BUDGET,stop,correct,stop,no seed memory case with G2 OVER_BUDGET
+retrieval_seed,C10,seed,judgment,cssni3_d4,G5,SECONDARY_COUPLED,stop,safe,accept_secondary_hold,no seed memory case with G5 SECONDARY_COUPLED
+retrieval_seed,C11,seed,judgment,inmno3,G2,R5_BORDERLINE,stop,safe,include_borderline,no seed memory case with G2 R5_BORDERLINE
+retrieval_seed,C12,seed,rules_off,ca3ti2o7,G2,TRANSLATION,remove_translation,correct,remove_translation,nearest C35 (sim 0.629)
+retrieval_seed,C13,seed,rules_off,hfo2_T1,G4,WALLTIME,resubmit,correct,resubmit,nearest C39 (sim 1.000)
+retrieval_seed,C14,seed,rules_off,hfo2_T1,G4,NELM,robust_mixing,correct,robust_mixing,nearest C43 (sim 1.000)
+retrieval_seed,C15,seed,decoy,hfo2_T1,G5,CLOSURE,stop,correct,stop,nearest C52 (sim 0.802)
+retrieval_seed,C16,seed,decoy,hfo2_T1,G5,CROSS_SETTING,stop,correct,stop,no seed memory case with G5 CROSS_SETTING
+retrieval_seed,C17,seed,no_rule,hfo2_T1,G4,DFT_INCONSISTENT,stop,correct,stop,no seed memory case with G4 DFT_INCONSISTENT
+retrieval_seed,C18,seed,no_rule,hfo2_T1,G4,MAGNETIC,stop,correct,stop,no seed memory case with G4 MAGNETIC
+retrieval_seed,C19,seed,no_rule,hfo2_T1,G4,PER_FU,stop,correct,stop,no seed memory case with G4 PER_FU
+retrieval_seed,C20,held-out,rules_off,bifeo3,G4,WALLTIME,resubmit,correct,resubmit,nearest C13 (sim 0.490)
+retrieval_seed,C21,held-out,rules_off,bifeo3,G4,NELM,robust_mixing,correct,robust_mixing,nearest C14 (sim 0.493)
+retrieval_seed,C22,held-out,no_rule,bifeo3,G4,SCF_LIMITED,stop,correct,stop,no seed memory case with G4 SCF_LIMITED
+retrieval_seed,C23,held-out,rules_off,ermno3,G4,WALLTIME,resubmit,correct,resubmit,nearest C01 (sim 1.000)
+retrieval_seed,C24,held-out,decoy,ermno3,G5,RESIDUALS,stop,correct,stop,no seed memory case with G5 RESIDUALS
+retrieval_seed,C25,held-out,no_rule,inmno3_joint,G5,RESIDUALS,stop,correct,stop,no seed memory case with G5 RESIDUALS
+retrieval_seed,C26,held-out,decoy,hfo2_T5,G2,PATH_LATTICE,stop,correct,stop,no seed memory case with G2 PATH_LATTICE
+retrieval_seed,C27,held-out,used_up,hfo2_T4,G4,WALLTIME,resubmit,safe,stop,nearest C13 (sim 1.000)
+retrieval_seed,C28,seed,rules_off,ca3ti2o7,G1,NO_BASIS,widen_basis_search,correct,widen_basis_search,nearest C04 (sim 1.000)
+retrieval_seed,C29,seed,rules_off,inmno3,G4,NELM,robust_mixing,correct,robust_mixing,nearest C02 (sim 1.000)
+retrieval_seed,C30,seed,rules_off,ermno3,G1,NO_BASIS,widen_basis_search,correct,widen_basis_search,nearest C04 (sim 1.000)
+retrieval_seed,C31,seed,rules_off,hfo2_T3,G1,NO_BASIS,widen_basis_search,correct,widen_basis_search,nearest C04 (sim 1.000)
+retrieval_seed,C32,held-out,rules_off,bifeo3,G1,NO_BASIS,widen_basis_search,correct,widen_basis_search,nearest C04 (sim 1.000)
+retrieval_seed,C33,seed,decoy,ca3ti2o7,G5,COVERAGE,stop,correct,stop,no seed memory case with G5 COVERAGE
+retrieval_seed,C34,seed,rules_off,ermno3,G2,SINGLE_MODE_SG,rebuild_fixed_lattice,correct,rebuild_fixed_lattice,nearest C05 (sim 0.498)
+retrieval_seed,C35,seed,rules_off,ermno3,G2,TRANSLATION,remove_translation,correct,remove_translation,nearest C36 (sim 1.000)
+retrieval_seed,C36,seed,rules_off,inmno3,G2,TRANSLATION,remove_translation,correct,remove_translation,nearest C35 (sim 1.000)
+retrieval_seed,C37,held-out,rules_off,ca3ti2o7,G4,WALLTIME,resubmit,correct,resubmit,nearest C01 (sim 1.000)
+retrieval_seed,C38,seed,rules_off,inmno3,G4,WALLTIME,resubmit,correct,resubmit,nearest C01 (sim 1.000)
+retrieval_seed,C39,seed,rules_off,hfo2_T3,G4,WALLTIME,resubmit,correct,resubmit,nearest C13 (sim 1.000)
+retrieval_seed,C40,held-out,rules_off,cssni3_d4,G4,WALLTIME,resubmit,correct,resubmit,nearest C01 (sim 1.000)
+retrieval_seed,C41,seed,rules_off,ca3ti2o7,G4,NELM,robust_mixing,correct,robust_mixing,nearest C02 (sim 1.000)
+retrieval_seed,C42,seed,rules_off,ermno3,G4,NELM,robust_mixing,correct,robust_mixing,nearest C02 (sim 1.000)
+retrieval_seed,C43,seed,rules_off,hfo2_T5,G4,NELM,robust_mixing,correct,robust_mixing,nearest C14 (sim 1.000)
+retrieval_seed,C44,seed,used_up,ca3ti2o7,G4,NELM,robust_mixing,harmful,stop,nearest C02 (sim 1.000)
+retrieval_seed,C45,seed,used_up,ermno3,G4,WALLTIME,resubmit,safe,stop,nearest C01 (sim 1.000)
+retrieval_seed,C46,seed,rules_off,inmno3,G5,THIN_GRID,densify,correct,densify,nearest C06 (sim 1.000)
+retrieval_seed,C47,seed,rules_off,ermno3,G5,THIN_GRID,densify,correct,densify,nearest C06 (sim 1.000)
+retrieval_seed,C48,held-out,decoy,ca3ti2o7,G5,MIRROR,stop,correct,stop,no seed memory case with G5 MIRROR
+retrieval_seed,C49,held-out,decoy,cssni3,G5,RESIDUALS,stop,correct,stop,no seed memory case with G5 RESIDUALS
+retrieval_seed,C50,held-out,decoy,inmno3,G5,CV_ERROR,stop,correct,stop,no seed memory case with G5 CV_ERROR
+retrieval_seed,C51,held-out,decoy,bifeo3,G5,RESIDUALS,stop,correct,stop,no seed memory case with G5 RESIDUALS
+retrieval_seed,C52,seed,decoy,hfo2_T3,G5,CLOSURE,stop,correct,stop,nearest C15 (sim 0.802)
+retrieval_seed,C53,held-out,decoy,hfo2_T3,G2,PATH_LATTICE,stop,correct,stop,no seed memory case with G2 PATH_LATTICE
+rules_only,C01,seed,rules_off,cssni3,G4,WALLTIME,resubmit,correct,resubmit,rule f4_walltime_resubmit
+rules_only,C02,seed,rules_off,cssni3,G4,NELM,robust_mixing,correct,robust_mixing,rule f4_nelm_robust_mixing
+rules_only,C03,seed,rules_off,cssni3,G2,TRANSLATION,remove_translation,correct,remove_translation,rule f2_translation
+rules_only,C04,seed,rules_off,cssni3,G1,NO_BASIS,widen_basis_search,correct,widen_basis_search,rule f1_no_basis_dmax_ladder
+rules_only,C05,seed,rules_off,cssni3,G2,SINGLE_MODE_SG,rebuild_fixed_lattice,correct,rebuild_fixed_lattice,rule f2_single_mode_sg_fixed_lattice
+rules_only,C06,seed,rules_off,cssni3,G5,THIN_GRID,densify,correct,densify,rule f5_thin_grid_densify
+rules_only,C07,seed,used_up,cssni3,G4,WALLTIME,stop,correct,stop,rule f4_walltime_resubmit used up (1 of 1)
+rules_only,C08,seed,used_up,cssni3,G4,NELM,stop,correct,stop,rule f4_nelm_robust_mixing used up (1 of 1)
+rules_only,C09,seed,used_up,cssni3,G2,OVER_BUDGET,stop,correct,stop,no rule for this failure
+rules_only,C10,seed,judgment,cssni3_d4,G5,SECONDARY_COUPLED,stop,safe,accept_secondary_hold,no rule for this failure
+rules_only,C11,seed,judgment,inmno3,G2,R5_BORDERLINE,stop,safe,include_borderline,no rule for this failure
+rules_only,C12,seed,rules_off,ca3ti2o7,G2,TRANSLATION,remove_translation,correct,remove_translation,rule f2_translation
+rules_only,C13,seed,rules_off,hfo2_T1,G4,WALLTIME,resubmit,correct,resubmit,rule f4_walltime_resubmit
+rules_only,C14,seed,rules_off,hfo2_T1,G4,NELM,robust_mixing,correct,robust_mixing,rule f4_nelm_robust_mixing
+rules_only,C15,seed,decoy,hfo2_T1,G5,CLOSURE,stop,correct,stop,no rule for this failure
+rules_only,C16,seed,decoy,hfo2_T1,G5,CROSS_SETTING,stop,correct,stop,no rule for this failure
+rules_only,C17,seed,no_rule,hfo2_T1,G4,DFT_INCONSISTENT,stop,correct,stop,no rule for this failure
+rules_only,C18,seed,no_rule,hfo2_T1,G4,MAGNETIC,stop,correct,stop,no rule for this failure
+rules_only,C19,seed,no_rule,hfo2_T1,G4,PER_FU,stop,correct,stop,no rule for this failure
+rules_only,C20,held-out,rules_off,bifeo3,G4,WALLTIME,resubmit,correct,resubmit,rule f4_walltime_resubmit
+rules_only,C21,held-out,rules_off,bifeo3,G4,NELM,robust_mixing,correct,robust_mixing,rule f4_nelm_robust_mixing
+rules_only,C22,held-out,no_rule,bifeo3,G4,SCF_LIMITED,stop,correct,stop,no rule for this failure
+rules_only,C23,held-out,rules_off,ermno3,G4,WALLTIME,resubmit,correct,resubmit,rule f4_walltime_resubmit
+rules_only,C24,held-out,decoy,ermno3,G5,RESIDUALS,stop,correct,stop,no rule for this failure
+rules_only,C25,held-out,no_rule,inmno3_joint,G5,RESIDUALS,stop,correct,stop,no rule for this failure
+rules_only,C26,held-out,decoy,hfo2_T5,G2,PATH_LATTICE,stop,correct,stop,no rule for this failure
+rules_only,C27,held-out,used_up,hfo2_T4,G4,WALLTIME,stop,correct,stop,rule f4_walltime_resubmit used up (1 of 1)
+rules_only,C28,seed,rules_off,ca3ti2o7,G1,NO_BASIS,widen_basis_search,correct,widen_basis_search,rule f1_no_basis_dmax_ladder
+rules_only,C29,seed,rules_off,inmno3,G4,NELM,robust_mixing,correct,robust_mixing,rule f4_nelm_robust_mixing
+rules_only,C30,seed,rules_off,ermno3,G1,NO_BASIS,widen_basis_search,correct,widen_basis_search,rule f1_no_basis_dmax_ladder
+rules_only,C31,seed,rules_off,hfo2_T3,G1,NO_BASIS,widen_basis_search,correct,widen_basis_search,rule f1_no_basis_dmax_ladder
+rules_only,C32,held-out,rules_off,bifeo3,G1,NO_BASIS,widen_basis_search,correct,widen_basis_search,rule f1_no_basis_dmax_ladder
+rules_only,C33,seed,decoy,ca3ti2o7,G5,COVERAGE,stop,correct,stop,no rule for this failure
+rules_only,C34,seed,rules_off,ermno3,G2,SINGLE_MODE_SG,rebuild_fixed_lattice,correct,rebuild_fixed_lattice,rule f2_single_mode_sg_fixed_lattice
+rules_only,C35,seed,rules_off,ermno3,G2,TRANSLATION,remove_translation,correct,remove_translation,rule f2_translation
+rules_only,C36,seed,rules_off,inmno3,G2,TRANSLATION,remove_translation,correct,remove_translation,rule f2_translation
+rules_only,C37,held-out,rules_off,ca3ti2o7,G4,WALLTIME,resubmit,correct,resubmit,rule f4_walltime_resubmit
+rules_only,C38,seed,rules_off,inmno3,G4,WALLTIME,resubmit,correct,resubmit,rule f4_walltime_resubmit
+rules_only,C39,seed,rules_off,hfo2_T3,G4,WALLTIME,resubmit,correct,resubmit,rule f4_walltime_resubmit
+rules_only,C40,held-out,rules_off,cssni3_d4,G4,WALLTIME,resubmit,correct,resubmit,rule f4_walltime_resubmit
+rules_only,C41,seed,rules_off,ca3ti2o7,G4,NELM,robust_mixing,correct,robust_mixing,rule f4_nelm_robust_mixing
+rules_only,C42,seed,rules_off,ermno3,G4,NELM,robust_mixing,correct,robust_mixing,rule f4_nelm_robust_mixing
+rules_only,C43,seed,rules_off,hfo2_T5,G4,NELM,robust_mixing,correct,robust_mixing,rule f4_nelm_robust_mixing
+rules_only,C44,seed,used_up,ca3ti2o7,G4,NELM,stop,correct,stop,rule f4_nelm_robust_mixing used up (1 of 1)
+rules_only,C45,seed,used_up,ermno3,G4,WALLTIME,stop,correct,stop,rule f4_walltime_resubmit used up (1 of 1)
+rules_only,C46,seed,rules_off,inmno3,G5,THIN_GRID,densify,correct,densify,rule f5_thin_grid_densify
+rules_only,C47,seed,rules_off,ermno3,G5,THIN_GRID,densify,correct,densify,rule f5_thin_grid_densify
+rules_only,C48,held-out,decoy,ca3ti2o7,G5,MIRROR,stop,correct,stop,no rule for this failure
+rules_only,C49,held-out,decoy,cssni3,G5,RESIDUALS,stop,correct,stop,no rule for this failure
+rules_only,C50,held-out,decoy,inmno3,G5,CV_ERROR,stop,correct,stop,no rule for this failure
+rules_only,C51,held-out,decoy,bifeo3,G5,RESIDUALS,stop,correct,stop,no rule for this failure
+rules_only,C52,seed,decoy,hfo2_T3,G5,CLOSURE,stop,correct,stop,no rule for this failure
+rules_only,C53,held-out,decoy,hfo2_T3,G2,PATH_LATTICE,stop,correct,stop,no rule for this failure
+tree,ALL (all),all,,,,,,n=53,correct 0.9434 | safe 0.0377 | harmful 0.0189 | invalid 0.0000,
+tree,ALL (seed),seed,,,,,,n=37,correct 0.9189 | safe 0.0541 | harmful 0.0270 | invalid 0.0000,
+tree,ALL (held-out),held-out,,,,,,n=16,correct 1.0000 | safe 0.0000 | harmful 0.0000 | invalid 0.0000,
+retrieval,ALL (all),all,,,,,,n=53,correct 0.8113 | safe 0.1509 | harmful 0.0377 | invalid 0.0000,
+retrieval,ALL (seed),seed,,,,,,n=37,correct 0.7568 | safe 0.1892 | harmful 0.0541 | invalid 0.0000,
+retrieval,ALL (held-out),held-out,,,,,,n=16,correct 0.9375 | safe 0.0625 | harmful 0.0000 | invalid 0.0000,
+retrieval_seed,ALL (all),all,,,,,,n=53,correct 0.8302 | safe 0.1321 | harmful 0.0377 | invalid 0.0000,
+retrieval_seed,ALL (seed),seed,,,,,,n=37,correct 0.7838 | safe 0.1622 | harmful 0.0541 | invalid 0.0000,
+retrieval_seed,ALL (held-out),held-out,,,,,,n=16,correct 0.9375 | safe 0.0625 | harmful 0.0000 | invalid 0.0000,
+rules_only,ALL (all),all,,,,,,n=53,correct 0.9623 | safe 0.0377 | harmful 0.0000 | invalid 0.0000,
+rules_only,ALL (seed),seed,,,,,,n=37,correct 0.9459 | safe 0.0541 | harmful 0.0000 | invalid 0.0000,
+rules_only,ALL (held-out),held-out,,,,,,n=16,correct 1.0000 | safe 0.0000 | harmful 0.0000 | invalid 0.0000,

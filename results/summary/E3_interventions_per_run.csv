@@ -1,0 +1,107 @@
+condition,tag,llm,fault,name,system,split,class,rule_fixes,subagent_fixes,human_interventions,human_published_decisions,human_for_the_fault,final,numbers_identical
+model off (rules + human),E2,off,F001,walltime,cssni3,seed,job,1,0,0,0,0,completed,True
+model off (rules + human),E2,off,F002,nelm,cssni3,seed,job,1,0,0,0,0,completed,True
+model off (rules + human),E2,off,F003,translation,cssni3,seed,vectors,1,0,0,0,0,completed,True
+model off (rules + human),E2,off,F004,no_basis,cssni3,seed,crystallography,1,0,0,0,0,completed,True
+model off (rules + human),E2,off,F005,no55,cssni3,seed,symmetry,1,0,0,0,0,completed,True
+model off (rules + human),E2,off,F006,thin_grid,cssni3,seed,analysis,1,0,1,0,1,stopped,
+model off (rules + human),E2,off,F007,unmatched,cssni3,seed,data,0,0,1,0,1,stopped,
+model off (rules + human),E2,off,F008,retry_budget,cssni3,seed,recovery,0,0,1,0,1,completed,True
+model off (rules + human),E2,off,F009,cancel,cssni3,seed,job,0,0,1,0,1,stopped,
+model off (rules + human),E2,off,F010,walltime_again_after_the_resubmit_rule,cssni3,seed,job,1,0,1,0,1,stopped,
+model off (rules + human),E2,off,F011,nelm_again_after_the_robust_mixing_rule,cssni3,seed,job,1,0,1,0,1,stopped,
+model off (rules + human),E2,off,F012,rigid_translation_0_05_atom_injected_int,ca3ti2o7,seed,derived,1,0,0,0,0,completed,True
+model off (rules + human),E2,off,F013,hfo2_path_job_ends_with_walltime_rules_o,hfo2_T1,seed,derived,1,0,0,0,0,completed,True
+model off (rules + human),E2,off,F014,hfo2_path_job_ends_at_nelm_rules_off,hfo2_T1,seed,derived,1,0,0,0,0,completed,True
+model off (rules + human),E2,off,F015,hfo2_closure_t1_t2_t4_misses_a_tightened,hfo2_T1,seed,limit,0,0,1,0,1,stopped,
+model off (rules + human),E2,off,F016,hfo2_the_same_crystal_differs_between_tw,hfo2_T1,seed,limit,0,0,1,0,1,stopped,
+model off (rules + human),E2,off,F017,hfo2_stored_incar_differs_from_the_campa,hfo2_T1,seed,data,0,0,1,0,1,stopped,
+model off (rules + human),E2,off,F018,hfo2_points_carry_a_magnetic_moment_abov,hfo2_T1,seed,data,0,0,1,0,1,stopped,
+model off (rules + human),E2,off,F019,hfo2_configured_formula_units_per_cell_d,hfo2_T1,seed,data,0,0,1,0,1,stopped,
+model off (rules + human),E2,off,F020,bifeo3_grid_job_part_times_out_rules_off,bifeo3,held-out,derived,1,0,0,0,0,completed,True
+model off (rules + human),E2,off,F021,bifeo3_grid_job_part_hits_the_scf_step_l,bifeo3,held-out,derived,1,0,0,0,0,completed,True
+model off (rules + human),E2,off,F022,bifeo3_more_scf_limited_runs_than_the_de,bifeo3,held-out,data,0,0,1,0,1,stopped,
+model off (rules + human),E2,off,F023,ermno3_plane_job_part_times_out_rules_of,ermno3,held-out,derived,1,0,0,0,0,completed,True
+model off (rules + human),E2,off,F024,ermno3_meier_fit_rms_above_a_tightened_l,ermno3,held-out,limit,0,0,1,0,1,stopped,
+model off (rules + human),E2,off,F025,inmno3_joint_fit_max_residual_12_06_12_m,inmno3_joint,held-out,data,0,0,2,1,1,stopped,
+model off (rules + human),E2,off,F026,hfo2_t5_child_cell_carries_a_5_02_deg_ri,hfo2_T5,held-out,limit,0,0,1,0,1,stopped,
+model off (rules + human),E2,off,F027,hfo2_t4_path_job_times_out_again_after_t,hfo2_T4,held-out,job,1,0,1,0,1,stopped,
+model off (rules + human),E2,off,F028,no_atom_matching_basis_within_dmax_0_3_c,ca3ti2o7,seed,derived,1,0,0,0,0,completed,True
+model off (rules + human),E2,off,F029,inmno3_plane_job_part_hits_the_scf_step_,inmno3,seed,derived,1,0,1,1,0,completed,True
+model off (rules + human),E2,off,F030,no_atom_matching_basis_within_dmax_0_3_e,ermno3,seed,derived,1,0,0,0,0,completed,True
+model off (rules + human),E2,off,F031,no_atom_matching_basis_within_dmax_0_3_h,hfo2_T3,seed,derived,1,0,0,0,0,completed,True
+model off (rules + human),E2,off,F032,no_atom_matching_basis_within_dmax_0_3_b,bifeo3,held-out,derived,1,0,0,0,0,completed,True
+model off (rules + human),E2,off,F033,ca3ti2o7_surface_minimum_closer_to_the_g,ca3ti2o7,seed,limit,0,0,1,0,1,stopped,
+model off (rules + human),E2,off,F034,single_mode_space_group_checked_on_the_m,ermno3,seed,derived,1,0,0,0,0,completed,True
+model off (rules + human),E2,off,F035,rigid_translation_injected_into_the_ermn,ermno3,seed,derived,1,0,0,0,0,completed,True
+model off (rules + human),E2,off,F036,rigid_translation_injected_into_the_inmn,inmno3,seed,derived,1,0,1,1,0,completed,True
+model off (rules + human),E2,off,F037,job_part_ends_with_walltime_ca3ti2o7_rul,ca3ti2o7,held-out,derived,1,0,0,0,0,completed,True
+model off (rules + human),E2,off,F038,job_part_ends_with_walltime_inmno3_rules,inmno3,seed,derived,1,0,1,1,0,completed,True
+model off (rules + human),E2,off,F039,job_part_ends_with_walltime_hfo2_t3_rule,hfo2_T3,seed,derived,1,0,0,0,0,completed,True
+model off (rules + human),E2,off,F040,job_part_ends_with_walltime_cssni3_d4_ru,cssni3_d4,held-out,derived,1,0,1,1,0,completed,True
+model off (rules + human),E2,off,F041,job_part_ends_at_the_scf_step_limit_ca3t,ca3ti2o7,seed,derived,1,0,0,0,0,completed,True
+model off (rules + human),E2,off,F042,job_part_ends_at_the_scf_step_limit_ermn,ermno3,seed,derived,1,0,0,0,0,completed,True
+model off (rules + human),E2,off,F043,job_part_ends_at_the_scf_step_limit_hfo2,hfo2_T5,seed,derived,1,0,0,0,0,completed,True
+model off (rules + human),E2,off,F044,ca3ti2o7_nelm_again_after_the_robust_mix,ca3ti2o7,seed,job,1,0,1,0,1,stopped,
+model off (rules + human),E2,off,F045,ermno3_walltime_again_after_the_resubmit,ermno3,seed,job,1,0,1,0,1,stopped,
+model off (rules + human),E2,off,F046,inmno3_grid_too_thin_for_the_meier_fit_a,inmno3,seed,derived,1,0,2,1,1,stopped,
+model off (rules + human),E2,off,F047,ermno3_grid_too_thin_for_the_meier_fit_r,ermno3,seed,derived,1,0,1,0,1,stopped,
+model off (rules + human),E2,off,F048,ca3ti2o7_surface_mirror_symmetry_checked,ca3ti2o7,held-out,limit,0,0,1,0,1,stopped,
+model off (rules + human),E2,off,F049,cssni3_plane_fit_rms_above_a_tightened_l,cssni3,held-out,limit,0,0,1,0,1,stopped,
+model off (rules + human),E2,off,F050,inmno3_plane_fit_cv_error_above_a_tighte,inmno3,held-out,limit,0,0,2,1,1,stopped,
+model off (rules + human),E2,off,F051,bifeo3_degree_12_fit_rms_above_a_tighten,bifeo3,held-out,limit,0,0,1,0,1,stopped,
+model off (rules + human),E2,off,F052,hfo2_closure_t3_t2_t5_misses_a_tightened,hfo2_T3,seed,limit,0,0,1,0,1,stopped,
+model off (rules + human),E2,off,F053,hfo2_t3_child_cell_carries_a_4_88_deg_ri,hfo2_T3,held-out,limit,0,0,1,0,1,stopped,
+model on (reference),E3_on,claude-sonnet,F001,walltime,cssni3,seed,job,1,0,0,0,0,completed,True
+model on (reference),E3_on,claude-sonnet,F002,nelm,cssni3,seed,job,1,0,0,0,0,completed,True
+model on (reference),E3_on,claude-sonnet,F003,translation,cssni3,seed,vectors,1,0,0,0,0,completed,True
+model on (reference),E3_on,claude-sonnet,F004,no_basis,cssni3,seed,crystallography,1,0,0,0,0,completed,True
+model on (reference),E3_on,claude-sonnet,F005,no55,cssni3,seed,symmetry,1,0,0,0,0,completed,True
+model on (reference),E3_on,claude-sonnet,F006,thin_grid,cssni3,seed,analysis,1,1,0,0,0,stopped,
+model on (reference),E3_on,claude-sonnet,F007,unmatched,cssni3,seed,data,0,0,1,0,1,stopped,
+model on (reference),E3_on,claude-sonnet,F008,retry_budget,cssni3,seed,recovery,0,0,1,0,1,completed,True
+model on (reference),E3_on,claude-sonnet,F009,cancel,cssni3,seed,job,0,0,1,0,1,stopped,
+model on (reference),E3_on,claude-sonnet,F010,walltime_again_after_the_resubmit_rule,cssni3,seed,job,1,3,0,0,0,stopped,
+model on (reference),E3_on,claude-sonnet,F011,nelm_again_after_the_robust_mixing_rule,cssni3,seed,job,1,3,0,0,0,stopped,
+model on (reference),E3_on,claude-sonnet,F012,rigid_translation_0_05_atom_injected_int,ca3ti2o7,seed,derived,1,0,0,0,0,completed,True
+model on (reference),E3_on,claude-sonnet,F013,hfo2_path_job_ends_with_walltime_rules_o,hfo2_T1,seed,derived,1,0,0,0,0,completed,True
+model on (reference),E3_on,claude-sonnet,F014,hfo2_path_job_ends_at_nelm_rules_off,hfo2_T1,seed,derived,1,0,0,0,0,completed,True
+model on (reference),E3_on,claude-sonnet,F015,hfo2_closure_t1_t2_t4_misses_a_tightened,hfo2_T1,seed,limit,0,1,0,0,0,stopped,
+model on (reference),E3_on,claude-sonnet,F016,hfo2_the_same_crystal_differs_between_tw,hfo2_T1,seed,limit,0,1,0,0,0,stopped,
+model on (reference),E3_on,claude-sonnet,F017,hfo2_stored_incar_differs_from_the_campa,hfo2_T1,seed,data,0,1,0,0,0,stopped,
+model on (reference),E3_on,claude-sonnet,F018,hfo2_points_carry_a_magnetic_moment_abov,hfo2_T1,seed,data,0,1,0,0,0,stopped,
+model on (reference),E3_on,claude-sonnet,F019,hfo2_configured_formula_units_per_cell_d,hfo2_T1,seed,data,0,1,0,0,0,stopped,
+model on (reference),E3_on,claude-sonnet,F020,bifeo3_grid_job_part_times_out_rules_off,bifeo3,held-out,derived,1,0,0,0,0,completed,True
+model on (reference),E3_on,claude-sonnet,F021,bifeo3_grid_job_part_hits_the_scf_step_l,bifeo3,held-out,derived,1,0,0,0,0,completed,True
+model on (reference),E3_on,claude-sonnet,F022,bifeo3_more_scf_limited_runs_than_the_de,bifeo3,held-out,data,0,3,0,0,0,stopped,
+model on (reference),E3_on,claude-sonnet,F023,ermno3_plane_job_part_times_out_rules_of,ermno3,held-out,derived,1,0,0,0,0,completed,True
+model on (reference),E3_on,claude-sonnet,F024,ermno3_meier_fit_rms_above_a_tightened_l,ermno3,held-out,limit,0,1,0,0,0,stopped,
+model on (reference),E3_on,claude-sonnet,F025,inmno3_joint_fit_max_residual_12_06_12_m,inmno3_joint,held-out,data,0,2,0,0,0,stopped,
+model on (reference),E3_on,claude-sonnet,F026,hfo2_t5_child_cell_carries_a_5_02_deg_ri,hfo2_T5,held-out,limit,0,2,0,0,0,stopped,
+model on (reference),E3_on,claude-sonnet,F027,hfo2_t4_path_job_times_out_again_after_t,hfo2_T4,held-out,job,1,1,0,0,0,stopped,
+model on (reference),E3_on,claude-sonnet,F028,no_atom_matching_basis_within_dmax_0_3_c,ca3ti2o7,seed,derived,1,0,0,0,0,completed,True
+model on (reference),E3_on,claude-sonnet,F029,inmno3_plane_job_part_hits_the_scf_step_,inmno3,seed,derived,1,1,0,0,0,completed,True
+model on (reference),E3_on,claude-sonnet,F030,no_atom_matching_basis_within_dmax_0_3_e,ermno3,seed,derived,1,0,0,0,0,completed,True
+model on (reference),E3_on,claude-sonnet,F031,no_atom_matching_basis_within_dmax_0_3_h,hfo2_T3,seed,derived,1,0,0,0,0,completed,True
+model on (reference),E3_on,claude-sonnet,F032,no_atom_matching_basis_within_dmax_0_3_b,bifeo3,held-out,derived,1,0,0,0,0,completed,True
+model on (reference),E3_on,claude-sonnet,F033,ca3ti2o7_surface_minimum_closer_to_the_g,ca3ti2o7,seed,limit,0,2,0,0,0,stopped,
+model on (reference),E3_on,claude-sonnet,F034,single_mode_space_group_checked_on_the_m,ermno3,seed,derived,1,0,0,0,0,completed,True
+model on (reference),E3_on,claude-sonnet,F035,rigid_translation_injected_into_the_ermn,ermno3,seed,derived,1,0,0,0,0,completed,True
+model on (reference),E3_on,claude-sonnet,F036,rigid_translation_injected_into_the_inmn,inmno3,seed,derived,1,1,0,0,0,completed,True
+model on (reference),E3_on,claude-sonnet,F037,job_part_ends_with_walltime_ca3ti2o7_rul,ca3ti2o7,held-out,derived,1,0,0,0,0,completed,True
+model on (reference),E3_on,claude-sonnet,F038,job_part_ends_with_walltime_inmno3_rules,inmno3,seed,derived,1,1,0,0,0,completed,True
+model on (reference),E3_on,claude-sonnet,F039,job_part_ends_with_walltime_hfo2_t3_rule,hfo2_T3,seed,derived,1,0,0,0,0,completed,True
+model on (reference),E3_on,claude-sonnet,F040,job_part_ends_with_walltime_cssni3_d4_ru,cssni3_d4,held-out,derived,1,1,0,0,0,completed,True
+model on (reference),E3_on,claude-sonnet,F041,job_part_ends_at_the_scf_step_limit_ca3t,ca3ti2o7,seed,derived,1,0,0,0,0,completed,True
+model on (reference),E3_on,claude-sonnet,F042,job_part_ends_at_the_scf_step_limit_ermn,ermno3,seed,derived,1,0,0,0,0,completed,True
+model on (reference),E3_on,claude-sonnet,F043,job_part_ends_at_the_scf_step_limit_hfo2,hfo2_T5,seed,derived,1,0,0,0,0,completed,True
+model on (reference),E3_on,claude-sonnet,F044,ca3ti2o7_nelm_again_after_the_robust_mix,ca3ti2o7,seed,job,2,2,0,0,0,stopped,
+model on (reference),E3_on,claude-sonnet,F045,ermno3_walltime_again_after_the_resubmit,ermno3,seed,job,1,2,0,0,0,stopped,
+model on (reference),E3_on,claude-sonnet,F046,inmno3_grid_too_thin_for_the_meier_fit_a,inmno3,seed,derived,1,2,0,0,0,stopped,
+model on (reference),E3_on,claude-sonnet,F047,ermno3_grid_too_thin_for_the_meier_fit_r,ermno3,seed,derived,1,1,0,0,0,stopped,
+model on (reference),E3_on,claude-sonnet,F048,ca3ti2o7_surface_mirror_symmetry_checked,ca3ti2o7,held-out,limit,0,1,0,0,0,stopped,
+model on (reference),E3_on,claude-sonnet,F049,cssni3_plane_fit_rms_above_a_tightened_l,cssni3,held-out,limit,0,1,0,0,0,stopped,
+model on (reference),E3_on,claude-sonnet,F050,inmno3_plane_fit_cv_error_above_a_tighte,inmno3,held-out,limit,0,2,0,0,0,stopped,
+model on (reference),E3_on,claude-sonnet,F051,bifeo3_degree_12_fit_rms_above_a_tighten,bifeo3,held-out,limit,0,1,0,0,0,stopped,
+model on (reference),E3_on,claude-sonnet,F052,hfo2_closure_t3_t2_t5_misses_a_tightened,hfo2_T3,seed,limit,0,1,0,0,0,stopped,
+model on (reference),E3_on,claude-sonnet,F053,hfo2_t3_child_cell_carries_a_4_88_deg_ri,hfo2_T3,held-out,limit,0,2,0,0,0,stopped,

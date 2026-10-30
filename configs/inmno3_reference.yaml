@@ -1,0 +1,24 @@
+# Reference values for the InMnO3 plane replay regression (stage 1: (K3, GM2-) plane at Phi = 0).
+# paper:  Methods 4.2 / Table 10 / claude/inmno3-meier-comparison.md ("Dudarev A-AFM" row, plane-only fit,
+#         window |Q| <= 0.58, |P| <= 0.08 A_p, A_s = sqrt(3) A_p, eV per 30-atom cell).
+# stored: files read (read-only) and compared number by number.
+paper:
+  Ap:  {K3: 0.528, GM2-: 0.0585}
+  As:  {K3: 0.9146, GM2-: 0.1013, K1: 0.0234}
+  primaries: [K3]
+  active: [K3, GM2-]
+  r5_gap_A: 0.078                       # "margin 0.078 over K1 -> R5" (Methods, on A_s; 0.076 on A_s^tf)
+  r5_note: "paper quotes the raw-A_s margin 0.078; on A_s^tf it is 0.076"
+  f_T_note: "stored plane_v2 vector: 0.0396 (its own ISODISTORT movie vector)"
+  grid: {n: 2, m: 15, N: 225}
+  landau_As: {a: -1.211, b: 1.216, c: 0.764, a_P: 2.711, g: 0.986, "g'": 5.375}
+  rms_meV: 3.9                          # per cell
+  Q_star_As: 0.833
+  depth_meV: -231                       # per cell
+  coupled_As: [0.884, 0.099]
+  hat_meV: 260                          # per cell
+stored:
+  grid_manifest: reference_grid         # sg_1e-2 per frame, labels rounded to 4 dp
+  grid_spec: reference_grid             # child_Ap_translation_free
+  fit: reference_fit                    # landau_QP_meierform_lda_aafm_tf.json (A_p, per cell)
+  classification: reference_run

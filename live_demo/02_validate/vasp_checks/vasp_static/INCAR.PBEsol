@@ -1,0 +1,14 @@
+SYSTEM  = BaTiO3 static (PBEsol)
+GGA     = PS
+PREC    = Accurate
+ENCUT   = 600
+EDIFF   = 1E-7
+ISMEAR  = 0
+SIGMA   = 0.05
+ISPIN   = 1
+NELM    = 120
+IBRION  = -1
+NSW     = 0
+LREAL   = .FALSE.
+LWAVE   = .FALSE.
+LCHARG  = .FALSE.

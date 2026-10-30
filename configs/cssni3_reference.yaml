@@ -1,0 +1,26 @@
+# Reference values for the CsSnI3 replay regression.
+# paper:  values as stated in the manuscript / handover (16 Oct 2026), with the tolerance their
+#         printed precision implies.
+# stored: files from the 12 Sep run, read (read-only) and compared number by number.
+paper:
+  Ap:  {M3+: 0.843, R4+: 0.229, R5+: 0.086, X5+: 0.045}       # Å, step 3
+  As:  {M3+: 1.686, R4+: 0.458, R5+: 0.172, X5+: 0.090}       # Å (rules file: A_s = 2 A_p, 20-atom cell)
+  active: [M3+, R4+]
+  held_at_zero: [R5+, X5+]
+  calibration_s: 1.25
+  child_displacement_A: 1.758
+  grid: {n: 2, m: 31, N: 961}
+  frames_by_sg: {"221": 1, "127": 30, "74": 30, "62": 900}
+  landau: {a1: -0.149, a2: -0.155, "λ": 0.255}              # eV Å⁻², eV Å⁻², eV Å⁻⁴
+  rms_meV: 0.10
+  n_fit: 545
+  fit_rmax_A: 1.05
+  ring_radius_A: [0.72, 0.76]                                  # "ring minima 0.72–0.76 Å"
+  ring_depth_meV: 22                                           # "~22 meV/f.u. below cubic"
+  corrugation_meV: 1.4
+stored:
+  fit_plane: reference_fit                      # paths keys in configs/cssni3.yaml
+  fit_all_sets: reference_fit_all_sets
+  fit_all_sets_key: "lattice irrep"
+  grid_manifest: reference_grid                 # <reference_grid>/grid_manifest.json (sg_1e-2 per frame)
+  classification: reference_run                 # <reference_run>/step3_isodistort/01_verdict/classification.json

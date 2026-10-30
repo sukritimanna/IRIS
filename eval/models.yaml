@@ -1,0 +1,34 @@
+# Sub-agent model panel (build step 5). One entry per model; `--llm <name>` picks one.
+# Keys are never in this file: each provider's key is read from its environment variable
+# (ANTHROPIC_API_KEY, OPENAI_API_KEY, GOOGLE_API_KEY). Pin exact model ids on the run day:
+#   python -m iris_agent.llm --list openai      (and anthropic, google)
+# then check every entry once with a dummy prompt (no project data):
+#   python -m iris_agent.llm --ping all
+#
+# fields
+#   provider          anthropic | openai | google | fake (tests); an OpenAI-compatible server = openai + base_url
+#   model             exact id sent to the API (null = not pinned yet; the entry is skipped)
+#   mode              constrained (enum of option ids enforced / schema-guided) | free (plain JSON, parsed by IRIS)
+#   temperature       number, or null = provider default (Claude 5.5 and the reasoning models reject the parameter)
+#   seed              sent where the API takes one (OpenAI, Gemini); recorded either way
+#   max_tokens        output budget (reasoning / thinking tokens count against it for OpenAI and Gemini)
+#   price_usd_per_mtok {in, out}: list prices on the run day, for the cost column (null = cost not computed)
+#   tier              small | mid | flagship (for the comparison table only)
+#   api               openai only: responses (default for api.openai.com) | chat (default with base_url)
+version: 1
+pinned: "2026-10-17 from results/llm_checks/2026-10-17T080057Z (account model lists) and the providers' model pages"
+reference: claude-sonnet
+defaults: {mode: constrained, temperature: null, seed: 0, timeout_s: 180}
+models:
+  # Anthropic (output_config json_schema)
+  claude-haiku:      {provider: anthropic, model: claude-haiku-5-5,  tier: small,    max_tokens: 2048, price_usd_per_mtok: null}
+  claude-sonnet:     {provider: anthropic, model: claude-sonnet-5-5, tier: mid,      max_tokens: 2048, price_usd_per_mtok: null}
+  claude-opus:       {provider: anthropic, model: claude-opus-5-5,   tier: flagship, max_tokens: 2048, price_usd_per_mtok: null}
+  # OpenAI (Responses API; list prices from developers.openai.com/api/docs/models, 2026-10-17)
+  gpt-luna:          {provider: openai, model: gpt-6-luna,  tier: small,    max_tokens: 8192, price_usd_per_mtok: {in: 0.10, out: 0.50}}
+  gpt-sol:           {provider: openai, model: gpt-6.1-sol, tier: mid,      max_tokens: 8192, price_usd_per_mtok: {in: 2.0, out: 10.0}}
+  gpt-astra:         {provider: openai, model: gpt-6-astra, tier: flagship, max_tokens: 8192, price_usd_per_mtok: {in: 10.0, out: 50.0}}
+  # Google (generateContent, responseSchema)
+  gemini-flash-lite: {provider: google, model: gemini-3.5-flash-lite, tier: small,    max_tokens: 8192, price_usd_per_mtok: null}
+  gemini-flash:      {provider: google, model: gemini-3.8-flash,      tier: mid,      max_tokens: 8192, price_usd_per_mtok: null}
+  gemini-argon:      {provider: google, model: gemini-4-argon,        tier: flagship, max_tokens: 8192, price_usd_per_mtok: null}

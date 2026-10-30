@@ -1,0 +1,98 @@
+{
+ "id": "C39",
+ "captured_from": {
+  "system": "hfo2_T3",
+  "fault": "F039",
+  "patch": {
+   "run.jobs.wait": true
+  },
+  "ablations": [
+   "no-rules"
+  ],
+  "decision": 1,
+  "script": [],
+  "steps": [
+   "jobs: {'event': 'job_end', 'parts': 'all', 'failed': {'0': 'WALLTIME'}}"
+  ]
+ },
+ "node": "f4",
+ "gate": "G4",
+ "code": "WALLTIME",
+ "prompt_id": "subagent_G4",
+ "prompt_values": {
+  "system": "hfo2",
+  "node": "f4",
+  "node_name": "Reviewer",
+  "gate": "G4",
+  "code": "WALLTIME",
+  "detail": "10 points flagged, first 0: job part 0 failed:WALLTIME",
+  "tests": [
+   {
+    "test": "accounting",
+    "status": "fail",
+    "code": "WALLTIME",
+    "detail": "10 points flagged, first 0: job part 0 failed:WALLTIME"
+   },
+   {
+    "test": "rederived",
+    "status": "pass"
+   },
+   {
+    "test": "magnetism",
+    "status": "fail",
+    "code": "MAGNETIC",
+    "detail": "|m| up to None μB per cell > 0.01 (non-magnetic expected)"
+   },
+   {
+    "test": "dft_consistent",
+    "status": "fail",
+    "code": "DFT_INCONSISTENT",
+    "detail": "POTCAR sets along the path: []"
+   }
+  ],
+  "options": [
+   {
+    "id": "resubmit",
+    "text": "Resubmit the failed parts unchanged"
+   },
+   {
+    "id": "robust_mixing",
+    "text": "Resubmit the failed parts with robust mixing"
+   },
+   {
+    "id": "flag_and_continue",
+    "text": "Flag the frames and continue without them"
+   },
+   {
+    "id": "stop",
+    "text": "Stop and ask the human"
+   }
+  ],
+  "history": "nothing yet",
+  "attempts": 0,
+  "max_retry": 3
+ },
+ "menu": [
+  {
+   "id": "resubmit",
+   "text": "Resubmit the failed parts unchanged"
+  },
+  {
+   "id": "robust_mixing",
+   "text": "Resubmit the failed parts with robust mixing"
+  },
+  {
+   "id": "flag_and_continue",
+   "text": "Flag the frames and continue without them"
+  },
+  {
+   "id": "stop",
+   "text": "Stop and ask the human"
+  }
+ ],
+ "system_prompt": "You are the G4 recovery sub-agent of IRIS, a workflow that maps symmetry-mode energy landscapes.\nStep f4 (Reviewer) produced an output that failed gate G4. The gate is plain Python; its verdict\nis final and you cannot change it. You choose which listed fix to try next.\n\nGate G4 checks: energies converged (OSZICAR |dE| < EDIFF in fewer than NELM steps) or flagged.\nGuidance: Walltime: resubmit unchanged. SCF step limit: resubmit with robust mixing. If a fix was already tried for the same failure, choose between flagging the frames and stopping. Inconsistent settings, magnetism or configuration values are for the human.\n\nRules:\n- Answer with JSON {\"id\": ..., \"reason\": ...} and nothing else.\n- \"id\" must be exactly one of the option ids you are given. Choose \"stop\" if none fits or if the\n  same fix has already failed (see the history).\n- The reason is one sentence. It may quote numbers from the input; it must not introduce new ones.\n- Do not propose new calculations, new options, or edits to any number.",
+ "user_template": "System: {system}\nFailed: {node} {node_name}, gate {gate}, code {code}\nDetail: {detail}\nChecks run by the gate:\n{tests}\n\nRetries used on this step: {attempts} of {max_retry}\nWhat has been tried so far in this run:\n{history}\n\nOptions (choose one id):\n{options}",
+ "user_prompt": "System: hfo2\nFailed: f4 Reviewer, gate G4, code WALLTIME\nDetail: 10 points flagged, first 0: job part 0 failed:WALLTIME\nChecks run by the gate:\n[\n {\n  \"test\": \"accounting\",\n  \"status\": \"fail\",\n  \"code\": \"WALLTIME\",\n  \"detail\": \"10 points flagged, first 0: job part 0 failed:WALLTIME\"\n },\n {\n  \"test\": \"rederived\",\n  \"status\": \"pass\"\n },\n {\n  \"test\": \"magnetism\",\n  \"status\": \"fail\",\n  \"code\": \"MAGNETIC\",\n  \"detail\": \"|m| up to None \\u03bcB per cell > 0.01 (non-magnetic expected)\"\n },\n {\n  \"test\": \"dft_consistent\",\n  \"status\": \"fail\",\n  \"code\": \"DFT_INCONSISTENT\",\n  \"detail\": \"POTCAR sets along the path: []\"\n }\n]\n\nRetries used on this step: 0 of 3\nWhat has been tried so far in this run:\nnothing yet\n\nOptions (choose one id):\n[\n {\n  \"id\": \"resubmit\",\n  \"text\": \"Resubmit the failed parts unchanged\"\n },\n {\n  \"id\": \"robust_mixing\",\n  \"text\": \"Resubmit the failed parts with robust mixing\"\n },\n {\n  \"id\": \"flag_and_continue\",\n  \"text\": \"Flag the frames and continue without them\"\n },\n {\n  \"id\": \"stop\",\n  \"text\": \"Stop and ask the human\"\n }\n]",
+ "system_prompt_bare": "You are the G4 recovery sub-agent of IRIS, a workflow that maps symmetry-mode energy landscapes.\nStep f4 (Reviewer) produced an output that failed gate G4. The gate is plain Python; its verdict\nis final and you cannot change it. You choose which listed fix to try next.\n\nGate G4 checks: energies converged (OSZICAR |dE| < EDIFF in fewer than NELM steps) or flagged.\n\nRules:\n- Answer with JSON {\"id\": ..., \"reason\": ...} and nothing else.\n- \"id\" must be exactly one of the option ids you are given. Choose \"stop\" if none fits or if the\n  same fix has already failed (see the history).\n- The reason is one sentence. It may quote numbers from the input; it must not introduce new ones.\n- Do not propose new calculations, new options, or edits to any number.",
+ "prompt_sha256": "ac400966410b8094"
+}

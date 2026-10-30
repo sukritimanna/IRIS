@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# FAKE qstat: list ids whose background job still runs
+for f in "$FAKEQ"/*.pid; do [ -f "$f" ] || continue; id=$(basename "$f" .pid); kill -0 $(cat "$f") 2>/dev/null && echo "$id.fakeserver R" || rm -f "$f"; done

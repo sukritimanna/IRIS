@@ -1,0 +1,25 @@
+# Reference values for the ErMnO3 plane replay regression ((K3, GM2-) plane at Phi = 0 + P axis).
+# paper:  demo/ermno3/landau/compare_meier_final.md, row "LDA+U A-AFM, a_P from P axis" (= Table 10 / the Meier
+#         table): plane window |Q| <= 0.66, |P| <= 0.08 A_p (91 points); a_P fixed from the 11-point P axis
+#         (P^2 + P^4 + P^6 to 0.5 A_p); A_s = sqrt(3) A_p, eV per 30-atom cell.
+# stored: the same procedure on the stored grid labels (rounded to 4 dp) and the same energies.
+paper:
+  Ap:  {K3: 0.6037, GM2-: 0.1271}
+  As:  {K3: 1.0456, GM2-: 0.2201, K1: 0.0072}
+  primaries: [K3]
+  active: [K3, GM2-]
+  r5_gap_A: 0.213                       # classification "gap" (raw A_s); no R5
+  r5_note: "stored classification gap 0.213 on raw A_s; well above 0.1 -> no R5"
+  f_T_note: "stored grid_spec: translation ratio 0.9938 -> f_T 0.0124"
+  grid: {n: 2, m: 15, N: 225}
+  landau_As: {a: -3.703, b: 3.952, c: 0.476, a_P: 0.583, g: 2.301, "g'": 10.777}
+  rms_meV: 6.0
+  n_fit: 91
+  Q_star_As: 0.922
+  depth_meV: -811
+  coupled_As: [1.029, 0.209]
+  hat_meV: 1021
+stored:
+  grid_manifest: reference_grid         # planepax (plane + paxis); sg_1e-2 per frame, labels rounded to 4 dp
+  grid_spec: reference_grid
+  classification: reference_run

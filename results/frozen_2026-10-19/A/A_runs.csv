@@ -1,0 +1,225 @@
+setting,tag,fault,system,split,class,fault_kind,final,completed_without_handoff,handoffs,human_questions,published_decisions,subagent_stops,subagent_fixes,rule_fixes,attempts,runs_submitted,baseline_runs,runs_vs_clean,extra_runs,numbers_identical,completed_after_scripted_failures_ran_out,subagent_choices,final_scored
+rules + human (no sub-agent),E2,F001,cssni3,seed,job,error,completed,True,0,0,0,0,0,1,1,1002,962,40,40,True,False,,completed
+rules + human (no sub-agent),E2,F002,cssni3,seed,job,error,completed,True,0,0,0,0,0,1,1,1002,962,40,40,True,False,,completed
+rules + human (no sub-agent),E2,F003,cssni3,seed,vectors,error,completed,True,0,0,0,0,0,1,1,962,962,0,0,True,False,,completed
+rules + human (no sub-agent),E2,F004,cssni3,seed,crystallography,limit,completed,True,0,0,0,0,0,1,1,962,962,0,0,True,False,,completed
+rules + human (no sub-agent),E2,F005,cssni3,seed,symmetry,error,completed,True,0,0,0,0,0,1,1,962,962,0,0,True,False,,completed
+rules + human (no sub-agent),E2,F006,cssni3,seed,analysis,limit,stopped,False,1,1,0,0,0,1,2,962,962,0,0,,False,,stopped
+rules + human (no sub-agent),E2,F007,cssni3,seed,data,error,stopped,False,1,1,0,0,0,0,1,961,962,-1,0,,False,,stopped
+rules + human (no sub-agent),E2,F008,cssni3,seed,recovery,limit,completed,False,1,1,0,0,0,0,1,962,962,0,0,True,False,,completed
+rules + human (no sub-agent),E2,F009,cssni3,seed,job,error,stopped,False,1,1,0,0,0,0,1,962,962,0,0,,False,,stopped
+rules + human (no sub-agent),E2,F010,cssni3,seed,job,error,stopped,False,1,1,0,0,0,1,2,1002,962,40,40,,False,,stopped
+rules + human (no sub-agent),E2,F011,cssni3,seed,job,error,stopped,False,1,1,0,0,0,1,2,1002,962,40,40,,False,,stopped
+rules + human (no sub-agent),E2,F012,ca3ti2o7,seed,derived,error,completed,True,0,0,0,0,0,1,1,1372,1372,0,0,True,False,,completed
+rules + human (no sub-agent),E2,F013,hfo2_T1,seed,derived,error,completed,True,0,0,0,0,0,1,1,20,10,10,10,True,False,,completed
+rules + human (no sub-agent),E2,F014,hfo2_T1,seed,derived,error,completed,True,0,0,0,0,0,1,1,20,10,10,10,True,False,,completed
+rules + human (no sub-agent),E2,F015,hfo2_T1,seed,limit,limit,stopped,False,1,1,0,0,0,0,1,10,10,0,0,,False,,stopped
+rules + human (no sub-agent),E2,F016,hfo2_T1,seed,limit,limit,stopped,False,1,1,0,0,0,0,1,10,10,0,0,,False,,stopped
+rules + human (no sub-agent),E2,F017,hfo2_T1,seed,data,error,stopped,False,1,1,0,0,0,0,1,10,10,0,0,,False,,stopped
+rules + human (no sub-agent),E2,F018,hfo2_T1,seed,data,limit,stopped,False,1,1,0,0,0,0,1,10,10,0,0,,False,,stopped
+rules + human (no sub-agent),E2,F019,hfo2_T1,seed,data,error,stopped,False,1,1,0,0,0,0,1,10,10,0,0,,False,,stopped
+rules + human (no sub-agent),E2,F020,bifeo3,held-out,derived,error,completed,True,0,0,0,0,0,1,1,10407,10307,100,100,True,False,,completed
+rules + human (no sub-agent),E2,F021,bifeo3,held-out,derived,error,completed,True,0,0,0,0,0,1,1,10407,10307,100,100,True,False,,completed
+rules + human (no sub-agent),E2,F022,bifeo3,held-out,data,limit,stopped,False,1,1,0,0,0,0,1,10307,10307,0,0,,False,,stopped
+rules + human (no sub-agent),E2,F023,ermno3,held-out,derived,error,completed,True,0,0,0,0,0,1,1,276,236,40,40,True,False,,completed
+rules + human (no sub-agent),E2,F024,ermno3,held-out,limit,limit,stopped,False,1,1,0,0,0,0,1,236,236,0,0,,False,,stopped
+rules + human (no sub-agent),E2,F025,inmno3_joint,held-out,data,limit,stopped,False,2,2,1,0,0,0,2,400,400,0,0,,False,,stopped
+rules + human (no sub-agent),E2,F026,hfo2_T5,held-out,limit,limit,stopped,False,1,1,0,0,0,0,1,0,10,-10,0,,False,,stopped
+rules + human (no sub-agent),E2,F027,hfo2_T4,held-out,job,error,stopped,False,1,1,0,0,0,1,2,20,10,10,10,,False,,stopped
+rules + human (no sub-agent),E2,F028,ca3ti2o7,seed,derived,limit,completed,True,0,0,0,0,0,1,1,1372,1372,0,0,True,False,,completed
+rules + human (no sub-agent),E2,F029,inmno3,seed,derived,error,completed,False,1,1,1,0,0,1,2,265,225,40,40,True,False,,completed
+rules + human (no sub-agent),E2,F030,ermno3,seed,derived,limit,completed,True,0,0,0,0,0,1,1,236,236,0,0,True,False,,completed
+rules + human (no sub-agent),E2,F031,hfo2_T3,seed,derived,limit,completed,True,0,0,0,0,0,1,1,10,10,0,0,True,False,,completed
+rules + human (no sub-agent),E2,F032,bifeo3,held-out,derived,limit,completed,True,0,0,0,0,0,1,1,10307,10307,0,0,True,False,,completed
+rules + human (no sub-agent),E2,F033,ca3ti2o7,seed,limit,limit,stopped,False,1,1,0,0,0,0,1,1372,1372,0,0,,False,,stopped
+rules + human (no sub-agent),E2,F034,ermno3,seed,derived,error,completed,True,0,0,0,0,0,1,1,236,236,0,0,True,False,,completed
+rules + human (no sub-agent),E2,F035,ermno3,seed,derived,error,completed,True,0,0,0,0,0,1,1,236,236,0,0,True,False,,completed
+rules + human (no sub-agent),E2,F036,inmno3,seed,derived,error,completed,False,1,1,1,0,0,1,2,225,225,0,0,True,False,,completed
+rules + human (no sub-agent),E2,F037,ca3ti2o7,held-out,derived,error,completed,True,0,0,0,0,0,1,1,1412,1372,40,40,True,False,,completed
+rules + human (no sub-agent),E2,F038,inmno3,seed,derived,error,completed,False,1,1,1,0,0,1,2,265,225,40,40,True,False,,completed
+rules + human (no sub-agent),E2,F039,hfo2_T3,seed,derived,error,completed,True,0,0,0,0,0,1,1,20,10,10,10,True,False,,completed
+rules + human (no sub-agent),E2,F040,cssni3_d4,held-out,derived,error,completed,False,1,1,1,0,0,1,2,1041,1001,40,40,True,False,,completed
+rules + human (no sub-agent),E2,F041,ca3ti2o7,seed,derived,error,completed,True,0,0,0,0,0,1,1,1412,1372,40,40,True,False,,completed
+rules + human (no sub-agent),E2,F042,ermno3,seed,derived,error,completed,True,0,0,0,0,0,1,1,276,236,40,40,True,False,,completed
+rules + human (no sub-agent),E2,F043,hfo2_T5,seed,derived,error,completed,True,0,0,0,0,0,1,1,20,10,10,10,True,False,,completed
+rules + human (no sub-agent),E2,F044,ca3ti2o7,seed,job,error,stopped,False,1,1,0,0,0,1,2,1412,1372,40,40,,False,,stopped
+rules + human (no sub-agent),E2,F045,ermno3,seed,job,error,stopped,False,1,1,0,0,0,1,2,276,236,40,40,,False,,stopped
+rules + human (no sub-agent),E2,F046,inmno3,seed,derived,limit,stopped,False,2,2,1,0,0,1,3,225,225,0,0,,False,,stopped
+rules + human (no sub-agent),E2,F047,ermno3,seed,derived,limit,stopped,False,1,1,0,0,0,1,2,236,236,0,0,,False,,stopped
+rules + human (no sub-agent),E2,F048,ca3ti2o7,held-out,limit,limit,stopped,False,1,1,0,0,0,0,1,1372,1372,0,0,,False,,stopped
+rules + human (no sub-agent),E2,F049,cssni3,held-out,limit,limit,stopped,False,1,1,0,0,0,0,1,962,962,0,0,,False,,stopped
+rules + human (no sub-agent),E2,F050,inmno3,held-out,limit,limit,stopped,False,2,2,1,0,0,0,2,225,225,0,0,,False,,stopped
+rules + human (no sub-agent),E2,F051,bifeo3,held-out,limit,limit,stopped,False,1,1,0,0,0,0,1,10307,10307,0,0,,False,,stopped
+rules + human (no sub-agent),E2,F052,hfo2_T3,seed,limit,limit,stopped,False,1,1,0,0,0,0,1,10,10,0,0,,False,,stopped
+rules + human (no sub-agent),E2,F053,hfo2_T3,held-out,limit,limit,stopped,False,1,1,0,0,0,0,1,0,10,-10,0,,False,,stopped
+claude-sonnet,E3_on,F001,cssni3,seed,job,error,completed,True,0,0,0,0,0,1,1,1002,962,40,40,True,False,,completed
+claude-sonnet,E3_on,F002,cssni3,seed,job,error,completed,True,0,0,0,0,0,1,1,1002,962,40,40,True,False,,completed
+claude-sonnet,E3_on,F003,cssni3,seed,vectors,error,completed,True,0,0,0,0,0,1,1,962,962,0,0,True,False,,completed
+claude-sonnet,E3_on,F004,cssni3,seed,crystallography,limit,completed,True,0,0,0,0,0,1,1,962,962,0,0,True,False,,completed
+claude-sonnet,E3_on,F005,cssni3,seed,symmetry,error,completed,True,0,0,0,0,0,1,1,962,962,0,0,True,False,,completed
+claude-sonnet,E3_on,F006,cssni3,seed,analysis,limit,stopped,False,1,0,0,1,0,1,2,962,962,0,0,,False,OVER_BUDGET:stop,stopped
+claude-sonnet,E3_on,F007,cssni3,seed,data,error,stopped,False,1,1,0,0,0,0,1,961,962,-1,0,,False,,stopped
+claude-sonnet,E3_on,F008,cssni3,seed,recovery,limit,completed,False,1,1,0,0,0,0,1,962,962,0,0,True,False,,completed
+claude-sonnet,E3_on,F009,cssni3,seed,job,error,stopped,False,1,1,0,0,0,0,1,962,962,0,0,,False,,stopped
+claude-sonnet,E3_on,F010,cssni3,seed,job,error,stopped,False,1,0,0,1,2,1,4,1002,962,40,40,,False,WALLTIME:flag_and_continue;MISMATCH:rerun_analysis;MISMATCH:stop,stopped
+claude-sonnet,E3_on,F011,cssni3,seed,job,error,stopped,False,1,0,0,1,2,1,4,1002,962,40,40,,False,NELM:flag_and_continue;MISMATCH:rerun_analysis;MISMATCH:stop,stopped
+claude-sonnet,E3_on,F012,ca3ti2o7,seed,derived,error,completed,True,0,0,0,0,0,1,1,1372,1372,0,0,True,False,,completed
+claude-sonnet,E3_on,F013,hfo2_T1,seed,derived,error,completed,True,0,0,0,0,0,1,1,20,10,10,10,True,False,,completed
+claude-sonnet,E3_on,F014,hfo2_T1,seed,derived,error,completed,True,0,0,0,0,0,1,1,20,10,10,10,True,False,,completed
+claude-sonnet,E3_on,F015,hfo2_T1,seed,limit,limit,stopped,False,1,0,0,1,0,0,1,10,10,0,0,,False,CLOSURE:stop,stopped
+claude-sonnet,E3_on,F016,hfo2_T1,seed,limit,limit,stopped,False,1,0,0,1,0,0,1,10,10,0,0,,False,CROSS_SETTING:stop,stopped
+claude-sonnet,E3_on,F017,hfo2_T1,seed,data,error,stopped,False,1,0,0,1,0,0,1,10,10,0,0,,False,DFT_INCONSISTENT:stop,stopped
+claude-sonnet,E3_on,F018,hfo2_T1,seed,data,limit,stopped,False,1,0,0,1,0,0,1,10,10,0,0,,False,MAGNETIC:stop,stopped
+claude-sonnet,E3_on,F019,hfo2_T1,seed,data,error,stopped,False,1,0,0,1,0,0,1,10,10,0,0,,False,PER_FU:stop,stopped
+claude-sonnet,E3_on,F020,bifeo3,held-out,derived,error,completed,True,0,0,0,0,0,1,1,10407,10307,100,100,True,False,,completed
+claude-sonnet,E3_on,F021,bifeo3,held-out,derived,error,completed,True,0,0,0,0,0,1,1,10407,10307,100,100,True,False,,completed
+claude-sonnet,E3_on,F022,bifeo3,held-out,data,limit,stopped,False,1,0,0,1,2,0,3,10307,10307,0,0,,False,SCF_LIMITED:robust_mixing;SCF_LIMITED:flag_and_continue;SCF_LIMITED:stop,stopped
+claude-sonnet,E3_on,F023,ermno3,held-out,derived,error,completed,True,0,0,0,0,0,1,1,276,236,40,40,True,False,,completed
+claude-sonnet,E3_on,F024,ermno3,held-out,limit,limit,stopped,False,1,0,0,1,0,0,1,236,236,0,0,,False,RESIDUALS:stop,stopped
+claude-sonnet,E3_on,F025,inmno3_joint,held-out,data,limit,stopped,False,1,0,0,1,1,0,2,400,400,0,0,,False,R5_BORDERLINE:include_borderline;RESIDUALS:stop,stopped
+claude-sonnet,E3_on,F026,hfo2_T5,held-out,limit,limit,stopped,False,1,0,0,1,1,0,2,0,10,-10,0,,False,PATH_LATTICE:rebuild_fixed_lattice;PATH_LATTICE:stop,stopped
+claude-sonnet,E3_on,F027,hfo2_T4,held-out,job,error,stopped,False,1,0,0,1,0,1,2,20,10,10,10,,False,WALLTIME:stop,stopped
+claude-sonnet,E3_on,F028,ca3ti2o7,seed,derived,limit,completed,True,0,0,0,0,0,1,1,1372,1372,0,0,True,False,,completed
+claude-sonnet,E3_on,F029,inmno3,seed,derived,error,completed,True,0,0,0,0,1,1,2,265,225,40,40,True,False,R5_BORDERLINE:include_borderline,completed
+claude-sonnet,E3_on,F030,ermno3,seed,derived,limit,completed,True,0,0,0,0,0,1,1,236,236,0,0,True,False,,completed
+claude-sonnet,E3_on,F031,hfo2_T3,seed,derived,limit,completed,True,0,0,0,0,0,1,1,10,10,0,0,True,False,,completed
+claude-sonnet,E3_on,F032,bifeo3,held-out,derived,limit,completed,True,0,0,0,0,0,1,1,10307,10307,0,0,True,False,,completed
+claude-sonnet,E3_on,F033,ca3ti2o7,seed,limit,limit,stopped,False,1,0,0,1,1,0,2,1372,1372,0,0,,False,COVERAGE:densify;OVER_BUDGET:stop,stopped
+claude-sonnet,E3_on,F034,ermno3,seed,derived,error,completed,True,0,0,0,0,0,1,1,236,236,0,0,True,False,,completed
+claude-sonnet,E3_on,F035,ermno3,seed,derived,error,completed,True,0,0,0,0,0,1,1,236,236,0,0,True,False,,completed
+claude-sonnet,E3_on,F036,inmno3,seed,derived,error,completed,True,0,0,0,0,1,1,2,225,225,0,0,True,False,R5_BORDERLINE:include_borderline,completed
+claude-sonnet,E3_on,F037,ca3ti2o7,held-out,derived,error,completed,True,0,0,0,0,0,1,1,1412,1372,40,40,True,False,,completed
+claude-sonnet,E3_on,F038,inmno3,seed,derived,error,completed,True,0,0,0,0,1,1,2,265,225,40,40,True,False,R5_BORDERLINE:include_borderline,completed
+claude-sonnet,E3_on,F039,hfo2_T3,seed,derived,error,completed,True,0,0,0,0,0,1,1,20,10,10,10,True,False,,completed
+claude-sonnet,E3_on,F040,cssni3_d4,held-out,derived,error,completed,True,0,0,0,0,1,1,2,1041,1001,40,40,True,False,SECONDARY_COUPLED:accept_secondary_hold,completed
+claude-sonnet,E3_on,F041,ca3ti2o7,seed,derived,error,completed,True,0,0,0,0,0,1,1,1412,1372,40,40,True,False,,completed
+claude-sonnet,E3_on,F042,ermno3,seed,derived,error,completed,True,0,0,0,0,0,1,1,276,236,40,40,True,False,,completed
+claude-sonnet,E3_on,F043,hfo2_T5,seed,derived,error,completed,True,0,0,0,0,0,1,1,20,10,10,10,True,False,,completed
+claude-sonnet,E3_on,F044,ca3ti2o7,seed,job,error,stopped,False,1,0,0,1,1,2,4,1412,1372,40,40,,False,NELM:flag_and_continue;OVER_BUDGET:stop,stopped
+claude-sonnet,E3_on,F045,ermno3,seed,job,error,stopped,False,1,0,0,1,1,1,3,276,236,40,40,,False,WALLTIME:flag_and_continue;NO_ORIGIN:stop,stopped
+claude-sonnet,E3_on,F046,inmno3,seed,derived,limit,stopped,False,1,0,0,1,1,1,3,225,225,0,0,,False,R5_BORDERLINE:include_borderline;OVER_BUDGET:stop,stopped
+claude-sonnet,E3_on,F047,ermno3,seed,derived,limit,stopped,False,1,0,0,1,0,1,2,236,236,0,0,,False,OVER_BUDGET:stop,stopped
+claude-sonnet,E3_on,F048,ca3ti2o7,held-out,limit,limit,stopped,False,1,0,0,1,0,0,1,1372,1372,0,0,,False,MIRROR:stop,stopped
+claude-sonnet,E3_on,F049,cssni3,held-out,limit,limit,stopped,False,1,0,0,1,0,0,1,962,962,0,0,,False,RESIDUALS:stop,stopped
+claude-sonnet,E3_on,F050,inmno3,held-out,limit,limit,stopped,False,1,0,0,1,1,0,2,225,225,0,0,,False,R5_BORDERLINE:include_borderline;CV_ERROR:stop,stopped
+claude-sonnet,E3_on,F051,bifeo3,held-out,limit,limit,stopped,False,1,0,0,1,0,0,1,10307,10307,0,0,,False,RESIDUALS:stop,stopped
+claude-sonnet,E3_on,F052,hfo2_T3,seed,limit,limit,stopped,False,1,0,0,1,0,0,1,10,10,0,0,,False,CLOSURE:stop,stopped
+claude-sonnet,E3_on,F053,hfo2_T3,held-out,limit,limit,stopped,False,1,0,0,1,1,0,2,0,10,-10,0,,False,PATH_LATTICE:rebuild_fixed_lattice;PATH_LATTICE:stop,stopped
+tree,A_tree,F001,cssni3,seed,job,error,completed,True,0,0,0,0,0,1,1,1002,962,40,40,True,False,,completed
+tree,A_tree,F002,cssni3,seed,job,error,completed,True,0,0,0,0,0,1,1,1002,962,40,40,True,False,,completed
+tree,A_tree,F003,cssni3,seed,vectors,error,completed,True,0,0,0,0,0,1,1,962,962,0,0,True,False,,completed
+tree,A_tree,F004,cssni3,seed,crystallography,limit,completed,True,0,0,0,0,0,1,1,962,962,0,0,True,False,,completed
+tree,A_tree,F005,cssni3,seed,symmetry,error,completed,True,0,0,0,0,0,1,1,962,962,0,0,True,False,,completed
+tree,A_tree,F006,cssni3,seed,analysis,limit,stopped,False,1,0,0,1,0,1,2,962,962,0,0,,False,OVER_BUDGET:stop,stopped
+tree,A_tree,F007,cssni3,seed,data,error,stopped,False,1,1,0,0,0,0,1,961,962,-1,0,,False,,stopped
+tree,A_tree,F008,cssni3,seed,recovery,limit,completed,False,1,1,0,0,0,0,1,962,962,0,0,True,False,,completed
+tree,A_tree,F009,cssni3,seed,job,error,stopped,False,1,1,0,0,0,0,1,962,962,0,0,,False,,stopped
+tree,A_tree,F010,cssni3,seed,job,error,stopped,False,1,0,0,1,0,1,2,1002,962,40,40,,False,WALLTIME:stop,stopped
+tree,A_tree,F011,cssni3,seed,job,error,stopped,False,1,0,0,1,0,1,2,1002,962,40,40,,False,NELM:stop,stopped
+tree,A_tree,F012,ca3ti2o7,seed,derived,error,completed,True,0,0,0,0,0,1,1,1372,1372,0,0,True,False,,completed
+tree,A_tree,F013,hfo2_T1,seed,derived,error,completed,True,0,0,0,0,0,1,1,20,10,10,10,True,False,,completed
+tree,A_tree,F014,hfo2_T1,seed,derived,error,completed,True,0,0,0,0,0,1,1,20,10,10,10,True,False,,completed
+tree,A_tree,F015,hfo2_T1,seed,limit,limit,stopped,False,1,0,0,1,0,0,1,10,10,0,0,,False,CLOSURE:stop,stopped
+tree,A_tree,F016,hfo2_T1,seed,limit,limit,stopped,False,1,0,0,1,0,0,1,10,10,0,0,,False,CROSS_SETTING:stop,stopped
+tree,A_tree,F017,hfo2_T1,seed,data,error,stopped,False,1,0,0,1,0,0,1,10,10,0,0,,False,DFT_INCONSISTENT:stop,stopped
+tree,A_tree,F018,hfo2_T1,seed,data,limit,stopped,False,1,0,0,1,0,0,1,10,10,0,0,,False,MAGNETIC:stop,stopped
+tree,A_tree,F019,hfo2_T1,seed,data,error,stopped,False,1,0,0,1,0,0,1,10,10,0,0,,False,PER_FU:stop,stopped
+tree,A_tree,F020,bifeo3,held-out,derived,error,completed,True,0,0,0,0,0,1,1,10407,10307,100,100,True,False,,completed
+tree,A_tree,F021,bifeo3,held-out,derived,error,completed,True,0,0,0,0,0,1,1,10407,10307,100,100,True,False,,completed
+tree,A_tree,F022,bifeo3,held-out,data,limit,stopped,False,1,0,0,1,0,0,1,10307,10307,0,0,,False,SCF_LIMITED:stop,stopped
+tree,A_tree,F023,ermno3,held-out,derived,error,completed,True,0,0,0,0,0,1,1,276,236,40,40,True,False,,completed
+tree,A_tree,F024,ermno3,held-out,limit,limit,stopped,False,1,0,0,1,0,0,1,236,236,0,0,,False,RESIDUALS:stop,stopped
+tree,A_tree,F025,inmno3_joint,held-out,data,limit,stopped,False,1,0,0,1,0,0,1,0,400,-400,0,,False,R5_BORDERLINE:stop,stopped
+tree,A_tree,F026,hfo2_T5,held-out,limit,limit,stopped,False,1,0,0,1,0,0,1,0,10,-10,0,,False,PATH_LATTICE:stop,stopped
+tree,A_tree,F027,hfo2_T4,held-out,job,error,stopped,False,1,0,0,1,0,1,2,20,10,10,10,,False,WALLTIME:stop,stopped
+tree,A_tree,F028,ca3ti2o7,seed,derived,limit,completed,True,0,0,0,0,0,1,1,1372,1372,0,0,True,False,,completed
+tree,A_tree,F029,inmno3,seed,derived,error,stopped,False,1,0,0,1,0,0,1,0,225,-225,0,,False,R5_BORDERLINE:stop,stopped
+tree,A_tree,F030,ermno3,seed,derived,limit,completed,True,0,0,0,0,0,1,1,236,236,0,0,True,False,,completed
+tree,A_tree,F031,hfo2_T3,seed,derived,limit,completed,True,0,0,0,0,0,1,1,10,10,0,0,True,False,,completed
+tree,A_tree,F032,bifeo3,held-out,derived,limit,completed,True,0,0,0,0,0,1,1,10307,10307,0,0,True,False,,completed
+tree,A_tree,F033,ca3ti2o7,seed,limit,limit,stopped,False,1,0,0,1,1,0,2,1372,1372,0,0,,False,COVERAGE:densify;OVER_BUDGET:stop,stopped
+tree,A_tree,F034,ermno3,seed,derived,error,completed,True,0,0,0,0,0,1,1,236,236,0,0,True,False,,completed
+tree,A_tree,F035,ermno3,seed,derived,error,completed,True,0,0,0,0,0,1,1,236,236,0,0,True,False,,completed
+tree,A_tree,F036,inmno3,seed,derived,error,stopped,False,1,0,0,1,0,0,1,0,225,-225,0,,False,R5_BORDERLINE:stop,stopped
+tree,A_tree,F037,ca3ti2o7,held-out,derived,error,completed,True,0,0,0,0,0,1,1,1412,1372,40,40,True,False,,completed
+tree,A_tree,F038,inmno3,seed,derived,error,stopped,False,1,0,0,1,0,0,1,0,225,-225,0,,False,R5_BORDERLINE:stop,stopped
+tree,A_tree,F039,hfo2_T3,seed,derived,error,completed,True,0,0,0,0,0,1,1,20,10,10,10,True,False,,completed
+tree,A_tree,F040,cssni3_d4,held-out,derived,error,stopped,False,1,0,0,1,0,1,2,1041,1001,40,40,,False,SECONDARY_COUPLED:stop,stopped
+tree,A_tree,F041,ca3ti2o7,seed,derived,error,completed,True,0,0,0,0,0,1,1,1412,1372,40,40,True,False,,completed
+tree,A_tree,F042,ermno3,seed,derived,error,completed,True,0,0,0,0,0,1,1,276,236,40,40,True,False,,completed
+tree,A_tree,F043,hfo2_T5,seed,derived,error,completed,True,0,0,0,0,0,1,1,20,10,10,10,True,False,,completed
+tree,A_tree,F044,ca3ti2o7,seed,job,error,stopped,False,1,0,0,1,0,1,2,1412,1372,40,40,,False,NELM:stop,stopped
+tree,A_tree,F045,ermno3,seed,job,error,stopped,False,1,0,0,1,0,1,2,276,236,40,40,,False,WALLTIME:stop,stopped
+tree,A_tree,F046,inmno3,seed,derived,limit,stopped,False,1,0,0,1,0,0,1,0,225,-225,0,,False,R5_BORDERLINE:stop,stopped
+tree,A_tree,F047,ermno3,seed,derived,limit,stopped,False,1,0,0,1,0,1,2,236,236,0,0,,False,OVER_BUDGET:stop,stopped
+tree,A_tree,F048,ca3ti2o7,held-out,limit,limit,stopped,False,1,0,0,1,0,0,1,1372,1372,0,0,,False,MIRROR:stop,stopped
+tree,A_tree,F049,cssni3,held-out,limit,limit,stopped,False,1,0,0,1,0,0,1,962,962,0,0,,False,RESIDUALS:stop,stopped
+tree,A_tree,F050,inmno3,held-out,limit,limit,stopped,False,1,0,0,1,0,0,1,0,225,-225,0,,False,R5_BORDERLINE:stop,stopped
+tree,A_tree,F051,bifeo3,held-out,limit,limit,stopped,False,1,0,0,1,0,0,1,10307,10307,0,0,,False,RESIDUALS:stop,stopped
+tree,A_tree,F052,hfo2_T3,seed,limit,limit,stopped,False,1,0,0,1,0,0,1,10,10,0,0,,False,CLOSURE:stop,stopped
+tree,A_tree,F053,hfo2_T3,held-out,limit,limit,stopped,False,1,0,0,1,0,0,1,0,10,-10,0,,False,PATH_LATTICE:stop,stopped
+retrieval (leave-one-out),A_retrieval,F001,cssni3,seed,job,error,completed,True,0,0,0,0,0,1,1,1002,962,40,40,True,False,,completed
+retrieval (leave-one-out),A_retrieval,F002,cssni3,seed,job,error,completed,True,0,0,0,0,0,1,1,1002,962,40,40,True,False,,completed
+retrieval (leave-one-out),A_retrieval,F003,cssni3,seed,vectors,error,completed,True,0,0,0,0,0,1,1,962,962,0,0,True,False,,completed
+retrieval (leave-one-out),A_retrieval,F004,cssni3,seed,crystallography,limit,completed,True,0,0,0,0,0,1,1,962,962,0,0,True,False,,completed
+retrieval (leave-one-out),A_retrieval,F005,cssni3,seed,symmetry,error,completed,True,0,0,0,0,0,1,1,962,962,0,0,True,False,,completed
+retrieval (leave-one-out),A_retrieval,F006,cssni3,seed,analysis,limit,stopped,False,1,0,0,1,0,1,2,962,962,0,0,,False,OVER_BUDGET:stop,stopped
+retrieval (leave-one-out),A_retrieval,F007,cssni3,seed,data,error,stopped,False,1,1,0,0,0,0,1,961,962,-1,0,,False,,stopped
+retrieval (leave-one-out),A_retrieval,F008,cssni3,seed,recovery,limit,completed,False,1,1,0,0,0,0,1,962,962,0,0,True,False,,completed
+retrieval (leave-one-out),A_retrieval,F009,cssni3,seed,job,error,stopped,False,1,1,0,0,0,0,1,962,962,0,0,,False,,stopped
+retrieval (leave-one-out),A_retrieval,F010,cssni3,seed,job,error,completed,False,0,0,0,0,1,1,2,1042,962,80,80,True,True,WALLTIME:resubmit,not completed (scripted failures ran out)
+retrieval (leave-one-out),A_retrieval,F011,cssni3,seed,job,error,completed,False,0,0,0,0,1,1,2,1042,962,80,80,True,True,NELM:robust_mixing,not completed (scripted failures ran out)
+retrieval (leave-one-out),A_retrieval,F012,ca3ti2o7,seed,derived,error,completed,True,0,0,0,0,0,1,1,1372,1372,0,0,True,False,,completed
+retrieval (leave-one-out),A_retrieval,F013,hfo2_T1,seed,derived,error,completed,True,0,0,0,0,0,1,1,20,10,10,10,True,False,,completed
+retrieval (leave-one-out),A_retrieval,F014,hfo2_T1,seed,derived,error,completed,True,0,0,0,0,0,1,1,20,10,10,10,True,False,,completed
+retrieval (leave-one-out),A_retrieval,F015,hfo2_T1,seed,limit,limit,stopped,False,1,0,0,1,0,0,1,10,10,0,0,,False,CLOSURE:stop,stopped
+retrieval (leave-one-out),A_retrieval,F016,hfo2_T1,seed,limit,limit,stopped,False,1,0,0,1,0,0,1,10,10,0,0,,False,CROSS_SETTING:stop,stopped
+retrieval (leave-one-out),A_retrieval,F017,hfo2_T1,seed,data,error,stopped,False,1,0,0,1,0,0,1,10,10,0,0,,False,DFT_INCONSISTENT:stop,stopped
+retrieval (leave-one-out),A_retrieval,F018,hfo2_T1,seed,data,limit,stopped,False,1,0,0,1,0,0,1,10,10,0,0,,False,MAGNETIC:stop,stopped
+retrieval (leave-one-out),A_retrieval,F019,hfo2_T1,seed,data,error,stopped,False,1,0,0,1,0,0,1,10,10,0,0,,False,PER_FU:stop,stopped
+retrieval (leave-one-out),A_retrieval,F020,bifeo3,held-out,derived,error,completed,True,0,0,0,0,0,1,1,10407,10307,100,100,True,False,,completed
+retrieval (leave-one-out),A_retrieval,F021,bifeo3,held-out,derived,error,completed,True,0,0,0,0,0,1,1,10407,10307,100,100,True,False,,completed
+retrieval (leave-one-out),A_retrieval,F022,bifeo3,held-out,data,limit,stopped,False,1,0,0,1,0,0,1,10307,10307,0,0,,False,SCF_LIMITED:stop,stopped
+retrieval (leave-one-out),A_retrieval,F023,ermno3,held-out,derived,error,completed,True,0,0,0,0,0,1,1,276,236,40,40,True,False,,completed
+retrieval (leave-one-out),A_retrieval,F024,ermno3,held-out,limit,limit,stopped,False,1,0,0,1,0,0,1,236,236,0,0,,False,RESIDUALS:stop,stopped
+retrieval (leave-one-out),A_retrieval,F025,inmno3_joint,held-out,data,limit,stopped,False,1,0,0,1,1,0,2,400,400,0,0,,False,R5_BORDERLINE:include_borderline;RESIDUALS:stop,stopped
+retrieval (leave-one-out),A_retrieval,F026,hfo2_T5,held-out,limit,limit,stopped,False,1,0,0,1,0,0,1,0,10,-10,0,,False,PATH_LATTICE:stop,stopped
+retrieval (leave-one-out),A_retrieval,F027,hfo2_T4,held-out,job,error,completed,False,0,0,0,0,1,1,2,30,10,20,20,True,True,WALLTIME:resubmit,not completed (scripted failures ran out)
+retrieval (leave-one-out),A_retrieval,F028,ca3ti2o7,seed,derived,limit,completed,True,0,0,0,0,0,1,1,1372,1372,0,0,True,False,,completed
+retrieval (leave-one-out),A_retrieval,F029,inmno3,seed,derived,error,completed,True,0,0,0,0,1,1,2,265,225,40,40,True,False,R5_BORDERLINE:include_borderline,completed
+retrieval (leave-one-out),A_retrieval,F030,ermno3,seed,derived,limit,completed,True,0,0,0,0,0,1,1,236,236,0,0,True,False,,completed
+retrieval (leave-one-out),A_retrieval,F031,hfo2_T3,seed,derived,limit,completed,True,0,0,0,0,0,1,1,10,10,0,0,True,False,,completed
+retrieval (leave-one-out),A_retrieval,F032,bifeo3,held-out,derived,limit,completed,True,0,0,0,0,0,1,1,10307,10307,0,0,True,False,,completed
+retrieval (leave-one-out),A_retrieval,F033,ca3ti2o7,seed,limit,limit,stopped,False,1,0,0,1,0,0,1,1372,1372,0,0,,False,COVERAGE:stop,stopped
+retrieval (leave-one-out),A_retrieval,F034,ermno3,seed,derived,error,completed,True,0,0,0,0,0,1,1,236,236,0,0,True,False,,completed
+retrieval (leave-one-out),A_retrieval,F035,ermno3,seed,derived,error,completed,True,0,0,0,0,0,1,1,236,236,0,0,True,False,,completed
+retrieval (leave-one-out),A_retrieval,F036,inmno3,seed,derived,error,completed,True,0,0,0,0,1,1,2,225,225,0,0,True,False,R5_BORDERLINE:include_borderline,completed
+retrieval (leave-one-out),A_retrieval,F037,ca3ti2o7,held-out,derived,error,completed,True,0,0,0,0,0,1,1,1412,1372,40,40,True,False,,completed
+retrieval (leave-one-out),A_retrieval,F038,inmno3,seed,derived,error,completed,True,0,0,0,0,1,1,2,265,225,40,40,True,False,R5_BORDERLINE:include_borderline,completed
+retrieval (leave-one-out),A_retrieval,F039,hfo2_T3,seed,derived,error,completed,True,0,0,0,0,0,1,1,20,10,10,10,True,False,,completed
+retrieval (leave-one-out),A_retrieval,F040,cssni3_d4,held-out,derived,error,completed,True,0,0,0,0,1,1,2,1041,1001,40,40,True,False,SECONDARY_COUPLED:accept_secondary_hold,completed
+retrieval (leave-one-out),A_retrieval,F041,ca3ti2o7,seed,derived,error,completed,True,0,0,0,0,0,1,1,1412,1372,40,40,True,False,,completed
+retrieval (leave-one-out),A_retrieval,F042,ermno3,seed,derived,error,completed,True,0,0,0,0,0,1,1,276,236,40,40,True,False,,completed
+retrieval (leave-one-out),A_retrieval,F043,hfo2_T5,seed,derived,error,completed,True,0,0,0,0,0,1,1,20,10,10,10,True,False,,completed
+retrieval (leave-one-out),A_retrieval,F044,ca3ti2o7,seed,job,error,completed,False,0,0,0,0,1,1,2,1452,1372,80,80,True,True,NELM:robust_mixing,not completed (scripted failures ran out)
+retrieval (leave-one-out),A_retrieval,F045,ermno3,seed,job,error,completed,False,0,0,0,0,1,1,2,316,236,80,80,True,True,WALLTIME:resubmit,not completed (scripted failures ran out)
+retrieval (leave-one-out),A_retrieval,F046,inmno3,seed,derived,limit,stopped,False,1,0,0,1,1,1,3,225,225,0,0,,False,R5_BORDERLINE:include_borderline;OVER_BUDGET:stop,stopped
+retrieval (leave-one-out),A_retrieval,F047,ermno3,seed,derived,limit,stopped,False,1,0,0,1,0,1,2,236,236,0,0,,False,OVER_BUDGET:stop,stopped
+retrieval (leave-one-out),A_retrieval,F048,ca3ti2o7,held-out,limit,limit,stopped,False,1,0,0,1,0,0,1,1372,1372,0,0,,False,MIRROR:stop,stopped
+retrieval (leave-one-out),A_retrieval,F049,cssni3,held-out,limit,limit,stopped,False,1,0,0,1,0,0,1,962,962,0,0,,False,RESIDUALS:stop,stopped
+retrieval (leave-one-out),A_retrieval,F050,inmno3,held-out,limit,limit,stopped,False,1,0,0,1,1,0,2,225,225,0,0,,False,R5_BORDERLINE:include_borderline;CV_ERROR:stop,stopped
+retrieval (leave-one-out),A_retrieval,F051,bifeo3,held-out,limit,limit,stopped,False,1,0,0,1,0,0,1,10307,10307,0,0,,False,RESIDUALS:stop,stopped
+retrieval (leave-one-out),A_retrieval,F052,hfo2_T3,seed,limit,limit,stopped,False,1,0,0,1,0,0,1,10,10,0,0,,False,CLOSURE:stop,stopped
+retrieval (leave-one-out),A_retrieval,F053,hfo2_T3,held-out,limit,limit,stopped,False,1,0,0,1,0,0,1,0,10,-10,0,,False,PATH_LATTICE:stop,stopped
+rules + human (no sub-agent),E2,ALL (all),n=53,all,,,completed 27,22,34,34,7,0,0,34,68,77986,,,770,27 identical / 0 differ,0,,completed 27
+rules + human (no sub-agent),E2,ALL (seed),n=37,seed,,,completed 21,17,21,21,4,0,0,27,48,20307,,,440,21 identical / 0 differ,0,,completed 21
+rules + human (no sub-agent),E2,ALL (held-out),n=16,held-out,,,completed 6,5,13,13,3,0,0,7,20,57679,,,330,6 identical / 0 differ,0,,completed 6
+claude-sonnet,E3_on,ALL (all),n=53,all,,,completed 27,26,27,3,0,24,18,35,80,77986,,,770,27 identical / 0 differ,0,,completed 27
+claude-sonnet,E3_on,ALL (seed),n=37,seed,,,completed 21,20,17,3,0,14,11,28,56,20307,,,440,21 identical / 0 differ,0,,completed 21
+claude-sonnet,E3_on,ALL (held-out),n=16,held-out,,,completed 6,6,10,0,0,10,7,7,24,57679,,,330,6 identical / 0 differ,0,,completed 6
+tree,A_tree,ALL (all),n=53,all,,,completed 23,22,31,3,0,28,1,30,62,76381,,,690,23 identical / 0 differ,0,,completed 23
+tree,A_tree,ALL (seed),n=37,seed,,,completed 18,17,20,3,0,17,1,23,44,19327,,,360,18 identical / 0 differ,0,,completed 18
+tree,A_tree,ALL (held-out),n=16,held-out,,,completed 5,5,11,0,0,11,0,7,18,57054,,,330,5 identical / 0 differ,0,,completed 5
+retrieval (leave-one-out),A_retrieval,ALL (all),n=53,all,,,completed 32,26,22,3,0,19,12,34,68,78156,,,940,27 identical / 0 differ,5,,completed 27
+retrieval (leave-one-out),A_retrieval,ALL (seed),n=37,seed,,,completed 25,20,13,3,0,10,8,27,48,20467,,,600,21 identical / 0 differ,4,,completed 21
+retrieval (leave-one-out),A_retrieval,ALL (held-out),n=16,held-out,,,completed 7,6,9,0,0,9,4,7,20,57689,,,340,6 identical / 0 differ,1,,completed 6

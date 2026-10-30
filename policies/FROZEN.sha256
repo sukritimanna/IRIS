@@ -1,0 +1,9 @@
+# Experiment A policies frozen 2026-10-19T02:07:17Z, before any scoring or run with them.
+# tree.py: rules transcribed from the Guidance lines only (each branch quotes its sentence); no case labels or model answers read.
+# retrieval.py: uses the frozen case labels of OTHER cases as memory (leave-one-out), by design.
+# Disclosure: the author of these files also drafted the case labels and had seen the S5.3 aggregate results.
+# eval/FROZEN.sha256 cb1544e866803fd6d3e5182add77b84e83e062f1838dec1abcfc32694d5f2c6b
+ebd967ca5d9f596e6571b217241d67baa8513f7378dbd50b2f319c975b934628  __init__.py
+1e0883dc8c51f6dfd5577a08cb22fb25393f99d9ff751e1d3c225442f77e31c2  tree.py
+70a0096c0d12428f369b90e23be655704867d65c0856e01d52f7a07ab7ebe849  retrieval.py
+ffb9e8451e91f04d5511eedbb0e26a855987d980b760713172c1b265f33c493b  rules_only.py

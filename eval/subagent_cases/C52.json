@@ -1,0 +1,80 @@
+{
+ "id": "C52",
+ "captured_from": {
+  "system": "hfo2_T3",
+  "fault": "F052",
+  "patch": {
+   "policy.path.network.closure_meV": 0.01
+  },
+  "ablations": [],
+  "decision": 1,
+  "script": [],
+  "steps": [
+   "jobs: {'event': 'job_end', 'parts': 'all'}"
+  ]
+ },
+ "node": "f5",
+ "gate": "G5",
+ "code": "CLOSURE",
+ "prompt_id": "subagent_G5",
+ "prompt_values": {
+  "system": "hfo2",
+  "node": "f5",
+  "node_name": "Analyst",
+  "gate": "G5",
+  "code": "CLOSURE",
+  "detail": "dE_end -170.425 vs chain ['T2_137-60__lin10', 'T5_60-14__lin10'] -170.403 meV/f.u. (gap -0.023 > 0.01)",
+  "tests": [
+   {
+    "test": "profile_complete",
+    "status": "pass"
+   },
+   {
+    "test": "cross_setting",
+    "status": "pass"
+   },
+   {
+    "test": "closure",
+    "status": "fail",
+    "code": "CLOSURE",
+    "detail": "dE_end -170.425 vs chain ['T2_137-60__lin10', 'T5_60-14__lin10'] -170.403 meV/f.u. (gap -0.023 > 0.01)"
+   }
+  ],
+  "options": [
+   {
+    "id": "densify",
+    "text": "Go back to f2 and densify the grid"
+   },
+   {
+    "id": "accept_secondary_hold",
+    "text": "D4: keep the secondary at zero and report the energy it would release as a caveat"
+   },
+   {
+    "id": "stop",
+    "text": "Stop and ask the human"
+   }
+  ],
+  "history": "nothing yet",
+  "attempts": 0,
+  "max_retry": 3
+ },
+ "menu": [
+  {
+   "id": "densify",
+   "text": "Go back to f2 and densify the grid"
+  },
+  {
+   "id": "accept_secondary_hold",
+   "text": "D4: keep the secondary at zero and report the energy it would release as a caveat"
+  },
+  {
+   "id": "stop",
+   "text": "Stop and ask the human"
+  }
+ ],
+ "system_prompt": "You are the G5 recovery sub-agent of IRIS, a workflow that maps symmetry-mode energy landscapes.\nStep f5 (Analyst) produced an output that failed gate G5. The gate is plain Python; its verdict\nis final and you cannot change it. You choose which listed fix to try next.\n\nGate G5 checks: fit acceptable: cross-validated error, residuals, coverage of the fit region.\nGuidance: A coverage failure means the grid is too thin where the fit needs it: go back to f2 and densify. Failures that concern the model or the stored data are not fixed by densifying.\n\nRules:\n- Answer with JSON {\"id\": ..., \"reason\": ...} and nothing else.\n- \"id\" must be exactly one of the option ids you are given. Choose \"stop\" if none fits or if the\n  same fix has already failed (see the history).\n- The reason is one sentence. It may quote numbers from the input; it must not introduce new ones.\n- Do not propose new calculations, new options, or edits to any number.",
+ "user_template": "System: {system}\nFailed: {node} {node_name}, gate {gate}, code {code}\nDetail: {detail}\nChecks run by the gate:\n{tests}\n\nRetries used on this step: {attempts} of {max_retry}\nWhat has been tried so far in this run:\n{history}\n\nOptions (choose one id):\n{options}",
+ "user_prompt": "System: hfo2\nFailed: f5 Analyst, gate G5, code CLOSURE\nDetail: dE_end -170.425 vs chain ['T2_137-60__lin10', 'T5_60-14__lin10'] -170.403 meV/f.u. (gap -0.023 > 0.01)\nChecks run by the gate:\n[\n {\n  \"test\": \"profile_complete\",\n  \"status\": \"pass\"\n },\n {\n  \"test\": \"cross_setting\",\n  \"status\": \"pass\"\n },\n {\n  \"test\": \"closure\",\n  \"status\": \"fail\",\n  \"code\": \"CLOSURE\",\n  \"detail\": \"dE_end -170.425 vs chain ['T2_137-60__lin10', 'T5_60-14__lin10'] -170.403 meV/f.u. (gap -0.023 > 0.01)\"\n }\n]\n\nRetries used on this step: 0 of 3\nWhat has been tried so far in this run:\nnothing yet\n\nOptions (choose one id):\n[\n {\n  \"id\": \"densify\",\n  \"text\": \"Go back to f2 and densify the grid\"\n },\n {\n  \"id\": \"accept_secondary_hold\",\n  \"text\": \"D4: keep the secondary at zero and report the energy it would release as a caveat\"\n },\n {\n  \"id\": \"stop\",\n  \"text\": \"Stop and ask the human\"\n }\n]",
+ "system_prompt_bare": "You are the G5 recovery sub-agent of IRIS, a workflow that maps symmetry-mode energy landscapes.\nStep f5 (Analyst) produced an output that failed gate G5. The gate is plain Python; its verdict\nis final and you cannot change it. You choose which listed fix to try next.\n\nGate G5 checks: fit acceptable: cross-validated error, residuals, coverage of the fit region.\n\nRules:\n- Answer with JSON {\"id\": ..., \"reason\": ...} and nothing else.\n- \"id\" must be exactly one of the option ids you are given. Choose \"stop\" if none fits or if the\n  same fix has already failed (see the history).\n- The reason is one sentence. It may quote numbers from the input; it must not introduce new ones.\n- Do not propose new calculations, new options, or edits to any number.",
+ "prompt_sha256": "25792e541f42c638"
+}

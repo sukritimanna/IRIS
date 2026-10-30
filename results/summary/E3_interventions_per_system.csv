@@ -1,0 +1,13 @@
+condition,system,runs,human_interventions,human_published_decisions,human_for_the_fault,runs_with_human_for_the_fault,rule_fixes,subagent_fixes,completed,numbers_identical,human_per_run,human_for_the_fault_per_run
+model off (rules + human),bifeo3,5,2,0,2,2,3,0,3,3,0.4,0.4
+model on (reference),bifeo3,5,0,0,0,0,3,4,3,3,0.0,0.0
+model off (rules + human),ca3ti2o7,7,3,0,3,3,5,0,4,4,0.429,0.429
+model on (reference),ca3ti2o7,7,0,0,0,0,6,5,4,4,0.0,0.0
+model off (rules + human),cssni3,13,8,1,7,7,9,0,7,7,0.615,0.538
+model on (reference),cssni3,13,3,0,3,3,9,9,7,7,0.231,0.231
+model off (rules + human),ermno3,8,3,0,3,3,7,0,5,5,0.375,0.375
+model on (reference),ermno3,8,0,0,0,0,7,4,5,5,0.0,0.0
+model off (rules + human),hfo2,14,9,0,9,9,6,0,5,5,0.643,0.643
+model on (reference),hfo2,14,0,0,0,0,6,11,5,5,0.0,0.0
+model off (rules + human),inmno3,6,9,6,3,3,4,0,3,3,1.5,0.5
+model on (reference),inmno3,6,0,0,0,0,4,9,3,3,0.0,0.0

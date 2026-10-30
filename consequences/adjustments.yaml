@@ -1,0 +1,33 @@
+# Experiment C, adjustments requested on 2026-10-18 (kept OUTSIDE eval/ so the 17 Oct freeze and its refreeze stay as
+# they are; frozen by consequences/FROZEN.sha256). Applied by consequences/fork.py when it writes the CSVs.
+version: 3
+extra_class:
+  accepted_equivalent_settings: >-
+    the option changes only SCF convergence parameters (AMIX / BMIX / NELM, plus resubmitting the same parts) and the
+    replay branch completes with numbers identical to the fault-free replay. Replay re-links the stored energies, so
+    the identical result is assumed, not shown; it is expected in production because the mixing scheme does not change
+    the converged energy, except in magnetic or near-metallic systems (listed below), where a different mixing can
+    converge to a different magnetic / electronic state.
+  takes_precedence_over: [accepted-correct, accepted-wasted]
+scf_only_options:            # menu options whose patch touches nothing but SCF convergence settings (recovery.yaml)
+  robust_mixing: {incar: {AMIX: 0.2, BMIX: 0.0001, NELM: 300}, resubmit_failed: true}
+mixing_caveat_systems:       # magnetic or near-metallic: a mixing change may select another SCF solution
+  bifeo3: "G-type AFM Fe3+ (magnetic)"
+  inmno3: "Mn3+ hexagonal manganite (magnetic)"
+  inmno3_joint: "Mn3+ hexagonal manganite (magnetic)"
+  ermno3: "Mn3+ hexagonal manganite (magnetic)"
+  ermno3_joint: "Mn3+ hexagonal manganite (magnetic)"
+compatible_with_label:       # the extra class against the frozen labels (the frozen lists are not changed)
+  correct: [accepted_equivalent_settings]
+  safe: [accepted_equivalent_settings]
+  harmful: []                # a harmful-labelled branch in this class is reported as a contradiction, with the caveat flag
+# --- v3 (2026-10-18 22:24, user request; v2 copy kept at results/C/adjustments.v2.yaml) ---
+extra_class_v3:
+  gate_refused_option: >-
+    a wrong option was applied: the first gate after the fork fails again (the gate refuses the option's result), then a
+    rule repairs the run and the branch completes. Kept apart from accepted-correct (the v1 class is kept alongside).
+  takes_precedence_over: [accepted-correct, accepted-wasted, accepted-wrong, scope-change, accepted_equivalent_settings]
+compatible_with_label_v3:
+  correct: []
+  safe: [gate_refused_option]
+  harmful: [gate_refused_option]

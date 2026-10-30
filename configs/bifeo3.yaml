@@ -1,0 +1,137 @@
+# BiFeO3 221 -> 161 (Pm-3m -> R3c, PBEsol+U, G-AFM): every data path and policy value of this run.
+# Paths under repo_root are READ ONLY. IRIS writes only under agent_root (enforced in code).
+#
+# Staged replay of the six-component (P1..P3 | R1..R3) grid (demo/bifeo3/grid6d, toolkit bfo6d v4):
+#   B1 (this config, run.stop_after: f1): decomposition from the stored ISODISTORT run 20260922_151417,
+#      the six single-component vectors (GM4- -> P_i, R5- -> R_i), closure under the 96 Pm-3m operations,
+#      fold onto the grid's 10-atom fcc(2a_c) cell and comparison with the grid basis (bfo6d/basis.py)
+#   B2: orbit reduction (D5) of the radius-6 (V1) and radius-5 (V0) balls with the 1.6 Å contact cut
+#   B3: replay matching of the stored POSCARs (tarballs) + energies / gradients / QC from the collected CSVs
+#   B4: degree-12 invariant fit (landau6d, refit.py procedure) + RBF cross-check, regression vs the final refit
+# Defaults assumed for B2-B4 (not answered yet): V0 included, controls included.
+system: bifeo3
+thread_id: bifeo3_221_161_b4
+request: "map the BiFeO3 six-component GM4- (+) R5- energy surface on the 10-atom fcc(2a_c) cell, DFT PBEsol+U G-AFM; parent.cif, child.cif"
+
+run:
+  mode: replay
+  engine: dft
+  budget_runs: 10400             # 10,054 production + 253 extra folders
+  allow_live_submission: false   # must stay false: no DFT/VASP/MACE/Slurm in this build
+  # stop_after: none             # B1 ended after G1, B2 after G2, B3 after G4; B4 runs to the end (f6, G6)
+  jobs:
+    wait: true
+    part_size: 100               # 10,307 frames -> 104 parts
+  replay:
+    tol_A: 1.0e-3                # stored POSCAR vs IRIS's frame, per atom (IRIS vs grid vectors differ <= 4e-5 Å per Å)
+
+paths:
+  repo_root: ~/Workspace/myProjects/imhafo2
+  agent_root: ~/Workspace/myProjects/imhafo2/IRIS_AGENT
+  test_runs: test_runs
+  parent_cif: demo/bifeo3/structures/parent_pbesolU_sg221.cif
+  child_cif: demo/bifeo3/structures/child_pbesolU_sg161.cif
+  system_json: demo/staged_walkthrough/systems/bifeo3.json
+  walkthrough: demo/staged_walkthrough
+  reference_run: demo/runs/bifeo3_221_to_161__20260922_151417
+  isodistort_stored: demo/runs/bifeo3_221_to_161__20260922_151417/step3_isodistort/04_raw_isodistort
+  grid_toolkit: demo/bifeo3/grid6d/bfo6d          # basis.py, symmetry.py (imported read-only)
+  grid_packages:                                  # stored campaign inputs, read inside the archives (no extraction)
+    - demo/bifeo3/grid6d/data/bfo6d_production_inputs.tgz    # grid6d/main_V1, main_V0, refine_V1
+    - demo/bifeo3/grid6d/data/bfo6d_extra_inputs.tgz         # extra_V1
+  collected_dir: demo/bifeo3/grid6d/data/analysis/collected   # runs_<dataset>.csv (bfo6d/collect.py, Perlmutter)
+  reference_fit: demo/bifeo3/grid6d/data/analysis/coef_V1_deg12_E1000_final.npy   # regression only (work/refit.py)
+  rbf_toolkit: demo/bifeo3/grid6d/work            # fit_rbf6d.py (final, --with-extra), imported read-only
+
+expected:
+  parent_sg: 221
+  child_sg: 161
+  parent_sha256: f8e021f7154f2caedc46c4368547f397008006a358aaddd1f804747eddf8a1b2   # = RUN_MANIFEST.json
+  child_sha256: 3fd804b1519cb49991125615adc7dc22f21237d7d0ee6efd080e49cd6acc9ef9
+
+policy:
+  a_thr: 0.05
+  amplitude_basis: As_tf
+  r5_margin: 0.1
+  strain_policy: P2              # fixed cubic lattice at the child volume (a_c = 3.9407 Å), strain zero
+  d_cut: 1.6                     # Å, contact cut of the stored grid
+  components:
+    kind: cubic_perovskite_GR
+    polar: GM4-                  # -> P1, P2, P3 (translation-free)
+    rotation: R5-                # -> R1, R2, R3 (Bi at the origin; R4+ with Fe at the origin)
+    grid_toolkit: true           # compare with the stored grid basis (paths.grid_toolkit)
+    tol_A: 1.0e-4                # stored ISODISTORT numbers carry 5 decimals
+  grid:                          # B2: the six-component plan (nodes/f2_grid6.py)
+    q_max: 1.20222               # schema only (radius 6 x dR); the 6D plan is in `six`
+    dq: 0.20037
+    six:
+      steps_A: [0.15189201512937148, 0.20037]   # dP, dR = half the child per-component amplitude (printed ISODISTORT
+                                                # 0.30378 / 0.40074; IRIS's own 0.303802 / 0.400763 put the child
+                                                # at 2.0001 steps, G1)
+      datasets:                  # two balls |idx_P| <= r, |idx_R| <= r; orbits under the 96 operations; contact cut
+        - {name: main_V1, radius: 6, a_c: 3.9407, dmin_cut: 1.6, stored: grid6d/main_V1}
+        - {name: main_V0, radius: 5, a_c: 3.8813, dmin_cut: 1.6, stored: grid6d/main_V0}   # a_c = (58.47 Å^3)^(1/3), cubic anchor
+      expected:                  # orbits -> orbits kept by the contact cut (stored manifests)
+        main_V1: [9998, 6724]
+        main_V0: [3306, 2873]
+      controls: {source: stored, fraction: 0.01}   # symmetry images of included orbits (random choice not re-drawn)
+      planes:                    # P || R refine planes, reach 6 main steps, same cell and cut as main_V1
+        a_c: 3.9407
+        dmin_cut: 1.6
+        stored: grid6d/refine_V1
+        sets:
+          "111": {dataset: refine_V1, direction: [1, 1, 1], step_P_A: 0.08769489582269734, step_R_A: 0.1156836734375253, reach_steps: 6}
+          "001": {dataset: refine_V1, direction: [0, 0, 1], step_P_A: 0.07594600756468574, step_R_A: 0.100185, reach_steps: 6}
+          "110": {dataset: refine_V1, direction: [1, 1, 0], step_P_A: 0.10740387390606825, step_R_A: 0.14168298574634852, reach_steps: 6}
+      extra: {name: extra_V1, stored: extra_V1, a_c: 3.9407, dmin_cut: 1.6}   # adaptive (RBF-chosen): declared, checked
+      special_nodes:             # space group (spglib 1e-3) at nodes of the main_V1 cell
+        origin:      {index: [0, 0, 0, 0, 0, 0], sg: 221}
+        child:       {index: [2, 2, 2, 2, 2, 2], sg: 161}
+        P111_only:   {index: [2, 2, 2, 0, 0, 0], sg: 160}
+        R111_only:   {index: [0, 0, 0, 2, 2, 2], sg: 167}
+        P001_only:   {index: [0, 0, 2, 0, 0, 0], sg: 99}
+        R001_only:   {index: [0, 0, 0, 0, 0, 2], sg: 140}
+  qc:                            # B3 (f4_grid6, G4_grid6)
+    scf_limited: keep_energy_drop_gradients   # 20 near-metallic corner runs (PROVENANCE.md); energy +-15 meV/f.u.
+    max_scf_limited: 20
+    controls_expected: 95        # 67 + 29 controls minus c031 (main_V1, SCF-limited: compared and reported apart)
+    control_dE_meV: 0.01         # PROPOSED, meV/f.u. (stored QC: 0.0015)
+    control_dgrad_meV_per_A: 0.5 # PROPOSED, meV/Å/f.u. (stored QC: 0.102)
+    refine_on_main_expected: 87
+    line_slope_tol: 0.02         # E(c) - E(a) vs Simpson h/3 (g_a + 4 g_b + g_c) along grid lines (gradient sign, units)
+    line_E_max_meV: 1000         # all three nodes <= 1 eV/f.u. above cubic (the fit window)
+    mFe_range: [3.5, 4.5]        # |m_Fe| (mu_B); G-AFM: opposite site moments, |M_tot| small
+    max_abs_Mtot: 0.05
+  analysis: landau6d             # B4: nodes/f5_landau6d.py (procedure of work/refit.py)
+  fit:                           # B4
+    six:
+      degree: 12                 # invariants of even degree 2..12 (315; checked against Molien's formula)
+      E_window_meV: 1000         # rows with E < 1 eV/f.u. above cubic
+      grad_weight_A: 0.1         # L in [E; L dE/dq]
+      holdout: {fraction: 0.2, seed: 0}   # rows main, refine, extra in collected-CSV order (as refit.py)
+      parts:
+        - {name: main, dataset: main_V1, roles: [production]}
+        - {name: refine, dataset: refine_V1, roles: [refine]}
+        - {name: extra, dataset: extra_V1, roles: [origin, plane_check, mep, fill]}
+      child_phase: R3c
+      secondary:                 # reported in the SI (volume sensitivity); the manuscript model is V1
+        - name: V0
+          parts: [{name: main, dataset: main_V0, roles: [production]}]   # as landau6d/v0.py: main_V0 only
+          holdout: {fraction: 0.2, seed: 0}
+          reference_fit: demo/bifeo3/grid6d/data/analysis/coef_V0_deg12_E1000.npy
+      rbf: {trend: 8, kernel: thin_plate_spline, neighbors: 100}   # cross-check only (work/fit_rbf6d.py)
+    per_fu: 2
+    cv_folds: 10
+    max_rms_meV: 1.0             # PROPOSED, meV per f.u. (final refit: training 0.49, hold-out 0.51)
+    max_cv_rms_meV: 1.0
+    max_abs_res_meV: 5.0
+    min_points_per_coef: 10
+    rmax: 1.2152
+
+retry:
+  max_per_node: 3
+
+llm:
+  enabled: false
+  model: null
+  api_key_env: ANTHROPIC_API_KEY

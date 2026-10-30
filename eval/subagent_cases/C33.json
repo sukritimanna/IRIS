@@ -1,0 +1,82 @@
+{
+ "id": "C33",
+ "captured_from": {
+  "system": "ca3ti2o7",
+  "fault": "F033",
+  "patch": {
+   "policy.surface.edge_margin_steps": 50
+  },
+  "ablations": [],
+  "decision": 1,
+  "script": [],
+  "steps": []
+ },
+ "node": "f5",
+ "gate": "G5",
+ "code": "COVERAGE",
+ "prompt_id": "subagent_G5",
+ "prompt_values": {
+  "system": "ca3ti2o7",
+  "node": "f5",
+  "node_name": "Analyst",
+  "gate": "G5",
+  "code": "COVERAGE",
+  "detail": "grid minimum [-0.9192388155, -0.2121320344] Å lies 5.0 steps from the grid edge (< 50): the surface may continue downhill outside",
+  "tests": [
+   {
+    "test": "coverage_complete",
+    "status": "pass"
+   },
+   {
+    "test": "minimum_inside_grid",
+    "status": "fail",
+    "code": "COVERAGE",
+    "detail": "grid minimum [-0.9192388155, -0.2121320344] Å lies 5.0 steps from the grid edge (< 50): the surface may continue downhill outside"
+   },
+   {
+    "test": "mirror_symmetry",
+    "status": "pass"
+   },
+   {
+    "test": "script_agrees",
+    "status": "pass"
+   }
+  ],
+  "options": [
+   {
+    "id": "densify",
+    "text": "Go back to f2 and densify the grid"
+   },
+   {
+    "id": "accept_secondary_hold",
+    "text": "D4: keep the secondary at zero and report the energy it would release as a caveat"
+   },
+   {
+    "id": "stop",
+    "text": "Stop and ask the human"
+   }
+  ],
+  "history": "nothing yet",
+  "attempts": 0,
+  "max_retry": 3
+ },
+ "menu": [
+  {
+   "id": "densify",
+   "text": "Go back to f2 and densify the grid"
+  },
+  {
+   "id": "accept_secondary_hold",
+   "text": "D4: keep the secondary at zero and report the energy it would release as a caveat"
+  },
+  {
+   "id": "stop",
+   "text": "Stop and ask the human"
+  }
+ ],
+ "system_prompt": "You are the G5 recovery sub-agent of IRIS, a workflow that maps symmetry-mode energy landscapes.\nStep f5 (Analyst) produced an output that failed gate G5. The gate is plain Python; its verdict\nis final and you cannot change it. You choose which listed fix to try next.\n\nGate G5 checks: fit acceptable: cross-validated error, residuals, coverage of the fit region.\nGuidance: A coverage failure means the grid is too thin where the fit needs it: go back to f2 and densify. Failures that concern the model or the stored data are not fixed by densifying.\n\nRules:\n- Answer with JSON {\"id\": ..., \"reason\": ...} and nothing else.\n- \"id\" must be exactly one of the option ids you are given. Choose \"stop\" if none fits or if the\n  same fix has already failed (see the history).\n- The reason is one sentence. It may quote numbers from the input; it must not introduce new ones.\n- Do not propose new calculations, new options, or edits to any number.",
+ "user_template": "System: {system}\nFailed: {node} {node_name}, gate {gate}, code {code}\nDetail: {detail}\nChecks run by the gate:\n{tests}\n\nRetries used on this step: {attempts} of {max_retry}\nWhat has been tried so far in this run:\n{history}\n\nOptions (choose one id):\n{options}",
+ "user_prompt": "System: ca3ti2o7\nFailed: f5 Analyst, gate G5, code COVERAGE\nDetail: grid minimum [-0.9192388155, -0.2121320344] Å lies 5.0 steps from the grid edge (< 50): the surface may continue downhill outside\nChecks run by the gate:\n[\n {\n  \"test\": \"coverage_complete\",\n  \"status\": \"pass\"\n },\n {\n  \"test\": \"minimum_inside_grid\",\n  \"status\": \"fail\",\n  \"code\": \"COVERAGE\",\n  \"detail\": \"grid minimum [-0.9192388155, -0.2121320344] \\u00c5 lies 5.0 steps from the grid edge (< 50): the surface may continue downhill outside\"\n },\n {\n  \"test\": \"mirror_symmetry\",\n  \"status\": \"pass\"\n },\n {\n  \"test\": \"script_agrees\",\n  \"status\": \"pass\"\n }\n]\n\nRetries used on this step: 0 of 3\nWhat has been tried so far in this run:\nnothing yet\n\nOptions (choose one id):\n[\n {\n  \"id\": \"densify\",\n  \"text\": \"Go back to f2 and densify the grid\"\n },\n {\n  \"id\": \"accept_secondary_hold\",\n  \"text\": \"D4: keep the secondary at zero and report the energy it would release as a caveat\"\n },\n {\n  \"id\": \"stop\",\n  \"text\": \"Stop and ask the human\"\n }\n]",
+ "system_prompt_bare": "You are the G5 recovery sub-agent of IRIS, a workflow that maps symmetry-mode energy landscapes.\nStep f5 (Analyst) produced an output that failed gate G5. The gate is plain Python; its verdict\nis final and you cannot change it. You choose which listed fix to try next.\n\nGate G5 checks: fit acceptable: cross-validated error, residuals, coverage of the fit region.\n\nRules:\n- Answer with JSON {\"id\": ..., \"reason\": ...} and nothing else.\n- \"id\" must be exactly one of the option ids you are given. Choose \"stop\" if none fits or if the\n  same fix has already failed (see the history).\n- The reason is one sentence. It may quote numbers from the input; it must not introduce new ones.\n- Do not propose new calculations, new options, or edits to any number.",
+ "prompt_sha256": "10d3fdc9af8bc0e8"
+}
