@@ -1,0 +1,23 @@
+experiment,model,calls,tokens_in,tokens_out,tokens_reasoning,tokens_in_per_call,tokens_out_per_call,cost_usd,cost_usd_per_call,latency_s_p50,latency_s_p95,latency_s_total
+"benchmark (53 cases x 10 repeats, guided + bare)",claude-haiku,1060,1155520,194769,0,1090.1,183.7,,,1.46,3.32,1883.4
+"benchmark (53 cases x 10 repeats, guided + bare)",claude-opus,1060,1155520,208481,0,1090.1,196.7,,,2.98,6.54,3756.6
+"benchmark (53 cases x 10 repeats, guided + bare)",claude-sonnet,1060,1155520,143311,0,1090.1,135.2,,,2.01,5.1,2582.6
+"benchmark (53 cases x 10 repeats, guided + bare)",gemini-argon,1060,877380,74148,11729,827.7,81.0,,,3.72,15.17,5664.9
+"benchmark (53 cases x 10 repeats, guided + bare)",gemini-flash,1060,640100,59759,446608,603.9,477.7,,,3.48,11.51,5115.4
+"benchmark (53 cases x 10 repeats, guided + bare)",gemini-flash-lite,1060,640100,51851,0,603.9,48.9,,,0.79,0.97,900.9
+"benchmark (53 cases x 10 repeats, guided + bare)",gpt-astra,1060,634740,65645,18728,598.8,79.6,10.5661,0.009968,2.51,4.28,2924.4
+"benchmark (53 cases x 10 repeats, guided + bare)",gpt-luna,1060,634740,129313,82262,598.8,199.6,0.1693,0.00016,2.12,4.31,2571.9
+"benchmark (53 cases x 10 repeats, guided + bare)",gpt-sol,1060,634740,59901,13944,598.8,69.7,2.0079,0.001894,2.79,4.85,3242.6
+intake v1 (50 requests x 5 repeats),claude-opus,250,935475,65683,0,3741.9,262.7,,,3.34,6.5,870.7
+intake v1 (50 requests x 5 repeats),claude-sonnet,250,935475,52301,0,3741.9,209.2,,,1.98,5.04,687.9
+intake v1 (50 requests x 5 repeats),gemini-argon,250,633660,34733,26464,2534.6,244.8,,,6.91,39.07,3068.6
+intake v1 (50 requests x 5 repeats),gpt-sol,250,517775,34278,9459,2071.1,174.9,1.4729,0.005892,4.2,6.8,1096.0
+"transfer, guidance sentence removed (7 cases x 10 repeats)",claude-haiku,70,86820,18711,0,1240.3,267.3,,,2.63,3.84,176.0
+"transfer, guidance sentence removed (7 cases x 10 repeats)",claude-opus,70,86820,12237,0,1240.3,174.8,,,2.48,5.51,210.4
+"transfer, guidance sentence removed (7 cases x 10 repeats)",claude-sonnet,70,86820,8005,0,1240.3,114.4,,,2.0,2.92,150.9
+"transfer, guidance sentence removed (7 cases x 10 repeats)",gemini-argon,70,65490,4924,63,935.6,71.2,,,3.65,10.51,344.8
+"transfer, guidance sentence removed (7 cases x 10 repeats)",gemini-flash,70,49570,2938,15157,708.1,258.5,,,3.55,5.22,290.9
+"transfer, guidance sentence removed (7 cases x 10 repeats)",gemini-flash-lite,70,49570,3364,0,708.1,48.1,,,0.84,1.02,60.6
+"transfer, guidance sentence removed (7 cases x 10 repeats)",gpt-astra,70,48100,4346,1114,687.1,78.0,0.754,0.010771,2.35,4.3,185.0
+"transfer, guidance sentence removed (7 cases x 10 repeats)",gpt-luna,70,48100,8736,5634,687.1,205.3,0.012,0.000171,2.66,4.31,199.9
+"transfer, guidance sentence removed (7 cases x 10 repeats)",gpt-sol,70,48100,3878,754,687.1,66.2,0.1425,0.002036,2.4,3.68,181.6

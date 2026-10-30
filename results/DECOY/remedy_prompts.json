@@ -1,0 +1,7 @@
+{
+ "remedy": {
+  "G2": " A child cell rotated relative to the parent (PATH_LATTICE) is an input-structure problem that no listed fix repairs: stop.",
+  "G5": " A minimum near the grid edge (COVERAGE) is not fixed by densifying: stop. accept_secondary_hold applies only to SECONDARY_COUPLED; a tolerance exceeded by any margin is a failure, not a near miss: stop."
+ },
+ "note": "sentences appended to the guidance line of the G2 and G5 prompts for the declared post-hoc test; the evaluated prompts remain the frozen ones"
+}

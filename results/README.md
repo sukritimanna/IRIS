@@ -7,3 +7,5 @@
 | `LOSO/` | leave-one-system-out: deterministic deciders (`loso_cases.csv`, `loso_summary.csv`) and the nine models with the own-system guidance sentence removed (`loso_llm_*.csv`, `loso_prompts.json`) |
 | `E/parser_v2/` | the rule-based intake parser, second version (one declared fix); v1 numbers are in the paper and reproducible with `PARSER_V1=1 python -m intake.run_parser` |
 | `summary/` | the per-experiment summary CSVs read by `scripts/figures/fig6_llm.py` (E1–E9, S5.3 model benchmark, `E_summary_v5.csv` with the parser row) |
+| `DECOY/` | the decoy-remedy test: three guidance sentences (`remedy_prompts.json`), nine models x five repeats on the 53 cases (`decoy_remedy_summary.csv`, `decoy_remedy_cases.csv`) |
+| `COST/` | tokens, latency and cost of every metered model call, per experiment and model (`cost_summary.csv`) |
